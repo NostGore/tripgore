@@ -1,6 +1,6 @@
 
 // Contraseña secreta para acceso al panel de moderación
-export const MODERATION_PASSWORD = "tgoreñ2025";
+export const MODERATION_PASSWORD = "tgoreñ159";
 
 // Función para validar la contraseña
 export const validateModerationPassword = (inputPassword) => {
