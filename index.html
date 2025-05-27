@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRIPGORE - Horror sin fin</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://files.catbox.moe/czvw1i.png" type="image/png">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="TRIPGORE | ¡Horror sin fin!">
+    <meta property="og:description" content="El mejor contenido gore actualizado.">
+    <meta property="og:image" content="https://files.catbox.moe/b94cxz.jpg">
+    <meta property="og:url" content="https://tripgore.xyz">
+    <meta property="og:type" content="website">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="https://files.catbox.moe/cjmaz9.png" alt="TRIPLEGORE" class="logo-img">
+            </div>
+            <nav class="nav">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Inicio</a></li>
+                    <li><a href="adminpanel.html" class="nav-link"><i class="fa-solid fa-upload"></i> Subir</a></li>
+                    <li class="user-menu">
+                        <span id="userDisplay" class="nav-link"><i class="fa-solid fa-user"></i> Invitado</span>
+                        <div class="user-dropdown">
+                            <a href="login.html" id="loginLink" class="dropdown-link">
+                                <i class="fa-solid fa-sign-in-alt"></i> Iniciar Sesión
+                            </a>
+                            <a href="registro.html" id="registerLink" class="dropdown-link">
+                                <i class="fa-solid fa-user-plus"></i> Registrarse
+                            </a>
+                            <a href="adminpanel.html" id="adminLink" class="dropdown-link" style="display: none;">
+                                <i class="fa-solid fa-cogs"></i> Admin Panel
+                            </a>
+                            <a href="data.html" id="moderationLink" class="dropdown-link" style="display: none;">
+                                <i class="fa-solid fa-shield-alt"></i> Moderación
+                            </a>
+                            <a href="#" id="logoutLink" class="dropdown-link" style="display: none;">
+                                <i class="fa-solid fa-sign-out-alt"></i> Cerrar Sesión
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <!-- SECCIÓN RECOMENDADOS -->
+            <section class="section">
+                <h2 class="section-title">RECOMENDADOS</h2>
+                <div class="content-grid" id="recomendados-grid">
+                    <!-- Los videos recomendados se cargarán aquí -->
+                </div>
+            </section>
+
+            <!-- SECCIÓN 1 -->
+            <section class="section">
+                <h2 class="section-title">ASESINATOS</h2>
+
+                <div class="content-grid">
+                    <div class="content-card">
+                        <img src="https://picsum.photos/300/180?random=1" alt="Video thumbnail" class="card-image">
+                        <div class="card-overlay">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4>UKNOWN</h4>
+                            <div class="card-info">
+                                <p class="card-author"><i class="fa-solid fa-user"></i> Autor: sandycoach</p>
+                                <p class="card-date"><i class="fa-solid fa-calendar-day"></i> Subido: 26 May 2025</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 2 -->
+            <section class="section">
+                <h2 class="section-title">ACCIDENTES</h2>
+
+                <div class="content-grid">
+                    <div class="content-card">
+                        <img src="https://picsum.photos/300/180?random=5" alt="Video thumbnail" class="card-image">
+                        <div class="card-overlay">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4>UKNOWN</h4>
+                            <div class="card-info">
+                                <p class="card-author"><i class="fa-solid fa-user"></i> Autor: biketremess</p>
+                                <p class="card-date"><i class="fa-solid fa-calendar-day"></i> Subido: 26 May 2025</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 3 -->
+            <section class="section">
+                <h2 class="section-title">PELEAS</h2>
+
+                <div class="content-grid">
+                    <div class="content-card">
+                        <img src="https://picsum.photos/300/180?random=9" alt="Video thumbnail" class="card-image">
+                        <div class="card-overlay">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4>UKNOWN</h4>
+                            <div class="card-info">
+                                <p class="card-author"><i class="fa-solid fa-user"></i> Autor: lawless2112009</p>
+                                <p class="card-date"><i class="fa-solid fa-calendar-day"></i> Subido: 26 May 2025</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 4 -->
+            <section class="section">
+                <h2 class="section-title">SUICIDIOS</h2>
+
+                <div class="content-grid">
+                    <div class="content-card">
+                        <img src="https://picsum.photos/300/180?random=13" alt="Video thumbnail" class="card-image">
+                        <div class="card-overlay">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4>UKNOWN</h4>
+                            <div class="card-info">
+                                <p class="card-author"><i class="fa-solid fa-user"></i> Autor: officer_reports</p>
+                                <p class="card-date"><i class="fa-solid fa-calendar-day"></i> Subido: 26 May 2025</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 5 -->
+            <section class="section">
+                <h2 class="section-title">AUTOLESIONES</h2>
+
+                <div class="content-grid">
+                    <div class="content-card">
+                        <img src="https://picsum.photos/300/180?random=9" alt="Video thumbnail" class="card-image">
+                        <div class="card-overlay">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4>UKNOWN</h4>
+                            <div class="card-info">
+                                <p class="card-author"><i class="fa-solid fa-user"></i> Autor: lawless2112009</p>
+                                <p class="card-date"><i class="fa-solid fa-calendar-day"></i> Subido: 26 May 2025</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script type="module">
+        import {authFunctions, updateUserDisplay, videoFunctions} from './firebase.js';
+        import './search.js';
+
+        // Make videoFunctions globally available for search
+        window.videoFunctions = videoFunctions;
+
+        document.addEventListener('DOMContentLoaded', function () {
+            updateUserDisplay();
+
+            loadRecommendedVideos();
+            loadApprovedVideos();
+
+            const loginLink = document.getElementById('loginLink');
+            const registerLink = document.getElementById('registerLink');
+            const adminLink = document.getElementById('adminLink');
+            const moderationLink = document.getElementById('moderationLink');
+            const logoutLink = document.getElementById('logoutLink');
+
+            // Listen for auth state changes
+            authFunctions.onAuthStateChanged((user) => {
+                if (user) {
+                    // User is logged in
+                    loginLink.style.display = 'none';
+                    registerLink.style.display = 'none';
+                    adminLink.style.display = 'block';
+                    moderationLink.style.display = 'block';
+                    logoutLink.style.display = 'block';
+                } else {
+                    // User is logged out
+                    loginLink.style.display = 'block';
+                    registerLink.style.display = 'block';
+                    adminLink.style.display = 'none';
+                    moderationLink.style.display = 'none';
+                    logoutLink.style.display = 'none';
+                }
+            });
+
+            // Logout functionality
+            logoutLink.addEventListener('click', async function (e) {
+                e.preventDefault();
+                const result = await authFunctions.logout();
+                if (result.success) {
+                    window.location.reload();
+                }
+            });
+
+            function loadRecommendedVideos() {
+                videoFunctions.getAllApprovedVideos((allVideos) => {
+                    // Shuffle and take 8 random videos
+                    const shuffled = allVideos.sort(() => 0.5 - Math.random());
+                    const recommendedVideos = shuffled.slice(0, 8);
+
+                    const recomendadosGrid = document.getElementById('recomendados-grid');
+                    if (!recomendadosGrid) return;
+
+                    if (recommendedVideos.length === 0) {
+                        recomendadosGrid.innerHTML = `
+                            <div style="grid-column: 1 / -1; text-align: center; color: #FFB6C1; padding: 40px;">
+                                <i class="fa-solid fa-exclamation-circle" style="font-size: 48px; margin-bottom: 20px;"></i>
+                                <p>No hay videos disponibles para mostrar</p>
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    recomendadosGrid.innerHTML = '';
+                    recommendedVideos.forEach(video => {
+                        const videoCard = document.createElement('div');
+                        videoCard.className = 'content-card';
+                        videoCard.style.cursor = 'pointer';
+                        videoCard.innerHTML = `
+                            <img src="${video.portada}" alt="${video.titulo}" class="card-image" 
+                                 onerror="this.src='https://via.placeholder.com/300x180/8B0000/FFFFFF?text=Error+Imagen'">
+                            <div class="card-overlay">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                            <div class="card-content">
+                                <h4>${video.titulo}</h4>
+                                <div class="card-info">
+                                    <p class="card-author"><i class="fa-solid fa-user"></i> Autor: ${video.autor}</p>
+                                    <p class="card-date"><i class="fa-solid fa-calendar-day"></i> Subido: ${video.fecha}</p>
+                                </div>
+                            </div>
+                        `;
+
+                        videoCard.addEventListener('click', () => {
+                            window.location.href = `video.html?id=${video.id}`;
+                        });
+
+                        recomendadosGrid.appendChild(videoCard);
+                    });
+                });
+            }
+
+            function loadApprovedVideos() {
+                const categories = ['ASESINATOS', 'ACCIDENTES', 'PELEAS', 'SUICIDIOS', 'AUTOLESIONES'];
+
+                categories.forEach(category => {
+                    videoFunctions.getApprovedVideosByCategory(category, (videos) => {
+                        updateCategorySection(category, videos);
+                    });
+                });
+            }
+
+
+
+            function updateCategorySection(category, videos) {
+                const sections = document.querySelectorAll('.section');
+                let targetSection = null;
+
+                sections.forEach(section => {
+                    const title = section.querySelector('.section-title');
+                    if (title && title.textContent.trim() === category) {
+                        targetSection = section;
+                    }
+                });
+
+                if (!targetSection) return;
+
+                const contentGrid = targetSection.querySelector('.content-grid');
+                if (!contentGrid) return;
+
+                if (videos.length === 0) {
+                    contentGrid.innerHTML = `
+                        <div style="grid-column: 1 / -1; text-align: center; color: #FFB6C1; padding: 40px;">
+                            <i class="fa-solid fa-exclamation-circle" style="font-size: 48px; margin-bottom: 20px;"></i>
+                            <p>No hay videos aprobados en esta categoría</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                // Limpiar contenido previo
+                contentGrid.innerHTML = '';
+
+                // Remover botón "Ver más" previo si existe
+                const existingBtn = targetSection.querySelector('.show-more-btn');
+                if (existingBtn) {
+                    existingBtn.remove();
+                }
+
+                // Mostrar solo los primeros 4 videos inicialmente
+                const initialVideos = videos.slice(0, 4);
+                const remainingVideos = videos.slice(4);
+
+                // Crear y agregar los primeros 4 videos
+                initialVideos.forEach(video => {
+                    const videoCard = createVideoCard(video);
+                    contentGrid.appendChild(videoCard);
+                });
+
+                // Si hay más de 4 videos, crear el botón "Ver más" en el título
+                if (remainingVideos.length > 0) {
+                    const sectionTitle = targetSection.querySelector('.section-title');
+                    const showMoreBtn = document.createElement('button');
+                    showMoreBtn.className = 'show-more-btn';
+                    showMoreBtn.innerHTML = `
+                        &#43; ${remainingVideos.length}
+                    `;
+
+                    let isExpanded = false;
+
+                    showMoreBtn.addEventListener('click', () => {
+                        if (!isExpanded) {
+                            // Mostrar todos los videos restantes
+                            remainingVideos.forEach(video => {
+                                const videoCard = createVideoCard(video);
+                                contentGrid.appendChild(videoCard);
+                            });
+                            showMoreBtn.innerHTML = `&#8722; Menos`;
+                            showMoreBtn.classList.add('hide-btn');
+                            isExpanded = true;
+                        } else {
+                            // Ocultar videos adicionales
+                            const allCards = contentGrid.querySelectorAll('.content-card');
+                            for (let i = 4; i < allCards.length; i++) {
+                                allCards[i].remove();
+                            }
+                            showMoreBtn.innerHTML = `&#43; ${remainingVideos.length}`;
+                            showMoreBtn.classList.remove('hide-btn');
+                            isExpanded = false;
+                        }
+                    });
+
+                    sectionTitle.appendChild(showMoreBtn);
+                }
+            }
+
+            function createVideoCard(video) {
+                const videoCard = document.createElement('div');
+                videoCard.className = 'content-card';
+                videoCard.style.cursor = 'pointer';
+                videoCard.innerHTML = `
+                    <img src="${video.portada}" alt="${video.titulo}" class="card-image" 
+                         onerror="this.src='https://via.placeholder.com/300x180/8B0000/FFFFFF?text=Error+Imagen'">
+                    <div class="card-overlay">
+                        <i class="fa-solid fa-play"></i>
+                    </div>
+                    <div class="card-content">
+                        <h4>${video.titulo}</h4>
+                        <div class="card-info">
+                            <p class="card-author"><i class="fa-solid fa-user"></i> Autor: ${video.autor}</p>
+                            <p class="card-date"><i class="fa-solid fa-calendar-day"></i> Subido: ${video.fecha}</p>
+                        </div>
+                    </div>
+                `;
+
+                videoCard.addEventListener('click', () => {
+                    window.location.href = `video.html?id=${video.id}`;
+                });
+
+                return videoCard;
+            }
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

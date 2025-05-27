@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRIPGORE - VIDEO</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://files.catbox.moe/czvw1i.png" type="image/png">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="TRIPGORE | ¡Horror sin fin!">
+    <meta property="og:description" content="El mejor contenido gore actualizado.">
+    <meta property="og:image" content="https://files.catbox.moe/b94cxz.jpg">
+    <meta property="og:url" content="https://tripgore.xyz">
+    <meta property="og:type" content="website">
+    <style>
+        .video-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .video-player {
+            background: linear-gradient(145deg, #2a0000, #1a0000);
+            border-radius: 15px;
+            padding: 30px;
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+            margin-bottom: 30px;
+        }
+
+        .video-iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .video-info {
+            color: #FFB6C1;
+        }
+
+        .video-title {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #DC143C;
+        }
+
+        .video-meta {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .video-meta span {
+            color: #cccccc;
+        }
+
+        .video-meta i {
+            color: #DC143C;
+            margin-right: 8px;
+        }
+
+        .related-videos {
+            background: linear-gradient(145deg, #2a0000, #1a0000);
+            border-radius: 15px;
+            padding: 30px;
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            color: #DC143C;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .related-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .related-card:hover {
+            border-color: #DC143C;
+            transform: translateY(-5px);
+        }
+
+        .related-image {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .related-title {
+            color: #FFB6C1;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .related-author {
+            color: #cccccc;
+            font-size: 12px;
+        }
+
+        .comments-section {
+            background: linear-gradient(145deg, #2a0000, #1a0000);
+            border-radius: 15px;
+            padding: 30px;
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+        }
+
+        .comment-form {
+            margin-bottom: 30px;
+        }
+
+        .comment-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(139, 0, 0, 0.3);
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 100px;
+            margin-bottom: 15px;
+        }
+
+        .comment-input:focus {
+            outline: none;
+            border-color: #DC143C;
+            background: rgba(139, 0, 0, 0.1);
+        }
+
+        .comment-btn {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .comment-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.4);
+        }
+
+        .comment {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .comment-author {
+            color: #DC143C;
+            font-weight: bold;
+        }
+
+        .comment-date {
+            color: #cccccc;
+            font-size: 12px;
+        }
+
+        .comment-text {
+            color: #FFB6C1;
+            line-height: 1.5;
+        }
+
+        .login-prompt {
+            text-align: center;
+            color: #FFB6C1;
+            padding: 20px;
+            background: rgba(139, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+
+        .login-prompt a {
+            color: #DC143C;
+            text-decoration: none;
+        }
+
+        .login-prompt a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="https://files.catbox.moe/cjmaz9.png" alt="TRIPGORE" class="logo-img">
+            </div>
+            <nav class="nav">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Inicio</a></li>
+                    <li><a href="adminpanel.html" class="nav-link"><i class="fa-solid fa-upload"></i> Subir</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="video-container">
+            <!-- Video Player Section -->
+            <div class="video-player">
+                <iframe id="videoFrame" class="video-iframe" src="" allowfullscreen></iframe>
+                <div class="video-info">
+                    <h1 id="videoTitle" class="video-title">Cargando...</h1>
+                    <div class="video-meta">
+                        <span><i class="fa-solid fa-user"></i> Autor: <span id="videoAuthor">-</span></span>
+                        <span><i class="fa-solid fa-calendar-day"></i> Fecha: <span id="videoDate">-</span></span>
+                        <span><i class="fa-solid fa-tags"></i> Categoría: <span id="videoCategory">-</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Videos Section -->
+            <div class="related-videos">
+                <h2 class="section-title">Otros Videos</h2>
+                <div id="relatedGrid" class="related-grid">
+                    <!-- Related videos will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section">
+                <h2 class="section-title">Comentarios</h2>
+
+                <div id="commentForm" class="comment-form" style="display: none;">
+                    <textarea id="commentInput" class="comment-input" placeholder="Escribe tu comentario..."></textarea>
+                    <button id="submitComment" class="comment-btn">
+                        <i class="fa-solid fa-comment"></i> Comentar
+                    </button>
+                </div>
+
+                <div id="loginPrompt" class="login-prompt">
+                    <p><i class="fa-solid fa-sign-in-alt"></i>
+                        <a href="login.html">Inicia sesión</a> o <a href="registro.html">regístrate</a> para comentar
+                    </p>
+                </div>
+
+                <div id="commentsContainer">
+                    <!-- Comments will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module">
+        import {authFunctions, updateUserDisplay, videoFunctions} from './firebase.js';
+        import './search.js';
+
+        // Make videoFunctions globally available for search
+        window.videoFunctions = videoFunctions;
+
+        document.addEventListener('DOMContentLoaded', function () {
+            updateUserDisplay();
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const videoId = urlParams.get('id');
+
+            if (!videoId) {
+                alert('Video no encontrado');
+                window.location.href = 'index.html';
+                return;
+            }
+
+            let currentUser = null;
+
+            // Auth state listener
+            authFunctions.onAuthStateChanged((user) => {
+                currentUser = user;
+                updateUserDisplay();
+
+                const commentForm = document.getElementById('commentForm');
+                const loginPrompt = document.getElementById('loginPrompt');
+
+                if (user) {
+                    commentForm.style.display = 'block';
+                    loginPrompt.style.display = 'none';
+                } else {
+                    commentForm.style.display = 'none';
+                    loginPrompt.style.display = 'block';
+                }
+            });
+
+            // Load video data
+            videoFunctions.getVideoById(videoId, (video) => {
+                if (video) {
+                    document.getElementById('videoFrame').src = video.videoUrl;
+                    document.getElementById('videoTitle').textContent = video.titulo;
+                    document.getElementById('videoAuthor').textContent = video.autor;
+                    document.getElementById('videoDate').textContent = video.fecha;
+                    document.getElementById('videoCategory').textContent = video.categoria;
+                    document.title = `${video.titulo} - TRIPLEGORE`;
+                } else {
+                    alert('Video no encontrado');
+                    window.location.href = 'index.html';
+                }
+            });
+
+            // Load related videos
+            videoFunctions.getRandomVideos(5, videoId, (videos) => {
+                const relatedGrid = document.getElementById('relatedGrid');
+                relatedGrid.innerHTML = '';
+
+                videos.forEach(video => {
+                    const relatedCard = document.createElement('div');
+                    relatedCard.className = 'related-card';
+                    relatedCard.innerHTML = `
+                        <img src="${video.portada}" alt="${video.titulo}" class="related-image"
+                             onerror="this.src='https://via.placeholder.com/200x120/8B0000/FFFFFF?text=Error'">
+                        <div class="related-title">${video.titulo}</div>
+                        <div class="related-author">Por: ${video.autor}</div>
+                    `;
+
+                    relatedCard.addEventListener('click', () => {
+                        window.location.href = `video.html?id=${video.id}`;
+                    });
+
+                    relatedGrid.appendChild(relatedCard);
+                });
+            });
+
+            // Load comments
+            videoFunctions.getComments(videoId, (comments) => {
+                const commentsContainer = document.getElementById('commentsContainer');
+                commentsContainer.innerHTML = '';
+
+                if (comments.length === 0) {
+                    commentsContainer.innerHTML = `
+                        <div style="text-align: center; color: #FFB6C1; padding: 20px;">
+                            <i class="fa-solid fa-comments" style="font-size: 48px; margin-bottom: 15px;"></i>
+                            <p>No hay comentarios aún. ¡Sé el primero en comentar!</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                comments.forEach(comment => {
+                    const commentElement = document.createElement('div');
+                    commentElement.className = 'comment';
+                    commentElement.innerHTML = `
+                        <div class="comment-header">
+                            <span class="comment-author">${comment.autor}</span>
+                            <span class="comment-date">${comment.fecha}</span>
+                        </div>
+                        <div class="comment-text">${comment.texto}</div>
+                    `;
+                    commentsContainer.appendChild(commentElement);
+                });
+            });
+
+            // Submit comment
+            document.getElementById('submitComment').addEventListener('click', async function () {
+                if (!currentUser) {
+                    alert('Debes iniciar sesión para comentar');
+                    return;
+                }
+
+                const commentText = document.getElementById('commentInput').value.trim();
+                if (!commentText) {
+                    alert('Por favor escribe un comentario');
+                    return;
+                }
+
+                const result = await videoFunctions.addComment(videoId, commentText);
+                if (result.success) {
+                    document.getElementById('commentInput').value = '';
+                    // Comments will reload automatically via the listener
+                } else {
+                    alert('Error al enviar comentario: ' + result.error);
+                }
+            });
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

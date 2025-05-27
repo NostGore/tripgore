@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - TRIPGORE</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://files.catbox.moe/czvw1i.png" type="image/png">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="TRIPGORE | ¡Horror sin fin!">
+    <meta property="og:description" content="El mejor contenido gore actualizado.">
+    <meta property="og:image" content="https://files.catbox.moe/b94cxz.jpg">
+    <meta property="og:url" content="https://tripgore.xyz">
+    <meta property="og:type" content="website">
+    <style>
+        /* Estilos específicos para registro/login */
+        .auth-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .auth-panel {
+            background: linear-gradient(145deg, #2a0000, #1a0000);
+            border-radius: 15px;
+            padding: 40px;
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+        }
+
+        .auth-title {
+            background: linear-gradient(90deg, #8B0000, #DC143C);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            font-size: 24px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            color: #FFB6C1;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            padding-left: 5px;
+        }
+
+        .form-label i {
+            color: #DC143C;
+            margin-right: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(139, 0, 0, 0.1);
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #DC143C;
+            background: rgba(139, 0, 0, 0.2);
+            box-shadow: 0 0 10px rgba(220, 20, 60, 0.3);
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 0, 0, 0.5);
+            background: linear-gradient(135deg, #A0002A, #FF1450);
+        }
+
+        .auth-btn:active {
+            transform: translateY(0);
+        }
+
+        .auth-btn i {
+            margin-right: 10px;
+        }
+
+        .auth-links {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .auth-link {
+            color: #FFB6C1;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .auth-link:hover {
+            color: #DC143C;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .error-message {
+            background: rgba(220, 20, 60, 0.2);
+            border: 1px solid #DC143C;
+            color: #FFB6C1;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .success-message {
+            background: rgba(0, 128, 0, 0.2);
+            border: 1px solid #008000;
+            color: #90EE90;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="https://files.catbox.moe/cjmaz9.png" alt="TRIPLEGORE" class="logo-img">
+            </div>
+            <nav class="nav">
+
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Inicio</a></li>
+                    <li><span id="userDisplay" class="nav-link"><i class="fa-solid fa-user"></i> Invitado</span></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="auth-container">
+            <div class="back-link">
+                <a href="index.html" class="auth-link">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Volver al Inicio
+                </a>
+            </div>
+
+            <div class="auth-panel">
+                <h1 class="auth-title">
+                    <i class="fa-solid fa-user-plus"></i>
+                    Crear Cuenta
+                </h1>
+
+                <div id="errorMessage" class="error-message"></div>
+                <div id="successMessage" class="success-message"></div>
+
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="email" class="form-label">
+                            <i class="fa-solid fa-envelope"></i>
+                            Correo Electrónico:
+                        </label>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="tu@ejemplo.com"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="form-label">
+                            <i class="fa-solid fa-lock"></i>
+                            Contraseña:
+                        </label>
+                        <input type="password" id="password" name="password" class="form-input"
+                            placeholder="Mínimo 6 caracteres" required minlength="6">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword" class="form-label">
+                            <i class="fa-solid fa-lock"></i>
+                            Confirmar Contraseña:
+                        </label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" class="form-input"
+                            placeholder="Repite tu contraseña" required minlength="6">
+                    </div>
+
+                    <button type="submit" class="auth-btn">
+                        <i class="fa-solid fa-user-plus"></i>
+                        Crear Cuenta
+                    </button>
+                </form>
+
+                <div class="auth-links">
+                    <a href="login.html" class="auth-link">
+                        ¿Ya tienes cuenta? Inicia Sesión
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module">
+        import {authFunctions, updateUserDisplay} from './firebase.js';
+
+        document.addEventListener('DOMContentLoaded', function () {
+            updateUserDisplay();
+
+            const form = document.getElementById('registerForm');
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+
+                // Hide previous messages
+                errorMessage.style.display = 'none';
+                successMessage.style.display = 'none';
+
+                // Validate passwords match
+                if (password !== confirmPassword) {
+                    errorMessage.textContent = 'Las contraseñas no coinciden';
+                    errorMessage.style.display = 'block';
+                    return;
+                }
+
+                // Change button state
+                const submitBtn = document.querySelector('.auth-btn');
+                submitBtn.style.transform = 'scale(0.95)';
+                submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Creando cuenta...';
+
+                try {
+                    const result = await authFunctions.register(email, password);
+
+                    if (result.success) {
+                        successMessage.textContent = '¡Cuenta creada exitosamente! Redirigiendo...';
+                        successMessage.style.display = 'block';
+
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 2000);
+                    } else {
+                        let errorText = 'Error al crear la cuenta';
+                        if (result.error.includes('email-already-in-use')) {
+                            errorText = 'Este correo ya está registrado';
+                        } else if (result.error.includes('weak-password')) {
+                            errorText = 'La contraseña es muy débil';
+                        } else if (result.error.includes('invalid-email')) {
+                            errorText = 'Correo electrónico inválido';
+                        }
+                        errorMessage.textContent = errorText;
+                        errorMessage.style.display = 'block';
+                    }
+                } catch (error) {
+                    errorMessage.textContent = 'Error de conexión. Intenta de nuevo.';
+                    errorMessage.style.display = 'block';
+                }
+
+                // Restore button
+                submitBtn.style.transform = 'scale(1)';
+                submitBtn.innerHTML = '<i class="fa-solid fa-user-plus"></i> Crear Cuenta';
+            });
+        });
+    </script>
+</body>
+
+</html>

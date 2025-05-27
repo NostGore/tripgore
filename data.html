@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Moderación - TRIPGORE</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://files.catbox.moe/czvw1i.png" type="image/png">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="TRIPGORE | ¡Horror sin fin!">
+    <meta property="og:description" content="El mejor contenido gore actualizado.">
+    <meta property="og:image" content="https://files.catbox.moe/b94cxz.jpg">
+    <meta property="og:url" content="https://tripgore.xyz">
+    <meta property="og:type" content="website">
+    <style>
+        /* Estilos específicos para el panel de moderación */
+        .moderation-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .moderation-panel {
+            background: linear-gradient(145deg, #2a0000, #1a0000);
+            border-radius: 15px;
+            padding: 40px;
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+        }
+
+        .moderation-title {
+            background: linear-gradient(90deg, #8B0000, #DC143C);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            font-size: 24px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+            font-weight: bold;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .video-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover {
+            border-color: #DC143C;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(139, 0, 0, 0.4);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .video-info h3 {
+            color: #FFB6C1;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .video-meta {
+            color: #cccccc;
+            font-size: 14px;
+            margin: 5px 0;
+        }
+
+        .video-meta i {
+            color: #DC143C;
+            margin-right: 8px;
+        }
+
+        .video-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .approve-btn {
+            flex: 1;
+            padding: 12px;
+            background: linear-gradient(135deg, #228B22, #32CD32);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .approve-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(34, 139, 34, 0.4);
+        }
+
+        .reject-btn {
+            flex: 1;
+            padding: 12px;
+            background: linear-gradient(135deg, #B22222, #DC143C);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .reject-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(178, 34, 34, 0.4);
+        }
+
+        .no-videos {
+            text-align: center;
+            color: #FFB6C1;
+            font-size: 18px;
+            margin-top: 50px;
+        }
+
+        .back-nav {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            color: #FFB6C1;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+            margin: 0 15px;
+        }
+
+        .back-link:hover {
+            color: #DC143C;
+        }
+
+        .back-link i {
+            margin-right: 8px;
+        }
+
+        .category-badge {
+            display: inline-block;
+            background: rgba(220, 20, 60, 0.2);
+            color: #DC143C;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .password-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .password-modal-content {
+            background: linear-gradient(145deg, #2a0000, #1a0000);
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+        }
+
+        .password-title {
+            color: #DC143C;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .password-description {
+            color: #FFB6C1;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .password-form {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .password-input {
+            flex: 1;
+            padding: 15px;
+            background: rgba(139, 0, 0, 0.3);
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: #DC143C;
+            background: rgba(139, 0, 0, 0.1);
+        }
+
+        .password-btn {
+            padding: 15px 25px;
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .password-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.4);
+        }
+
+        .password-error {
+            color: #ff6b6b;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .logout-moderation-btn {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(139, 0, 0, 0.3);
+            border: 1px solid rgba(139, 0, 0, 0.5);
+            color: #FFB6C1;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logout-moderation-btn:hover {
+            background: rgba(139, 0, 0, 0.5);
+            color: white;
+        }
+
+        .moderation-title {
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="https://files.catbox.moe/cjmaz9.png" alt="TRIPLEGORE" class="logo-img">
+            </div>
+            <nav class="nav">
+                <div class="search-container">
+                    <input type="text" placeholder="Search" class="search-input">
+                    <button class="search-btn">🔍</button>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Inicio</a></li>
+                    <li><a href="adminpanel.html" class="nav-link"><i class="fa-solid fa-upload"></i> Subir</a></li>
+                    <li><span id="userDisplay" class="nav-link"><i class="fa-solid fa-user"></i> Invitado</span></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="moderation-container">
+            <div class="back-nav">
+                <a href="index.html" class="back-link">
+                    <i class="fa-solid fa-home"></i>
+                    Inicio
+                </a>
+                <a href="adminpanel.html" class="back-link">
+                    <i class="fa-solid fa-cogs"></i>
+                    Panel Admin
+                </a>
+            </div>
+
+            <!-- Password Protection Modal -->
+            <div id="passwordModal" class="password-modal">
+                <div class="password-modal-content">
+                    <h2 class="password-title">
+                        <i class="fa-solid fa-lock"></i>
+                        Acceso Restringido
+                    </h2>
+                    <p class="password-description">
+                        Ingresa la contraseña secreta para acceder al panel de moderación:
+                    </p>
+                    <div class="password-form">
+                        <input type="password" id="passwordInput" class="password-input"
+                            placeholder="Contraseña secreta...">
+                        <button id="submitPassword" class="password-btn">
+                            <i class="fa-solid fa-unlock"></i>
+                            Acceder
+                        </button>
+                    </div>
+                    <div id="passwordError" class="password-error"></div>
+                </div>
+            </div>
+
+            <div id="moderationContent" class="moderation-panel" style="display: none;">
+                <h1 class="moderation-title">
+                    <i class="fa-solid fa-shield-alt"></i>
+                    Panel de Moderación
+                    <button id="logoutModeration" class="logout-moderation-btn">
+                        <i class="fa-solid fa-sign-out-alt"></i>
+                    </button>
+                </h1>
+
+                <div id="videosContainer">
+                    <div class="no-videos">
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+                        Cargando videos pendientes...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module">
+        import {authFunctions, updateUserDisplay, videoFunctions} from './firebase.js';
+        import {validateModerationPassword, isModerationAuthorized, authorizeModerationAccess, revokeModerationAccess} from './pass.js';
+
+        document.addEventListener('DOMContentLoaded', function () {
+            updateUserDisplay();
+
+            const passwordModal = document.getElementById('passwordModal');
+            const moderationContent = document.getElementById('moderationContent');
+            const passwordInput = document.getElementById('passwordInput');
+            const submitPasswordBtn = document.getElementById('submitPassword');
+            const passwordError = document.getElementById('passwordError');
+            const logoutModerationBtn = document.getElementById('logoutModeration');
+
+            // Check if user is logged in for moderation access
+            authFunctions.onAuthStateChanged((user) => {
+                if (!user) {
+                    alert('Debes iniciar sesión para acceder al panel de moderación');
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                // Check if already authorized for moderation
+                if (isModerationAuthorized()) {
+                    showModerationPanel();
+                } else {
+                    showPasswordModal();
+                }
+            });
+
+            // Show password modal
+            function showPasswordModal() {
+                passwordModal.style.display = 'flex';
+                moderationContent.style.display = 'none';
+                passwordInput.focus();
+            }
+
+            // Show moderation panel
+            function showModerationPanel() {
+                passwordModal.style.display = 'none';
+                moderationContent.style.display = 'block';
+                loadPendingVideos();
+            }
+
+            // Handle password submission
+            submitPasswordBtn.addEventListener('click', validatePassword);
+            passwordInput.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    validatePassword();
+                }
+            });
+
+            function validatePassword() {
+                const inputPassword = passwordInput.value;
+
+                if (validateModerationPassword(inputPassword)) {
+                    authorizeModerationAccess();
+                    showModerationPanel();
+                    passwordError.textContent = '';
+                    passwordInput.value = '';
+                } else {
+                    passwordError.textContent = 'Contraseña incorrecta. Intenta de nuevo.';
+                    passwordInput.value = '';
+                    passwordInput.focus();
+                }
+            }
+
+            // Handle logout from moderation
+            logoutModerationBtn.addEventListener('click', function () {
+                if (confirm('¿Estás seguro de que quieres cerrar sesión del panel de moderación?')) {
+                    revokeModerationAccess();
+                    showPasswordModal();
+                }
+            });
+
+            function loadPendingVideos() {
+                const videosContainer = document.getElementById('videosContainer');
+
+                videoFunctions.getPendingVideos((videos) => {
+                    if (videos.length === 0) {
+                        videosContainer.innerHTML = `
+                            <div class="no-videos">
+                                <i class="fa-solid fa-check-circle"></i>
+                                <p>No hay videos pendientes de moderación</p>
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    const videosGrid = document.createElement('div');
+                    videosGrid.className = 'videos-grid';
+
+                    videos.forEach(video => {
+                        const videoCard = document.createElement('div');
+                        videoCard.className = 'video-card';
+                        videoCard.innerHTML = `
+                            <img src="${video.portada}" alt="${video.titulo}" class="video-thumbnail" 
+                                 onerror="this.src='https://via.placeholder.com/300x180/8B0000/FFFFFF?text=Error+Imagen'">
+                            <div class="video-info">
+                                <h3>${video.titulo}</h3>
+                                <div class="video-meta">
+                                    <i class="fa-solid fa-user"></i>
+                                    Autor: ${video.autor}
+                                </div>
+                                <div class="video-meta">
+                                    <i class="fa-solid fa-calendar"></i>
+                                    Fecha: ${video.fecha}
+                                </div>
+                                <div class="video-meta">
+                                    <i class="fa-solid fa-link"></i>
+                                    Video: <a href="${video.videoUrl}" target="_blank" style="color: #DC143C;">Ver video</a>
+                                </div>
+                                <div class="category-badge">
+                                    ${video.categoria}
+                                </div>
+                            </div>
+                            <div class="video-actions">
+                                <button class="approve-btn" onclick="approveVideo('${video.id}', ${JSON.stringify(video).replace(/"/g, '&quot;')})">
+                                    <i class="fa-solid fa-check"></i>
+                                    Aprobar
+                                </button>
+                                <button class="reject-btn" onclick="rejectVideo('${video.id}')">
+                                    <i class="fa-solid fa-times"></i>
+                                    Rechazar
+                                </button>
+                            </div>
+                        `;
+                        videosGrid.appendChild(videoCard);
+                    });
+
+                    videosContainer.innerHTML = '';
+                    videosContainer.appendChild(videosGrid);
+                });
+            }
+
+            // Make functions global for onclick handlers
+            window.approveVideo = async function (videoId, videoData) {
+                if (confirm('¿Estás seguro de que quieres aprobar este video?')) {
+                    try {
+                        const result = await videoFunctions.approveVideo(videoId, videoData);
+                        if (result.success) {
+                            alert('Video aprobado exitosamente');
+                        } else {
+                            alert('Error al aprobar video: ' + result.error);
+                        }
+                    } catch (error) {
+                        alert('Error de conexión: ' + error.message);
+                    }
+                }
+            };
+
+            window.rejectVideo = async function (videoId) {
+                if (confirm('¿Estás seguro de que quieres rechazar este video? Esta acción no se puede deshacer.')) {
+                    try {
+                        const result = await videoFunctions.rejectVideo(videoId);
+                        if (result.success) {
+                            alert('Video rechazado y eliminado');
+                        } else {
+                            alert('Error al rechazar video: ' + result.error);
+                        }
+                    } catch (error) {
+                        alert('Error de conexión: ' + error.message);
+                    }
+                }
+            };
+        });
+    </script>
+</body>
+
+</html>
