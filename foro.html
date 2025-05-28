@@ -1,0 +1,633 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foro - TRIPGORE</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://files.catbox.moe/czvw1i.png" type="image/png">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="TRIPGORE | Foro">
+    <meta property="og:description" content="Comparte tus opiniones en nuestro foro.">
+    <meta property="og:image" content="https://files.catbox.moe/b94cxz.jpg">
+    <meta property="og:url" content="https://tripgore.xyz/foro.html">
+    <meta property="og:type" content="website">
+
+    <style>
+        .forum-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .forum-header {
+            background: linear-gradient(145deg, #2a0000, #1a0000);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+        }
+
+        .forum-title {
+            color: #FFB6C1;
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .forum-subtitle {
+            color: #cccccc;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .post-form {
+            background: linear-gradient(145deg, #2a0000, #1a0000);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            color: #FFB6C1;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            padding-left: 5px;
+        }
+
+        .form-label i {
+            color: #DC143C;
+            margin-right: 8px;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(139, 0, 0, 0.1);
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            max-height: 300px;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #DC143C;
+            background: rgba(139, 0, 0, 0.2);
+            box-shadow: 0 0 10px rgba(220, 20, 60, 0.3);
+        }
+
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .post-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+        }
+
+        .post-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 0, 0, 0.5);
+            background: linear-gradient(135deg, #A0002A, #FF1450);
+        }
+
+        .post-btn:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .post-btn i {
+            margin-right: 10px;
+        }
+
+        .cooldown-message {
+            background: rgba(255, 165, 0, 0.2);
+            border: 1px solid #FFA500;
+            color: #FFD700;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .login-prompt {
+            background: rgba(220, 20, 60, 0.2);
+            border: 1px solid #DC143C;
+            color: #FFB6C1;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-prompt a {
+            color: #DC143C;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login-prompt a:hover {
+            text-decoration: underline;
+        }
+
+        .posts-container {
+            margin-top: 30px;
+        }
+
+        .post-item {
+            background: linear-gradient(145deg, #2a0000, #1a0000);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .post-item:hover {
+            border-color: #DC143C;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 0, 0, 0.5);
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(139, 0, 0, 0.3);
+        }
+
+        .post-author {
+            color: #DC143C;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .post-date {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .post-content {
+            color: #FFB6C1;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            word-wrap: break-word;
+        }
+
+        .post-image {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 8px;
+            margin-top: 15px;
+            object-fit: contain;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .error-message {
+            background: rgba(220, 20, 60, 0.2);
+            border: 1px solid #DC143C;
+            color: #FFB6C1;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .success-message {
+            background: rgba(0, 128, 0, 0.2);
+            border: 1px solid #008000;
+            color: #90EE90;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .no-posts {
+            text-align: center;
+            color: #888;
+            font-size: 18px;
+            padding: 40px;
+            background: rgba(139, 0, 0, 0.1);
+            border-radius: 10px;
+            border: 1px dashed rgba(139, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .forum-container {
+                padding: 10px;
+            }
+            
+            .post-form, .forum-header {
+                padding: 20px;
+            }
+            
+            .post-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="https://files.catbox.moe/cjmaz9.png" alt="TRIPLEGORE" class="logo-img">
+            </div>
+            <nav class="nav">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Inicio</a></li>
+                    <li><a href="adminpanel.html" class="nav-link"><i class="fa-solid fa-upload"></i> Subir</a></li>
+                    <li><a href="foro.html" class="nav-link"><i class="fa-solid fa-comments"></i> Foro</a></li>
+                    <li class="user-menu">
+                        <span id="userDisplay" class="nav-link"><i class="fa-solid fa-user"></i> Invitado</span>
+                        <div class="user-dropdown">
+                            <a href="login.html" id="loginLink" class="dropdown-link">
+                                <i class="fa-solid fa-sign-in-alt"></i> Iniciar Sesión
+                            </a>
+                            <a href="registro.html" id="registerLink" class="dropdown-link">
+                                <i class="fa-solid fa-user-plus"></i> Registrarse
+                            </a>
+                            <a href="adminpanel.html" id="adminLink" class="dropdown-link" style="display: none;">
+                                <i class="fa-solid fa-plus"></i> Subir Video
+                            </a>
+                            <a href="#" id="logoutLink" class="dropdown-link" style="display: none;">
+                                <i class="fa-solid fa-sign-out-alt"></i> Cerrar Sesión
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="forum-container">
+            <div class="forum-header">
+                <h1 class="forum-title">
+                    <i class="fa-solid fa-comments"></i>
+                    Foro de la Comunidad
+                </h1>
+                <p class="forum-subtitle">
+                    Comparte tus opiniones y pensamientos con la comunidad
+                </p>
+            </div>
+
+            <!-- Login Prompt -->
+            <div id="loginPrompt" class="login-prompt" style="display: none;">
+                <i class="fa-solid fa-lock"></i>
+                Debes <a href="login.html">iniciar sesión</a> para poder publicar en el foro.
+            </div>
+
+            <!-- Post Form -->
+            <div id="postFormContainer" class="post-form" style="display: none;">
+                <h2 style="color: #FFB6C1; margin-bottom: 20px;">
+                    <i class="fa-solid fa-pen"></i>
+                    Nueva Publicación
+                </h2>
+
+                <div id="errorMessage" class="error-message"></div>
+                <div id="successMessage" class="success-message"></div>
+                <div id="cooldownMessage" class="cooldown-message" style="display: none;"></div>
+
+                <form id="postForm">
+                    <div class="form-group">
+                        <label for="postContent" class="form-label">
+                            <i class="fa-solid fa-comment"></i>
+                            Contenido de la publicación:
+                        </label>
+                        <textarea id="postContent" name="postContent" class="form-textarea" 
+                                placeholder="Escribe tu opinión aquí..." required maxlength="1000"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="postImage" class="form-label">
+                            <i class="fa-solid fa-image"></i>
+                            URL de imagen (opcional):
+                        </label>
+                        <input type="url" id="postImage" name="postImage" class="form-input" 
+                               placeholder="https://ejemplo.com/imagen.jpg">
+                    </div>
+
+                    <button type="submit" id="submitBtn" class="post-btn">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        Publicar
+                    </button>
+                </form>
+            </div>
+
+            <!-- Posts Container -->
+            <div class="posts-container">
+                <h2 style="color: #FFB6C1; margin-bottom: 20px;">
+                    <i class="fa-solid fa-list"></i>
+                    Publicaciones Recientes
+                </h2>
+                <div id="postsContainer">
+                    <div class="no-posts">
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+                        Cargando publicaciones...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module">
+        import { authFunctions, updateUserDisplay, getUsernameFromEmail } from './firebase.js';
+        import { getDatabase, ref, push, set, onValue, query, orderByChild, limitToLast } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-database.js";
+        import { app } from './firebase.js';
+
+        const realtimeDb = getDatabase(app);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateUserDisplay();
+
+            let currentUser = null;
+            const loginPrompt = document.getElementById('loginPrompt');
+            const postFormContainer = document.getElementById('postFormContainer');
+            const postForm = document.getElementById('postForm');
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+            const cooldownMessage = document.getElementById('cooldownMessage');
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Auth state listener
+            authFunctions.onAuthStateChanged((user) => {
+                currentUser = user;
+                updateUserDisplay();
+
+                if (user) {
+                    loginPrompt.style.display = 'none';
+                    postFormContainer.style.display = 'block';
+                    checkCooldown();
+                } else {
+                    loginPrompt.style.display = 'block';
+                    postFormContainer.style.display = 'none';
+                }
+            });
+
+            // Check if user can post (3 hour cooldown)
+            function checkCooldown() {
+                if (!currentUser) return;
+
+                const lastPostTime = localStorage.getItem(`lastPost_${currentUser.uid}`);
+                if (lastPostTime) {
+                    const timeSinceLastPost = Date.now() - parseInt(lastPostTime);
+                    const threeHours = 3 * 60 * 60 * 1000; // 3 hours in milliseconds
+
+                    if (timeSinceLastPost < threeHours) {
+                        const remainingTime = threeHours - timeSinceLastPost;
+                        const hours = Math.floor(remainingTime / (60 * 60 * 1000));
+                        const minutes = Math.floor((remainingTime % (60 * 60 * 1000)) / (60 * 1000));
+                        
+                        cooldownMessage.innerHTML = `
+                            <i class="fa-solid fa-clock"></i>
+                            Debes esperar ${hours}h ${minutes}m antes de poder publicar de nuevo
+                        `;
+                        cooldownMessage.style.display = 'block';
+                        submitBtn.disabled = true;
+                        
+                        // Start countdown timer
+                        const countdownInterval = setInterval(() => {
+                            const currentRemainingTime = threeHours - (Date.now() - parseInt(lastPostTime));
+                            if (currentRemainingTime <= 0) {
+                                clearInterval(countdownInterval);
+                                cooldownMessage.style.display = 'none';
+                                submitBtn.disabled = false;
+                            } else {
+                                const currentHours = Math.floor(currentRemainingTime / (60 * 60 * 1000));
+                                const currentMinutes = Math.floor((currentRemainingTime % (60 * 60 * 1000)) / (60 * 1000));
+                                cooldownMessage.innerHTML = `
+                                    <i class="fa-solid fa-clock"></i>
+                                    Debes esperar ${currentHours}h ${currentMinutes}m antes de poder publicar de nuevo
+                                `;
+                            }
+                        }, 60000); // Update every minute
+
+                        return false;
+                    }
+                }
+                
+                cooldownMessage.style.display = 'none';
+                submitBtn.disabled = false;
+                return true;
+            }
+
+            // Handle form submission
+            postForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                if (!currentUser) {
+                    showError('Debes iniciar sesión para publicar');
+                    return;
+                }
+
+                if (!checkCooldown()) {
+                    showError('Debes esperar antes de publicar de nuevo');
+                    return;
+                }
+
+                const content = document.getElementById('postContent').value.trim();
+                const imageUrl = document.getElementById('postImage').value.trim();
+
+                if (!content) {
+                    showError('El contenido de la publicación es obligatorio');
+                    return;
+                }
+
+                // Validate image URL if provided
+                if (imageUrl && !isValidImageUrl(imageUrl)) {
+                    showError('Por favor, ingresa una URL de imagen válida');
+                    return;
+                }
+
+                hideMessages();
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Publicando...';
+
+                try {
+                    const postData = {
+                        content: content,
+                        imageUrl: imageUrl || null,
+                        author: getUsernameFromEmail(currentUser.email),
+                        authorUid: currentUser.uid,
+                        timestamp: Date.now(),
+                        fecha: new Date().toLocaleDateString('es-ES', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        })
+                    };
+
+                    const foroRef = ref(realtimeDb, 'foro');
+                    const newPostRef = push(foroRef);
+                    
+                    await set(newPostRef, postData);
+
+                    // Set cooldown
+                    localStorage.setItem(`lastPost_${currentUser.uid}`, Date.now().toString());
+
+                    showSuccess('¡Publicación creada exitosamente!');
+                    postForm.reset();
+                    checkCooldown();
+
+                } catch (error) {
+                    showError('Error al publicar: ' + error.message);
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Publicar';
+                }
+            });
+
+            // Load and display posts
+            function loadPosts() {
+                const foroRef = ref(realtimeDb, 'foro');
+                const foroQuery = query(foroRef, orderByChild('timestamp'), limitToLast(50));
+
+                onValue(foroQuery, (snapshot) => {
+                    const postsContainer = document.getElementById('postsContainer');
+                    const posts = [];
+
+                    snapshot.forEach((childSnapshot) => {
+                        posts.push({
+                            id: childSnapshot.key,
+                            ...childSnapshot.val()
+                        });
+                    });
+
+                    // Sort by timestamp (newest first)
+                    posts.sort((a, b) => b.timestamp - a.timestamp);
+
+                    if (posts.length === 0) {
+                        postsContainer.innerHTML = `
+                            <div class="no-posts">
+                                <i class="fa-solid fa-comments"></i>
+                                <br><br>
+                                No hay publicaciones aún. ¡Sé el primero en publicar!
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    postsContainer.innerHTML = posts.map(post => `
+                        <div class="post-item">
+                            <div class="post-header">
+                                <span class="post-author">
+                                    <i class="fa-solid fa-user"></i>
+                                    ${post.author}
+                                </span>
+                                <span class="post-date">
+                                    <i class="fa-solid fa-calendar"></i>
+                                    ${post.fecha}
+                                </span>
+                            </div>
+                            <div class="post-content">
+                                ${post.content.replace(/\n/g, '<br>')}
+                            </div>
+                            ${post.imageUrl ? `
+                                <img src="${post.imageUrl}" alt="Imagen del post" class="post-image" 
+                                     onerror="this.style.display='none'">
+                            ` : ''}
+                        </div>
+                    `).join('');
+                });
+            }
+
+            // Utility functions
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 5000);
+            }
+
+            function showSuccess(message) {
+                successMessage.textContent = message;
+                successMessage.style.display = 'block';
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 3000);
+            }
+
+            function hideMessages() {
+                errorMessage.style.display = 'none';
+                successMessage.style.display = 'none';
+            }
+
+            function isValidImageUrl(url) {
+                try {
+                    const urlObj = new URL(url);
+                    return /\.(jpg|jpeg|png|gif|webp|bmp)$/i.test(urlObj.pathname) || 
+                           url.includes('catbox.moe') || 
+                           url.includes('imgur.com') ||
+                           url.includes('i.redd.it') ||
+                           url.includes('media.discordapp.net');
+                } catch (e) {
+                    return false;
+                }
+            }
+
+            // Handle logout
+            document.getElementById('logoutLink').addEventListener('click', async function(e) {
+                e.preventDefault();
+                const result = await authFunctions.logout();
+                if (result.success) {
+                    window.location.reload();
+                }
+            });
+
+            // Initialize
+            loadPosts();
+        });
+    </script>
+</body>
+
+</html>
