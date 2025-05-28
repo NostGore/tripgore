@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Social - TRIPGORE</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://files.catbox.moe/czvw1i.png" type="image/png">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="TRIPGORE | Chat Social">
+    <meta property="og:description" content="Chat social de TRIPGORE">
+    <meta property="og:image" content="https://files.catbox.moe/cjmaz9.png">
+    <meta property="og:url" content="https://tripgore.xyz">
+    <meta property="og:type" content="website">
+
+    <style>
+        .chat-page-container {
+            max-width: 1400px;
+            margin: 50px auto;
+            padding: 0 20px;
+            height: calc(100vh - 150px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-page-header {
+            background: linear-gradient(145deg, #2a0000, #1a0000);
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            border-radius: 15px 15px 0 0;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+        }
+
+        .chat-page-title {
+            color: #DC143C;
+            font-size: 28px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .chat-page-main {
+            background: linear-gradient(145deg, #2a0000, #1a0000);
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            border-top: none;
+            border-radius: 0 0 15px 15px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+        }
+
+        .messages-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .message-item {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message-item.my-message {
+            align-items: flex-end;
+        }
+
+        .message-item.other-message {
+            align-items: flex-start;
+        }
+
+        .message-content {
+            max-width: 80%;
+            position: relative;
+        }
+
+        .reply-reference {
+            background: rgba(139, 0, 0, 0.2);
+            border-left: 3px solid #DC143C;
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            color: rgba(255, 182, 193, 0.8);
+        }
+
+        .message-bubble {
+            padding: 12px 15px;
+            border-radius: 18px;
+            word-wrap: break-word;
+            position: relative;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+        }
+
+        .my-message .message-bubble {
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+        }
+
+        .other-message .message-bubble {
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .message-author {
+            font-weight: bold;
+            font-size: 12px;
+            color: #FFB6C1;
+        }
+
+        .my-message .message-author {
+            color: #FFB6C1;
+        }
+
+        .other-message .message-author {
+            color: #DC143C;
+        }
+
+        .message-text {
+            line-height: 1.4;
+            font-size: 14px;
+        }
+
+        .message-time {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        .message-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            justify-content: center;
+        }
+
+        .message-action-btn {
+            background: rgba(139, 0, 0, 0.3);
+            border: 1px solid rgba(139, 0, 0, 0.5);
+            color: #FFB6C1;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .message-action-btn:hover {
+            background: rgba(139, 0, 0, 0.5);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .reply-indicator {
+            padding: 15px 20px;
+            background: rgba(139, 0, 0, 0.2);
+            border-top: 1px solid rgba(139, 0, 0, 0.3);
+            display: none;
+            color: #FFB6C1;
+            font-size: 14px;
+        }
+
+        .input-area {
+            padding: 20px;
+            border-top: 1px solid rgba(139, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .input-container {
+            display: flex;
+            gap: 15px;
+            align-items: flex-end;
+        }
+
+        .chat-input {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            border-radius: 25px;
+            padding: 12px 20px;
+            color: white;
+            font-size: 14px;
+            resize: none;
+            min-height: 45px;
+            max-height: 120px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .chat-input:focus {
+            border-color: #DC143C;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .chat-input::placeholder {
+            color: rgba(255, 182, 193, 0.6);
+        }
+
+        .send-btn {
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .send-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.4);
+        }
+
+        .cooldown-indicator {
+            font-size: 12px;
+            color: #DC143C;
+            margin-top: 10px;
+            display: none;
+            text-align: center;
+        }
+
+        .login-prompt {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            color: #FFB6C1;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .login-prompt h3 {
+            color: #DC143C;
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.4);
+        }
+
+        .back-nav {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            color: #FFB6C1;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+            margin: 0 15px;
+        }
+
+        .back-link:hover {
+            color: #DC143C;
+        }
+
+        .back-link i {
+            margin-right: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .chat-page-container {
+                margin: 20px auto;
+                padding: 0 10px;
+                height: calc(100vh - 120px);
+            }
+
+            .message-content {
+                max-width: 95%;
+            }
+
+            .input-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .send-btn {
+                align-self: flex-end;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="https://files.catbox.moe/cjmaz9.png" alt="TRIPLEGORE" class="logo-img">
+            </div>
+            <nav class="nav">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Inicio</a></li>
+                    <li><a href="adminpanel.html" class="nav-link"><i class="fa-solid fa-upload"></i> Subir</a></li>
+                    <li><a href="chat.html" class="nav-link"><i class="fa-solid fa-comments"></i> Chat</a></li>
+                    <li class="user-menu">
+                        <span id="userDisplay" class="nav-link"><i class="fa-solid fa-user"></i> Invitado</span>
+                        <div class="user-dropdown">
+                            <a href="login.html" id="loginLink" class="dropdown-link">
+                                <i class="fa-solid fa-sign-in-alt"></i> Iniciar Sesión
+                            </a>
+                            <a href="registro.html" id="registerLink" class="dropdown-link">
+                                <i class="fa-solid fa-user-plus"></i> Registrarse
+                            </a>
+                            <a href="adminpanel.html" id="adminLink" class="dropdown-link" style="display: none;">
+                                <i class="fa-solid fa-cogs"></i> Admin Panel
+                            </a>
+                            <a href="data.html" id="moderationLink" class="dropdown-link" style="display: none;">
+                                <i class="fa-solid fa-shield-alt"></i> Moderación
+                            </a>
+                            <a href="#" id="logoutLink" class="dropdown-link" style="display: none;">
+                                <i class="fa-solid fa-sign-out-alt"></i> Cerrar Sesión
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="chat-page-container">
+            <div class="back-nav">
+                <a href="index.html" class="back-link">
+                    <i class="fa-solid fa-home"></i>
+                    Volver al Inicio
+                </a>
+            </div>
+
+            <div class="chat-page-header">
+                <h1 class="chat-page-title">
+                    <i class="fa-solid fa-comments"></i>
+                    Chat Social
+                    <i class="fa-solid fa-users"></i>
+                </h1>
+            </div>
+
+            <div class="chat-page-main">
+                <div id="loginPrompt" class="login-prompt">
+                    <h3><i class="fa-solid fa-lock"></i> Acceso Requerido</h3>
+                    <p>Necesitas iniciar sesión para participar en el chat social</p>
+                    <a href="login.html" class="login-btn">
+                        <i class="fa-solid fa-sign-in-alt"></i>
+                        Iniciar Sesión
+                    </a>
+                </div>
+
+                <div id="chatContent" style="display: none; flex: 1; flex-direction: column;">
+                    <div id="messagesArea" class="messages-area">
+                        <!-- Los mensajes se cargarán aquí -->
+                    </div>
+
+                    <div id="replyIndicator" class="reply-indicator">
+                        <!-- Indicador de respuesta -->
+                    </div>
+
+                    <div class="input-area">
+                        <div class="input-container">
+                            <textarea id="chatInput" class="chat-input" placeholder="Escribe tu mensaje..."
+                                rows="1"></textarea>
+                            <button id="sendBtn" class="send-btn">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        <div id="cooldownIndicator" class="cooldown-indicator">
+                            <!-- Indicador de cooldown -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module">
+        import {authFunctions, updateUserDisplay} from './firebase.js';
+        import {ChatPageSystem} from './chat.js';
+
+        document.addEventListener('DOMContentLoaded', function () {
+            updateUserDisplay();
+
+            let chatSystem = null;
+            const loginPrompt = document.getElementById('loginPrompt');
+            const chatContent = document.getElementById('chatContent');
+            const loginLink = document.getElementById('loginLink');
+            const registerLink = document.getElementById('registerLink');
+            const adminLink = document.getElementById('adminLink');
+            const moderationLink = document.getElementById('moderationLink');
+            const logoutLink = document.getElementById('logoutLink');
+
+            // Check initial auth state
+            const currentUser = authFunctions.getCurrentUser();
+            updateAuthState(currentUser);
+
+            // Auth state listener
+            authFunctions.onAuthStateChanged((user) => {
+                updateAuthState(user);
+            });
+
+            function updateAuthState(user) {
+                if (user) {
+                    // Usuario logueado
+                    loginPrompt.style.display = 'none';
+                    chatContent.style.display = 'flex';
+
+                    if (loginLink) loginLink.style.display = 'none';
+                    if (registerLink) registerLink.style.display = 'none';
+                    if (adminLink) adminLink.style.display = 'block';
+                    if (moderationLink) moderationLink.style.display = 'block';
+                    if (logoutLink) logoutLink.style.display = 'block';
+
+                    // Inicializar sistema de chat
+                    if (!chatSystem) {
+                        chatSystem = new ChatPageSystem();
+                    }
+                } else {
+                    // Usuario no logueado
+                    loginPrompt.style.display = 'flex';
+                    chatContent.style.display = 'none';
+
+                    if (loginLink) loginLink.style.display = 'block';
+                    if (registerLink) registerLink.style.display = 'block';
+                    if (adminLink) adminLink.style.display = 'none';
+                    if (moderationLink) moderationLink.style.display = 'none';
+                    if (logoutLink) logoutLink.style.display = 'none';
+
+                    // Destruir sistema de chat
+                    if (chatSystem) {
+                        chatSystem.destroy();
+                        chatSystem = null;
+                    }
+                }
+            }
+
+            // Logout functionality
+            logoutLink.addEventListener('click', async function (e) {
+                e.preventDefault();
+                const result = await authFunctions.logout();
+                if (result.success) {
+                    window.location.reload();
+                }
+            });
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

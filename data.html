@@ -555,6 +555,7 @@
                 <ul class="nav-menu">
                     <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Inicio</a></li>
                     <li><a href="adminpanel.html" class="nav-link"><i class="fa-solid fa-upload"></i> Subir</a></li>
+                    <li><a href="chat.html" class="nav-link"><i class="fa-solid fa-comments"></i> Chat</a></li>
                     <li><span id="userDisplay" class="nav-link"><i class="fa-solid fa-user"></i> Invitado</span></li>
                 </ul>
             </nav>
@@ -635,22 +636,6 @@
                     </div>
                     <div id="approvedSearchResults" class="search-results-mod"></div>
                 </div>
-
-                <!-- Sección para eliminar posts del foro -->
-                <div class="section-divider">
-                    <h2 class="section-header">
-                        <i class="fa-solid fa-comments"></i>
-                        Moderar Posts del Foro
-                    </h2>
-                </div>
-
-                <div class="approved-search-section">
-                    <div class="search-container-mod">
-                        <input type="text" id="forumSearchInput" class="search-input-mod" placeholder="Busca el post del foro a moderar...">
-                        <i class="fa-solid fa-search search-icon-mod"></i>
-                    </div>
-                    <div id="forumSearchResults" class="search-results-mod"></div>
-                </div>
             </div>
 
             <!-- Modal de confirmación de eliminación -->
@@ -660,15 +645,15 @@
                         <i class="fa-solid fa-exclamation-triangle"></i>
                         Confirmar Eliminación
                     </h2>
-                    
+
                     <div id="deleteModalVideo" class="delete-modal-video">
                         <!-- Se llenará dinámicamente -->
                     </div>
-                    
+
                     <p class="delete-warning">
                         ⚠️ Esta acción no se puede deshacer. El video será eliminado permanentemente.
                     </p>
-                    
+
                     <div class="delete-modal-actions">
                         <button id="deleteConfirmBtn" class="delete-confirm-btn">
                             <i class="fa-solid fa-trash"></i>
@@ -687,10 +672,11 @@
     <script type="module">
         import {authFunctions, updateUserDisplay, videoFunctions} from './firebase.js';
         import {validateModerationPassword, isModerationAuthorized, authorizeModerationAccess, revokeModerationAccess} from './pass.js';
-        import {forumFunctions} from './foros.js';
+        import {notificationSystem} from './notifications.js';
 
-        document.addEventListener('DOMContentLoaded', function () {
-            updateUserDisplay();
+        document.addEventListener('DOMContentLoaded', async function () {
+            // Wait for auth state to be determined
+            await updateUserDisplay();
 
             const passwordModal = document.getElementById('passwordModal');
             const moderationContent = document.getElementById('moderationContent');
@@ -713,6 +699,11 @@
                 } else {
                     showPasswordModal();
                 }
+                
+                // Inicializar notificaciones si el usuario es moderador
+                if (isModerationAuthorized()) {
+                    initializeNotifications();
+                }
             });
 
             // Show password modal
@@ -727,6 +718,14 @@
                 passwordModal.style.display = 'none';
                 moderationContent.style.display = 'block';
                 loadPendingVideos();
+            }
+
+            // Inicializar notificaciones
+            function initializeNotifications() {
+                if (typeof notificationSystem !== 'undefined' && !window.notificationSystemInitialized) {
+                    window.notificationSystemInitialized = true;
+                    // Las notificaciones se inicializan automáticamente
+                }
             }
 
             // Handle password submission
@@ -755,6 +754,10 @@
             // Handle logout from moderation
             logoutModerationBtn.addEventListener('click', function () {
                 if (confirm('¿Estás seguro de que quieres cerrar sesión del panel de moderación?')) {
+                    // Destruir sistema de notificaciones
+                    if (typeof notificationSystem !== 'undefined') {
+                        notificationSystem.destroy();
+                    }
                     revokeModerationAccess();
                     showPasswordModal();
                 }
@@ -830,23 +833,10 @@
             const deleteCancelBtn = document.getElementById('deleteCancelBtn');
             let selectedVideoToDelete = null;
 
-            // Variables para la búsqueda de posts del foro
-            let allForumPosts = [];
-            const forumSearchInput = document.getElementById('forumSearchInput');
-            const forumSearchResults = document.getElementById('forumSearchResults');
-            let selectedForumPostToDelete = null;
-
             // Cargar todos los videos aprobados para la búsqueda
             function loadAllApprovedVideos() {
                 videoFunctions.getAllApprovedVideos((videos) => {
                     allApprovedVideos = videos;
-                });
-            }
-
-            // Cargar todos los posts del foro para la búsqueda
-            function loadAllForumPosts() {
-                forumFunctions.getAllForumPosts((posts) => {
-                    allForumPosts = posts;
                 });
             }
 
@@ -864,17 +854,6 @@
                 );
 
                 displaySearchResults(filteredVideos);
-            }
-
-            // Función de búsqueda para posts del foro
-            function searchForumPosts(query) {
-                if (!query.trim()) {
-                    forumSearchResults.innerHTML = '';
-                    return;
-                }
-
-                const filteredPosts = forumFunctions.searchForumPosts(allForumPosts, query);
-                displayForumSearchResults(filteredPosts);
             }
 
             // Mostrar resultados de búsqueda
@@ -913,52 +892,10 @@
                 });
             }
 
-            // Mostrar resultados de búsqueda del foro
-            function displayForumSearchResults(posts) {
-                if (posts.length === 0) {
-                    forumSearchResults.innerHTML = `
-                        <div class="no-search-results">
-                            <i class="fa-solid fa-search"></i>
-                            No se encontraron posts que coincidan con tu búsqueda
-                        </div>
-                    `;
-                    return;
-                }
-
-                forumSearchResults.innerHTML = '';
-                posts.forEach(post => {
-                    const resultItem = document.createElement('div');
-                    resultItem.className = 'forum-post-item';
-                    
-                    const contentPreview = post.content.length > 100 
-                        ? post.content.substring(0, 100) + '...' 
-                        : post.content;
-                    
-                    resultItem.innerHTML = `
-                        <div class="forum-post-content">${contentPreview}</div>
-                        <div class="forum-post-meta">
-                            <div>
-                                <span class="forum-post-author">${post.author}</span> • 
-                                <span class="forum-post-date">${post.fecha}</span>
-                            </div>
-                            <i class="fa-solid fa-trash" style="color: #DC143C; font-size: 18px;"></i>
-                        </div>
-                        ${post.imageUrl ? `<img src="${post.imageUrl}" alt="Imagen del post" class="forum-post-image" onerror="this.style.display='none'">` : ''}
-                    `;
-
-                    resultItem.addEventListener('click', () => {
-                        showDeleteModalForForum(post);
-                    });
-
-                    forumSearchResults.appendChild(resultItem);
-                });
-            }
-
             // Mostrar modal de eliminación
             function showDeleteModal(video) {
                 selectedVideoToDelete = video;
-                selectedForumPostToDelete = null;
-                
+
                 deleteModalVideo.innerHTML = `
                     <img src="${video.portada}" alt="${video.titulo}" class="delete-modal-thumbnail"
                          onerror="this.src='https://via.placeholder.com/100x75/8B0000/FFFFFF?text=Error'">
@@ -969,29 +906,7 @@
                         <div>Fecha: ${video.fecha}</div>
                     </div>
                 `;
-                
-                deleteModal.style.display = 'flex';
-            }
 
-            // Mostrar modal de eliminación para posts del foro
-            function showDeleteModalForForum(post) {
-                selectedForumPostToDelete = post;
-                selectedVideoToDelete = null;
-                
-                const contentPreview = post.content.length > 150 
-                    ? post.content.substring(0, 150) + '...' 
-                    : post.content;
-                
-                deleteModalVideo.innerHTML = `
-                    ${post.imageUrl ? `<img src="${post.imageUrl}" alt="Imagen del post" class="delete-modal-thumbnail" onerror="this.style.display='none'">` : '<div class="delete-modal-thumbnail" style="background: rgba(139,0,0,0.3); display: flex; align-items: center; justify-content: center; color: #DC143C;"><i class="fa-solid fa-comment"></i></div>'}
-                    <div class="delete-modal-info">
-                        <div class="delete-modal-video-title">Post del Foro</div>
-                        <div>Por: ${post.author}</div>
-                        <div>Fecha: ${post.fecha}</div>
-                        <div style="margin-top: 10px; font-size: 14px; color: #cccccc;">${contentPreview}</div>
-                    </div>
-                `;
-                
                 deleteModal.style.display = 'flex';
             }
 
@@ -999,17 +914,11 @@
             function hideDeleteModal() {
                 deleteModal.style.display = 'none';
                 selectedVideoToDelete = null;
-                selectedForumPostToDelete = null;
             }
 
             // Event listeners para la búsqueda
             approvedSearchInput.addEventListener('input', (e) => {
                 searchApprovedVideos(e.target.value);
-            });
-
-            // Event listeners para la búsqueda del foro
-            forumSearchInput.addEventListener('input', (e) => {
-                searchForumPosts(e.target.value);
             });
 
             // Event listeners para el modal
@@ -1031,25 +940,11 @@
                     } catch (error) {
                         alert('Error de conexión: ' + error.message);
                     }
-                } else if (selectedForumPostToDelete) {
-                    try {
-                        const result = await forumFunctions.deleteForumPost(selectedForumPostToDelete.id);
-                        if (result.success) {
-                            alert('Post del foro eliminado exitosamente');
-                            hideDeleteModal();
-                            loadAllForumPosts();
-                            forumSearchInput.value = '';
-                            forumSearchResults.innerHTML = '';
-                        } else {
-                            alert('Error al eliminar post: ' + result.error);
-                        }
-                    } catch (error) {
-                        alert('Error de conexión: ' + error.message);
-                    }
                 }
             });
 
-            // Cerrar modal al hacer click fuera
+            // Cerrar modal```javascript
+// This code removes all forum-related functionality.
             deleteModal.addEventListener('click', (e) => {
                 if (e.target === deleteModal) {
                     hideDeleteModal();
@@ -1058,9 +953,6 @@
 
             // Cargar videos aprobados al inicializar
             loadAllApprovedVideos();
-
-            // Cargar posts del foro al inicializar
-            loadAllForumPosts();
 
             // Make functions global for onclick handlers
             window.approveVideo = async function (videoId, videoData) {

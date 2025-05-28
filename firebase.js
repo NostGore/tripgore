@@ -3,7 +3,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebas
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-analytics.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
 import { getStorage } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-storage.js";
-import { getDatabase, ref, push, set, onValue, remove } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-database.js";
+import { getDatabase, ref, push, set, onValue, remove, query, orderByChild, limitToLast } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-database.js";
 import { 
   getAuth, 
   createUserWithEmailAndPassword, 
@@ -29,6 +29,9 @@ const analytics = getAnalytics(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
 const auth = getAuth(app);
+
+// Export additional Firebase functions
+export { getDatabase, ref, onValue, query, orderByChild, limitToLast };
 const realtimeDb = getDatabase(app);
 
 // Authentication functions
@@ -84,24 +87,36 @@ export const getUsernameFromEmail = (email) => {
 export const updateUserDisplay = () => {
   const userElement = document.getElementById('userDisplay');
   if (userElement) {
-    const currentUser = authFunctions.getCurrentUser();
-    if (currentUser) {
-      const username = getUsernameFromEmail(currentUser.email);
-        userElement.innerHTML = `<i class="fa-solid fa-user"></i> ${username} <i class="fa-solid fa-chevron-down" style="font-size: 12px; margin-left: 5px;"></i>`;
-        userElement.style.color = '#FFB6C1';
-        userElement.style.cursor = 'pointer';
+    // Force check auth state
+    return new Promise((resolve) => {
+      const unsubscribe = authFunctions.onAuthStateChanged((currentUser) => {
+        if (currentUser) {
+          const username = getUsernameFromEmail(currentUser.email);
+          userElement.innerHTML = `<i class="fa-solid fa-user"></i> ${username} <i class="fa-solid fa-chevron-down" style="font-size: 12px; margin-left: 5px;"></i>`;
+          userElement.style.color = '#FFB6C1';
+          userElement.style.cursor = 'pointer';
 
-        // Add dropdown functionality
-        if (!userElement.getAttribute('data-dropdown-added')) {
-          userElement.setAttribute('data-dropdown-added', 'true');
-          addUserDropdown(userElement);
+          // Add dropdown functionality
+          if (!userElement.getAttribute('data-dropdown-added')) {
+            userElement.setAttribute('data-dropdown-added', 'true');
+            addUserDropdown(userElement);
+          }
+        } else {
+          userElement.innerHTML = `<i class="fa-solid fa-user"></i> Invitado`;
+          userElement.style.color = '#cccccc';
+          userElement.style.cursor = 'default';
+          
+          // Remove dropdown functionality
+          userElement.removeAttribute('data-dropdown-added');
+          const dropdown = document.getElementById('userDropdown');
+          if (dropdown) {
+            dropdown.remove();
+          }
         }
-      
-    } else {
-      userElement.innerHTML = `<i class="fa-solid fa-user"></i> Invitado`;
-      userElement.style.color = '#cccccc';
-      userElement.style.cursor = 'default';
-    }
+        unsubscribe();
+        resolve();
+      });
+    });
   }
 };
 
@@ -188,6 +203,16 @@ const addUserDropdown = (userElement) => {
   // Close dropdown when clicking outside
   document.addEventListener('click', () => {
     dropdown.style.display = 'none';
+  });
+};
+
+// Global auth state verification
+export const verifyAuthState = () => {
+  return new Promise((resolve) => {
+    const unsubscribe = authFunctions.onAuthStateChanged((user) => {
+      unsubscribe();
+      resolve(user);
+    });
   });
 };
 
