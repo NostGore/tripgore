@@ -21,25 +21,27 @@
     <style>
         .chat-page-container {
             max-width: 1400px;
-            margin: 50px auto;
+            margin: 20px auto;
             padding: 0 20px;
-            height: calc(100vh - 150px);
+            height: calc(100vh - 120px);
             display: flex;
             flex-direction: column;
+            min-height: 600px;
         }
 
         .chat-page-header {
             background: linear-gradient(145deg, #2a0000, #1a0000);
             border: 2px solid rgba(139, 0, 0, 0.3);
             border-radius: 15px 15px 0 0;
-            padding: 20px;
+            padding: 15px 20px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+            flex-shrink: 0;
         }
 
         .chat-page-title {
             color: #DC143C;
-            font-size: 28px;
+            font-size: 24px;
             margin: 0;
             display: flex;
             align-items: center;
@@ -57,19 +59,24 @@
             flex-direction: column;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+            min-height: 0;
         }
 
         .messages-area {
             flex: 1;
             overflow-y: auto;
-            padding: 20px;
+            overflow-x: hidden;
+            padding: 15px;
             background: rgba(0, 0, 0, 0.2);
+            min-height: 0;
+            height: 100%;
         }
 
         .message-item {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             display: flex;
             flex-direction: column;
+            animation: messageSlideIn 0.3s ease-out;
         }
 
         .message-item.my-message {
@@ -81,26 +88,32 @@
         }
 
         .message-content {
-            max-width: 80%;
+            max-width: 85%;
             position: relative;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .reply-reference {
             background: rgba(139, 0, 0, 0.2);
             border-left: 3px solid #DC143C;
-            padding: 8px 12px;
-            margin-bottom: 8px;
+            padding: 6px 10px;
+            margin-bottom: 6px;
             border-radius: 6px;
-            font-size: 12px;
+            font-size: 11px;
             color: rgba(255, 182, 193, 0.8);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .message-bubble {
-            padding: 12px 15px;
+            padding: 10px 15px;
             border-radius: 18px;
             word-wrap: break-word;
+            overflow-wrap: break-word;
             position: relative;
             border: 1px solid rgba(139, 0, 0, 0.3);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         .my-message .message-bubble {
@@ -171,42 +184,48 @@
             background: rgba(139, 0, 0, 0.5);
             color: white;
             transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.4);
         }
 
         .reply-indicator {
-            padding: 15px 20px;
+            padding: 10px 15px;
             background: rgba(139, 0, 0, 0.2);
             border-top: 1px solid rgba(139, 0, 0, 0.3);
             display: none;
             color: #FFB6C1;
-            font-size: 14px;
+            font-size: 12px;
+            flex-shrink: 0;
         }
 
         .input-area {
-            padding: 20px;
-            border-top: 1px solid rgba(139, 0, 0, 0.3);
-            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-top: 2px solid rgba(139, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.4);
+            flex-shrink: 0;
+            min-height: 80px;
         }
 
         .input-container {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             align-items: flex-end;
+            width: 100%;
         }
 
         .chat-input {
             flex: 1;
             background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(139, 0, 0, 0.3);
+            border: 2px solid rgba(139, 0, 0, 0.3);
             border-radius: 25px;
-            padding: 12px 20px;
+            padding: 12px 18px;
             color: white;
             font-size: 14px;
             resize: none;
-            min-height: 60px;
+            min-height: 45px;
             max-height: 120px;
             outline: none;
             transition: all 0.3s ease;
+            font-family: inherit;
         }
 
         .chat-input:focus {
@@ -301,25 +320,148 @@
             margin-right: 8px;
         }
 
-        /* Responsive */
+        @keyframes messageSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .chat-page-container {
+                margin: 15px auto;
+                height: calc(100vh - 100px);
+            }
+
+            .chat-page-title {
+                font-size: 22px;
+            }
+
+            .message-content {
+                max-width: 90%;
+            }
+        }
+
         @media (max-width: 768px) {
             .chat-page-container {
-                margin: 20px auto;
+                margin: 10px auto;
                 padding: 0 10px;
-                height: calc(100vh - 120px);
+                height: calc(100vh - 80px);
+                min-height: 500px;
+            }
+
+            .chat-page-header {
+                padding: 12px 15px;
+            }
+
+            .chat-page-title {
+                font-size: 20px;
+                gap: 10px;
+            }
+
+            .messages-area {
+                padding: 10px;
             }
 
             .message-content {
                 max-width: 95%;
             }
 
+            .message-bubble {
+                padding: 8px 12px;
+            }
+
+            .message-text {
+                font-size: 13px;
+            }
+
+            .input-area {
+                padding: 12px;
+                min-height: 70px;
+            }
+
             .input-container {
-                flex-direction: column;
-                gap: 10px;
+                gap: 8px;
+            }
+
+            .chat-input {
+                padding: 10px 15px;
+                font-size: 13px;
+                min-height: 40px;
             }
 
             .send-btn {
-                align-self: flex-end;
+                width: 40px;
+                height: 40px;
+            }
+
+            .message-actions {
+                margin-top: 10px;
+                gap: 8px;
+            }
+
+            .message-action-btn {
+                padding: 6px 10px;
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .chat-page-container {
+                margin: 5px auto;
+                padding: 0 5px;
+                height: calc(100vh - 70px);
+            }
+
+            .chat-page-header {
+                padding: 10px;
+            }
+
+            .chat-page-title {
+                font-size: 18px;
+                gap: 8px;
+            }
+
+            .messages-area {
+                padding: 8px;
+            }
+
+            .message-content {
+                max-width: 98%;
+            }
+
+            .message-bubble {
+                padding: 6px 10px;
+            }
+
+            .message-text {
+                font-size: 12px;
+            }
+
+            .input-area {
+                padding: 10px;
+                min-height: 65px;
+            }
+
+            .chat-input {
+                padding: 8px 12px;
+                font-size: 12px;
+                min-height: 35px;
+            }
+
+            .send-btn {
+                width: 35px;
+                height: 35px;
+            }
+
+            .reply-indicator {
+                padding: 8px 10px;
+                font-size: 11px;
             }
         }
     </style>
@@ -388,7 +530,7 @@
                     </a>
                 </div>
 
-                <div id="chatContent" style="display: none; flex: 1; flex-direction: column;">
+                <div id="chatContent" style="display: none; flex: 1; flex-direction: column; min-height: 0;">
                     <div id="messagesArea" class="messages-area">
                         <!-- Los mensajes se cargarán aquí -->
                     </div>
@@ -399,8 +541,7 @@
 
                     <div class="input-area">
                         <div class="input-container">
-                            <textarea id="chatInput" class="chat-input" placeholder="Escribe tu mensaje..."
-                                rows="1"></textarea>
+                            <textarea id="chatInput" class="chat-input" placeholder="Escribe tu mensaje..." rows="1"></textarea>
                             <button id="sendBtn" class="send-btn">
                                 <i class="fa-solid fa-paper-plane"></i>
                             </button>
@@ -416,72 +557,43 @@
 
     <script type="module">
         import {authFunctions, updateUserDisplay} from './firebase.js';
-        import {ChatPageSystem} from './chat.js';
+        import {ChatPageSystem} from './function-scripts/chat.js';
+        import './search.js';
 
-        document.addEventListener('DOMContentLoaded', function () {
-            updateUserDisplay();
+        // Inicializar el sistema de chat
+        let chatSystem = null;
 
-            let chatSystem = null;
+        // Actualizar display del usuario primero
+        updateUserDisplay();
+
+        // Verificar estado de autenticación
+        authFunctions.onAuthStateChanged((user) => {
             const loginPrompt = document.getElementById('loginPrompt');
             const chatContent = document.getElementById('chatContent');
-            const loginLink = document.getElementById('loginLink');
-            const registerLink = document.getElementById('registerLink');
-            const adminLink = document.getElementById('adminLink');
-            const moderationLink = document.getElementById('moderationLink');
-            const logoutLink = document.getElementById('logoutLink');
 
-            // Check initial auth state
-            const currentUser = authFunctions.getCurrentUser();
-            updateAuthState(currentUser);
+            console.log('Estado de autenticación:', user ? 'Logueado' : 'No logueado');
 
-            // Auth state listener
-            authFunctions.onAuthStateChanged((user) => {
-                updateAuthState(user);
-            });
+            if (user) {
+                // Usuario autenticado - mostrar chat
+                loginPrompt.style.display = 'none';
+                chatContent.style.display = 'flex';
 
-            function updateAuthState(user) {
-                if (user) {
-                    // Usuario logueado
-                    loginPrompt.style.display = 'none';
-                    chatContent.style.display = 'flex';
+                // Inicializar sistema de chat si no existe
+                if (!chatSystem) {
+                    console.log('Inicializando sistema de chat...');
+                    chatSystem = new ChatPageSystem();
+                }
+            } else {
+                // Usuario no autenticado - mostrar prompt de login
+                loginPrompt.style.display = 'flex';
+                chatContent.style.display = 'none';
 
-                    if (loginLink) loginLink.style.display = 'none';
-                    if (registerLink) registerLink.style.display = 'none';
-                    if (adminLink) adminLink.style.display = 'block';
-                    if (moderationLink) moderationLink.style.display = 'block';
-                    if (logoutLink) logoutLink.style.display = 'block';
-
-                    // Inicializar sistema de chat
-                    if (!chatSystem) {
-                        chatSystem = new ChatPageSystem();
-                    }
-                } else {
-                    // Usuario no logueado
-                    loginPrompt.style.display = 'flex';
-                    chatContent.style.display = 'none';
-
-                    if (loginLink) loginLink.style.display = 'block';
-                    if (registerLink) registerLink.style.display = 'block';
-                    if (adminLink) adminLink.style.display = 'none';
-                    if (moderationLink) moderationLink.style.display = 'none';
-                    if (logoutLink) logoutLink.style.display = 'none';
-
-                    // Destruir sistema de chat
-                    if (chatSystem) {
-                        chatSystem.destroy();
-                        chatSystem = null;
-                    }
+                // Destruir sistema de chat si existe
+                if (chatSystem) {
+                    chatSystem.destroy();
+                    chatSystem = null;
                 }
             }
-
-            // Logout functionality
-            logoutLink.addEventListener('click', async function (e) {
-                e.preventDefault();
-                const result = await authFunctions.logout();
-                if (result.success) {
-                    window.location.reload();
-                }
-            });
         });
     </script>
 

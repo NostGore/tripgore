@@ -1,10 +1,9 @@
 // Sistema de chat social para chat.html únicamente
 import { getDatabase, ref, onValue, push, set, remove, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-database.js";
-import { authFunctions, getUsernameFromEmail } from './firebase.js';
+import { authFunctions, getUsernameFromEmail } from '../firebase.js';
 
 const realtimeDb = getDatabase();
 
-// Clase específica para la página de chat
 export class ChatPageSystem {
     constructor() {
         this.messages = [];
@@ -126,28 +125,32 @@ export class ChatPageSystem {
         const messagesArea = document.getElementById('messagesArea');
         if (!messagesArea) return;
 
+        // Guardar posición de scroll actual
+        const wasAtBottom = messagesArea.scrollHeight - messagesArea.scrollTop <= messagesArea.clientHeight + 100;
+
         // Filtrar mensajes ocultos
         const hiddenMessages = JSON.parse(localStorage.getItem('hiddenChatMessages') || '[]');
         const visibleMessages = this.messages.filter(message => !hiddenMessages.includes(message.id));
 
         messagesArea.innerHTML = visibleMessages.map(message => {
             const isMyMessage = this.currentUser && message.userId === this.currentUser.uid;
+            const messageText = this.escapeHtml(message.text);
 
             return `
                 <div class="message-item ${isMyMessage ? 'my-message' : 'other-message'}" data-id="${message.id}">
                     <div class="message-content">
                         ${message.replyTo ? `
                             <div class="reply-reference">
-                                <strong>↳ ${message.replyTo.author}:</strong> ${message.replyTo.text}
+                                <strong>↳ ${this.escapeHtml(message.replyTo.author)}:</strong> ${this.escapeHtml(message.replyTo.text)}
                             </div>
                         ` : ''}
 
                         <div class="message-bubble">
                             <div class="message-header">
-                                <span class="message-author">${message.author}</span>
+                                <span class="message-author">${this.escapeHtml(message.author)}</span>
                             </div>
 
-                            <div class="message-text">${message.text}</div>
+                            <div class="message-text">${messageText}</div>
 
                             <div class="message-time">${this.formatTimestamp(message.timestamp)}</div>
                         </div>
@@ -170,7 +173,11 @@ export class ChatPageSystem {
 
         // Agregar event listeners
         this.setupMessageEventListeners();
-        this.scrollToBottom();
+        
+        // Solo hacer scroll al final si el usuario estaba al final
+        if (wasAtBottom) {
+            setTimeout(() => this.scrollToBottom(), 50);
+        }
     }
 
     setupMessageEventListeners() {
@@ -368,10 +375,47 @@ export class ChatPageSystem {
         return `${days}d`;
     }
 
+    escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
     scrollToBottom() {
         const messagesArea = document.getElementById('messagesArea');
         if (messagesArea) {
             messagesArea.scrollTop = messagesArea.scrollHeight;
+        }
+    }
+
+    adjustTextareaHeight() {
+        const chatInput = document.getElementById('chatInput');
+        if (chatInput) {
+            chatInput.style.height = 'auto';
+            chatInput.style.height = Math.min(chatInput.scrollHeight, 120) + 'px';
+        }
+    }
+
+    setupEventListeners() {
+        // Event listeners para el envío de mensajes
+        const sendBtn = document.getElementById('sendBtn');
+        const chatInput = document.getElementById('chatInput');
+
+        if (sendBtn) {
+            sendBtn.addEventListener('click', () => this.sendMessage());
+        }
+
+        if (chatInput) {
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    this.sendMessage();
+                }
+            });
+
+            chatInput.addEventListener('input', () => {
+                this.adjustTextareaHeight();
+            });
         }
     }
 
@@ -380,7 +424,24 @@ export class ChatPageSystem {
         this.messages = [];
         this.currentUser = null;
         this.replyingTo = null;
+        
+        // Remover listeners de Firebase
+        if (this.messagesListener) {
+            this.messagesListener();
+        }
+        
+        // Limpiar elementos del DOM
+        const messagesArea = document.getElementById('messagesArea');
+        if (messagesArea) {
+            messagesArea.innerHTML = '';
+        }
+        
+        // Limpiar indicador de respuesta
+        const replyIndicator = document.getElementById('replyIndicator');
+        if (replyIndicator) {
+            replyIndicator.style.display = 'none';
+        }
+        
+        console.log('Sistema de chat destruido');
     }
 }
-
-// Solo exportar ChatPageSystem para usar en chat.html

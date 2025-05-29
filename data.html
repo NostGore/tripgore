@@ -671,8 +671,15 @@
 
     <script type="module">
         import {authFunctions, updateUserDisplay, videoFunctions} from './firebase.js';
-        import {validateModerationPassword, isModerationAuthorized, authorizeModerationAccess, revokeModerationAccess} from './pass.js';
-        import {notificationSystem} from './notifications.js';
+        import {
+            validateModerationPassword, 
+            isModerationAuthorized, 
+            authorizeModerationAccess, 
+            revokeModerationAccess,
+            getSessionTimeRemaining,
+            extendModerationSession
+        } from './function-scripts/pass.js';
+        import {notificationSystem} from './function-scripts/notifications.js';
 
         document.addEventListener('DOMContentLoaded', async function () {
             // Wait for auth state to be determined
@@ -684,6 +691,9 @@
             const submitPasswordBtn = document.getElementById('submitPassword');
             const passwordError = document.getElementById('passwordError');
             const logoutModerationBtn = document.getElementById('logoutModeration');
+
+            // Inicializar notificaciones para todos los usuarios
+            initializeNotifications();
 
             // Check if user is logged in for moderation access
             authFunctions.onAuthStateChanged((user) => {
@@ -698,11 +708,6 @@
                     showModerationPanel();
                 } else {
                     showPasswordModal();
-                }
-                
-                // Inicializar notificaciones si el usuario es moderador
-                if (isModerationAuthorized()) {
-                    initializeNotifications();
                 }
             });
 
@@ -722,9 +727,10 @@
 
             // Inicializar notificaciones
             function initializeNotifications() {
-                if (typeof notificationSystem !== 'undefined' && !window.notificationSystemInitialized) {
-                    window.notificationSystemInitialized = true;
-                    // Las notificaciones se inicializan automáticamente
+                if (typeof notificationSystem !== 'undefined') {
+                    // Forzar inicialización del sistema de notificaciones
+                    notificationSystem.init();
+                    console.log('Sistema de notificaciones activado');
                 }
             }
 
@@ -918,7 +924,7 @@
 
             // Event listeners para la búsqueda
             approvedSearchInput.addEventListener('input', (e) => {
-                searchApprovedVideos(e.target.value);
+searchApprovedVideos(e.target.value);
             });
 
             // Event listeners para el modal
@@ -943,18 +949,14 @@
                 }
             });
 
-            // Cerrar modal```javascript
-// This code removes all forum-related functionality.
             deleteModal.addEventListener('click', (e) => {
                 if (e.target === deleteModal) {
                     hideDeleteModal();
                 }
             });
 
-            // Cargar videos aprobados al inicializar
             loadAllApprovedVideos();
 
-            // Make functions global for onclick handlers
             window.approveVideo = async function (videoId, videoData) {
                 if (confirm('¿Estás seguro de que quieres aprobar este video?')) {
                     try {

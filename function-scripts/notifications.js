@@ -123,10 +123,10 @@ export class NotificationSystem {
         notificationPanel.appendChild(panelHeader);
         notificationPanel.appendChild(notificationList);
         notificationContainer.appendChild(bellIcon);
-        
+
         // Insertar en el header
         header.appendChild(notificationContainer);
-        
+
         // Insertar el panel en el body para que sea fijo
         document.body.appendChild(notificationPanel);
 
@@ -176,7 +176,7 @@ export class NotificationSystem {
     togglePanel() {
         this.isOpen = !this.isOpen;
         this.notificationPanel.style.display = this.isOpen ? 'block' : 'none';
-        
+
         if (this.isOpen) {
             this.markAllAsRead();
             // Ocultar el badge cuando se abren las notificaciones
@@ -207,7 +207,7 @@ export class NotificationSystem {
                     videoSnapshot.forEach((commentSnapshot) => {
                         const comment = commentSnapshot.val();
                         const commentId = commentSnapshot.key;
-                        
+
                         // Verificar si es un comentario nuevo (últimos 5 minutos)
                         if (this.isRecentActivity(comment.timestamp)) {
                             this.getVideoData(videoId, (videoData) => {
@@ -240,14 +240,14 @@ export class NotificationSystem {
                     videoSnapshot.forEach((likeSnapshot) => {
                         const like = likeSnapshot.val();
                         const likeId = likeSnapshot.key;
-                        
+
                         // Verificar si es un like/dislike nuevo (últimos 5 minutos)
                         if (this.isRecentActivity(like.timestamp)) {
                             this.getVideoData(videoId, (videoData) => {
                                 if (videoData) {
                                     const action = like.type === 'like' ? 'le ha gustado' : 'no le ha gustado';
                                     const icon = like.type === 'like' ? 'fa-thumbs-up' : 'fa-thumbs-down';
-                                    
+
                                     this.addNotification({
                                         id: `like_${likeId}`,
                                         type: 'like',
@@ -274,7 +274,7 @@ export class NotificationSystem {
                 snapshot.forEach((videoSnapshot) => {
                     const video = videoSnapshot.val();
                     const videoId = videoSnapshot.key;
-                    
+
                     // Verificar si es un video nuevo pendiente (últimos 10 minutos)
                     if (this.isRecentActivity(video.timestamp, 10)) {
                         this.addNotification({
@@ -406,7 +406,7 @@ export class NotificationSystem {
         // Agregar event listeners
         this.notificationList.querySelectorAll('.notification-item').forEach(item => {
             const notification = this.notifications.find(n => n.id === item.dataset.id);
-            
+
             item.addEventListener('click', (e) => {
                 // Evitar navegación si se hace clic en el botón de eliminar
                 if (e.target.closest('.remove-notification')) {
@@ -457,7 +457,7 @@ export class NotificationSystem {
 
     updateBadge() {
         const unreadCount = this.notifications.length;
-        
+
         if (unreadCount > 0) {
             this.badge.textContent = unreadCount > 99 ? '99+' : unreadCount.toString();
             this.badge.style.display = 'flex';
@@ -486,11 +486,11 @@ export class NotificationSystem {
     formatTimestamp(timestamp) {
         const now = Date.now();
         const diff = now - timestamp;
-        
+
         const minutes = Math.floor(diff / (1000 * 60));
         const hours = Math.floor(diff / (1000 * 60 * 60));
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        
+
         if (minutes < 1) return 'Ahora mismo';
         if (minutes < 60) return `hace ${minutes}m`;
         if (hours < 24) return `hace ${hours}h`;

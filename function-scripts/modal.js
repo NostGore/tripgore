@@ -373,3 +373,19 @@ class AgeVerificationModal {
 
 // Inicializar el modal cuando se carga el script
 new AgeVerificationModal();
+// Modal functionality for video player
+export class VideoModal {
+    constructor() {
+        this.init();
+    }
+
+    init() {
+        // Modal initialization code here
+        console.log('Modal system initialized');
+    }
+}
+
+// Initialize modal when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    new VideoModal();
+});
