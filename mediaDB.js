@@ -771,11 +771,11 @@ const mediaDB = [
     categoria: "PELEAS",
   },
   {
-    titulo: "",
-    portada: "",
-    video: "",
-    autor: "TripGore",
-    categoria: "",
+    titulo: "Lo machetearon y cortazon la mano",
+    portada: "https://files.catbox.moe/rl4qtc.png",
+    video: "https://files.catbox.moe/r81nkv.mp4",
+    autor: "perritogore",
+    categoria: "PELEAS",
   },
   {
     titulo: "",
