@@ -771,11 +771,11 @@ const mediaDB = [
     categoria: "CONFLICTOS",
   },
   {
-    titulo: "",
-    portada: "",
-    video: "",
-    autor: "TripGore",
-    categoria: "",
+    titulo: "TRES DE LA MAÑANA EN BOLIVIA 💀",
+    portada: "https://files.catbox.moe/7j2w3h.jpg",
+    video: "https://files.catbox.moe/j6lqov.mp4",
+    autor: "desconocido777",
+    categoria: "SUICIDIOS",
   },
   {
     titulo: "",
