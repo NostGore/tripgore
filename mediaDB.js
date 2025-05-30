@@ -752,7 +752,7 @@ const mediaDB = [
   {
     titulo: "El caso de klever Vieira",
     portada: "https://xxx.livegore.com//rb-include/videos/4295825920.jpg",
-    video: "https://xxx.livegore.com//rb-include/videos/4295825920.mp4",
+    video: "https://files.catbox.moe/wrq27s.mp4",
     autor: "TripGore",
     categoria: "ASESINATOS",
   },
