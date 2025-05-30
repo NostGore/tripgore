@@ -764,11 +764,11 @@ const mediaDB = [
     categoria: "ASESINATOS",
   },
   {
-    titulo: "",
-    portada: "",
-    video: "",
-    autor: "TripGore",
-    categoria: "",
+    titulo: "tremendo golpe de chilenos ",
+    portada: "https://files.catbox.moe/za8l90.png",
+    video: "https://files.catbox.moe/7dm7ug.mp4",
+    autor: "perritogore",
+    categoria: "PELEAS",
   },
   {
     titulo: "",
