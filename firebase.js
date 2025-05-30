@@ -307,7 +307,7 @@ export const videoFunctions = {
       const videos = [];
       snapshot.forEach((childSnapshot) => {
         const video = childSnapshot.val();
-        if (video.categoria === category) {
+        if (video.categoria && video.categoria.toUpperCase().includes(category.toUpperCase())) {
           videos.push({
             id: childSnapshot.key,
             ...video

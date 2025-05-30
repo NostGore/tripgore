@@ -1,6 +1,7 @@
 
 // Sistema de notificaciones para el panel de moderación
 import { getDatabase, ref, onValue, push, set, remove } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-database.js";
+import { authFunctions } from '../firebase.js';
 
 const realtimeDb = getDatabase();
 
@@ -14,8 +15,11 @@ export class NotificationSystem {
     }
 
     init() {
-        this.createNotificationUI();
-        this.startListening();
+        // Solo inicializar en data.html
+        if (window.location.pathname.includes('data.html')) {
+            this.createNotificationUI();
+            this.startListening();
+        }
     }
 
     createNotificationUI() {
@@ -190,6 +194,8 @@ export class NotificationSystem {
     }
 
     startListening() {
+        // Cargar notificaciones existentes desde Firebase
+        this.loadNotificationsFromFirebase();
         // Escuchar comentarios nuevos
         this.listenToComments();
         // Escuchar likes/dislikes
@@ -212,15 +218,18 @@ export class NotificationSystem {
                         if (this.isRecentActivity(comment.timestamp)) {
                             this.getVideoData(videoId, (videoData) => {
                                 if (videoData) {
-                                    this.addNotification({
+                                    const notificationData = {
                                         id: `comment_${commentId}`,
                                         type: 'comment',
-                                        message: `${comment.autor} ha comentado: "${comment.texto.substring(0, 50)}${comment.texto.length > 50 ? '...' : ''}" en el video "${videoData.titulo}"`,
+                                        message: `${comment.autor} ha comentado en ${videoData.titulo}`,
                                         timestamp: comment.timestamp,
                                         videoId: videoId,
                                         thumbnail: videoData.portada,
-                                        icon: 'fa-comment'
-                                    });
+                                        icon: 'fa-comment',
+                                        read: false
+                                    };
+                                    this.saveNotificationToFirebase(notificationData);
+                                    this.addNotification(notificationData);
                                 }
                             });
                         }
@@ -245,18 +254,21 @@ export class NotificationSystem {
                         if (this.isRecentActivity(like.timestamp)) {
                             this.getVideoData(videoId, (videoData) => {
                                 if (videoData) {
-                                    const action = like.type === 'like' ? 'le ha gustado' : 'no le ha gustado';
+                                    const action = like.type === 'like' ? 'le ha gustado el video' : 'no le ha gustado el video';
                                     const icon = like.type === 'like' ? 'fa-thumbs-up' : 'fa-thumbs-down';
 
-                                    this.addNotification({
+                                    const notificationData = {
                                         id: `like_${likeId}`,
-                                        type: 'like',
-                                        message: `A ${like.username} ${action} el video "${videoData.titulo}"`,
+                                        type: like.type,
+                                        message: `A ${like.username} ${action} ${videoData.titulo}`,
                                         timestamp: like.timestamp,
                                         videoId: videoId,
                                         thumbnail: videoData.portada,
-                                        icon: icon
-                                    });
+                                        icon: icon,
+                                        read: false
+                                    };
+                                    this.saveNotificationToFirebase(notificationData);
+                                    this.addNotification(notificationData);
                                 }
                             });
                         }
@@ -277,16 +289,19 @@ export class NotificationSystem {
 
                     // Verificar si es un video nuevo pendiente (últimos 10 minutos)
                     if (this.isRecentActivity(video.timestamp, 10)) {
-                        this.addNotification({
+                        const notificationData = {
                             id: `pending_${videoId}`,
                             type: 'pending',
-                            message: `${video.autor} ha subido un video "${video.titulo}" - ir a aprobarlo`,
+                            message: `${video.autor} ha publicado un video, revisalo "${video.titulo}"`,
                             timestamp: video.timestamp,
                             videoId: videoId,
                             thumbnail: video.portada,
                             icon: 'fa-clock',
-                            clickable: true
-                        });
+                            clickable: true,
+                            read: false
+                        };
+                        this.saveNotificationToFirebase(notificationData);
+                        this.addNotification(notificationData);
                     }
                 });
             }
@@ -319,8 +334,46 @@ export class NotificationSystem {
         }, { once: true });
     }
 
+    // Guardar notificación en Firebase
+    async saveNotificationToFirebase(notification) {
+        try {
+            const notificationsRef = ref(realtimeDb, 'notifications');
+            const newNotificationRef = push(notificationsRef);
+            await set(newNotificationRef, {
+                ...notification,
+                firebaseId: newNotificationRef.key
+            });
+        } catch (error) {
+            console.error('Error saving notification to Firebase:', error);
+        }
+    }
+
+    // Cargar notificaciones desde Firebase
+    loadNotificationsFromFirebase() {
+        const notificationsRef = ref(realtimeDb, 'notifications');
+        const listener = onValue(notificationsRef, (snapshot) => {
+            const firebaseNotifications = [];
+            if (snapshot.exists()) {
+                snapshot.forEach((childSnapshot) => {
+                    const notification = childSnapshot.val();
+                    // Solo cargar notificaciones de las últimas 24 horas
+                    if (this.isRecentActivity(notification.timestamp, 24 * 60)) {
+                        firebaseNotifications.push(notification);
+                    }
+                });
+            }
+            
+            // Ordenar por timestamp (más recientes primero)
+            firebaseNotifications.sort((a, b) => b.timestamp - a.timestamp);
+            this.notifications = firebaseNotifications;
+            this.updateUI();
+            this.updateBadge();
+        });
+        this.listeners.push(listener);
+    }
+
     addNotification(notification) {
-        // Evitar duplicados
+        // Evitar duplicados en memoria
         const exists = this.notifications.find(n => n.id === notification.id);
         if (exists) return;
 
@@ -456,19 +509,40 @@ export class NotificationSystem {
     }
 
     updateBadge() {
-        const unreadCount = this.notifications.length;
+        const unreadCount = this.notifications.filter(n => !n.read).length;
 
         if (unreadCount > 0) {
             this.badge.textContent = unreadCount > 99 ? '99+' : unreadCount.toString();
             this.badge.style.display = 'flex';
+            this.badge.style.background = '#DC143C';
         } else {
             this.badge.style.display = 'none';
         }
     }
 
-    markAllAsRead() {
+    async markAllAsRead() {
+        // Marcar todas las notificaciones como leídas en Firebase
+        try {
+            const notificationsRef = ref(realtimeDb, 'notifications');
+            const updates = {};
+            
+            this.notifications.forEach(notification => {
+                if (!notification.read && notification.firebaseId) {
+                    updates[`${notification.firebaseId}/read`] = true;
+                    notification.read = true;
+                }
+            });
+
+            if (Object.keys(updates).length > 0) {
+                await set(notificationsRef, updates);
+            }
+        } catch (error) {
+            console.error('Error marking notifications as read:', error);
+        }
+        
         // Ocultar el badge cuando el usuario abre las notificaciones
         this.badge.style.display = 'none';
+        this.updateBadge();
     }
 
     removeNotification(notificationId) {

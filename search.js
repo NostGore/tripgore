@@ -1,5 +1,21 @@
-
 import { videoFunctions } from './firebase.js';
+import mediaDB from './mediaDB.js';
+
+// Search functionality for mediaDB
+function searchInMediaDB(searchTerm) {
+    const validVideos = mediaDB.filter(video => 
+        video.titulo && video.portada && video.video && video.autor && video.categoria
+    );
+
+    return validVideos.filter(video => 
+        video.titulo.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        video.autor.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        video.categoria.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+}
+
+// Make search function globally available
+window.searchInMediaDB = searchInMediaDB;
 
 class SearchManager {
     constructor() {
@@ -98,9 +114,7 @@ class SearchManager {
     }
 
     loadAllVideos() {
-        videoFunctions.getAllApprovedVideos((videos) => {
-            this.allVideos = videos;
-        });
+        this.allVideos = mediaDB; // Load all videos from mediaDB
     }
 
     performSearch(query) {
