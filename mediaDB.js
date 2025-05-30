@@ -761,14 +761,14 @@ const mediaDB = [
     portada: "https://files.catbox.moe/za8l90.png",
     video: "https://files.catbox.moe/7dm7ug.mp4",
     autor: "perritogore",
-    categoria: "CONFLICTOS",
+    categoria: "INCIDENTES",
   },
   {
     titulo: "Lo machetearon y cortazon la mano",
     portada: "https://files.catbox.moe/rl4qtc.png",
     video: "https://files.catbox.moe/r81nkv.mp4",
     autor: "perritogore",
-    categoria: "CONFLICTOS",
+    categoria: "INCIDENTES",
   },
   {
     titulo: "TRES DE LA MAÑANA EN BOLIVIA 💀",
