@@ -750,13 +750,6 @@ const mediaDB = [
     categoria: "ACCIDENTES, AUTOLESIONES",
   },
   {
-    titulo: "El caso de klever Vieira",
-    portada: "https://xxx.livegore.com//rb-include/videos/4295825920.jpg",
-    video: "https://files.catbox.moe/wrq27s.mp4",
-    autor: "TripGore",
-    categoria: "ASESINATOS",
-  },
-  {
     titulo: "El caso de kleber vieira 💀",
     portada: "https://files.catbox.moe/n40vtw.png",
     video: "https://files.catbox.moe/k95yws.mp4",
