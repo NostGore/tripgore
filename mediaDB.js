@@ -757,11 +757,11 @@ const mediaDB = [
     categoria: "ASESINATOS",
   },
   {
-    titulo: "",
-    portada: "",
-    video: "",
+    titulo: "",El caso de kleber vieira 💀",
+    portada: "",https://files.catbox.moe/n40vtw.png",
+    video: "",https://files.catbox.moe/k95yws.mp4",
     autor: "TripGore",
-    categoria: "",
+    categoria: "",Asesinatos",
   },
   {
     titulo: "",
