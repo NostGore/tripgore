@@ -745,7 +745,7 @@ const mediaDB = [
   {
     titulo: "Piquero se parte la cara",
     portada: "https://xxx.livegore.com//rb-include/videos/3819082602.jpg",
-    video: "https://files.catbox.moe/4o1sap.mp4",
+    video: "https://xxx.livegore.com//rb-include/videos/3819082602.mp4",
     autor: "TripGore",
     categoria: "ACCIDENTES, AUTOLESIONES",
   },
