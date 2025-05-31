@@ -320,7 +320,7 @@ const mediaDB = [
     portada: "https://qu.ax/MpJRG.png",
     video: "https://files.catbox.moe/26p9hv.mp4",
     autor: "TripGore",
-    categoria: "ACCIDENTES, AUTOLESIONES",
+    categoria: "ACCIDENTES",
   },
   {
     titulo: "Pastor linchado por violar a su hija",
@@ -334,14 +334,14 @@ const mediaDB = [
     portada: "https://files.catbox.moe/tiyz17.png",
     video: "https://files.catbox.moe/njpeeo.mp4",
     autor: "TripGore",
-    categoria: "INCIDENTES, ASESINATOS",
+    categoria: "ASESINATOS",
   },
   {
     titulo: "Tiktok in Jamaica",
     portada: "https://files.catbox.moe/1fwu7h.png",
     video: "https://files.catbox.moe/ygc30v.mp4",
     autor: "TripGore",
-    categoria: "ASESINATOS, INCIDENTES",
+    categoria: "ASESINATOS",
   },
   {
     titulo: "13 mineros de pataz",
@@ -369,14 +369,14 @@ const mediaDB = [
     portada: "https://files.catbox.moe/74rniv.png",
     video: "https://files.catbox.moe/p3a643.mp4",
     autor: "TripGore",
-    categoria: "ASESINATOS, INCIDENTES",
+    categoria: "ASESINATOS",
   },
   {
     titulo: "Miss pacman",
     portada: "https://files.catbox.moe/ygjeay.png",
     video: "https://files.catbox.moe/z718ba.mp4",
     autor: "TripGore",
-    categoria: "ASESINATOS, INCIDENTES",
+    categoria: "ASESINATOS",
   },
   {
     titulo: "Le mutilan la cabeza",
@@ -446,7 +446,7 @@ const mediaDB = [
     portada: "https://files.catbox.moe/7bn7wy.png",
     video: "https://files.catbox.moe/8i1yfc.mp4",
     autor: "TripGore",
-    categoria: "INCIDENTES, ASESINATOS",
+    categoria: "ASESINATOS",
   },
   {
     titulo: "Extraño piercing",
@@ -488,7 +488,7 @@ const mediaDB = [
     portada: "https://files.catbox.moe/kwrima.png",
     video: "https://files.catbox.moe/gxylxy.mp4",
     autor: "TripGore",
-    categoria: "ASESINATOS, INCIDENTES",
+    categoria: "ASESINATOS",
   },
   {
     titulo: "Por bailar con su marido",
@@ -628,7 +628,7 @@ const mediaDB = [
     portada: "https://files.catbox.moe/fw81p5.png",
     video: "https://files.catbox.moe/kvwgkk.mp4",
     autor: "TripGore",
-    categoria: "ASESINATOS, INCIDENTES",
+    categoria: "ASESINATOS",
   },
   {
     titulo: "Por burlase de su presentacion",
@@ -740,7 +740,7 @@ const mediaDB = [
     portada: "https://xxx.livegore.com//rb-include/videos/3819082602.jpg",
     video: "https://xxx.livegore.com//rb-include/videos/3819082602.mp4",
     autor: "TripGore",
-    categoria: "ACCIDENTES, AUTOLESIONES",
+    categoria: "ACCIDENTES",
   },
   {
     titulo: "El caso de kleber vieira 💀",
@@ -824,7 +824,7 @@ const mediaDB = [
     portada: "https://xxx.livegore.com//rb-include/videos/5860242261.jpg",
     video: "https://xxx.livegore.com//rb-include/videos/5860242261.mp4",
     autor: "TripGore",
-    categoria: "AUTOLESIONES, ACCIDENTES",
+    categoria: "ACCIDENTES",
   },
   {
     titulo: "1444",
