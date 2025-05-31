@@ -1,6 +1,6 @@
 // Sistema de chat social para chat.html únicamente
 import { getDatabase, ref, onValue, push, set, remove, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-database.js";
-import { authFunctions, getUsernameFromEmail } from '../firebase.js';
+import { authFunctions, getUsernameFromEmail } from './firebase.js';
 
 const realtimeDb = getDatabase();
 

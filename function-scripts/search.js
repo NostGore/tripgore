@@ -1,4 +1,4 @@
-import { videoFunctions } from '../firebase.js';
+import { videoFunctions } from './firebase.js';
 import mediaDB from '../mediaDB.js';
 
 // Search functionality for mediaDB

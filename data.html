@@ -670,7 +670,7 @@
     </main>
 
     <script type="module">
-        import {authFunctions, updateUserDisplay, videoFunctions} from './firebase.js';
+        import {authFunctions, updateUserDisplay, videoFunctions} from './function-scripts/firebase.js';
         import {
             validateModerationPassword, 
             isModerationAuthorized, 
@@ -680,6 +680,7 @@
             extendModerationSession
         } from './function-scripts/pass.js';
         import {notificationSystem} from './function-scripts/notifications.js';
+        import { searchApprovedVideos } from './function-scripts/search.js'; // Importa la función searchApprovedVideos
 
         document.addEventListener('DOMContentLoaded', async function () {
             // Wait for auth state to be determined
@@ -932,7 +933,7 @@
 
             // Event listeners para la búsqueda
             approvedSearchInput.addEventListener('input', (e) => {
-searchApprovedVideos(e.target.value);
+                searchApprovedVideos(e.target.value, allApprovedVideos, displaySearchResults, approvedSearchResults); // Usa la función importada
             });
 
             // Event listeners para el modal
