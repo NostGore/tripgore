@@ -13,12 +13,13 @@ export class ChatPageSystem {
         this.currentUser = null;
         this.listenersSetup = false;
         this.messagesListener = null;
+        this.authListener = null;
         this.init();
     }
 
     init() {
         // Verificar si el usuario está autenticado
-        authFunctions.onAuthStateChanged((user) => {
+        this.authListener = authFunctions.onAuthStateChanged((user) => {
             this.currentUser = user;
             if (user) {
                 this.startListening();
@@ -35,15 +36,20 @@ export class ChatPageSystem {
         const sendBtn = document.getElementById('sendBtn');
         const chatInput = document.getElementById('chatInput');
 
+        // Remover event listeners existentes para evitar duplicados
         if (sendBtn) {
-            sendBtn.addEventListener('click', (e) => {
+            sendBtn.replaceWith(sendBtn.cloneNode(true));
+            const newSendBtn = document.getElementById('sendBtn');
+            newSendBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 this.sendMessage();
             });
         }
 
         if (chatInput) {
-            chatInput.addEventListener('keypress', (e) => {
+            chatInput.replaceWith(chatInput.cloneNode(true));
+            const newChatInput = document.getElementById('chatInput');
+            newChatInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter' && !e.shiftKey) {
                     e.preventDefault();
                     e.stopPropagation();
@@ -51,7 +57,7 @@ export class ChatPageSystem {
                 }
             });
 
-            chatInput.addEventListener('input', () => {
+            newChatInput.addEventListener('input', () => {
                 this.adjustTextareaHeight();
             });
         }
@@ -425,6 +431,12 @@ export class ChatPageSystem {
         if (this.messagesListener) {
             this.messagesListener();
             this.messagesListener = null;
+        }
+
+        // Remover listener de autenticación
+        if (this.authListener) {
+            this.authListener();
+            this.authListener = null;
         }
 
         // Limpiar elementos del DOM
