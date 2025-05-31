@@ -452,7 +452,7 @@ const mediaDB = [
     titulo: "No mercy in Mexico",
     portada: "https://xxx.livegore.com//rb-include/videos/9235306940.jpg",
     video: "https://xxx.livegore.com//rb-include/videos/9235306940.mp4",
-    autor: "TripGore",
+    autor: "falcolucas34552",
     categoria: "ASESINATOS",
   },
   {
