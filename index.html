@@ -126,9 +126,9 @@
         </div>
     </main>
     <script type="module">
-        import {authFunctions, updateUserDisplay, videoFunctions} from './firebase.js';
+        import {authFunctions, updateUserDisplay, videoFunctions} from './function-scripts/firebase.js';
         import mediaDB from './mediaDB.js';
-        import './search.js';
+        import './function-scripts/search.js';
 
         // Make videoFunctions globally available for search
         window.videoFunctions = videoFunctions;
@@ -156,19 +156,33 @@
 
                 recommendedContainer.innerHTML = '';
 
+                // Function to generate URL-friendly ID from title
+                function generateVideoId(title) {
+                    return title
+                        .toLowerCase()
+                        .replace(/[^\w\s-]/g, '') // Remove emojis and special characters
+                        .replace(/\s+/g, '-') // Replace spaces with hyphens
+                        .replace(/-+/g, '-') // Replace multiple hyphens with single
+                        .trim()
+                        .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
+                }
+
                 recommendedVideos.forEach((video, index) => {
                     const videoCard = document.createElement('div');
                     videoCard.className = 'content-card';
                     videoCard.innerHTML = `
                         <img src="${video.portada}" alt="${video.titulo}" class="content-image"
-                             onerror="this.src='https://via.placeholder.com/300x180/8B0000/FFFFFF?text=Error'">
+                             onerror="this.src='https://via.placeholder.com/300x180/8B0000/FFFFFF?text=Error+Imagen'">
+                        <div class="content-overlay">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
                         <div class="content-info">
-                            <h3>${video.titulo}</h3>
+                            <h3 class="content-title">${video.titulo}</h3>
                             <div class="content-meta">
                                 <i class="fa-solid fa-user"></i>
-                                Por: ${video.autor}
+                                ${video.autor}
                             </div>
-                            <div class="content-meta">
+                          <div class="content-meta">
                                 <i class="fa-solid fa-tags"></i>
                                 ${video.categoria}
                             </div>
@@ -176,9 +190,9 @@
                     `;
 
                     videoCard.addEventListener('click', () => {
-                        // Get the actual index in mediaDB
-                        const actualIndex = mediaDB.indexOf(video);
-                        window.location.href = `video.html?id=${actualIndex}`;
+                        // Generate URL-friendly ID from title
+                        const videoIdUrl = generateVideoId(video.titulo);
+                        window.location.href = `video.html?id=${videoIdUrl}`;
                     });
 
                     recommendedContainer.appendChild(videoCard);
@@ -197,12 +211,23 @@
 
                 videosContainer.innerHTML = '';
 
+                 // Function to generate URL-friendly ID from title
+                function generateVideoId(title) {
+                    return title
+                        .toLowerCase()
+                        .replace(/[^\w\s-]/g, '') // Remove emojis and special characters
+                        .replace(/\s+/g, '-') // Replace spaces with hyphens
+                        .replace(/-+/g, '-') // Replace multiple hyphens with single
+                        .trim()
+                        .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
+                }
+
                 validVideos.forEach((video, index) => {
                     const videoCard = document.createElement('div');
                     videoCard.className = 'content-card';
                     videoCard.innerHTML = `
                         <img src="${video.portada}" alt="${video.titulo}" class="content-image"
-                             onerror="this.src='https://via.placeholder.com/300x180/8B0000/FFFFFF?text=Error'">
+                             onerror="this.src='https://via.placeholder.com/300x180/8B0000/FFFFFF?text=Error+Imagen'">
                         <div class="content-info">
                             <h3>${video.titulo}</h3>
                             <div class="content-meta">
@@ -217,9 +242,9 @@
                     `;
 
                     videoCard.addEventListener('click', () => {
-                        // Get the actual index in mediaDB
-                        const actualIndex = mediaDB.indexOf(video);
-                        window.location.href = `video.html?id=${actualIndex}`;
+                      // Generate URL-friendly ID from title
+                      const videoIdUrl = generateVideoId(video.titulo);
+                      window.location.href = `video.html?id=${videoIdUrl}`;
                     });
 
                     videosContainer.appendChild(videoCard);
@@ -289,8 +314,19 @@
                 const recommendedVideos = shuffled.slice(0, 8);
 
                 recomendadosGrid.innerHTML = '';
+
+                // Function to generate URL-friendly ID from title
+                function generateVideoId(title) {
+                    return title
+                        .toLowerCase()
+                        .replace(/[^\w\s-]/g, '') // Remove emojis and special characters
+                        .replace(/\s+/g, '-') // Replace spaces with hyphens
+                        .replace(/-+/g, '-') // Replace multiple hyphens with single
+                        .trim()
+                        .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
+                }
+
                 recommendedVideos.forEach((video, index) => {
-                    const actualIndex = mediaDB.indexOf(video);
                     const videoCard = document.createElement('div');
                     videoCard.className = 'content-card';
                     videoCard.style.cursor = 'pointer';
@@ -310,9 +346,9 @@
                     `;
 
                     videoCard.addEventListener('click', () => {
-                        // Get the actual index in mediaDB
-                        const actualIndex = mediaDB.indexOf(video);
-                        window.location.href = `video.html?id=${actualIndex}`;
+                        // Generate URL-friendly ID from title
+                        const videoIdUrl = generateVideoId(video.titulo);
+                        window.location.href = `video.html?id=${videoIdUrl}`;
                     });
 
                     recomendadosGrid.appendChild(videoCard);
@@ -439,8 +475,20 @@
             }
 
             function createVideoCard(video) {
-                const actualIndex = mediaDB.indexOf(video);
-                const videoCard = document.createElement('div');
+              // Function to generate URL-friendly ID from title
+              function generateVideoId(title) {
+                  return title
+                      .toLowerCase()
+                      .replace(/[^\w\s-]/g, '') // Remove emojis and special characters
+                      .replace(/\s+/g, '-') // Replace spaces with hyphens
+                      .replace(/-+/g, '-') // Replace multiple hyphens with single
+                      .trim()
+                      .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
+              }
+
+              const videoIdUrl = generateVideoId(video.titulo);
+              const actualIndex = mediaDB.indexOf(video);
+              const videoCard = document.createElement('div');
                 videoCard.className = 'content-card';
                 videoCard.style.cursor = 'pointer';
                 videoCard.innerHTML = `
@@ -459,8 +507,7 @@
                 `;
 
                 videoCard.addEventListener('click', () => {
-                    // Use the actual index in mediaDB
-                    window.location.href = `video.html?id=${actualIndex}`;
+                    window.location.href = `video.html?id=${videoIdUrl}`;
                 });
 
                 return videoCard;
@@ -477,7 +524,7 @@
                 let lastShownMessageId = localStorage.getItem('lastShownChatMessage');
 
                 // Importar Firebase modules
-                import('./firebase.js').then(({getDatabase, ref, onValue, query, orderByChild, limitToLast}) => {
+                import('./function-scripts/firebase.js').then(({getDatabase, ref, onValue, query, orderByChild, limitToLast}) => {
                     const realtimeDb = getDatabase();
                     const messagesRef = ref(realtimeDb, 'chat_messages');
                     const lastMessageQuery = query(messagesRef, orderByChild('timestamp'), limitToLast(1));

@@ -1,5 +1,5 @@
-import { videoFunctions } from './firebase.js';
-import mediaDB from './mediaDB.js';
+import { videoFunctions } from '../firebase.js';
+import mediaDB from '../mediaDB.js';
 
 // Search functionality for mediaDB
 function searchInMediaDB(searchTerm) {
@@ -24,7 +24,7 @@ class SearchManager {
         this.allVideos = [];
         this.isVisible = false;
         this.selectedIndex = -1;
-        
+
         this.init();
     }
 
@@ -73,7 +73,7 @@ class SearchManager {
             if (!this.isVisible) return;
 
             const items = this.searchResults.querySelectorAll('.search-result-item');
-            
+
             switch(e.key) {
                 case 'ArrowDown':
                     e.preventDefault();
@@ -123,7 +123,7 @@ class SearchManager {
             const normalizedTitle = this.normalizeText(video.titulo);
             const normalizedAuthor = this.normalizeText(video.autor);
             const normalizedCategory = this.normalizeText(video.categoria);
-            
+
             return normalizedTitle.includes(normalizedQuery) ||
                    normalizedAuthor.includes(normalizedQuery) ||
                    normalizedCategory.includes(normalizedQuery);
@@ -140,6 +140,8 @@ class SearchManager {
     }
 
     displayResults(videos, query) {
+        if (!this.searchResults) return;
+
         if (videos.length === 0) {
             this.searchResults.innerHTML = `
                 <div class="search-no-results">
@@ -150,10 +152,12 @@ class SearchManager {
         } else {
             // Limitar a 6 resultados
             const limitedVideos = videos.slice(0, 6);
-            this.searchResults.innerHTML = limitedVideos.map(video => `
-                <div class="search-result-item" data-video-id="${video.id}">
-                    <img src="${video.portada}" alt="${video.titulo}" class="search-result-image" 
-                         onerror="this.src='https://via.placeholder.com/80x60/8B0000/FFFFFF?text=Error'">
+            this.searchResults.innerHTML = limitedVideos.map(video => {
+                const videoIdUrl = this.generateVideoId(video.titulo);
+                return `
+                    <div class="search-result-item" data-video-id="${videoIdUrl}">
+                        <img src="${video.portada}" alt="${video.titulo}" class="search-result-image" 
+                             onerror="this.src='https://via.placeholder.com/80x60/8B0000/FFFFFF?text=Error'">
                     <div class="search-result-content">
                         <h4 class="search-result-title">${this.highlightText(video.titulo, query)}</h4>
                         <div class="search-result-meta">
@@ -169,7 +173,7 @@ class SearchManager {
                         </span>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
 
             // Agregar event listeners a los resultados
             this.searchResults.querySelectorAll('.search-result-item').forEach(item => {
@@ -188,16 +192,24 @@ class SearchManager {
         this.selectedIndex = -1;
     }
 
+    generateVideoId(title) {
+        return title.toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/[^a-z0-9\s]/g, '')
+            .replace(/\s+/g, '-');
+    }
+
     highlightText(text, query) {
         const normalizedQuery = this.normalizeText(query);
         const normalizedText = this.normalizeText(text);
         const index = normalizedText.indexOf(normalizedQuery);
-        
+
         if (index === -1) return text;
-        
+
         const start = index;
         const end = index + query.length;
-        
+
         return text.substring(0, start) + 
                '<mark>' + text.substring(start, end) + '</mark>' + 
                text.substring(end);
@@ -225,6 +237,15 @@ class SearchManager {
         this.searchResults.querySelectorAll('.search-result-item').forEach(item => {
             item.classList.remove('selected');
         });
+    }
+
+    handleResultClick(index) {
+        const video = this.searchResults.querySelectorAll('.search-result-item')[index];
+        if (video) {
+            const videoTitle = video.querySelector('.search-result-title').textContent;
+            const videoIdUrl = this.generateVideoId(videoTitle);
+            window.location.href = `video.html?id=${videoIdUrl}`;
+        }
     }
 }
 
