@@ -11,6 +11,8 @@ export class ChatPageSystem {
         this.messageLimit = 3000; // 3 segundos en milisegundos
         this.replyingTo = null;
         this.currentUser = null;
+        this.listenersSetup = false;
+        this.messagesListener = null;
         this.init();
     }
 
@@ -20,7 +22,10 @@ export class ChatPageSystem {
             this.currentUser = user;
             if (user) {
                 this.startListening();
-                this.setupEventListeners();
+                if (!this.listenersSetup) {
+                    this.setupEventListeners();
+                    this.listenersSetup = true;
+                }
             }
         });
     }
@@ -31,22 +36,35 @@ export class ChatPageSystem {
         const chatInput = document.getElementById('chatInput');
 
         if (sendBtn) {
-            sendBtn.addEventListener('click', () => this.sendMessage());
+            sendBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.sendMessage();
+            });
         }
 
         if (chatInput) {
             chatInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter' && !e.shiftKey) {
                     e.preventDefault();
+                    e.stopPropagation();
                     this.sendMessage();
                 }
+            });
+
+            chatInput.addEventListener('input', () => {
+                this.adjustTextareaHeight();
             });
         }
     }
 
     startListening() {
+        // Desuscribir listener anterior si existe
+        if (this.messagesListener) {
+            this.messagesListener();
+        }
+
         const messagesRef = ref(realtimeDb, 'chat_messages');
-        onValue(messagesRef, (snapshot) => {
+        this.messagesListener = onValue(messagesRef, (snapshot) => {
             this.messages = [];
             snapshot.forEach((childSnapshot) => {
                 this.messages.push({
@@ -173,7 +191,7 @@ export class ChatPageSystem {
 
         // Agregar event listeners
         this.setupMessageEventListeners();
-        
+
         // Solo hacer scroll al final si el usuario estaba al final
         if (wasAtBottom) {
             setTimeout(() => this.scrollToBottom(), 50);
@@ -396,52 +414,31 @@ export class ChatPageSystem {
         }
     }
 
-    setupEventListeners() {
-        // Event listeners para el envío de mensajes
-        const sendBtn = document.getElementById('sendBtn');
-        const chatInput = document.getElementById('chatInput');
-
-        if (sendBtn) {
-            sendBtn.addEventListener('click', () => this.sendMessage());
-        }
-
-        if (chatInput) {
-            chatInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault();
-                    this.sendMessage();
-                }
-            });
-
-            chatInput.addEventListener('input', () => {
-                this.adjustTextareaHeight();
-            });
-        }
-    }
-
     destroy() {
         // Limpiar listeners y referencias
         this.messages = [];
         this.currentUser = null;
         this.replyingTo = null;
-        
+        this.listenersSetup = false;
+
         // Remover listeners de Firebase
         if (this.messagesListener) {
             this.messagesListener();
+            this.messagesListener = null;
         }
-        
+
         // Limpiar elementos del DOM
         const messagesArea = document.getElementById('messagesArea');
         if (messagesArea) {
             messagesArea.innerHTML = '';
         }
-        
+
         // Limpiar indicador de respuesta
         const replyIndicator = document.getElementById('replyIndicator');
         if (replyIndicator) {
             replyIndicator.style.display = 'none';
         }
-        
+
         console.log('Sistema de chat destruido');
     }
 }
