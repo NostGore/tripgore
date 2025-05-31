@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Moderadores - TRIPGORE</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://files.catbox.moe/czvw1i.png" type="image/png">
+
+    <style>
+        /* Estilos específicos para el panel de moderadores */
+        .moderator-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .login-panel {
+            max-width: 400px;
+            margin: 100px auto;
+            background: linear-gradient(145deg, #2a0000, #1a0000);
+            border-radius: 15px;
+            padding: 40px;
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+        }
+
+        .moderator-panel {
+            display: none;
+        }
+
+        .panel-header {
+            background: linear-gradient(90deg, #8B0000, #DC143C);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+        }
+
+        .panel-header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .nav-btn {
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 0, 0, 0.5);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            color: #FFB6C1;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            padding-left: 5px;
+        }
+
+        .form-label i {
+            color: #DC143C;
+            margin-right: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(139, 0, 0, 0.3);
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #DC143C;
+            background: rgba(139, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(220, 20, 60, 0.3);
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 0, 0, 0.5);
+            background: linear-gradient(135deg, #A0002A, #FF1450);
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .pending-videos {
+            background: linear-gradient(145deg, #2a0000, #1a0000);
+            border-radius: 15px;
+            padding: 30px;
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .video-card {
+            background: rgba(139, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(139, 0, 0, 0.4);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .video-title {
+            color: #FFB6C1;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            word-wrap: break-word;
+        }
+
+        .video-info {
+            color: #cccccc;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .video-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+
+        .approve-btn {
+            background: #28a745;
+            color: white;
+        }
+
+        .approve-btn:hover {
+            background: #218838;
+        }
+
+        .reject-btn {
+            background: #dc3545;
+            color: white;
+        }
+
+        .reject-btn:hover {
+            background: #c82333;
+        }
+
+        .no-videos {
+            text-align: center;
+            color: #FFB6C1;
+            padding: 40px;
+            font-size: 18px;
+        }
+
+        .loading {
+            text-align: center;
+            color: #FFB6C1;
+            padding: 40px;
+            font-size: 18px;
+        }
+
+        .loading i {
+            font-size: 48px;
+            color: #DC143C;
+            margin-bottom: 20px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="https://files.catbox.moe/cjmaz9.png" alt="TRIPLEGORE" class="logo-img">
+            </div>
+            <nav class="nav">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Inicio</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- Panel de Login -->
+        <div id="loginPanel" class="login-panel">
+            <div class="panel-header">
+                <h1>
+                    <i class="fa-solid fa-shield-halved"></i>
+                    Panel de Moderadores
+                </h1>
+            </div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email" class="form-label">
+                        <i class="fa-solid fa-envelope"></i>
+                        Correo Electrónico:
+                    </label>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="Ingresa tu correo..."
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">
+                        <i class="fa-solid fa-lock"></i>
+                        Contraseña:
+                    </label>
+                    <input type="password" id="password" name="password" class="form-input"
+                        placeholder="Ingresa tu contraseña..." required>
+                </div>
+
+                <button type="submit" class="login-btn">
+                    <i class="fa-solid fa-sign-in-alt"></i>
+                    Iniciar Sesión
+                </button>
+
+                <div id="errorMessage" class="error-message">
+                    <i class="fa-solid fa-exclamation-triangle"></i>
+                    Credenciales incorrectas
+                </div>
+            </form>
+
+            <div class="nav-buttons" style="margin-top: 20px;">
+                <a href="index.html" class="nav-btn">
+                    <i class="fa-solid fa-home"></i>
+                    Inicio
+                </a>
+            </div>
+        </div>
+
+        <!-- Panel de Moderación -->
+        <div id="moderatorPanel" class="moderator-panel">
+            <div class="moderator-container">
+                <div class="panel-header">
+                    <h1>
+                        <i class="fa-solid fa-shield-halved"></i>
+                        Panel de Moderadores
+                    </h1>
+                    <p id="welcomeMessage" style="margin: 10px 0 0 0; font-size: 16px;">Bienvenido, Moderador</p>
+                </div>
+
+                <div class="nav-buttons">
+                    <a href="index.html" class="nav-btn">
+                        <i class="fa-solid fa-home"></i>
+                        Inicio
+                    </a>
+                    <button id="logoutBtn" class="nav-btn">
+                        <i class="fa-solid fa-sign-out-alt"></i>
+                        Cerrar Sesión
+                    </button>
+                </div>
+
+                <div class="pending-videos">
+                    <h2 style="color: #FFB6C1; margin-bottom: 20px; font-size: 20px;">
+                        <i class="fa-solid fa-clock"></i>
+                        Videos Pendientes de Moderación
+                    </h2>
+
+                    <div id="loadingMessage" class="loading">
+                        <i class="fa-solid fa-spinner"></i>
+                        <p>Cargando videos pendientes...</p>
+                    </div>
+
+                    <div id="videosContainer" class="videos-grid" style="display: none;">
+                        <!-- Los videos se cargarán aquí -->
+                    </div>
+
+                    <div id="noVideosMessage" class="no-videos" style="display: none;">
+                        <i class="fa-solid fa-check-circle"
+                            style="font-size: 48px; margin-bottom: 20px; color: #28a745;"></i>
+                        <p>No hay videos pendientes de moderación</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module">
+        import {validateCredentials} from './function-scripts/accountsDB.js';
+        import {videoFunctions} from './function-scripts/firebase.js';
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginPanel = document.getElementById('loginPanel');
+            const moderatorPanel = document.getElementById('moderatorPanel');
+            const loginForm = document.getElementById('loginForm');
+            const errorMessage = document.getElementById('errorMessage');
+            const logoutBtn = document.getElementById('logoutBtn');
+            const welcomeMessage = document.getElementById('welcomeMessage');
+            const loadingMessage = document.getElementById('loadingMessage');
+            const videosContainer = document.getElementById('videosContainer');
+            const noVideosMessage = document.getElementById('noVideosMessage');
+
+            // Check if already logged in
+            const loggedInModerator = localStorage.getItem('loggedInModerator');
+            if (loggedInModerator) {
+                const moderatorData = JSON.parse(loggedInModerator);
+                showModeratorPanel(moderatorData);
+            }
+
+            // Handle login form submission
+            loginForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                // Validate credentials
+                const account = validateCredentials(email, password);
+
+                if (account) {
+                    // Store login state
+                    localStorage.setItem('loggedInModerator', JSON.stringify(account));
+                    showModeratorPanel(account);
+                    errorMessage.style.display = 'none';
+                } else {
+                    errorMessage.style.display = 'block';
+                }
+            });
+
+            // Handle logout
+            logoutBtn.addEventListener('click', function () {
+                localStorage.removeItem('loggedInModerator');
+                loginPanel.style.display = 'block';
+                moderatorPanel.style.display = 'none';
+                loginForm.reset();
+            });
+
+            function showModeratorPanel(moderatorData) {
+                loginPanel.style.display = 'none';
+                moderatorPanel.style.display = 'block';
+                welcomeMessage.textContent = `Bienvenido, ${moderatorData.nombre}`;
+                loadPendingVideos();
+            }
+
+            function loadPendingVideos() {
+                loadingMessage.style.display = 'block';
+                videosContainer.style.display = 'none';
+                noVideosMessage.style.display = 'none';
+
+                // Get pending videos from Firebase
+                videoFunctions.getPendingVideos((videos) => {
+                    loadingMessage.style.display = 'none';
+
+                    if (videos.length === 0) {
+                        noVideosMessage.style.display = 'block';
+                    } else {
+                        videosContainer.style.display = 'grid';
+                        displayPendingVideos(videos);
+                    }
+                });
+            }
+
+            function displayPendingVideos(videos) {
+                videosContainer.innerHTML = '';
+                videos.forEach(video => {
+                    const videoCard = document.createElement('div');
+                    videoCard.className = 'video-card';
+                    videoCard.innerHTML = `
+                        <img src="${video.portada}" alt="${video.titulo}" class="video-thumbnail"
+                             onerror="this.src='https://via.placeholder.com/300x180/8B0000/FFFFFF?text=Error+Imagen'">
+                        <div class="video-title">${video.titulo}</div>
+                        <div class="video-info">
+                            <p><i class="fa-solid fa-user"></i> Autor: ${video.autor}</p>
+                            <p><i class="fa-solid fa-tags"></i> Categoría: ${video.categoria}</p>
+                            <p><i class="fa-solid fa-calendar"></i> Fecha: ${video.fecha}</p>
+                            <p><i class="fa-solid fa-envelope"></i> Correo: ${video.correoOriginal || 'No especificado'}</p>
+                        </div>
+                        <div class="video-actions">
+                            <button class="action-btn approve-btn" onclick="approveVideo('${video.id}', ${JSON.stringify(video).replace(/"/g, '&quot;')})">
+                                <i class="fa-solid fa-check"></i> Aprobar
+                            </button>
+                            <button class="action-btn reject-btn" onclick="rejectVideo('${video.id}')">
+                                <i class="fa-solid fa-times"></i> Rechazar
+                            </button>
+                            <button class="action-btn view-btn" onclick="window.open('${video.videoUrl}', '_blank')">
+                                <i class="fa-solid fa-eye"></i> Ver Video
+                            </button>
+                        </div>
+                    `;
+                    videosContainer.appendChild(videoCard);
+                });
+            }
+
+            // Make functions global for onclick handlers
+            window.approveVideo = async function (videoId, videoData) {
+                if (confirm('¿Estás seguro de que quieres aprobar este video?')) {
+                    try {
+                        const result = await videoFunctions.approveVideo(videoId, videoData);
+                        if (result.success) {
+                            alert('Video aprobado exitosamente');
+                            loadPendingVideos(); // Reload pending videos
+                        } else {
+                            alert('Error al aprobar el video: ' + result.error);
+                        }
+                    } catch (error) {
+                        alert('Error de conexión: ' + error.message);
+                    }
+                }
+            };
+
+            window.rejectVideo = async function (videoId) {
+                if (confirm('¿Estás seguro de que quieres rechazar este video?')) {
+                    try {
+                        const result = await videoFunctions.rejectVideo(videoId);
+                        if (result.success) {
+                            alert('Video rechazado exitosamente');
+                            loadPendingVideos(); // Reload pending videos
+                        } else {
+                            alert('Error al rechazar el video: ' + result.error);
+                        }
+                    } catch (error) {
+                        alert('Error de conexión: ' + error.message);
+                    }
+                }
+            };
+        });
+    </script>
+</body>
+
+</html>

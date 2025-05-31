@@ -485,7 +485,6 @@ function copyHeaderContent() {
         // Usuario logueado - mostrar opciones completas
         const loggedInItems = [
             { href: 'adminpanel.html', text: 'Admin Panel', icon: 'fa-solid fa-cogs' },
-            { href: 'data.html', text: 'Moderación', icon: 'fa-solid fa-shield-alt' },
             { href: '#', text: 'Cerrar Sesión', icon: 'fa-solid fa-sign-out-alt', id: 'mobile-logout' }
         ];
         

@@ -325,6 +325,7 @@
                 opacity: 0;
                 transform: translateY(10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -541,7 +542,8 @@
 
                     <div class="input-area">
                         <div class="input-container">
-                            <textarea id="chatInput" class="chat-input" placeholder="Escribe tu mensaje..." rows="1"></textarea>
+                            <textarea id="chatInput" class="chat-input" placeholder="Escribe tu mensaje..."
+                                rows="1"></textarea>
                             <button id="sendBtn" class="send-btn">
                                 <i class="fa-solid fa-paper-plane"></i>
                             </button>
@@ -598,6 +600,50 @@
     </script>
 
     <script src="script.js"></script>
+
+    <script type="module">
+        import {authFunctions, updateUserDisplay} from './function-scripts/firebase.js';
+        import {ChatPageSystem} from './function-scripts/chat.js';
+        import './function-scripts/search.js';
+        // Inicializar el sistema de chat
+        let chatSystem = null;
+        // Actualizar display del usuario primero
+        updateUserDisplay();
+        // Verificar estado de autenticación
+        authFunctions.onAuthStateChanged((user) => {
+            const loginPrompt = document.getElementById('loginPrompt');
+            const chatContent = document.getElementById('chatContent');
+            const loginLink = document.getElementById('loginLink');
+            const registerLink = document.getElementById('registerLink');
+            const logoutLink = document.getElementById('logoutLink');
+            console.log('Estado de autenticación:', user ? 'Logueado' : 'No logueado');
+            if (user) {
+                // Usuario autenticado - mostrar chat y ocultar enlaces de registro/login
+                loginPrompt.style.display = 'none';
+                chatContent.style.display = 'flex';
+                loginLink.style.display = 'none'; // Ocultar enlace de inicio de sesión
+                registerLink.style.display = 'none'; // Ocultar enlace de registro
+                logoutLink.style.display = 'block'; // Mostrar enlace de cerrar sesión
+                // Inicializar sistema de chat si no existe
+                if (!chatSystem) {
+                    console.log('Inicializando sistema de chat...');
+                    chatSystem = new ChatPageSystem();
+                }
+            } else {
+                // Usuario no autenticado - mostrar prompt de login y enlaces correspondientes
+                loginPrompt.style.display = 'flex';
+                chatContent.style.display = 'none';
+                loginLink.style.display = 'block'; // Mostrar enlace de inicio de sesión
+                registerLink.style.display = 'block'; // Mostrar enlace de registro
+                logoutLink.style.display = 'none'; // Ocultar enlace de cerrar sesión
+                // Destruir sistema de chat si existe
+                if (chatSystem) {
+                    chatSystem.destroy();
+                    chatSystem = null;
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>
