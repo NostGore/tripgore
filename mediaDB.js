@@ -847,6 +847,20 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "AUTOLESIONES",
   },
+  {
+    titulo: "Amigos traicioneros",
+    portada: "https://files.catbox.moe/t1umay.jpeg",
+    video: "https://files.catbox.moe/l5khd1.mp4",
+    autor: "julio2016oo11",
+    categoria: "ASESINATOS",
+  },
+  {
+    titulo: "El roba cables 💀",
+    portada: "https://files.catbox.moe/e43cws.png",
+    video: "https://files.catbox.moe/p1m1k9.mp4",
+    autor: "julio2016oo11",
+    categoria: "ASESINATOS",
+  },
 ];
 
 // Exportar la base de datos
