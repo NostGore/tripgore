@@ -1,7 +1,7 @@
 // Base de datos de videos
 const mediaDB = [
   {
-    titulo: "Valeria Marquez",
+    titulo: "Valeria Marquez", //C-ASESINATOS
     portada: "https://files.catbox.moe/slvfm7.png",
     video: "https://files.catbox.moe/1pkwcu.MP4",
     autor: "TripGore",
@@ -463,6 +463,20 @@ const mediaDB = [
     categoria: "ASESINATOS",
   },
   {
+    titulo: "Amigos traicioneros",
+    portada: "https://files.catbox.moe/t1umay.jpeg",
+    video: "https://files.catbox.moe/l5khd1.mp4",
+    autor: "julio2016oo11",
+    categoria: "ASESINATOS",
+  },
+  {
+    titulo: "El roba cables 💀",
+    portada: "https://files.catbox.moe/e43cws.png",
+    video: "https://files.catbox.moe/p1m1k9.mp4",
+    autor: "julio2016oo11",
+    categoria: "ASESINATOS",
+  },
+  {
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
     video: "https://files.catbox.moe/7wqsp0.MP4",
@@ -846,20 +860,6 @@ const mediaDB = [
     video: "https://files.catbox.moe/4r4b3t.mp4",
     autor: "TripGore",
     categoria: "AUTOLESIONES",
-  },
-  {
-    titulo: "Amigos traicioneros",
-    portada: "https://files.catbox.moe/t1umay.jpeg",
-    video: "https://files.catbox.moe/l5khd1.mp4",
-    autor: "julio2016oo11",
-    categoria: "ASESINATOS",
-  },
-  {
-    titulo: "El roba cables 💀",
-    portada: "https://files.catbox.moe/e43cws.png",
-    video: "https://files.catbox.moe/p1m1k9.mp4",
-    autor: "julio2016oo11",
-    categoria: "ASESINATOS",
   },
 ];
 
