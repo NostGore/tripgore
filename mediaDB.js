@@ -794,7 +794,7 @@ const mediaDB = [
     fecha: "1/06/25",
   },
   {
-    id: "lo-torturan-con-un-machete",
+    id: "lo-torturan-con-machete",
     titulo: "Lo torturan con machete💀",
     portada: "https://files.catbox.moe/tayo3a.png",
     video: "https://files.catbox.moe/dydggv.mp4",
