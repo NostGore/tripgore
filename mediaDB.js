@@ -794,6 +794,15 @@ const mediaDB = [
     fecha: "1/06/25",
   },
   {
+    id: "lo-torturan-con-un-machete",
+    titulo: "Lo torturan con machete💀",
+    portada: "https://files.catbox.moe/tayo3a.png",
+    video: "https://files.catbox.moe/dydggv.mp4",
+    autor: "falcolucas34552",
+    categoria: "ASESINATOS",
+    fecha: "2/06/25",
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
