@@ -803,7 +803,7 @@ const mediaDB = [
     fecha: "2/06/25",
   },
   {
-    id: "la-reina-del-arroz-con-posho",
+    id: "la-reina-del-arroz-con-pollo",
     titulo: "La reina del arroz con pollo",
     portada: "https://qu.ax/jrjHV.png",
     video: "https://forogore.net/data/video/123/123320-b45724c4b2764e0e81de4e2a5f13d1df.mp4",
