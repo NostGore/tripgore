@@ -812,6 +812,33 @@ const mediaDB = [
     fecha: "2/06/25",
   },
   {
+    id: "el-exprimidor-humano",
+    titulo: "El exprimidor humano",
+    portada: "https://xxx.livegore.com//rb-include/videos/706962365.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/706962365.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "4/06/25",
+  },
+  {
+    id: "por-la-espalda",
+    titulo: "Por la espalda",
+    portada: "https://xxx.livegore.com//rb-include/videos/982653247.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/982653247.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "4/06/25",
+  },
+  {
+    id: "adolescente-pandillero",
+    titulo: "Adolescente pandillero",
+    portada: "https://xxx.livegore.com//rb-include/videos/2746584666.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2746584666.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "4/06/25",
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
