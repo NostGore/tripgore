@@ -839,6 +839,15 @@ const mediaDB = [
     fecha: "4/06/25",
   },
   {
+    id: "gore-edit",
+    titulo: "GORE EDIT",
+    portada: "https://files.catbox.moe/nf79d9.jpg",
+    video: "https://files.catbox.moe/gj41ma.mp4",
+    autor: "mientrastambien509",
+    categoria: "ASESINATOS",
+    fecha: "11/06/25",
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
