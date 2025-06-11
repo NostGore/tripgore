@@ -1,20 +1,5 @@
-
 document.addEventListener('DOMContentLoaded', function() {
-    // Add click effect only to dropdown links, not navigation links
-    const dropdownLinks = document.querySelectorAll('.dropdown-link');
-    dropdownLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            // Only prevent default for logout and other non-navigation links
-            if (this.id === 'logoutLink' || this.getAttribute('href') === '#') {
-                e.preventDefault();
-            }
-            // Add a subtle click effect
-            this.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                this.style.transform = 'scale(1)';
-            }, 150);
-        });
-    });
+    // Dropdown functionality removed
 
     
 

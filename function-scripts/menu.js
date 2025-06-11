@@ -1,4 +1,3 @@
-
 // Sistema de menú móvil mejorado
 document.addEventListener('DOMContentLoaded', function() {
     createMobileMenu();
@@ -481,51 +480,40 @@ function copyHeaderContent() {
     const userNav = document.createElement('ul');
     userNav.className = 'mobile-menu-nav';
     
+    // Botones de autenticación en el menú móvil
     if (isLoggedIn) {
-        // Usuario logueado - mostrar opciones completas
-        const loggedInItems = [
-            { href: 'adminpanel.html', text: 'Admin Panel', icon: 'fa-solid fa-cogs' },
-            { href: '#', text: 'Cerrar Sesión', icon: 'fa-solid fa-sign-out-alt', id: 'mobile-logout' }
-        ];
-        
-        loggedInItems.forEach(item => {
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-            a.href = item.href;
-            a.innerHTML = `<i class="${item.icon}"></i> ${item.text}`;
-            
-            if (item.id === 'mobile-logout') {
-                a.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    handleMobileLogout();
-                });
-            } else {
-                a.addEventListener('click', function() {
-                    closeMobileMenu();
-                });
-            }
-            
-            li.appendChild(a);
-            userNav.appendChild(li);
+        // Usuario logueado - mostrar botón de cerrar sesión
+        const logoutItem = document.createElement('li');
+        const logoutLink = document.createElement('a');
+        logoutLink.href = '#';
+        logoutLink.innerHTML = '<i class="fa-solid fa-sign-out-alt"></i> Cerrar Sesión';
+        logoutLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            handleMobileLogout();
         });
+        logoutItem.appendChild(logoutLink);
+        userNav.appendChild(logoutItem);
     } else {
-        // Usuario no logueado - solo opciones de login/registro
-        const guestItems = [
-            { href: 'login.html', text: 'Iniciar Sesión', icon: 'fa-solid fa-sign-in-alt' },
-            { href: 'registro.html', text: 'Registrarse', icon: 'fa-solid fa-user-plus' }
-        ];
-        
-        guestItems.forEach(item => {
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-            a.href = item.href;
-            a.innerHTML = `<i class="${item.icon}"></i> ${item.text}`;
-            a.addEventListener('click', function() {
-                closeMobileMenu();
-            });
-            li.appendChild(a);
-            userNav.appendChild(li);
+        // Usuario no logueado - mostrar botones de login y registro
+        const loginItem = document.createElement('li');
+        const loginLink = document.createElement('a');
+        loginLink.href = 'login.html';
+        loginLink.innerHTML = '<i class="fa-solid fa-sign-in-alt"></i> Iniciar Sesión';
+        loginLink.addEventListener('click', function() {
+            closeMobileMenu();
         });
+        loginItem.appendChild(loginLink);
+        userNav.appendChild(loginItem);
+
+        const registerItem = document.createElement('li');
+        const registerLink = document.createElement('a');
+        registerLink.href = 'registro.html';
+        registerLink.innerHTML = '<i class="fa-solid fa-user-plus"></i> Registrarse';
+        registerLink.addEventListener('click', function() {
+            closeMobileMenu();
+        });
+        registerItem.appendChild(registerLink);
+        userNav.appendChild(registerItem);
     }
     
     mobileUserSection.appendChild(userNav);
@@ -537,7 +525,7 @@ function copyHeaderContent() {
 async function handleMobileLogout() {
     try {
         // Importar las funciones de Firebase
-        const { authFunctions } = await import('../firebase.js');
+        const { authFunctions } = await import('./firebase.js');
         const result = await authFunctions.logout();
         
         if (result.success) {

@@ -1,4 +1,3 @@
-
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-analytics.js";
@@ -93,26 +92,13 @@ export const updateUserDisplay = () => {
       const unsubscribe = authFunctions.onAuthStateChanged((currentUser) => {
         if (currentUser) {
           const username = getUsernameFromEmail(currentUser.email);
-          userElement.innerHTML = `<i class="fa-solid fa-user"></i> ${username} <i class="fa-solid fa-chevron-down" style="font-size: 12px; margin-left: 5px;"></i>`;
+          userElement.innerHTML = `<i class="fa-solid fa-user"></i> ${username}`;
           userElement.style.color = '#FFB6C1';
-          userElement.style.cursor = 'pointer';
-
-          // Add dropdown functionality
-          if (!userElement.getAttribute('data-dropdown-added')) {
-            userElement.setAttribute('data-dropdown-added', 'true');
-            addUserDropdown(userElement);
-          }
+          userElement.style.cursor = 'default';
         } else {
           userElement.innerHTML = `<i class="fa-solid fa-user"></i> Invitado`;
           userElement.style.color = '#cccccc';
           userElement.style.cursor = 'default';
-          
-          // Remove dropdown functionality
-          userElement.removeAttribute('data-dropdown-added');
-          const dropdown = document.getElementById('userDropdown');
-          if (dropdown) {
-            dropdown.remove();
-          }
         }
         unsubscribe();
         resolve();
@@ -121,91 +107,7 @@ export const updateUserDisplay = () => {
   }
 };
 
-// Add dropdown functionality to user display
-const addUserDropdown = (userElement) => {
-  // Create dropdown if it doesn't exist
-  let dropdown = document.getElementById('userDropdown');
-  if (!dropdown) {
-    dropdown = document.createElement('div');
-    dropdown.id = 'userDropdown';
-    dropdown.className = 'user-dropdown';
-    dropdown.innerHTML = `
-      
-      <a href="#" id="logoutLink" class="dropdown-link">
-        <i class="fa-solid fa-sign-out-alt"></i> Cerrar Sesión
-      </a>
-    `;
-
-    // Add styles for dropdown
-    const style = document.createElement('style');
-    style.textContent = `
-      .user-dropdown {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background: linear-gradient(145deg, #2a0000, #1a0000);
-        border: 2px solid rgba(139, 0, 0, 0.3);
-        border-radius: 8px;
-        min-width: 160px;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        z-index: 1000;
-        display: none;
-        margin-top: 10px;
-      }
-
-      .user-dropdown .dropdown-link {
-        display: block;
-        padding: 12px 16px;
-        color: #FFB6C1;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        border-bottom: 1px solid rgba(139, 0, 0, 0.2);
-      }
-
-      .user-dropdown .dropdown-link:last-child {
-        border-bottom: none;
-      }
-
-      .user-dropdown .dropdown-link:hover {
-        background: rgba(220, 20, 60, 0.2);
-        color: #DC143C;
-        transform: translateX(5px);
-      }
-
-      .user-dropdown .dropdown-link i {
-        margin-right: 8px;
-        width: 16px;
-      }
-    `;
-    document.head.appendChild(style);
-
-    // Position dropdown relative to user element
-    const parentNav = userElement.closest('.nav-menu li');
-    if (parentNav) {
-      parentNav.style.position = 'relative';
-      parentNav.appendChild(dropdown);
-    }
-
-    // Add logout functionality
-    const logoutLink = dropdown.querySelector('#logoutLink');
-    logoutLink.addEventListener('click', async (e) => {
-      e.preventDefault();
-      await authFunctions.logout();
-      window.location.href = 'index.html';
-    });
-  }
-
-  // Toggle dropdown on click
-  userElement.addEventListener('click', (e) => {
-    e.stopPropagation();
-    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-  });
-
-  // Close dropdown when clicking outside
-  document.addEventListener('click', () => {
-    dropdown.style.display = 'none';
-  });
-};
+// Dropdown functionality removed
 
 // Global auth state verification
 export const verifyAuthState = () => {
