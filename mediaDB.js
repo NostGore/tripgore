@@ -911,6 +911,15 @@ const mediaDB = [
     fecha: "12/06/25",
   },
   {
+    id: "si-me-quedo",
+    titulo: "Si me quedo",
+    portada: "https://files.catbox.moe/qkz6lj.png",
+    video: "https://files.catbox.moe/mb7s10.mp4",
+    autor: "sicowendynglove",
+    categoria: "ASESINATOS",
+    fecha: "12/06/25",
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
