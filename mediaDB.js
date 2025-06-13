@@ -1676,6 +1676,15 @@ const mediaDB = [
     fecha: "12/06/25",
   },
   {
+    id: "youtuber-estupido",
+    titulo: "Youtuber estupido",
+    portada: "https://files.catbox.moe/1qxni1.png",
+    video: "https://theync.com/media/videos/6/8/4/2/2/68422d675788e.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "12/06/25",
+  },
+  {
     id: "se-apunala-en-live",
     titulo: "SE APUÑALA EN LIVE", //C-AUTOLESIONES
     portada: "https://files.catbox.moe/a5ey0v.png",
@@ -1719,6 +1728,15 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "AUTOLESIONES",
     fecha: "31/05/25",
+  },
+  {
+    id: "estupida-se-prende-fuego-por-un-reto",
+    titulo: "Estupida se prende fuego por un reto",
+    portada: "https://files.catbox.moe/39q8o1.png",
+    video: "https://theync.com/media/videos/6/8/4/8/4/68484d4609c3c.mp4",
+    autor: "TripGore",
+    categoria: "AUTOLESIONES",
+    fecha: "12/06/25",
   },
 ];
 
