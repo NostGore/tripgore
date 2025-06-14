@@ -921,7 +921,7 @@ const mediaDB = [
   },
   {
     id: "apunalo-a-su-hermano-por-golpear-a-su-madre",
-    titulo: "Apuñalo asu hermano por golpear a su madre",
+    titulo: "Apuñalo a su hermano por golpear a su madre",
     portada: "https://files.catbox.moe/5fsd0j.png",
     video: "https://files.catbox.moe/t0u4ij.mp4",
     autor: "TripGore",
