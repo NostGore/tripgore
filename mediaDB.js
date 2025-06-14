@@ -956,6 +956,15 @@ const mediaDB = [
     fecha: "14/06/25",
   },
   {
+    id: "fue-obligado-a-hacerse-la-pentakill-con-sus-amigos",
+    titulo: "Fue obligado a hacerse la pentakill con sus amigos",
+    portada: "https://xxx.livegore.com//rb-include/videos/471824132.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/471824132.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "14/06/25",
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -1854,6 +1863,15 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "SUICIDIOS",
     fecha: "12/06/25",
+  },
+  {
+    id: "lo-obligaron-a-suicidarse",
+    titulo: "Lo obligaron a suicidarse en prisión",
+    portada: "https://xxx.livegore.com//rb-include/videos/9592857160.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9592857160.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "14/06/25",
   },
   {
     id: "se-apunala-en-live",
