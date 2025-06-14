@@ -358,9 +358,21 @@
                     return;
                 }
 
-                // Shuffle and take 8 random videos
-                const shuffled = validVideos.sort(() => 0.5 - Math.random());
-                const recommendedVideos = shuffled.slice(0, 8);
+                // Función para convertir fecha DD/MM/YY a Date objeto
+                function parseDate(dateString) {
+                    const [day, month, year] = dateString.split('/');
+                    // Asumiendo que los años de 2 dígitos son del 2000
+                    const fullYear = parseInt(year) < 50 ? 2000 + parseInt(year) : 1900 + parseInt(year);
+                    return new Date(fullYear, parseInt(month) - 1, parseInt(day));
+                }
+
+                // Ordenar por fecha (más recientes primero) y tomar 8 videos
+                const sortedVideos = validVideos.sort((a, b) => {
+                    const dateA = parseDate(a.fecha);
+                    const dateB = parseDate(b.fecha);
+                    return dateB - dateA; // Orden descendente
+                });
+                const recommendedVideos = sortedVideos.slice(0, 8);
 
                 recomendadosGrid.innerHTML = '';
 
@@ -471,6 +483,21 @@
                     return;
                 }
 
+                // Función para convertir fecha DD/MM/YY a Date objeto
+                function parseDate(dateString) {
+                    const [day, month, year] = dateString.split('/');
+                    // Asumiendo que los años de 2 dígitos son del 2000
+                    const fullYear = parseInt(year) < 50 ? 2000 + parseInt(year) : 1900 + parseInt(year);
+                    return new Date(fullYear, parseInt(month) - 1, parseInt(day));
+                }
+
+                // Ordenar videos por fecha (más recientes primero)
+                const sortedVideos = videos.sort((a, b) => {
+                    const dateA = parseDate(a.fecha);
+                    const dateB = parseDate(b.fecha);
+                    return dateB - dateA; // Orden descendente (más recientes primero)
+                });
+
                 // Limpiar contenido previo
                 contentGrid.innerHTML = '';
 
@@ -481,8 +508,8 @@
                 }
 
                 // Mostrar solo los primeros 4 videos inicialmente
-                const initialVideos = videos.slice(0, 4);
-                const remainingVideos = videos.slice(4);
+                const initialVideos = sortedVideos.slice(0, 4);
+                const remainingVideos = sortedVideos.slice(4);
 
                 // Crear y agregar los primeros 4 videos
                 initialVideos.forEach(video => {
