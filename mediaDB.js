@@ -947,6 +947,15 @@ const mediaDB = [
     fecha: "14/06/25",
   },
   {
+    id: "otavio-jordao-da-silva-hombre-desarmable",
+    titulo: "Otavio jordao da silva(hombre desarmable)",
+    portada: "https://files.catbox.moe/xkbwoe.png",
+    video: "https://toanthaydinh.com/wp-content/uploads/2024/09/otavio-jordao-da-silva-video.mp4",
+    autor: "addydmimejoramigohola",
+    categoria: "ASESINATOS",
+    fecha: "14/06/25",
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
