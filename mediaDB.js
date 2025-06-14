@@ -920,6 +920,15 @@ const mediaDB = [
     fecha: "12/06/25",
   },
   {
+    id: "apunalo-a-su-hermano-por-golpear-a-su-madre",
+    titulo: "Apuñalo asu hermano por golpear a su madre",
+    portada: "https://files.catbox.moe/5fsd0j.png",
+    video: "https://files.catbox.moe/t0u4ij.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "14/06/25",
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -1566,6 +1575,24 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "INCIDENTES",
     fecha: "12/06/25",
+  },
+  {
+    id: "el-roncador",
+    titulo: "El roncador",
+    portada: "https://xxx.livegore.com//rb-include/videos/4747737660.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4747737660.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "13/06/25",
+  },
+  {
+    id: "tortura-a-integrante-de-los-z",
+    titulo: "Tortura a integrante de los z",
+    portada: "https://xxx.livegore.com//rb-include/videos/1882996526.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1882996526.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "13/06/25",
   },
   {
     id: "1444",
