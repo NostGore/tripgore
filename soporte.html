@@ -1,0 +1,481 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soporte - TRIPGORE</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://files.catbox.moe/czvw1i.png" type="image/png">
+
+    <style>
+        .support-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .support-header {
+            background: linear-gradient(90deg, #8B0000, #DC143C);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+        }
+
+        .support-header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .support-header p {
+            margin: 15px 0 0 0;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .support-form {
+            background: linear-gradient(145deg, #2a0000, #1a0000);
+            border-radius: 15px;
+            padding: 40px;
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            color: #FFB6C1;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            padding-left: 5px;
+        }
+
+        .form-label i {
+            color: #DC143C;
+            margin-right: 8px;
+        }
+
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 15px;
+            background: rgba(139, 0, 0, 0.3);
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            outline: none;
+            border-color: #DC143C;
+            background: rgba(139, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(220, 20, 60, 0.3);
+        }
+
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-select option {
+            background: #1a0000;
+            color: white;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 0, 0, 0.5);
+            background: linear-gradient(135deg, #A0002A, #FF1450);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .login-required {
+            text-align: center;
+            color: #FFB6C1;
+            padding: 40px;
+            background: rgba(139, 0, 0, 0.2);
+            border-radius: 10px;
+            border: 2px solid rgba(139, 0, 0, 0.3);
+        }
+
+        .login-required i {
+            font-size: 48px;
+            color: #DC143C;
+            margin-bottom: 20px;
+        }
+
+        .login-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 0, 0, 0.5);
+        }
+
+        .success-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: linear-gradient(145deg, #2a0000, #1a0000);
+            border-radius: 15px;
+            padding: 40px;
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+            max-width: 500px;
+            text-align: center;
+            color: white;
+        }
+
+        .modal-content i {
+            font-size: 48px;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+
+        .modal-content h3 {
+            color: #FFB6C1;
+            margin-bottom: 20px;
+        }
+
+        .modal-content p {
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .modal-btn {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 0, 0, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .support-container {
+                margin: 20px auto;
+                padding: 0 15px;
+            }
+
+            .support-form {
+                padding: 25px;
+            }
+
+            .modal-content {
+                margin: 20px;
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="https://files.catbox.moe/cjmaz9.png" alt="TRIPLEGORE" class="logo-img">
+            </div>
+            <nav class="nav">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Inicio</a></li>
+                    <li><a href="adminpanel.html" class="nav-link"><i class="fa-solid fa-upload"></i> Subir</a></li>
+                    <li><a href="chat.html" class="nav-link"><i class="fa-solid fa-comments"></i> Chat</a></li>
+                    <li><a href="soporte.html" class="nav-link active"><i class="fa-solid fa-headset"></i> Soporte</a></li>
+
+                    <li class="user-menu">
+                        <span id="userDisplay" class="nav-link"><i class="fa-solid fa-user"></i> Invitado</span>
+                        <div class="user-dropdown">
+                            <a href="login.html" id="loginLink" class="dropdown-link">
+                                <i class="fa-solid fa-sign-in-alt"></i> Iniciar Sesión
+                            </a>
+                            <a href="registro.html" id="registerLink" class="dropdown-link">
+                                <i class="fa-solid fa-user-plus"></i> Registrarse
+                            </a>
+                            <a href="adminpanel.html" id="adminLink" class="dropdown-link" style="display: none;">
+                                <i class="fa-solid fa-cogs"></i> Admin Panel
+                            </a>
+                            <a href="#" id="logoutLink" class="dropdown-link" style="display: none;">
+                                <i class="fa-solid fa-sign-out-alt"></i> Cerrar Sesión
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="support-container">
+            <div class="support-header">
+                <h1>
+                    <i class="fa-solid fa-headset"></i>
+                    Centro de Soporte
+                </h1>
+                <p>¿Tienes alguna duda, queja o encontraste un error? Envíanos tu reporte y te ayudaremos.</p>
+            </div>
+
+            <!-- Login Required Message -->
+            <div id="loginRequired" class="login-required" style="display: none;">
+                <i class="fa-solid fa-lock"></i>
+                <h3>Iniciar Sesión Requerido</h3>
+                <p>Para enviar un reporte de soporte, necesitas tener una cuenta registrada e iniciar sesión.</p>
+                <a href="login.html" class="login-btn">
+                    <i class="fa-solid fa-sign-in-alt"></i>
+                    Iniciar Sesión
+                </a>
+                <a href="registro.html" class="login-btn" style="margin-left: 10px;">
+                    <i class="fa-solid fa-user-plus"></i>
+                    Registrarse
+                </a>
+            </div>
+
+            <!-- Support Form -->
+            <div id="supportForm" class="support-form" style="display: none;">
+                <form id="reportForm">
+                    <div class="form-group">
+                        <label for="reportType" class="form-label">
+                            <i class="fa-solid fa-tag"></i>
+                            Tipo de Reporte:
+                        </label>
+                        <select id="reportType" name="reportType" class="form-select" required>
+                            <option value="">Selecciona el tipo de reporte</option>
+                            <option value="error">Error Técnico</option>
+                            <option value="bug">Bug/Fallo</option>
+                            <option value="suggestion">Sugerencia</option>
+                            <option value="complaint">Queja</option>
+                            <option value="question">Pregunta/Duda</option>
+                            <option value="other">Otro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reportTitle" class="form-label">
+                            <i class="fa-solid fa-heading"></i>
+                            Título del Reporte:
+                        </label>
+                        <input type="text" id="reportTitle" name="reportTitle" class="form-input" 
+                               placeholder="Describe brevemente tu reporte..." maxlength="100" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reportDescription" class="form-label">
+                            <i class="fa-solid fa-align-left"></i>
+                            Descripción Detallada:
+                        </label>
+                        <textarea id="reportDescription" name="reportDescription" class="form-textarea" 
+                                  placeholder="Describe detalladamente tu problema, duda o sugerencia..." 
+                                  maxlength="1000" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactEmail" class="form-label">
+                            <i class="fa-solid fa-envelope"></i>
+                            Correo de Contacto:
+                        </label>
+                        <input type="email" id="contactEmail" name="contactEmail" class="form-input" 
+                               placeholder="Correo donde recibirás la respuesta..." required>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        Enviar Reporte
+                    </button>
+                </form>
+            </div>
+
+            <!-- Success Modal -->
+            <div id="successModal" class="success-modal">
+                <div class="modal-content">
+                    <i class="fa-solid fa-check-circle"></i>
+                    <h3>¡Reporte Enviado Exitosamente!</h3>
+                    <p>Su reporte fue enviado exitosamente, la respuesta se enviará a su correo electrónico asignado. Si no aparece en su bandeja principal revise su correo spam.</p>
+                    <button class="modal-btn" onclick="closeSuccessModal()">
+                        <i class="fa-solid fa-check"></i>
+                        Aceptar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module">
+        import {authFunctions, updateUserDisplay, reportFunctions} from './function-scripts/firebase.js';
+
+        document.addEventListener('DOMContentLoaded', async function () {
+            await updateUserDisplay();
+
+            const loginRequired = document.getElementById('loginRequired');
+            const supportForm = document.getElementById('supportForm');
+            const reportForm = document.getElementById('reportForm');
+            const successModal = document.getElementById('successModal');
+            const logoutLink = document.getElementById('logoutLink');
+
+            let currentUser = null;
+
+            // Auth state listener
+            authFunctions.onAuthStateChanged((user) => {
+                currentUser = user;
+                updateUserDisplay();
+                
+                const loginLink = document.getElementById('loginLink');
+                const registerLink = document.getElementById('registerLink');
+                const adminLink = document.getElementById('adminLink');
+
+                if (user) {
+                    // User is logged in - show form
+                    loginRequired.style.display = 'none';
+                    supportForm.style.display = 'block';
+                    
+                    // Update menu
+                    loginLink.style.display = 'none';
+                    registerLink.style.display = 'none';
+                    adminLink.style.display = 'block';
+                    logoutLink.style.display = 'block';
+                } else {
+                    // User is not logged in - show login required
+                    loginRequired.style.display = 'block';
+                    supportForm.style.display = 'none';
+                    
+                    // Update menu
+                    loginLink.style.display = 'block';
+                    registerLink.style.display = 'block';
+                    adminLink.style.display = 'none';
+                    logoutLink.style.display = 'none';
+                }
+            });
+
+            // Handle logout
+            logoutLink.addEventListener('click', async function (e) {
+                e.preventDefault();
+                try {
+                    const result = await authFunctions.logout();
+                    if (result.success) {
+                        window.location.href = 'index.html';
+                    }
+                } catch (error) {
+                    console.error('Error al cerrar sesión:', error);
+                }
+            });
+
+            // Handle form submission
+            reportForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                if (!currentUser) {
+                    alert('Debes iniciar sesión para enviar un reporte');
+                    return;
+                }
+
+                const submitBtn = e.target.querySelector('.submit-btn');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
+
+                const reportData = {
+                    tipo: document.getElementById('reportType').value,
+                    titulo: document.getElementById('reportTitle').value,
+                    descripcion: document.getElementById('reportDescription').value,
+                    correoContacto: document.getElementById('contactEmail').value
+                };
+
+                try {
+                    const result = await reportFunctions.submitReport(reportData);
+                    
+                    if (result.success) {
+                        // Show success modal
+                        successModal.style.display = 'flex';
+                        
+                        // Reset form
+                        reportForm.reset();
+                    } else {
+                        throw new Error(result.error);
+                    }
+                } catch (error) {
+                    alert('Error al enviar el reporte: ' + error.message);
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Enviar Reporte';
+                }
+            });
+
+            // Make closeSuccessModal global
+            window.closeSuccessModal = function() {
+                successModal.style.display = 'none';
+            };
+
+            // Close modal when clicking outside
+            successModal.addEventListener('click', function(e) {
+                if (e.target === successModal) {
+                    closeSuccessModal();
+                }
+            });
+        });
+    </script>
+
+    <script src="function-scripts/menu.js"></script>
+</body>
+
+</html>

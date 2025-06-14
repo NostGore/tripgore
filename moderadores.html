@@ -340,6 +340,14 @@
                         <i class="fa-solid fa-home"></i>
                         Inicio
                     </a>
+                    <button id="showVideosBtn" class="nav-btn">
+                        <i class="fa-solid fa-video"></i>
+                        Videos Pendientes
+                    </button>
+                    <button id="showReportsBtn" class="nav-btn">
+                        <i class="fa-solid fa-headset"></i>
+                        Reportes de Soporte
+                    </button>
                     <button id="logoutBtn" class="nav-btn">
                         <i class="fa-solid fa-sign-out-alt"></i>
                         Cerrar Sesión
@@ -367,13 +375,36 @@
                         <p>No hay videos pendientes de moderación</p>
                     </div>
                 </div>
+
+                <!-- Reports Section -->
+                <div id="reportsSection" class="pending-videos" style="display: none;">
+                    <h2 style="color: #FFB6C1; margin-bottom: 20px; font-size: 20px;">
+                        <i class="fa-solid fa-headset"></i>
+                        Reportes de Soporte
+                    </h2>
+
+                    <div id="loadingReportsMessage" class="loading">
+                        <i class="fa-solid fa-spinner"></i>
+                        <p>Cargando reportes de soporte...</p>
+                    </div>
+
+                    <div id="reportsContainer" class="videos-grid" style="display: none;">
+                        <!-- Los reportes se cargarán aquí -->
+                    </div>
+
+                    <div id="noReportsMessage" class="no-videos" style="display: none;">
+                        <i class="fa-solid fa-check-circle"
+                            style="font-size: 48px; margin-bottom: 20px; color: #28a745;"></i>
+                        <p>No hay reportes de soporte pendientes</p>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 
     <script type="module">
         import {validateCredentials} from './function-scripts/accountsDB.js';
-        import {videoFunctions} from './function-scripts/firebase.js';
+        import {videoFunctions, reportFunctions} from './function-scripts/firebase.js';
 
         document.addEventListener('DOMContentLoaded', function () {
             const loginPanel = document.getElementById('loginPanel');
@@ -385,6 +416,15 @@
             const loadingMessage = document.getElementById('loadingMessage');
             const videosContainer = document.getElementById('videosContainer');
             const noVideosMessage = document.getElementById('noVideosMessage');
+
+            // Reports elements
+            const showVideosBtn = document.getElementById('showVideosBtn');
+            const showReportsBtn = document.getElementById('showReportsBtn');
+            const reportsSection = document.getElementById('reportsSection');
+            const loadingReportsMessage = document.getElementById('loadingReportsMessage');
+            const reportsContainer = document.getElementById('reportsContainer');
+            const noReportsMessage = document.getElementById('noReportsMessage');
+            const videosSection = document.querySelector('.pending-videos');
 
             // Check if already logged in
             const loggedInModerator = localStorage.getItem('loggedInModerator');
@@ -421,6 +461,23 @@
                 loginForm.reset();
             });
 
+            // Handle section navigation
+            showVideosBtn.addEventListener('click', function () {
+                videosSection.style.display = 'block';
+                reportsSection.style.display = 'none';
+                showVideosBtn.style.background = 'linear-gradient(135deg, #A0002A, #FF1450)';
+                showReportsBtn.style.background = 'linear-gradient(135deg, #8B0000, #DC143C)';
+                loadPendingVideos();
+            });
+
+            showReportsBtn.addEventListener('click', function () {
+                videosSection.style.display = 'none';
+                reportsSection.style.display = 'block';
+                showReportsBtn.style.background = 'linear-gradient(135deg, #A0002A, #FF1450)';
+                showVideosBtn.style.background = 'linear-gradient(135deg, #8B0000, #DC143C)';
+                loadPendingReports();
+            });
+
             function showModeratorPanel(moderatorData) {
                 loginPanel.style.display = 'none';
                 moderatorPanel.style.display = 'block';
@@ -442,6 +499,24 @@
                     } else {
                         videosContainer.style.display = 'grid';
                         displayPendingVideos(videos);
+                    }
+                });
+            }
+
+            function loadPendingReports() {
+                loadingReportsMessage.style.display = 'block';
+                reportsContainer.style.display = 'none';
+                noReportsMessage.style.display = 'none';
+
+                // Get pending reports from Firebase
+                reportFunctions.getPendingReports((reports) => {
+                    loadingReportsMessage.style.display = 'none';
+
+                    if (reports.length === 0) {
+                        noReportsMessage.style.display = 'block';
+                    } else {
+                        reportsContainer.style.display = 'grid';
+                        displayPendingReports(reports);
                     }
                 });
             }
@@ -477,6 +552,48 @@
                 });
             }
 
+            function displayPendingReports(reports) {
+                reportsContainer.innerHTML = '';
+                reports.forEach(report => {
+                    const reportCard = document.createElement('div');
+                    reportCard.className = 'video-card';
+                    reportCard.innerHTML = `
+                        <div class="video-title">${report.titulo}</div>
+                        <div class="video-info">
+                            <p><i class="fa-solid fa-tag"></i> Tipo: ${getReportTypeText(report.tipo)}</p>
+                            <p><i class="fa-solid fa-user"></i> Autor: ${report.autor}</p>
+                            <p><i class="fa-solid fa-envelope"></i> Correo: ${report.correoContacto}</p>
+                            <p><i class="fa-solid fa-calendar"></i> Fecha: ${report.fecha}</p>
+                            <p><i class="fa-solid fa-align-left"></i> Descripción:</p>
+                            <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 5px; margin-top: 5px; font-size: 12px; line-height: 1.4;">
+                                ${report.descripcion}
+                            </div>
+                        </div>
+                        <div class="video-actions">
+                            <button class="action-btn approve-btn" onclick="resolveReport('${report.id}')">
+                                <i class="fa-solid fa-check"></i> Marcar Resuelto
+                            </button>
+                            <button class="action-btn reject-btn" onclick="deleteReport('${report.id}')">
+                                <i class="fa-solid fa-trash"></i> Eliminar
+                            </button>
+                        </div>
+                    `;
+                    reportsContainer.appendChild(reportCard);
+                });
+            }
+
+            function getReportTypeText(type) {
+                const types = {
+                    'error': 'Error Técnico',
+                    'bug': 'Bug/Fallo',
+                    'suggestion': 'Sugerencia',
+                    'complaint': 'Queja',
+                    'question': 'Pregunta/Duda',
+                    'other': 'Otro'
+                };
+                return types[type] || type;
+            }
+
             // Make functions global for onclick handlers
             window.approveVideo = async function (videoId, videoData) {
                 if (confirm('¿Estás seguro de que quieres aprobar este video?')) {
@@ -503,6 +620,39 @@
                             loadPendingVideos(); // Reload pending videos
                         } else {
                             alert('Error al rechazar el video: ' + result.error);
+                        }
+                    } catch (error) {
+                        alert('Error de conexión: ' + error.message);
+                    }
+                }
+            };
+
+            // Report management functions
+            window.resolveReport = async function (reportId) {
+                if (confirm('¿Estás seguro de que quieres marcar este reporte como resuelto?')) {
+                    try {
+                        const result = await reportFunctions.resolveReport(reportId);
+                        if (result.success) {
+                            alert('Reporte marcado como resuelto exitosamente');
+                            loadPendingReports(); // Reload pending reports
+                        } else {
+                            alert('Error al resolver el reporte: ' + result.error);
+                        }
+                    } catch (error) {
+                        alert('Error de conexión: ' + error.message);
+                    }
+                }
+            };
+
+            window.deleteReport = async function (reportId) {
+                if (confirm('¿Estás seguro de que quieres eliminar este reporte permanentemente?')) {
+                    try {
+                        const result = await reportFunctions.deleteReport(reportId);
+                        if (result.success) {
+                            alert('Reporte eliminado exitosamente');
+                            loadPendingReports(); // Reload pending reports
+                        } else {
+                            alert('Error al eliminar el reporte: ' + result.error);
                         }
                     } catch (error) {
                         alert('Error de conexión: ' + error.message);

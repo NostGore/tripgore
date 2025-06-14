@@ -3,7 +3,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebas
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-analytics.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
 import { getStorage } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-storage.js";
-import { getDatabase, ref, push, set, onValue, remove, query, orderByChild, limitToLast } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-database.js";
+import { getDatabase, ref, push, set, get, onValue, remove, query, orderByChild, limitToLast } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-database.js";
 import { 
   getAuth, 
   createUserWithEmailAndPassword, 
@@ -31,7 +31,7 @@ const storage = getStorage(app);
 const auth = getAuth(app);
 
 // Export additional Firebase functions
-export { getDatabase, ref, onValue, query, orderByChild, limitToLast };
+export { getDatabase, ref, get, onValue, query, orderByChild, limitToLast };
 const realtimeDb = getDatabase(app);
 
 // Authentication functions
@@ -418,5 +418,80 @@ export const videoFunctions = {
 
 // Update the getUsernameFromEmail function to check the database first
 //Removed username data checking
+// Report management functions
+export const reportFunctions = {
+  // Submit report
+  submitReport: async (reportData) => {
+    try {
+      const currentUser = authFunctions.getCurrentUser();
+      if (!currentUser) {
+        return { success: false, error: "Usuario no autenticado" };
+      }
+
+      const reportRef = ref(realtimeDb, 'reportes');
+      const newReportRef = push(reportRef);
+
+      // Get username from email
+      const username = getUsernameFromEmail(currentUser.email);
+
+      const reportWithMetadata = {
+        ...reportData,
+        autor: username,
+        usuarioId: currentUser.uid,
+        fecha: new Date().toLocaleDateString('es-ES'),
+        timestamp: Date.now(),
+        status: 'pending',
+        id: newReportRef.key
+      };
+
+      await set(newReportRef, reportWithMetadata);
+      return { success: true, reportId: newReportRef.key };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
+  },
+
+  // Get pending reports for moderation
+  getPendingReports: (callback) => {
+    const reportsRef = ref(realtimeDb, 'reportes');
+    return onValue(reportsRef, (snapshot) => {
+      const reports = [];
+      snapshot.forEach((childSnapshot) => {
+        reports.push({
+          id: childSnapshot.key,
+          ...childSnapshot.val()
+        });
+      });
+      callback(reports);
+    });
+  },
+
+  // Mark report as resolved
+  resolveReport: async (reportId) => {
+    try {
+      const reportRef = ref(realtimeDb, `reportes/${reportId}`);
+      await set(reportRef, {
+        ...await get(reportRef).then(snapshot => snapshot.val()),
+        status: 'resolved',
+        resolvedAt: new Date().toLocaleDateString('es-ES')
+      });
+      return { success: true };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
+  },
+
+  // Delete report
+  deleteReport: async (reportId) => {
+    try {
+      const reportRef = ref(realtimeDb, `reportes/${reportId}`);
+      await remove(reportRef);
+      return { success: true };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
+  }
+};
+
 // Export Firebase services for use in other files
 export { app, analytics, db, storage, auth, realtimeDb };
