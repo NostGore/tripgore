@@ -956,8 +956,8 @@ const mediaDB = [
     fecha: "14/06/25",
   },
   {
-    id: "fue-obligado-a-hacerse-la-pentakill-con-sus-amigos",
-    titulo: "Fue obligado a hacerse la pentakill con sus amigos",
+    id: "lagos-del-moreno",
+    titulo: "Lagos del moreno",
     portada: "https://xxx.livegore.com//rb-include/videos/471824132.jpg",
     video: "https://xxx.livegore.com//rb-include/videos/471824132.mp4",
     autor: "TripGore",
