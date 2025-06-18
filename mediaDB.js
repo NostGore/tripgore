@@ -1100,6 +1100,15 @@ const mediaDB = [
     fecha: "17/06/2025",
   },
   {
+    id: "santiago-rodrigues",
+    titulo: "Santiago Rodrigues",
+    portada: "https://files.catbox.moe/cdg6un.jpeg",
+    video: "https://xxx.livegore.com//rb-include/videos/1027467572.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/06/2025",
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
