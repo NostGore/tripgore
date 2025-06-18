@@ -1104,7 +1104,7 @@ const mediaDB = [
     titulo: "Santiago Rodrigues",
     portada: "https://files.catbox.moe/cdg6un.jpeg",
     video: "https://xxx.livegore.com//rb-include/videos/1027467572.mp4",
-    autor: "TripGore",
+    autor: "julio2016oo11",
     categoria: "ASESINATOS",
     fecha: "18/06/2025",
   },
