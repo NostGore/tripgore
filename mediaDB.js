@@ -1109,6 +1109,15 @@ const mediaDB = [
     fecha: "18/06/2025",
   },
   {
+    id: "chico-pereira-esta-dormido",
+    titulo: "Chico Pereira esta dormido",
+    portada: "https://files.catbox.moe/vje1v7.png",
+    video: "https://files.catbox.moe/cczzuz.mp4",
+    autor: "julio2016oo11",
+    categoria: "ASESINATOS",
+    fecha: "19/06/2025",
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
