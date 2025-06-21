@@ -1191,7 +1191,7 @@ const mediaDB = [
   },
   {
     id: "desmembramientos-por-cartel",
-    titulo: "Desmembramiento por carte",
+    titulo: "Desmembramiento por cartel",
     portada: "https://xxx.livegore.com//rb-include/videos/3689382225.jpg",
     video: "https://xxx.livegore.com//rb-include/videos/3689382225.mp4",
     autor: "normnando256",
