@@ -1190,7 +1190,7 @@ const mediaDB = [
     fecha: "21/06/2025",
   },
   {
-    id: "desmembramientos-por-cartel",
+    id: "desmembramiento-por-cartel",
     titulo: "Desmembramiento por cartel",
     portada: "https://xxx.livegore.com//rb-include/videos/3689382225.jpg",
     video: "https://xxx.livegore.com//rb-include/videos/3689382225.mp4",
