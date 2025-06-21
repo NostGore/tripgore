@@ -1172,6 +1172,15 @@ const mediaDB = [
     fecha: "19/06/2025",
   },
   {
+    id: "funky-town-futbol",
+    titulo: "Funky Town futbol",
+    portada: "https://files.catbox.moe/mbxvdr.png",
+    video: "https://files.catbox.moe/fnjqc6.mp4",
+    autor: "julio2016oo11",
+    categoria: "ASESINATOS",
+    fecha: "21/06/2025",
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -2349,6 +2358,15 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "SUICIDIOS",
     fecha: "19/06/2025",
+  },
+  {
+    id: "la-chica-del-tren",
+    titulo: "La chica del tren",
+    portada: "https://files.catbox.moe/zuvyrr.png",
+    video: "https://files.catbox.moe/qunp98.mp4",
+    autor: "julio2016oo11",
+    categoria: "SUICIDIOS",
+    fecha: "21/06/2025",
   },
   {
     id: "se-apunala-en-live",
