@@ -2558,13 +2558,13 @@ const mediaDB = [
     fecha: "19/06/2025",
   },
   {
-    id: "harlem-snake",
-    titulo: "harlem-snake",
-    portada: "https://nostgore.xyz/imagenes/snake.png",
-    video: "",
-    autor: "TripGore",
-    categoria: "",
-    fecha: "",
+    id: "la-mano",
+    titulo: "La mano",
+    portada: "https://files.catbox.moe/jsjwe7.png",
+    video: "https://qu.ax/zmlJQ.mp4",
+    autor: "fabriziolemakochen",
+    categoria: "AUTOLESIONES",
+    fecha: "25/06/2025",
   },
 ];
 
