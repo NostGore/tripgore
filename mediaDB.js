@@ -1649,6 +1649,15 @@ const mediaDB = [
     fecha: "21/06/2025",
   },
   {
+    id: "sin-caso-y-sin-c3b1za-",
+    titulo: "Sin caso y sin c3b1za💀",
+    portada: "https://files.catbox.moe/jt0khe.jpg",
+    video: "https://files.catbox.moe/9zbfaw.mp4",
+    autor: "jupasi2009",
+    categoria: "ACCIDENTES",
+    fecha: "29/06/2025",
+  },
+  {
     id: "come-la-banqueta",
     titulo: "Come la banqueta", //C-INCIDENTES
     portada: "https://files.catbox.moe/q7pgoy.png",
@@ -2565,6 +2574,15 @@ const mediaDB = [
     autor: "fabriziolemakochen",
     categoria: "AUTOLESIONES",
     fecha: "25/06/2025",
+  },
+  {
+    id: "perra-tragando-vidrio-",
+    titulo: "Perra, tragando vidrio 👌",
+    portada: "https://files.catbox.moe/h54ed4.png",
+    video: "https://files.catbox.moe/ve1oao.mp4",
+    autor: "fl3983630",
+    categoria: "AUTOLESIONES",
+    fecha: "29/06/2025",
   },
 ];
 
