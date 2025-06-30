@@ -1217,6 +1217,15 @@ const mediaDB = [
     fecha: "21/06/2025",
   },
   {
+    id: "pandilleros-le-pegan-a-una-nina",
+    titulo: "Pandilleros le pegan a una niña",
+    portada: "https://files.catbox.moe/nauzjo.png",
+    video: "https://files.catbox.moe/2sp2va.mp4",
+    autor: "mazalucas058",
+    categoria: "ASESINATOS",
+    fecha: "29/06/2025",
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
