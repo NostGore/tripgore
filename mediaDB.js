@@ -1226,6 +1226,15 @@ const mediaDB = [
     fecha: "29/06/2025",
   },
   {
+    id: "no-de-viste-robar-",
+    titulo: "No de viste robar 💀",
+    portada: "https://files.catbox.moe/0bf203.jpg",
+    video: "https://files.catbox.moe/6pqtp9.mp4",
+    autor: "junanitoscolo",
+    categoria: "ASESINATOS",
+    fecha: "1/07/2025",
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
