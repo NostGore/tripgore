@@ -4,12 +4,12 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.8.1/firebase
 import { getFirestore } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
 import { getStorage } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-storage.js";
 import { getDatabase, ref, push, set, get, onValue, remove, query, orderByChild, limitToLast } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-database.js";
-import { 
-  getAuth, 
-  createUserWithEmailAndPassword, 
-  signInWithEmailAndPassword, 
-  signOut, 
-  onAuthStateChanged 
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
 
 // Your web app's Firebase configuration
@@ -84,15 +84,29 @@ export const getUsernameFromEmail = (email) => {
 };
 
 // Function to update user display across all pages
-export const updateUserDisplay = () => {
+export const updateUserDisplay = async () => {
   const userElement = document.getElementById('userDisplay');
   if (userElement) {
     // Force check auth state
     return new Promise((resolve) => {
-      const unsubscribe = authFunctions.onAuthStateChanged((currentUser) => {
+      const unsubscribe = authFunctions.onAuthStateChanged(async (currentUser) => {
         if (currentUser) {
           const username = getUsernameFromEmail(currentUser.email);
-          userElement.innerHTML = `<i class="fa-solid fa-user"></i> ${username}`;
+
+          // Importar funciones de roles
+          try {
+            const { getUserRoleTagWithSize } = await import('./rolesDB.js');
+            const roleData = getUserRoleTagWithSize(username);
+
+            if (roleData) {
+              userElement.innerHTML = `<img src="${roleData.etiqueta}" alt="role" style="width: ${roleData.ancho}; height: ${roleData.alto}; margin-right: 5px; vertical-align: middle;"><i class="fa-solid fa-user"></i> ${username}`;
+            } else {
+              userElement.innerHTML = `<i class="fa-solid fa-user"></i> ${username}`;
+            }
+          } catch (error) {
+            userElement.innerHTML = `<i class="fa-solid fa-user"></i> ${username}`;
+          }
+
           userElement.style.color = '#FFB6C1';
           userElement.style.cursor = 'default';
         } else {

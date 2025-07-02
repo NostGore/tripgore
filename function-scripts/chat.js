@@ -145,7 +145,7 @@ export class ChatPageSystem {
         }
     }
 
-    renderMessages() {
+    async renderMessages() {
         const messagesArea = document.getElementById('messagesArea');
         if (!messagesArea) return;
 
@@ -156,9 +156,30 @@ export class ChatPageSystem {
         const hiddenMessages = JSON.parse(localStorage.getItem('hiddenChatMessages') || '[]');
         const visibleMessages = this.messages.filter(message => !hiddenMessages.includes(message.id));
 
-        messagesArea.innerHTML = visibleMessages.map(message => {
+        // Importar funciones de roles
+        let getUserRoleTag;
+        try {
+            const rolesModule = await import('./rolesDB.js');
+            getUserRoleTag = rolesModule.getUserRoleTag;
+        } catch (error) {
+            console.log('No se pudo cargar el módulo de roles');
+        }
+
+        const messageElements = await Promise.all(visibleMessages.map(async (message) => {
             const isMyMessage = this.currentUser && message.userId === this.currentUser.uid;
             const messageText = this.escapeHtml(message.text);
+
+            // Obtener etiqueta de rol del usuario
+            let roleTagHtml = '';
+            try {
+                const { getUserRoleTagWithSize } = await import('./rolesDB.js');
+                const roleData = getUserRoleTagWithSize(message.author);
+                if (roleData) {
+                    roleTagHtml = `<img src="${roleData.etiqueta}" alt="role" style="width: ${roleData.ancho}; height: ${roleData.alto}; margin-right: 4px; vertical-align: middle;">`;
+                }
+            } catch (error) {
+                console.log('No se pudo cargar el módulo de roles');
+            }
 
             return `
                 <div class="message-item ${isMyMessage ? 'my-message' : 'other-message'}" data-id="${message.id}">
@@ -171,7 +192,7 @@ export class ChatPageSystem {
 
                         <div class="message-bubble">
                             <div class="message-header">
-                                <span class="message-author">${this.escapeHtml(message.author)}</span>
+                                <span class="message-author">${roleTagHtml}${this.escapeHtml(message.author)}</span>
                             </div>
 
                             <div class="message-text">${messageText}</div>
@@ -193,7 +214,9 @@ export class ChatPageSystem {
                     </div>
                 </div>
             `;
-        }).join('');
+        }));
+
+        messagesArea.innerHTML = messageElements.join('');
 
         // Agregar event listeners
         this.setupMessageEventListeners();
@@ -230,13 +253,28 @@ export class ChatPageSystem {
         // Los event listeners se configuran una sola vez en init()
     }
 
-    setReplyTo(message) {
+    async setReplyTo(message) {
         this.replyingTo = message;
         const replyIndicator = document.getElementById('replyIndicator');
         if (replyIndicator) {
+            // Obtener etiqueta de rol del usuario
+            let roleTagHtml = '';
+            try {
+                const { getUserRoleTagWithSize } = await import('./rolesDB.js');
+                const roleData = getUserRoleTagWithSize(message.author);
+                if (roleData) {
+                    // Usar tamaños reducidos para el indicador de respuesta
+                    const smallWidth = parseInt(roleData.ancho) * 0.6 + 'px';
+                    const smallHeight = parseInt(roleData.alto) * 0.6 + 'px';
+                    roleTagHtml = `<img src="${roleData.etiqueta}" alt="role" style="width: ${smallWidth}; height: ${smallHeight}; margin-right: 3px; vertical-align: middle;">`;
+                }
+            } catch (error) {
+                console.log('No se pudo cargar el módulo de roles');
+            }
+
             replyIndicator.innerHTML = `
                 <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span><i class="fa-solid fa-reply"></i> Respondiendo a <strong>${message.author}</strong>: ${message.text.substring(0, 30)}${message.text.length > 30 ? '...' : ''}</span>
+                    <span><i class="fa-solid fa-reply"></i> Respondiendo a <strong>${roleTagHtml}${message.author}</strong>: ${message.text.substring(0, 30)}${message.text.length > 30 ? '...' : ''}</span>
                     <button class="cancel-reply" style="
                         background: none;
                         border: none;
