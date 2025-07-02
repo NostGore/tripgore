@@ -13,22 +13,22 @@ const rolesDB = [
     ]
   },
   {
-    rol: "sponsored",
-    etiqueta: "https://files.catbox.moe/p05jfb.png",
+    rol: "colaborador",
+    etiqueta: "https://qu.ax/kWdjx.png",
     tamaño: {
-      ancho: "60px",
-      alto: "22px"
+      ancho: "19px",
+      alto: "19px"
     },
     usuarios: [
-      "tripgore-modera",
+      "usuario01",
     ]
   },
   {
-    rol: "colaborador",
-    etiqueta: "https://files.catbox.moe/r21pno.png",
+    rol: "tiktok",
+    etiqueta: "https://qu.ax/RtcSt.png",
     tamaño: {
-      ancho: "45px",
-      alto: "18px"
+      ancho: "19px",
+      alto: "19px"
     },
     usuarios: [
       "tripgore-mode",
@@ -36,11 +36,35 @@ const rolesDB = [
     ]
   },
   {
-    rol: "influencer",
-    etiqueta: "https://files.catbox.moe/1zi201.png",
+    rol: "youtube",
+    etiqueta: "https://qu.ax/gqbLi.png",
     tamaño: {
-      ancho: "55px",
-      alto: "20px"
+      ancho: "19px",
+      alto: "19px"
+    },
+    usuarios: [
+      "collab1",
+      "collab2"
+    ]
+  },
+  {
+    rol: "facebook",
+    etiqueta: "https://qu.ax/hdttX.png",
+    tamaño: {
+      ancho: "19px",
+      alto: "19px"
+    },
+    usuarios: [
+      "collab1",
+      "collab2"
+    ]
+  },
+  {
+    rol: "verificado",
+    etiqueta: "https://qu.ax/Xeqee.gif",
+    tamaño: {
+      ancho: "19px",
+      alto: "19px"
     },
     usuarios: [
       "collab1",
