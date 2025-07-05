@@ -1288,6 +1288,15 @@ const mediaDB = [
     categoria: "ASESINATOS",
     fecha: "5/07/2025",
   },
+  { 
+    id: "free-fire-en-primera-persona-",
+    titulo: "Free fire en primera persona👻",
+    portada: "https://files.catbox.moe/9p4yee.jpg",
+    video: "https://files.catbox.moe/qk0dry.mp4",
+    autor: "jupasi2009",
+    categoria: "ASESINATOS",
+    fecha: "5/07/2025",
+  },
   {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
