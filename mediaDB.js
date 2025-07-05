@@ -1253,6 +1253,15 @@ const mediaDB = [
     fecha: "1/07/2025",
   },
   {
+    id: "el-triangulo-amoroso",
+    titulo: "El triángulo amoroso",
+    portada: "https://files.catbox.moe/yvjfth.png",
+    video: "https://files.catbox.moe/akuwcp.mp4",
+    autor: "julio2016oo11",
+    categoria: "ASESINATOS",
+    fecha: "4/07/2025",
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -2520,6 +2529,15 @@ const mediaDB = [
     autor: "julio2016oo11",
     categoria: "SUICIDIOS",
     fecha: "21/06/2025",
+  },
+  {
+    id: "chino-se-pone-fecha",
+    titulo: "Chino se pone fecha",
+    portada: "https://files.catbox.moe/e5ll25.jpg",
+    video: "https://files.catbox.moe/4xm939.mp4",
+    autor: "jupasi2009",
+    categoria: "SUICIDIOS",
+    fecha: "4/07/2025",
   },
   {
     id: "se-apunala-en-live",
