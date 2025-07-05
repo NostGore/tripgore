@@ -14,13 +14,16 @@ const rolesDB = [
   },
   {
     rol: "colaborador",
-    etiqueta: "https://qu.ax/kWdjx.png",
+    etiqueta: "https://cdn-icons-png.flaticon.com/512/9580/9580538.png",
     tamaño: {
-      ancho: "19px",
-      alto: "19px"
+      ancho: "22px",
+      alto: "22px"
     },
     usuarios: [
-      "usuario01",
+      "falcolucas34552",
+      "julio2016oo11",
+      "jupasi2009",
+      "fl3983630"
     ]
   },
   {
