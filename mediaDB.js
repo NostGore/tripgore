@@ -1289,8 +1289,8 @@ const mediaDB = [
     fecha: "5/07/2025",
   },
   { 
-    id: "free-fire-en-primera-persona- ",
-    titulo: "Free fire en primera persona👻",
+    id: "free-fire-en-primera-persona",
+    titulo: "Free fire en primera persona",
     portada: "https://files.catbox.moe/9p4yee.jpg",
     video: "https://files.catbox.moe/qk0dry.mp4",
     autor: "jupasi2009",
