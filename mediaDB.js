@@ -1298,6 +1298,15 @@ const mediaDB = [
     fecha: "5/07/2025",
   },
   {
+    id: "le-dan-un-botellaso-por-ser-transexual",
+    titulo: "Le da un bot3llaz* por ser transexual",
+    portada: "https://files.catbox.moe/f50gsi.jpg",
+    video: "https://files.catbox.moe/mq9sac.mp4",
+    autor: "jupasi2009",
+    categoria: "ASESINATOS",
+    fecha: "8/07/2025",
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
