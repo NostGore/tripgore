@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -230,8 +229,9 @@
                 padding: 30px 20px;
             }
         }
-    </style>
-</head>
+
+        /* Nota: Los estilos del menú móvil están en header.js */
+    </style></head>
 
 <body>
     <header class="header">
@@ -239,32 +239,6 @@
             <div class="logo">
                 <img src="https://files.catbox.moe/cjmaz9.png" alt="TRIPGORE" class="logo-img">
             </div>
-            <nav class="nav">
-                <ul class="nav-menu">
-                    <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Inicio</a></li>
-                    <li><a href="adminpanel.html" class="nav-link"><i class="fa-solid fa-upload"></i> Subir</a></li>
-                    <li><a href="chat.html" class="nav-link"><i class="fa-solid fa-comments"></i> Chat</a></li>
-                    <li><a href="soporte.html" class="nav-link active"><i class="fa-solid fa-headset"></i> Soporte</a></li>
-
-                    <li class="user-menu">
-                        <span id="userDisplay" class="nav-link"><i class="fa-solid fa-user"></i> Invitado</span>
-                        <div class="user-dropdown">
-                            <a href="login.html" id="loginLink" class="dropdown-link">
-                                <i class="fa-solid fa-sign-in-alt"></i> Iniciar Sesión
-                            </a>
-                            <a href="registro.html" id="registerLink" class="dropdown-link">
-                                <i class="fa-solid fa-user-plus"></i> Registrarse
-                            </a>
-                            <a href="adminpanel.html" id="adminLink" class="dropdown-link" style="display: none;">
-                                <i class="fa-solid fa-cogs"></i> Admin Panel
-                            </a>
-                            <a href="#" id="logoutLink" class="dropdown-link" style="display: none;">
-                                <i class="fa-solid fa-sign-out-alt"></i> Cerrar Sesión
-                            </a>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
         </div>
     </header>
 
@@ -380,7 +354,7 @@
             authFunctions.onAuthStateChanged((user) => {
                 currentUser = user;
                 updateUserDisplay();
-                
+
                 const loginLink = document.getElementById('loginLink');
                 const registerLink = document.getElementById('registerLink');
                 const adminLink = document.getElementById('adminLink');
@@ -389,7 +363,7 @@
                     // User is logged in - show form
                     loginRequired.style.display = 'none';
                     supportForm.style.display = 'block';
-                    
+
                     // Update menu
                     loginLink.style.display = 'none';
                     registerLink.style.display = 'none';
@@ -399,7 +373,7 @@
                     // User is not logged in - show login required
                     loginRequired.style.display = 'block';
                     supportForm.style.display = 'none';
-                    
+
                     // Update menu
                     loginLink.style.display = 'block';
                     registerLink.style.display = 'block';
@@ -443,11 +417,11 @@
 
                 try {
                     const result = await reportFunctions.submitReport(reportData);
-                    
+
                     if (result.success) {
                         // Show success modal
                         successModal.style.display = 'flex';
-                        
+
                         // Reset form
                         reportForm.reset();
                     } else {
@@ -475,7 +449,10 @@
         });
     </script>
 
-    <script src="function-scripts/menu.js"></script>
+    <script src="function-scripts/header.js"></script>
+    <script src="function-scripts/footer.js"></script>
+    <script src="submenu/donaciones.js"></script></head>
+
 </body>
 
 </html>

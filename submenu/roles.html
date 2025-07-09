@@ -1,0 +1,282 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roles - TRIPGORE</title>
+    <link href="../style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://files.catbox.moe/1b7bnr.png" type="image/png">
+
+    <style>
+        .roles-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .roles-header {
+            background: linear-gradient(90deg, #8B0000, #DC143C);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+        }
+
+        .roles-header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .roles-header p {
+            margin: 15px 0 0 0;
+            font-size: 16px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .role-card {
+            background: linear-gradient(145deg, #2a0000, #1a0000);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .role-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(139, 0, 0, 0.6);
+        }
+
+        .role-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+
+        .role-icon {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .role-name {
+            color: #DC143C;
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .role-requirements {
+            color: #FFB6C1;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .role-requirements li {
+            margin-bottom: 8px;
+            padding-left: 10px;
+        }
+
+        .footer-note {
+            background: linear-gradient(145deg, #2a0000, #1a0000);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+            text-align: center;
+        }
+
+        .footer-note h3 {
+            color: #DC143C;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .footer-note p {
+            color: #FFB6C1;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .support-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+        }
+
+        .support-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 0, 0, 0.5);
+            background: linear-gradient(135deg, #A0002A, #FF1450);
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: rgba(139, 0, 0, 0.3);
+            color: #FFB6C1;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(139, 0, 0, 0.5);
+        }
+
+        .back-btn:hover {
+            background: rgba(139, 0, 0, 0.5);
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .roles-container {
+                margin: 20px auto;
+                padding: 0 15px;
+            }
+
+            .role-card {
+                padding: 20px;
+            }
+
+            .role-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .role-name {
+                font-size: 20px;
+            }
+
+            .footer-note {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="https://files.catbox.moe/cjmaz9.png" alt="TRIPGORE" class="logo-img">
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="roles-container">
+            <a href="../index.html" class="back-btn">
+                <i class="fa-solid fa-arrow-left"></i>
+                Volver al Inicio
+            </a>
+
+            <div class="roles-header">
+                <h1>
+                    <i class="fa-solid fa-crown"></i>
+                    Sistema de Roles TRIPGORE
+                </h1>
+                <p>A continuación se mostrará la información de los roles que TRIPGORE tiene disponibles. En cada rol estará la información de cómo conseguirlo.</p>
+            </div>
+
+            <!-- Rol Moderador -->
+            <div class="role-card">
+                <div class="role-header">
+                    <img src="https://img.icons8.com/fluent/600/discord-moderator-program-alumni-badge.png" alt="Moderador" class="role-icon">
+                    <span class="role-name">▸ MODERADOR</span>
+                </div>
+                <ul class="role-requirements">
+                    <li>・Este rol es asignado a los moderadores de la web.</li>
+                    <li>・Actualmente no hay vacantes disponibles.</li>
+                </ul>
+            </div>
+
+            <!-- Rol TikToker -->
+            <div class="role-card">
+                <div class="role-header">
+                    <img src="https://qu.ax/RtcSt.png" alt="TikToker" class="role-icon">
+                    <span class="role-name">▸ TIKTOKER</span>
+                </div>
+                <ul class="role-requirements">
+                    <li>・Este rol es asignado a aquellos usuarios que hablan de la página en sus videos de TikTok.</li>
+                    <li>・Este rol se consigue siempre y cuando los videos publicados hablando de la web superen las 1000 vistas.</li>
+                </ul>
+            </div>
+
+            <!-- Rol YouTuber -->
+            <div class="role-card">
+                <div class="role-header">
+                    <img src="https://qu.ax/gqbLi.png" alt="YouTuber" class="role-icon">
+                    <span class="role-name">▸ YOUTUBER</span>
+                </div>
+                <ul class="role-requirements">
+                    <li>・Este rol es asignado a aquellos usuarios que hablan de la página en sus videos de YouTube.</li>
+                    <li>・Este rol se consigue siempre y cuando los videos publicados hablando de la web superen las 1000 vistas.</li>
+                </ul>
+            </div>
+
+            <!-- Rol Facebook -->
+            <div class="role-card">
+                <div class="role-header">
+                    <img src="https://qu.ax/hdttX.png" alt="Facebook" class="role-icon">
+                    <span class="role-name">▸ FACEBOOK</span>
+                </div>
+                <ul class="role-requirements">
+                    <li>・Este rol es asignado a aquellos usuarios que hablen de la página en sus videos de Facebook.</li>
+                    <li>・Este rol se consigue siempre y cuando los videos publicados hablando de la web superen las 1000 vistas.</li>
+                </ul>
+            </div>
+
+            <!-- Rol Verificado -->
+            <div class="role-card">
+                <div class="role-header">
+                    <img src="https://qu.ax/Xeqee.gif" alt="Verificado" class="role-icon">
+                    <span class="role-name">▸ VERIFICADO</span>
+                </div>
+                <ul class="role-requirements">
+                    <li>・Este rol se consigue cuando los usuarios tienen una propia comunidad ya sea en TikTok, YouTube o Facebook y cuando su comunidad apoya a la página de TripGore.</li>
+                </ul>
+            </div>
+
+            <!-- Nota Final -->
+            <div class="footer-note">
+                <h3>
+                    <i class="fa-solid fa-info-circle"></i>
+                    Información Importante
+                </h3>
+                <p>
+                    <strong>✅ Cada insignia se mostrará en el nombre del usuario en la página de TripGore.</strong>
+                </p>
+                <p>Para reclamar tu rol ve al centro de "soporte" y haz una solicitud para obtener tu rol</p>
+                <a href="../soporte.html" class="support-btn">
+                    <i class="fa-solid fa-headset"></i>
+                    Ir al Centro de Soporte
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script src="../function-scripts/header.js"></script>
+    <script src="../function-scripts/footer.js"></script>
+    <script src="donaciones.js"></script>
+</body>
+
+</html>

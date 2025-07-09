@@ -1,0 +1,505 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colaboradores - TRIPGORE</title>
+    <link href="../style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://files.catbox.moe/1b7bnr.png" type="image/png">
+
+    <style>
+        .colaboradores-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .colaboradores-header {
+            background: linear-gradient(145deg, #2a0000, #1a0000);
+            border-radius: 15px;
+            padding: 40px;
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .colaboradores-title {
+            background: linear-gradient(90deg, #8B0000, #DC143C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .colaboradores-description {
+            color: #FFB6C1;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .colaboradores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .colaborador-card {
+            background: linear-gradient(145deg, #2a0000, #1a0000);
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            box-shadow: 0 8px 25px rgba(139, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .colaborador-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(139, 0, 0, 0.5);
+            border-color: #DC143C;
+        }
+
+        .colaborador-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(220, 20, 60, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .colaborador-card:hover::before {
+            left: 100%;
+        }
+
+        .colaborador-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .colaborador-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .colaborador-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            border: 2px solid rgba(220, 20, 60, 0.5);
+        }
+
+        .colaborador-details h3 {
+            color: #FFB6C1;
+            font-size: 18px;
+            margin: 0 0 5px 0;
+            font-weight: bold;
+        }
+
+        .colaborador-role {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #DC143C;
+        }
+
+        .role-badge {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .colaborador-stats {
+            background: rgba(139, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .stat-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .stat-label {
+            color: #FFB6C1;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stat-value {
+            color: #DC143C;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .loading-message {
+            text-align: center;
+            color: #FFB6C1;
+            font-size: 18px;
+            margin: 50px 0;
+        }
+
+        .no-colaboradores {
+            text-align: center;
+            color: #FFB6C1;
+            font-size: 18px;
+            margin: 50px 0;
+            padding: 40px;
+            background: linear-gradient(145deg, #2a0000, #1a0000);
+            border-radius: 15px;
+            border: 2px solid rgba(139, 0, 0, 0.3);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #FFB6C1;
+            text-decoration: none;
+            font-size: 16px;
+            margin-bottom: 30px;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #DC143C;
+        }
+
+        .stats-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .summary-card {
+            background: linear-gradient(145deg, #2a0000, #1a0000);
+            border-radius: 15px;
+            padding: 20px;
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .summary-number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #DC143C;
+            margin-bottom: 5px;
+        }
+
+        .summary-label {
+            color: #FFB6C1;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .colaboradores-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-summary {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+    <script src="../function-scripts/header.js"></script>
+    <script src="../function-scripts/footer.js"></script>
+    <script src="../submenu/donaciones.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="https://files.catbox.moe/cjmaz9.png" alt="TRIPGORE" class="logo-img">
+            </div>
+            
+            <!-- Buscador -->
+            <div class="search-container">
+                <div class="search-input-wrapper">
+                    <input type="text" class="search-input" placeholder="Buscar videos...">
+                    <i class="fa-solid fa-search search-icon"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="colaboradores-container">
+            <a href="../index.html" class="back-link">
+                <i class="fa-solid fa-arrow-left"></i>
+                Volver al Inicio
+            </a>
+
+            <div class="colaboradores-header">
+                <h1 class="colaboradores-title">
+                    <i class="fa-solid fa-users"></i>
+                    Colaboradores
+                </h1>
+                <p class="colaboradores-description">
+                    Conoce a todos los usuarios que han contribuido con contenido a nuestra plataforma.
+                    Aquí puedes ver sus roles, estadísticas y aportes a la comunidad.
+                </p>
+            </div>
+
+            <div class="stats-summary" id="statsSummary">
+                <div class="summary-card">
+                    <div class="summary-number" id="totalColaboradores">0</div>
+                    <div class="summary-label">Total Colaboradores</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-number" id="totalVideos">0</div>
+                    <div class="summary-label">Videos Publicados</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-number" id="totalModerators">0</div>
+                    <div class="summary-label">Moderadores</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-number" id="totalCollaborators">0</div>
+                    <div class="summary-label">Colaboradores</div>
+                </div>
+            </div>
+
+            <div id="loadingMessage" class="loading-message">
+                <i class="fa-solid fa-spinner fa-spin"></i>
+                Cargando colaboradores...
+            </div>
+
+            <div id="colaboradoresGrid" class="colaboradores-grid" style="display: none;">
+                <!-- Los colaboradores se cargarán aquí dinámicamente -->
+            </div>
+
+            <div id="noColaboradores" class="no-colaboradores" style="display: none;">
+                <i class="fa-solid fa-users-slash" style="font-size: 48px; margin-bottom: 20px; color: #8B0000;"></i>
+                <p>No hay colaboradores para mostrar</p>
+            </div>
+        </div>
+    </main>
+
+    <script type="module">
+        import mediaDB from '../mediaDB.js';
+        import { getUserRole, getUserRoleTagWithSize } from '../function-scripts/rolesDB.js';
+
+        document.addEventListener('DOMContentLoaded', function () {
+            loadColaboradores();
+        });
+
+        function loadColaboradores() {
+            const loadingMessage = document.getElementById('loadingMessage');
+            const colaboradoresGrid = document.getElementById('colaboradoresGrid');
+            const noColaboradores = document.getElementById('noColaboradores');
+
+            // Simular carga
+            setTimeout(() => {
+                loadingMessage.style.display = 'none';
+
+                // Filtrar videos válidos
+                const validVideos = mediaDB.filter(video =>
+                    video.titulo && video.portada && video.video && video.autor && video.categoria
+                );
+
+                if (validVideos.length === 0) {
+                    noColaboradores.style.display = 'block';
+                    return;
+                }
+
+                // Agrupar videos por autor
+                const colaboradoresMap = {};
+                
+                validVideos.forEach(video => {
+                    const autor = video.autor;
+                    if (!colaboradoresMap[autor]) {
+                        colaboradoresMap[autor] = {
+                            nombre: autor,
+                            videos: [],
+                            totalVideos: 0,
+                            categorias: new Set()
+                        };
+                    }
+                    colaboradoresMap[autor].videos.push(video);
+                    colaboradoresMap[autor].totalVideos++;
+                    colaboradoresMap[autor].categorias.add(video.categoria);
+                });
+
+                // Convertir a array y ordenar por cantidad de videos
+                const colaboradores = Object.values(colaboradoresMap)
+                    .sort((a, b) => b.totalVideos - a.totalVideos);
+
+                if (colaboradores.length === 0) {
+                    noColaboradores.style.display = 'block';
+                    return;
+                }
+
+                // Mostrar estadísticas
+                updateStatsSummary(colaboradores, validVideos.length);
+
+                // Mostrar colaboradores
+                colaboradoresGrid.style.display = 'grid';
+                displayColaboradores(colaboradores);
+            }, 1000);
+        }
+
+        function updateStatsSummary(colaboradores, totalVideos) {
+            document.getElementById('totalColaboradores').textContent = colaboradores.length;
+            document.getElementById('totalVideos').textContent = totalVideos;
+            
+            // Contar roles
+            let moderadores = 0;
+            let colaboradoresCount = 0;
+            
+            colaboradores.forEach(colaborador => {
+                const userRole = getUserRole(colaborador.nombre);
+                if (userRole) {
+                    if (userRole.rol === 'moderador') {
+                        moderadores++;
+                    } else if (userRole.rol === 'colaborador') {
+                        colaboradoresCount++;
+                    }
+                }
+            });
+            
+            document.getElementById('totalModerators').textContent = moderadores;
+            document.getElementById('totalCollaborators').textContent = colaboradoresCount;
+        }
+
+        function displayColaboradores(colaboradores) {
+            const colaboradoresGrid = document.getElementById('colaboradoresGrid');
+            colaboradoresGrid.innerHTML = '';
+
+            colaboradores.forEach(colaborador => {
+                const colaboradorCard = createColaboradorCard(colaborador);
+                colaboradoresGrid.appendChild(colaboradorCard);
+            });
+        }
+
+        function createColaboradorCard(colaborador) {
+            const card = document.createElement('div');
+            card.className = 'colaborador-card';
+
+            // Obtener información del rol
+            const userRole = getUserRole(colaborador.nombre);
+            const roleInfo = getUserRoleTagWithSize(colaborador.nombre);
+            
+            let roleDisplay = '';
+            if (userRole && roleInfo) {
+                roleDisplay = `
+                    <div class="colaborador-role">
+                        <img src="${roleInfo.etiqueta}" class="role-badge" 
+                             style="width: ${roleInfo.ancho}; height: ${roleInfo.alto};" 
+                             alt="${userRole.rol}">
+                        <span>${userRole.rol.toUpperCase()}</span>
+                    </div>
+                `;
+            } else {
+                roleDisplay = `
+                    <div class="colaborador-role">
+                        <i class="fa-solid fa-user" style="color: #8B0000;"></i>
+                        <span>USUARIO</span>
+                    </div>
+                `;
+            }
+
+            // Crear avatar con la primera letra del nombre
+            const firstLetter = colaborador.nombre.charAt(0).toUpperCase();
+
+            // Calcular estadísticas adicionales
+            const categoriasArray = Array.from(colaborador.categorias);
+            const fechasVideos = colaborador.videos.map(v => v.fecha).filter(f => f);
+            const fechaUltimoVideo = fechasVideos.length > 0 ? 
+                fechasVideos.sort((a, b) => {
+                    const [dayA, monthA, yearA] = a.split('/');
+                    const [dayB, monthB, yearB] = b.split('/');
+                    const dateA = new Date(2000 + parseInt(yearA), parseInt(monthA) - 1, parseInt(dayA));
+                    const dateB = new Date(2000 + parseInt(yearB), parseInt(monthB) - 1, parseInt(dayB));
+                    return dateB - dateA;
+                })[0] : 'N/A';
+
+            card.innerHTML = `
+                <div class="colaborador-header">
+                    <div class="colaborador-info">
+                        <div class="colaborador-avatar">
+                            ${firstLetter}
+                        </div>
+                        <div class="colaborador-details">
+                            <h3>${colaborador.nombre}</h3>
+                            ${roleDisplay}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="colaborador-stats">
+                    <div class="stat-item">
+                        <div class="stat-label">
+                            <i class="fa-solid fa-video"></i>
+                            Videos Publicados
+                        </div>
+                        <div class="stat-value">${colaborador.totalVideos}</div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-label">
+                            <i class="fa-solid fa-tags"></i>
+                            Categorías
+                        </div>
+                        <div class="stat-value">${colaborador.categorias.size}</div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-label">
+                            <i class="fa-solid fa-calendar"></i>
+                            Último Video
+                        </div>
+                        <div class="stat-value">${fechaUltimoVideo}</div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-label">
+                            <i class="fa-solid fa-list"></i>
+                            Categorías Activas
+                        </div>
+                        <div class="stat-value" style="font-size: 12px; line-height: 1.3;">
+                            ${categoriasArray.join(', ')}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            return card;
+        }
+    </script>
+</body>
+
+</html>

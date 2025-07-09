@@ -71,6 +71,11 @@ export const authFunctions = {
     return auth.currentUser;
   },
 
+  // Check if user is authenticated
+  isAuthenticated: () => {
+    return auth.currentUser !== null;
+  },
+
   // Listen to auth state changes
   onAuthStateChanged: (callback) => {
     return onAuthStateChanged(auth, callback);
@@ -93,15 +98,27 @@ export const updateUserDisplay = async () => {
         if (currentUser) {
           const username = getUsernameFromEmail(currentUser.email);
 
-          // Importar funciones de roles
+          // Importar funciones de roles y cargar foto de perfil
           try {
             const { getUserRoleTagWithSize } = await import('./rolesDB.js');
             const roleData = getUserRoleTagWithSize(username);
 
+            // Cargar foto de perfil desde Firebase
+            let profilePicture = '';
+            try {
+              const profileRef = ref(realtimeDb, `perfil/${currentUser.uid}/fotoPerfil`);
+              const profileSnapshot = await get(profileRef);
+              if (profileSnapshot.exists()) {
+                profilePicture = `<img src="${profileSnapshot.val()}" alt="perfil" style="width: 25px; height: 25px; border-radius: 50%; margin-right: 8px; vertical-align: middle; object-fit: cover; border: 1px solid #DC143C;">`;
+              }
+            } catch (profileError) {
+              console.log('No se pudo cargar foto de perfil:', profileError);
+            }
+
             if (roleData) {
-              userElement.innerHTML = `<img src="${roleData.etiqueta}" alt="role" style="width: ${roleData.ancho}; height: ${roleData.alto}; margin-right: 5px; vertical-align: middle;"><i class="fa-solid fa-user"></i> ${username}`;
+              userElement.innerHTML = `${profilePicture}<img src="${roleData.etiqueta}" alt="role" style="width: ${roleData.ancho}; height: ${roleData.alto}; margin-right: 5px; vertical-align: middle;"><i class="fa-solid fa-user"></i> ${username}`;
             } else {
-              userElement.innerHTML = `<i class="fa-solid fa-user"></i> ${username}`;
+              userElement.innerHTML = `${profilePicture}<i class="fa-solid fa-user"></i> ${username}`;
             }
           } catch (error) {
             userElement.innerHTML = `<i class="fa-solid fa-user"></i> ${username}`;
