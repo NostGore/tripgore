@@ -16,55 +16,33 @@ function createFooter() {
         <footer class="dynamic-footer">
             <div class="footer-container">
                 <div class="footer-content">
-                    <!-- Columna 1: Logo y Descripción -->
+                    <!-- Columna 1: Logo -->
                     <div class="footer-column footer-brand">
                         <div class="footer-logo">
                             <img src="https://files.catbox.moe/cjmaz9.png" alt="TRIPGORE" class="footer-logo-img">
                         </div>
-                        <p class="footer-description">
-                            TripGore las noticias mas impactantes que rompieron todo internet.
+                    </div>
+
+                    <!-- Columna 2: Descripción -->
+                    <div class="footer-column footer-description">
+                        <p class="footer-description-text">
+                            Tripgore noticias impactantes que destruyeron el internet a nivel mundial.
                         </p>
-                        <div class="footer-social">
-                            <a href="https://discord.gg/6AKMHVRxmH" class="social-link" title="Discord">
-                                <i class="fa-brands fa-discord"></i>
-                            </a>
+                    </div>
+
+                    <!-- Columna 3: Estadísticas -->
+                    <div class="footer-column footer-stats">
+                        <div class="footer-stat-item">
+                            <i class="fa-solid fa-video"></i>
+                            <span>Videos Totales: <span id="footerVideoCount">0</span></span>
                         </div>
-                    </div>
-
-                    <!-- Columna 2: Enlaces del Encabezado -->
-                    <div class="footer-column footer-navigation">
-                        <h3 class="footer-title">Navegación</h3>
-                        <ul class="footer-links">
-                            <li><a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a></li>
-                            <li><a href="adminpanel.html"><i class="fa-solid fa-upload"></i> Subir</a></li>
-                            <li><a href="chat.html"><i class="fa-solid fa-comments"></i> Chat</a></li>
-                            <li><a href="soporte.html"><i class="fa-solid fa-headset"></i> Soporte</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Columna 3: Submenú -->
-                    <div class="footer-column footer-submenu">
-                        <h3 class="footer-title">Categorías</h3>
-                        <ul class="footer-links">
-                            <li><a href="/submenu/novedades.html"><i class="fa-solid fa-star"></i> Novedades</a></li>
-                            <li><a href="/submenu/colaboradores.html"><i class="fa-solid fa-users"></i> Colaboradores</a></li>
-                            <li><a href="/submenu/roles.html"><i class="fa-solid fa-crown"></i> Roles</a></li>
-                            <li><a href="#"><i class="fa-solid fa-gem"></i> ZonaVIP</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Columna 4: Información -->
-                    <div class="footer-column footer-info">
-                        <h3 class="footer-title">Información</h3>
-                        <div class="footer-stats">
-                            <p class="video-count">
-                                <i class="fa-solid fa-video"></i>
-                                Videos totales: <span id="footerVideoCount">0</span>
-                            </p>
-                            <p class="security-badge">
-                                <i class="fa-solid fa-shield-halved"></i>
-                                Página Segura
-                            </p>
+                        <div class="footer-stat-item">
+                            <i class="fa-solid fa-users"></i>
+                            <span>Total de Colaboradores: <span id="footerCollaboratorsCount">0</span></span>
+                        </div>
+                        <div class="footer-stat-item">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span>Página Segura</span>
                         </div>
                     </div>
                 </div>
@@ -73,7 +51,7 @@ function createFooter() {
                 <div class="footer-bottom">
                     <div class="footer-copyright">
                         <p>
-                            <i class="fa-solid fa-copyright"></i>
+                            <i class="fa-solid"></i>
                             © <span id="currentYear"></span> TRIPGORE - Todos los derechos reservados.
                         </p>
                     </div>
@@ -120,6 +98,7 @@ function addFooterStyles() {
             position: relative;
             overflow: hidden;
             border-top: 3px solid rgba(220, 20, 60, 0.5);
+            will-change: auto;
         }
 
         .dynamic-footer::before {
@@ -130,7 +109,13 @@ function addFooterStyles() {
             right: 0;
             height: 2px;
             background: linear-gradient(90deg, transparent, #DC143C, transparent);
-            animation: footerShine 4s ease-in-out infinite;
+        }
+
+        /* Animación deshabilitada en móviles */
+        @media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+            .dynamic-footer::before {
+                animation: footerShine 6s ease-in-out infinite;
+            }
         }
 
         @keyframes footerShine {
@@ -148,9 +133,10 @@ function addFooterStyles() {
 
         .footer-content {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
+            grid-template-columns: 1fr 2fr 1.5fr 1fr;
             gap: 25px;
             padding: 30px 0 20px;
+            align-items: center;
         }
 
         .footer-column h3.footer-title {
@@ -172,110 +158,107 @@ function addFooterStyles() {
             background: linear-gradient(90deg, #DC143C, #FFB6C1);
         }
 
-        /* Columna de Brand */
-        .footer-brand .footer-logo {
-            margin-bottom: 20px;
+        /* Columna de Logo */
+        .footer-brand {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .footer-logo-img {
-            height: 50px;
+            height: 60px;
             width: auto;
             filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+            transition: all 0.3s ease;
         }
 
+        /* Solo hover en desktop */
+        @media (min-width: 769px) {
+            .footer-brand:hover .footer-logo-img {
+                transform: scale(1.05);
+                filter: drop-shadow(0 0 10px rgba(220, 20, 60, 0.6));
+            }
+        }
+
+        /* Columna de Descripción */
         .footer-description {
-            color: #FFB6C1;
-            line-height: 1.5;
-            margin-bottom: 15px;
-            font-size: 13px;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-link {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(139, 0, 0, 0.3);
-            border: 2px solid rgba(220, 20, 60, 0.4);
-            border-radius: 8px;
-            color: #DC143C;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 18px;
+            text-align: center;
         }
 
-        .social-link:hover {
-            background: rgba(220, 20, 60, 0.2);
-            border-color: #DC143C;
+        .footer-description-text {
             color: #FFB6C1;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(220, 20, 60, 0.3);
-        }
-
-        /* Enlaces del Footer */
-        .footer-links {
-            list-style: none;
-            padding: 0;
+            line-height: 1.5;
+            font-size: 14px;
             margin: 0;
+            font-weight: 500;
         }
 
-        .footer-links li {
-            margin-bottom: 8px;
+        /* Columna de Estadísticas */
+        .footer-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        .footer-links a {
+        .footer-stat-item {
             color: #FFB6C1;
-            text-decoration: none;
-            transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 5px 0;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .footer-stat-item i {
+            color: #DC143C;
+            width: 18px;
             font-size: 14px;
         }
 
-        .footer-links a:hover {
-            color: white;
-            transform: translateX(5px);
-        }
-
-        .footer-links a i {
-            color: #DC143C;
-            width: 16px;
-            font-size: 12px;
-        }
-
-        /* Información del Footer */
-        .footer-stats p {
+        .footer-stat-item span {
             color: #FFB6C1;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
         }
 
-        .footer-stats i {
+        #footerVideoCount,
+        #footerCollaboratorsCount {
             color: #DC143C;
-            width: 16px;
+            font-weight: bold;
         }
 
-        .security-badge {
+        .footer-stat-item:last-child {
             background: rgba(0, 128, 0, 0.1);
             border: 1px solid rgba(0, 128, 0, 0.3);
             padding: 8px 12px;
             border-radius: 6px;
-            font-size: 13px;
         }
 
-        .security-badge i {
+        .footer-stat-item:last-child i {
             color: #28a745 !important;
+        }
+
+        /* Columna de Derechos de Autor */
+        .footer-copyright {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .copyright-content {
+            color: #FFB6C1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .copyright-content i {
+            color: #DC143C;
+            font-size: 14px;
         }
 
         /* Footer Bottom */
@@ -312,15 +295,29 @@ function addFooterStyles() {
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
             font-size: 14px;
+            will-change: auto;
         }
 
-        .scroll-to-top-btn:hover {
-            background: linear-gradient(135deg, #DC143C, #FF1450);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(220, 20, 60, 0.4);
-            border-color: #DC143C;
+        /* Hover optimizado solo para desktop */
+        @media (min-width: 769px) {
+            .scroll-to-top-btn {
+                transition: all 0.3s ease;
+            }
+            
+            .scroll-to-top-btn:hover {
+                background: linear-gradient(135deg, #DC143C, #FF1450);
+                transform: translateY(-2px);
+                box-shadow: 0 6px 15px rgba(220, 20, 60, 0.4);
+                border-color: #DC143C;
+            }
+        }
+
+        /* En móviles, solo cambio de color sin animaciones */
+        @media (max-width: 768px) {
+            .scroll-to-top-btn:active {
+                background: linear-gradient(135deg, #DC143C, #FF1450);
+            }
         }
 
         /* Decoraciones flotantes */
@@ -338,21 +335,65 @@ function addFooterStyles() {
             position: absolute;
             font-size: 20px;
             opacity: 0.1;
-            animation: footerFloat 8s ease-in-out infinite;
+            will-change: auto;
         }
 
-        .footer-decoration:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
-        .footer-decoration:nth-child(2) { top: 60%; left: 20%; animation-delay: 1s; }
-        .footer-decoration:nth-child(3) { top: 30%; right: 15%; animation-delay: 2s; }
-        .footer-decoration:nth-child(4) { bottom: 40%; left: 30%; animation-delay: 3s; }
-        .footer-decoration:nth-child(5) { top: 70%; right: 25%; animation-delay: 4s; }
-        .footer-decoration:nth-child(6) { bottom: 20%; right: 35%; animation-delay: 5s; }
-        .footer-decoration:nth-child(7) { top: 40%; left: 60%; animation-delay: 6s; }
-        .footer-decoration:nth-child(8) { bottom: 60%; right: 10%; animation-delay: 7s; }
+        .footer-decoration:nth-child(1) { top: 20%; left: 10%; }
+        .footer-decoration:nth-child(2) { top: 60%; left: 20%; }
+        .footer-decoration:nth-child(3) { top: 30%; right: 15%; }
+        .footer-decoration:nth-child(4) { bottom: 40%; left: 30%; }
+        .footer-decoration:nth-child(5) { top: 70%; right: 25%; }
+        .footer-decoration:nth-child(6) { bottom: 20%; right: 35%; }
+        .footer-decoration:nth-child(7) { top: 40%; left: 60%; }
+        .footer-decoration:nth-child(8) { bottom: 60%; right: 10%; }
+
+        /* Solo animar en desktop */
+        @media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+            .footer-decoration {
+                animation: footerFloat 12s ease-in-out infinite;
+                will-change: transform;
+            }
+            
+            .footer-decoration:nth-child(1) { animation-delay: 0s; }
+            .footer-decoration:nth-child(2) { animation-delay: 1.5s; }
+            .footer-decoration:nth-child(3) { animation-delay: 3s; }
+            .footer-decoration:nth-child(4) { animation-delay: 4.5s; }
+            .footer-decoration:nth-child(5) { animation-delay: 6s; }
+            .footer-decoration:nth-child(6) { animation-delay: 7.5s; }
+            .footer-decoration:nth-child(7) { animation-delay: 9s; }
+            .footer-decoration:nth-child(8) { animation-delay: 10.5s; }
+        }
 
         @keyframes footerFloat {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-10px) rotate(5deg); }
+        }
+
+        /* Optimizaciones de rendimiento */
+        @media (max-width: 768px) {
+            /* Deshabilitar todas las animaciones en móviles */
+            .dynamic-footer *,
+            .dynamic-footer *::before,
+            .dynamic-footer *::after {
+                animation-duration: 0s !important;
+                animation-delay: 0s !important;
+                transition-duration: 0s !important;
+                will-change: auto !important;
+            }
+            
+            /* Simplificar gradientes en móviles */
+            .dynamic-footer {
+                background: #1a0000;
+            }
+            
+            .scroll-to-top-btn {
+                background: #8B0000;
+            }
+            
+            /* Ocultar decoraciones en móviles */
+            .footer-decorations {
+                display: none;
+            }
         }
 
         /* Responsive */
@@ -366,30 +407,26 @@ function addFooterStyles() {
         @media (max-width: 768px) {
             .footer-content {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 25px;
                 text-align: center;
             }
 
-            .footer-column h3.footer-title::after {
-                left: 50%;
-                transform: translateX(-50%);
+            .footer-brand,
+            .footer-description,
+            .footer-stats,
+            .footer-copyright {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .footer-stats {
+                align-items: center;
             }
 
             .footer-bottom {
                 flex-direction: column;
                 gap: 20px;
                 text-align: center;
-            }
-
-            .footer-social {
-                justify-content: center;
-            }
-
-            .footer-stats {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 10px;
             }
         }
 
@@ -400,16 +437,23 @@ function addFooterStyles() {
 
             .footer-content {
                 padding: 20px 0 15px;
+                gap: 20px;
             }
 
             .footer-logo-img {
-                height: 40px;
+                height: 45px;
             }
 
-            .social-link {
-                width: 35px;
-                height: 35px;
-                font-size: 16px;
+            .footer-description-text {
+                font-size: 13px;
+            }
+
+            .footer-stat-item {
+                font-size: 12px;
+            }
+
+            .copyright-content {
+                font-size: 12px;
             }
         }
     `;
@@ -426,6 +470,9 @@ function setupFooterFunctionality() {
 
     // Cargar contador de videos
     loadFooterVideoCount();
+
+    // Cargar contador de colaboradores
+    loadFooterCollaboratorsCount();
 
     // Configurar botón de scroll hacia arriba
     const scrollToTopBtn = document.getElementById('footerScrollToTop');
@@ -448,16 +495,6 @@ function setupFooterFunctionality() {
             }
         });
     }
-
-    // Configurar enlaces de redes sociales
-    const socialLinks = document.querySelectorAll('.social-link');
-    socialLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            // Aquí puedes agregar los enlaces reales de Discord
-            console.log('Discord link clicked');
-        });
-    });
 }
 
 function loadFooterVideoCount() {
@@ -478,5 +515,29 @@ function loadFooterVideoCount() {
         });
     } catch (error) {
         footerVideoCountElement.textContent = '0';
+    }
+}
+
+function loadFooterCollaboratorsCount() {
+    const footerCollaboratorsCountElement = document.getElementById('footerCollaboratorsCount');
+    if (!footerCollaboratorsCountElement) return;
+
+    // Intentar importar mediaDB para contar autores únicos
+    try {
+        import('../mediaDB.js').then(module => {
+            const mediaDB = module.default;
+            const validVideos = mediaDB.filter(video =>
+                video.titulo && video.portada && video.video && video.autor && video.categoria
+            );
+
+            // Obtener autores únicos
+            const uniqueAuthors = [...new Set(validVideos.map(video => video.autor))];
+            footerCollaboratorsCountElement.textContent = uniqueAuthors.length;
+        }).catch(() => {
+            // Si no se puede importar, usar un valor por defecto
+            footerCollaboratorsCountElement.textContent = '0';
+        });
+    } catch (error) {
+        footerCollaboratorsCountElement.textContent = '0';
     }
 }

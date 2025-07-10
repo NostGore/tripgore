@@ -1288,7 +1288,7 @@ const mediaDB = [
     categoria: "ASESINATOS",
     fecha: "5/07/2025",
   },
-  { 
+  {
     id: "free-fire-en-primera-persona",
     titulo: "Free fire en primera persona",
     portada: "https://files.catbox.moe/9p4yee.jpg",
