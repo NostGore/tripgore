@@ -2802,6 +2802,15 @@ const mediaDB = [
     fecha: "11/07/2025",
   },
   {
+    id: "peleas-de-disparos",
+    titulo: "Peleas de disparos",
+    portada: "https://files.catbox.moe/y3vfqn.jpg",
+    video: "https://files.catbox.moe/evjn5r.mp4",
+    autor: "jupasi2009",
+    categoria: "INCIDENTES",
+    fecha: "11/07/2025",
+  },
+  {
     id: "1444",
     titulo: "1444", //C-SUICIDIOS
     portada: "https://xxx.livegore.com//rb-include/videos/8122189044.jpg",
