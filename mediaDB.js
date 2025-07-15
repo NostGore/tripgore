@@ -1433,6 +1433,24 @@ const mediaDB = [
     fecha: "11/07/2025",
   },
   {
+    id: "lo-queman-vivo",
+    titulo: "lo queman vivo",
+    portada: "https://files.catbox.moe/7g1sbo.png",
+    video: "https://files.catbox.moe/4byg4e.mp4",
+    autor: "fl3983630",
+    categoria: "ASESINATOS",
+    fecha: "15/07/2025",
+  },
+  {
+    id: "sin-cabeza",
+    titulo: "Sin cabeza",
+    portada: "https://files.catbox.moe/osfp8f.png",
+    video: "https://files.catbox.moe/8b0ch3.mp4",
+    autor: "fl3983630",
+    categoria: "ASESINATOS",
+    fecha: "15/07/2025",
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
