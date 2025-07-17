@@ -2973,6 +2973,15 @@ const mediaDB = [
     fecha: "15/07/2025",
   },
   {
+    id: "momentos en siria",
+    titulo: "Momentos en siria",
+    portada: "https://xxx.livegore.com//rb-include/videos/1914431895.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1914431895.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "17/07/2025",
+  },
+  {
     id: "1444",
     titulo: "1444", //C-SUICIDIOS
     portada: "https://xxx.livegore.com//rb-include/videos/8122189044.jpg",
