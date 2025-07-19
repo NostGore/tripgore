@@ -1595,6 +1595,15 @@ const mediaDB = [
     fecha: "17/07/2025",
   },
   {
+    id: "mini gore edit",
+    titulo: "Mini gore edit",
+    portada: "https://files.catbox.moe/ffd013.jpg",
+    video: "https://files.catbox.moe/oejfcs.mp4",
+    autor: "jupasi2009",
+    categoria: "ASESINATOS",
+    fecha: "19/07/2025",
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
