@@ -2171,6 +2171,15 @@ const mediaDB = [
     fecha: "17/07/2025",
   },
   {
+    id: "accidente-en-la-via",
+    titulo: "Accidente en la via",
+    portada: "https://files.catbox.moe/jdwkav.png",
+    video: "https://files.catbox.moe/otr7b1.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "19/07/2025",
+  },
+  {
     id: "come-la-banqueta",
     titulo: "Come la banqueta", //C-INCIDENTES
     portada: "https://files.catbox.moe/q7pgoy.png",
