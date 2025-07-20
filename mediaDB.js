@@ -2189,7 +2189,7 @@ const mediaDB = [
     fecha: "19/07/2025",
   },
   {
-    id: "gente grave kilometro 109",
+    id: "gente-grave-kilometro-109",
     titulo: "Gente grave kilómetro 109",
     portada: "https://files.catbox.moe/kdkhxw.jpg",
     video: "https://files.catbox.moe/4vpxpo.mp4",
