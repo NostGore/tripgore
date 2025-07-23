@@ -1613,6 +1613,15 @@ const mediaDB = [
     fecha: "22/07/2025",
   },
   {
+    id: "respuesta-incorrecta",
+    titulo: "Respuesta incorrecta",
+    portada: "https://xxx.livegore.com//rb-include/videos/7330675371.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7330675371.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "23/07/2025",
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -2205,6 +2214,15 @@ const mediaDB = [
     autor: "villarjapa",
     categoria: "ACCIDENTES",
     fecha: "20/07/2025",
+  },
+  {
+    id: "es  ilegal estacionarse asi",
+    titulo: "Es ilegal estacionarse asi",
+    portada: "https://xxx.livegore.com//rb-include/videos/9723719162.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9723719162.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "23/07/2025",
   },
   {
     id: "come-la-banqueta",
