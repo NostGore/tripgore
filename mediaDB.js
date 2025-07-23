@@ -1604,6 +1604,15 @@ const mediaDB = [
     fecha: "19/07/2025",
   },
   {
+    id: "masacre-en-pleno-juego-de-billar",
+    titulo: "Masacre en pleno juego de billar",
+    portada: "https://files.catbox.moe/ed9qyy.png",
+    video: "https://files.catbox.moe/7mycnj.mp4",
+    autor: "jupasi2009",
+    categoria: "ASESINATOS",
+    fecha: "22/07/2025",
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
