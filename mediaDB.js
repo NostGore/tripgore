@@ -3603,7 +3603,7 @@ const mediaDB = [
     fecha: "17/07/2025",
   },
   {
-    id: "snuff-r73", //ocultos
+    id: "9127-4482-3901-ae82f1a7c4d3", //ocultos
     titulo: "Snuff R73",
     portada: "https://indefinide.jpg",
     video: "https://files.catbox.moe/suzaju.mp4",
