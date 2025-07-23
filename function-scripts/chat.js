@@ -146,7 +146,7 @@ export class ChatPageSystem {
     }
 
     async renderMessages() {
-        const messagesArea = document.getElementById('messagesArea');
+        const messagesArea = document.getElementById('messagesArea') || document.getElementById('messagesContainer');
         if (!messagesArea) return;
 
         // Guardar posición de scroll actual
@@ -444,7 +444,7 @@ export class ChatPageSystem {
     }
 
     scrollToBottom() {
-        const messagesArea = document.getElementById('messagesArea');
+        const messagesArea = document.getElementById('messagesArea') || document.getElementById('messagesContainer');
         if (messagesArea) {
             messagesArea.scrollTop = messagesArea.scrollHeight;
         }

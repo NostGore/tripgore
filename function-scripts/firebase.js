@@ -172,7 +172,12 @@ export const videoFunctions = {
       const username = getUsernameFromEmail(currentUser.email);
 
       const videoWithMetadata = {
-        ...videoData,
+        titulo: videoData.titulo,
+        portada: videoData.portada,
+        videoUrl1: videoData.videoUrl1,
+        categoria: videoData.categoria,
+        correoOriginal: videoData.correoOriginal,
+        descripcion: videoData.descripcion,
         autor: username,
         fecha: new Date().toLocaleDateString('es-ES'),
         timestamp: Date.now(),
@@ -441,6 +446,36 @@ export const videoFunctions = {
         callback(null);
       }
     });
+  },
+
+  // Add reply to comment
+  addReply: async (videoId, parentCommentId, replyText) => {
+    try {
+      const currentUser = authFunctions.getCurrentUser();
+      if (!currentUser) {
+        return { success: false, error: "Usuario no autenticado" };
+      }
+
+      const commentsRef = ref(realtimeDb, `comments/${videoId}`);
+      const newReplyRef = push(commentsRef);
+
+      // Get username from email
+      const username = getUsernameFromEmail(currentUser.email);
+
+      const reply = {
+        texto: replyText,
+        autor: username,
+        fecha: new Date().toLocaleDateString('es-ES'),
+        timestamp: Date.now(),
+        id: newReplyRef.key,
+        parentId: parentCommentId
+      };
+
+      await set(newReplyRef, reply);
+      return { success: true, replyId: newReplyRef.key };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
   }
 };
 

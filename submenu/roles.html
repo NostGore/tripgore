@@ -6,17 +6,223 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roles - TRIPGORE</title>
-    <link href="../style.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Favicon -->
     <link rel="icon" href="https://files.catbox.moe/1b7bnr.png" type="image/png">
 
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a1a, #0f0f0f);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #000000, #1a0000);
+            border-bottom: 3px solid #DC143C;
+            padding: 15px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        
+
+        .logo-img {
+            height: 80px;
+            width: auto;
+        }
+
+        .username {
+            color: #FFB6C1;
+            font-weight: bold;
+            margin-left: auto;
+        }
+
+        /* Desktop Auth Buttons */
+        .desktop-auth {
+            display: flex;
+            gap: 15px;
+            margin-left: auto;
+        }
+
+        .auth-btn {
+            padding: 10px 20px;
+            border: 2px solid #DC143C;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .login-btn {
+            background: transparent;
+            color: #DC143C;
+        }
+
+        .login-btn:hover {
+            background: #DC143C;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3);
+        }
+
+        .register-btn {
+            background: #DC143C;
+            color: white;
+        }
+
+        .register-btn:hover {
+            background: #ff1450;
+            border-color: #ff1450;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(220, 20, 60, 0.4);
+        }
+
+        .logout-btn {
+            background: #555;
+            color: white;
+            border-color: #666;
+        }
+
+        .logout-btn:hover {
+            background: #666;
+            border-color: #777;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 102, 102, 0.3);
+        }
+
+        .desktop-user-menu {
+            display: flex;
+            gap: 15px;
+            margin-left: auto;
+        }
+
+        /* Mobile styles - hide auth buttons */
+        @media (max-width: 768px) {
+            .desktop-auth {
+                display: none !important;
+            }
+
+            .desktop-user-menu {
+                display: none !important;
+            }
+
+            .username {
+                display: none;
+            }
+
+            .mobile-auth-section {
+                display: block;
+            }
+        }
+
+        /* Desktop styles - hide mobile auth section */
+        @media (min-width: 769px) {
+            .mobile-auth-section {
+                display: none;
+            }
+        }
+
+        /* Desktop styles - hide username */
+        @media (min-width: 769px) {
+            .username {
+                display: none;
+            }
+        }
+
+        
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            padding: 0;
+        }
+
+        /* Banner */
+        .banner {
+            width: 100%;
+            height: 200px;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 4px solid #DC143C;
+        }
+
+        .banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://i.pinimg.com/originals/9a/bd/6c/9abd6cdb4b6fd8c27d68cc5a25a20535.gif') center/cover no-repeat;
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .banner-content {
+            text-align: center;
+            z-index: 3;
+            position: relative;
+        }
+
+        .banner h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .banner p {
+            font-size: 16px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Roles Container */
         .roles-container {
             max-width: 900px;
             margin: 40px auto;
             padding: 0 20px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: rgba(139, 0, 0, 0.3);
+            color: #FFB6C1;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(139, 0, 0, 0.5);
+        }
+
+        .back-btn:hover {
+            background: rgba(139, 0, 0, 0.5);
+            transform: translateX(-3px);
         }
 
         .roles-header {
@@ -129,24 +335,95 @@
             background: linear-gradient(135deg, #A0002A, #FF1450);
         }
 
-        .back-btn {
-            display: inline-block;
-            padding: 12px 25px;
-            background: rgba(139, 0, 0, 0.3);
-            color: #FFB6C1;
-            text-decoration: none;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(139, 0, 0, 0.5);
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #000000, #1a0000);
+            border-top: 3px solid #DC143C;
+            padding: 20px;
+            text-align: center;
+            margin-top: 50px;
         }
 
-        .back-btn:hover {
-            background: rgba(139, 0, 0, 0.5);
-            transform: translateX(-3px);
+        .footer p {
+            color: #FFB6C1;
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .header {
+                padding: 12px 18px;
+                gap: 15px;
+            }
+
+            .logo-img {
+                height: 70px;
+            }
+
+            .banner {
+                height: 180px;
+            }
+
+            .banner h1 {
+                font-size: 36px;
+            }
+
+            .banner p {
+                font-size: 14px;
+            }
+
+            .roles-container {
+                margin: 25px auto;
+                padding: 0 18px;
+            }
+
+            .role-card {
+                padding: 25px;
+            }
+
+            .roles-header {
+                padding: 25px;
+            }
+
+            .roles-header h1 {
+                font-size: 24px;
+            }
+
+            .role-name {
+                font-size: 22px;
+            }
+
+            .footer-note {
+                padding: 25px;
+            }
         }
 
         @media (max-width: 768px) {
+            .header {
+                padding: 10px 15px;
+                gap: 12px;
+            }
+
+            .logo-img {
+                height: 60px;
+            }
+
+            .banner {
+                height: 160px;
+            }
+
+            .banner h1 {
+                font-size: 24px;
+            }
+
+            .banner p {
+                font-size: 13px;
+            }
+
+            .main-content {
+                margin-top: 70px;
+            }
+
             .roles-container {
                 margin: 20px auto;
                 padding: 0 15px;
@@ -166,23 +443,137 @@
                 font-size: 20px;
             }
 
+            .roles-header {
+                padding: 20px;
+            }
+
+            .roles-header h1 {
+                font-size: 22px;
+            }
+
+            .roles-header p {
+                font-size: 14px;
+            }
+
             .footer-note {
                 padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 8px 12px;
+                gap: 10px;
+            }
+
+            .logo-img {
+                height: 50px;
+            }
+
+            .banner {
+                height: 120px;
+            }
+
+            .banner h1 {
+                font-size: 18px;
+            }
+
+            .banner p {
+                font-size: 12px;
+            }
+
+            .main-content {
+                margin-top: 60px;
+            }
+
+            .roles-container {
+                margin: 15px auto;
+                padding: 0 12px;
+            }
+
+            .role-card {
+                padding: 15px;
+            }
+
+            .role-name {
+                font-size: 18px;
+            }
+
+            .role-requirements {
+                font-size: 14px;
+            }
+
+            .roles-header {
+                padding: 15px;
+            }
+
+            .roles-header h1 {
+                font-size: 20px;
+            }
+
+            .roles-header p {
+                font-size: 13px;
+            }
+
+            .footer-note {
+                padding: 15px;
+            }
+
+            .footer-note h3 {
+                font-size: 18px;
+            }
+
+            .footer-note p {
+                font-size: 14px;
+            }
+
+            .support-btn {
+                padding: 12px 24px;
+                font-size: 14px;
             }
         }
     </style>
 </head>
 
 <body>
+    <!-- Header -->
     <header class="header">
-        <div class="container">
-            <div class="logo">
-                <img src="https://files.catbox.moe/cjmaz9.png" alt="TRIPGORE" class="logo-img">
-            </div>
+        
+        <img src="https://files.catbox.moe/l6hd4u.png" alt="TRIPGORE" class="logo-img">
+        <span class="username" id="username">Usuario</span>
+
+        <!-- Desktop Auth Buttons -->
+        <div class="desktop-auth">
+            <a href="../auth.html" class="auth-btn login-btn">
+                <i class="fas fa-sign-in-alt"></i>
+                Iniciar sesión
+            </a>
+            <a href="../auth.html" class="auth-btn register-btn">
+                <i class="fas fa-user-plus"></i>
+                Registrarse
+            </a>
+        </div>
+
+        <!-- Desktop User Menu (shown when logged in) -->
+        <div class="desktop-user-menu" style="display: none;">
+            <button class="auth-btn logout-btn" id="desktopLogoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                Cerrar Sesión
+            </button>
         </div>
     </header>
 
-    <main class="main">
+    
+
+    <main class="main-content">
+        <!-- Banner -->
+        <section class="banner">
+            <div class="banner-content">
+                <h1>SISTEMA DE ROLES</h1>
+                <p>Conviértete en parte de la comunidad</p>
+            </div>
+        </section>
+
         <div class="roles-container">
             <a href="../index.html" class="back-btn">
                 <i class="fa-solid fa-arrow-left"></i>
@@ -274,9 +665,17 @@
         </div>
     </main>
 
-    <script src="../function-scripts/header.js"></script>
-    <script src="../function-scripts/footer.js"></script>
-    <script src="donaciones.js"></script>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; <span id="currentYear"></span> TRIPGORE. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Set current year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        
+    </script>
 </body>
 
 </html>

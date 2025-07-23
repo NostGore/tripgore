@@ -1,0 +1,1263 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir Video - TRIPGORE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="https://files.catbox.moe/1b7bnr.png" type="image/png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a1a, #0f0f0f);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #000000, #1a0000);
+            border-bottom: 3px solid #DC143C;
+            padding: 15px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .header.hidden {
+            transform: translateY(-100%);
+        }
+
+        .menu-toggle {
+            font-size: 24px;
+            color: #ffffff;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            color: #DC143C;
+        }
+
+        .logo-img {
+            height: 80px;
+            width: auto;
+        }
+
+        .username {
+            color: #FFB6C1;
+            font-weight: bold;
+            margin-left: auto;
+        }
+
+        /* Desktop Auth Buttons */
+        .desktop-auth {
+            display: flex;
+            gap: 15px;
+            margin-left: auto;
+        }
+
+        .auth-btn {
+            padding: 10px 20px;
+            border: 2px solid #DC143C;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .login-btn {
+            background: transparent;
+            color: #DC143C;
+        }
+
+        .login-btn:hover {
+            background: #DC143C;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3);
+        }
+
+        .register-btn {
+            background: #DC143C;
+            color: white;
+        }
+
+        .register-btn:hover {
+            background: #ff1450;
+            border-color: #ff1450;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(220, 20, 60, 0.4);
+        }
+
+        .logout-btn {
+            background: #555;
+            color: white;
+            border-color: #666;
+        }
+
+        .logout-btn:hover {
+            background: #666;
+            border-color: #777;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 102, 102, 0.3);
+        }
+
+        .desktop-user-menu {
+            display: flex;
+            gap: 15px;
+            margin-left: auto;
+        }
+
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            .desktop-auth {
+                display: none !important;
+            }
+
+            .desktop-user-menu {
+                display: none !important;
+            }
+
+            .username {
+                display: none;
+            }
+
+            .mobile-auth-section {
+                display: block;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-auth-section {
+                display: none;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .username {
+                display: none;
+            }
+        }
+
+        /* Slide Menu */
+        .slide-menu {
+            position: fixed;
+            left: -300px;
+            top: 0;
+            width: 300px;
+            height: 100vh;
+            background: linear-gradient(135deg, #000000, #1a0000);
+            z-index: 1001;
+            transition: left 0.3s ease;
+            padding-top: 80px;
+            border-right: 2px solid #DC143C;
+        }
+
+        .slide-menu.open {
+            left: 0;
+        }
+
+        .menu-overlay {
+            display: none;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .menu-item {
+            display: block;
+            padding: 15px 30px;
+            color: #ffffff;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(220, 20, 60, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover {
+            background: rgba(220, 20, 60, 0.2);
+            padding-left: 40px;
+        }
+
+        .menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1002;
+        }
+
+        .menu-close i {
+            font-size: 24px;
+            color: #ffffff;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .menu-close i:hover {
+            color: #DC143C;
+        }
+
+        .menu-item i {
+            margin-right: 10px;
+            color: #DC143C;
+        }
+
+        /* Mobile Auth Section */
+        .mobile-auth-section {
+            border-top: 1px solid rgba(220, 20, 60, 0.3);
+            margin-top: 20px;
+            padding-top: 20px;
+        }
+
+        .mobile-auth-btn {
+            background: rgba(139, 0, 0, 0.2);
+            margin-bottom: 10px;
+            border: 1px solid rgba(220, 20, 60, 0.3);
+            border-radius: 6px;
+        }
+
+        .mobile-auth-btn:hover {
+            background: rgba(220, 20, 60, 0.3);
+        }
+
+        .mobile-auth-btn#mobileLogoutBtn {
+            background: rgba(102, 102, 102, 0.2);
+            border-color: rgba(102, 102, 102, 0.3);
+        }
+
+        .mobile-auth-btn#mobileLogoutBtn:hover {
+            background: rgba(102, 102, 102, 0.3);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            padding: 0;
+        }
+
+        /* Banner Hero */
+        .banner {
+            width: 100%;
+            height: 250px;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 4px solid #DC143C;
+        }
+
+        .banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://i.pinimg.com/originals/9a/bd/6c/9abd6cdb4b6fd8c27d68cc5a25a20535.gif') center/cover no-repeat;
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .banner-content {
+            text-align: center;
+            z-index: 3;
+            position: relative;
+        }
+
+        .banner h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .banner p {
+            font-size: 18px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Upload Form Container */
+        .upload-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .upload-form {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            border: 3px solid #DC143C;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-title {
+            color: #DC143C;
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .form-subtitle {
+            color: #cccccc;
+            font-size: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            color: #DC143C;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .form-label i {
+            margin-right: 8px;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            border-radius: 5px;
+            color: white;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #DC143C;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .form-select {
+            cursor: pointer;
+        }
+
+        .form-select option {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .form-textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: #DC143C;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            background: #ff1450;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(220, 20, 60, 0.4);
+        }
+
+        .submit-btn:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .error-message {
+            background: rgba(220, 20, 60, 0.2);
+            border: 1px solid #DC143C;
+            color: #FFB6C1;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+            font-size: 13px;
+        }
+
+        .success-message {
+            background: rgba(0, 128, 0, 0.2);
+            border: 1px solid #32CD32;
+            color: #90EE90;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+            font-size: 13px;
+        }
+
+        .warning-text {
+            background: rgba(139, 0, 0, 0.2);
+            border: 1px solid #DC143C;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px auto;
+            color: #FFB6C1;
+            font-size: 13px;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        /* Tutorial Section */
+        .tutorial-section {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .tutorial-container {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            border: 3px solid #DC143C;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+        }
+
+        .tutorial-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .tutorial-title {
+            color: #DC143C;
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .tutorial-subtitle {
+            color: #cccccc;
+            font-size: 16px;
+        }
+
+        .tutorial-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .catbox-info-card {
+            background: linear-gradient(135deg, #1a0000, #2a0000);
+            border: 2px solid #DC143C;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
+        }
+
+        .catbox-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .catbox-title {
+            color: #DC143C;
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .catbox-subtitle {
+            color: #FFB6C1;
+            font-size: 14px;
+            font-style: italic;
+        }
+
+        .catbox-description {
+            color: #cccccc;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .catbox-btn {
+            width: 100%;
+            padding: 12px 20px;
+            background: #DC143C;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .catbox-btn:hover {
+            background: #ff1450;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(220, 20, 60, 0.4);
+        }
+
+        .video-tutorial {
+            background: linear-gradient(135deg, #1a0000, #2a0000);
+            border: 2px solid #DC143C;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
+        }
+
+        .video-title {
+            color: #DC143C;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 2px solid rgba(220, 20, 60, 0.3);
+        }
+
+        .tutorial-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 6px;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .tutorial-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .tutorial-container {
+                padding: 20px;
+            }
+
+            .tutorial-title {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tutorial-section {
+                margin: 30px auto;
+                padding: 0 15px;
+            }
+
+            .catbox-info-card,
+            .video-tutorial {
+                padding: 20px;
+            }
+
+            .tutorial-title {
+                font-size: 20px;
+            }
+
+            .catbox-title {
+                font-size: 18px;
+            }
+
+            .video-title {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tutorial-container {
+                padding: 15px;
+            }
+
+            .catbox-info-card,
+            .video-tutorial {
+                padding: 15px;
+            }
+
+            .tutorial-title {
+                font-size: 18px;
+            }
+
+            .catbox-description {
+                font-size: 13px;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #000000, #1a0000);
+            border-top: 3px solid #DC143C;
+            padding: 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .footer p {
+            color: #FFB6C1;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 12px 18px;
+                gap: 15px;
+            }
+
+            .logo-img {
+                height: 70px;
+            }
+
+            .banner {
+                height: 180px;
+            }
+
+            .banner h1 {
+                font-size: 28px;
+                letter-spacing: 1px;
+            }
+
+            .banner p {
+                font-size: 15px;
+            }
+
+            .upload-container {
+                padding: 0 15px;
+            }
+
+            .upload-form {
+                padding: 20px;
+            }
+
+            .form-title {
+                font-size: 20px;
+            }
+
+            .form-subtitle {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 8px 12px;
+                gap: 10px;
+            }
+
+            .logo-img {
+                height: 50px;
+            }
+
+            .banner {
+                height: 140px;
+            }
+
+            .banner h1 {
+                font-size: 20px;
+                letter-spacing: 0.5px;
+            }
+
+            .banner p {
+                font-size: 13px;
+            }
+
+            .upload-container {
+                padding: 0 10px;
+            }
+
+            .upload-form {
+                padding: 15px;
+            }
+
+            .form-title {
+                font-size: 18px;
+            }
+
+            .form-subtitle {
+                font-size: 12px;
+            }
+
+            .form-label {
+                font-size: 12px;
+            }
+
+            .form-input, .form-select, .form-textarea {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+
+            .submit-btn {
+                padding: 12px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <i class="fas fa-bars menu-toggle" id="menuToggle"></i>
+        <img src="https://files.catbox.moe/l6hd4u.png" alt="TRIPGORE" class="logo-img">
+        <span class="username" id="username">Usuario</span>
+
+        <!-- Desktop Auth Buttons -->
+        <div class="desktop-auth">
+            <a href="auth.html" class="auth-btn login-btn">
+                <i class="fas fa-sign-in-alt"></i>
+                Iniciar sesión
+            </a>
+            <a href="auth.html" class="auth-btn register-btn">
+                <i class="fas fa-user-plus"></i>
+                Registrarse
+            </a>
+        </div>
+
+        <!-- Desktop User Menu -->
+        <div class="desktop-user-menu" style="display: none;">
+            <button class="auth-btn logout-btn" id="desktopLogoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                Cerrar Sesión
+            </button>
+        </div>
+    </header>
+
+    <!-- Slide Menu -->
+    <div class="slide-menu" id="slideMenu">
+        <div class="menu-close">
+            <i class="fas fa-times" id="menuClose"></i>
+        </div>
+        <a href="#" class="menu-item" id="userNameMenu">
+            <i class="fas fa-user"></i>
+            <span id="userNameDisplay">Usuario</span>
+        </a>
+        <a href="index.html" class="menu-item">
+            <i class="fas fa-home"></i>
+            Inicio
+        </a>
+        <a href="subir.html" class="menu-item">
+            <i class="fas fa-upload"></i>
+            Subir
+        </a>
+        <a href="chat.html" class="menu-item">
+            <i class="fas fa-comments"></i>
+            Chat
+        </a>
+        <a href="soporte.html" class="menu-item">
+            <i class="fas fa-headset"></i>
+            Soporte
+        </a>
+        <a href="asistente.html" class="menu-item">
+            <i class="fa-solid fa-robot"></i>
+            TRIP-BOT AI
+        </a>
+        <a href="#" class="menu-item">
+            <i class="fab fa-discord"></i>
+            Discord
+        </a>
+        <a href="submenu/colaboradores.html" class="menu-item">
+            <i class="fas fa-users"></i>
+            Colaboradores
+        </a>
+        <a href="submenu/roles.html" class="menu-item">
+            <i class="fas fa-crown"></i>
+            Roles
+        </a>
+
+        <!-- Mobile Auth Buttons -->
+        <div class="mobile-auth-section">
+            <a href="auth.html" class="menu-item mobile-auth-btn" id="mobileLoginBtn">
+                <i class="fas fa-sign-in-alt"></i>
+                Iniciar sesión
+            </a>
+            <a href="auth.html" class="menu-item mobile-auth-btn" id="mobileRegisterBtn">
+                <i class="fas fa-user-plus"></i>
+                Registrarse
+            </a>
+            <a href="#" class="menu-item mobile-auth-btn" id="mobileLogoutBtn" style="display: none;">
+                <i class="fas fa-sign-out-alt"></i>
+                Cerrar Sesión
+            </a>
+        </div>
+    </div>
+
+    <!-- Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <!-- Main Content -->
+    <main class="main-content" style="display: none;">
+        <!-- Banner -->
+        <section class="banner">
+            <div class="banner-content">
+                <h1>SUBIR VIDEO</h1>
+                <p>Comparte tu contenido con la comunidad</p>
+            </div>
+        </section>
+
+        <!-- Warning Message -->
+        <div class="warning-text">
+            <i class="fas fa-exclamation-triangle"></i>
+            Al subir contenido, acepta que TripGore tiene derecho a moderar y aprobar el contenido antes de publicarlo.
+        </div>
+
+        <!-- Upload Form -->
+        <div class="upload-container">
+            <form class="upload-form" id="uploadForm">
+                <div class="form-header">
+                    <div class="form-title">
+                        <i class="fas fa-video"></i>
+                        Subir Nuevo Video
+                    </div>
+                    <div class="form-subtitle">Completa todos los campos para enviar tu video para moderación</div>
+                </div>
+
+                <div id="errorMessage" class="error-message"></div>
+                <div id="successMessage" class="success-message"></div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-heading"></i>
+                        Título del Video
+                    </label>
+                    <input type="text" class="form-input" id="videoTitle" placeholder="Ingresa el título del video" required maxlength="100">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-image"></i>
+                        URL de la Portada
+                    </label>
+                    <input type="url" class="form-input" id="videoCover" placeholder="https://ejemplo.com/imagen.jpg" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-play"></i>
+                        URL del Video (MP4)
+                    </label>
+                    <input type="url" class="form-input" id="videoUrl" placeholder="https://ejemplo.com/video.mp4" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-tags"></i>
+                        Categoría
+                    </label>
+                    <select class="form-select" id="videoCategory" required>
+                        <option value="">Selecciona una categoría</option>
+                        <option value="ASESINATOS">Asesinatos</option>
+                        <option value="ACCIDENTES">Accidentes</option>
+                        <option value="INCIDENTES">Incidentes</option>
+                        <option value="SUICIDIOS">Suicidios</option>
+                        <option value="AUTOLESIONES">Autolesiones</option>
+                        <option value="OTROS">Otros</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-envelope"></i>
+                        Correo de Notificaciones
+                    </label>
+                    <input type="email" class="form-input" id="notificationEmail" placeholder="tu@gmail.com" required>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <i class="fas fa-upload"></i>
+                    SUBIR VIDEO
+                </button>
+            </form>
+        </div>
+
+        <!-- Tutorial Section -->
+        <div class="tutorial-section">
+            <div class="tutorial-container">
+                <div class="tutorial-header">
+                    <h2 class="tutorial-title">
+                        <i class="fas fa-graduation-cap"></i>
+                        TUTORIAL
+                    </h2>
+                    <p class="tutorial-subtitle">Aprende cómo subir videos correctamente</p>
+                </div>
+
+                <div class="tutorial-content">
+                    <div class="catbox-info-card">
+                        <div class="catbox-header">
+                            <h3 class="catbox-title">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                CATBOX
+                            </h3>
+                            <p class="catbox-subtitle">Crear Link mp4 y portada</p>
+                        </div>
+                        <div class="catbox-description">
+                            <p>Utiliza CATBOX para subir tus videos y obtener enlaces directos MP4 que puedas usar en el formulario de arriba.</p>
+                        </div>
+                        <button class="catbox-btn" onclick="window.open('https://catbox.moe', '_blank')">
+                            <i class="fas fa-external-link-alt"></i>
+                            Ir a CATBOX.moe
+                        </button>
+                    </div>
+                    
+                    <div class="video-tutorial">
+                        <h4 class="video-title">
+                            <i class="fas fa-play-circle"></i>
+                            Video Tutorial
+                        </h4>
+                        <div class="iframe-container">
+                            <iframe src="https://files.catbox.moe/b0mh39.mp4" 
+                                    frameborder="0" 
+                                    allowfullscreen
+                                    class="tutorial-video">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; <span id="currentYear"></span> TRIPGORE. Todos los derechos reservados.</p>
+    </footer>
+
+    <script type="module">
+        import {authFunctions, videoFunctions} from './function-scripts/firebase.js';
+
+        // Verificación de autenticación al cargar la página
+        let authCheckComplete = false;
+        
+        authFunctions.onAuthStateChanged((user) => {
+            if (!authCheckComplete) {
+                authCheckComplete = true;
+                
+                if (!user) {
+                    // Usuario no autenticado - redirigir a página de auth
+                    alert('Debes iniciar sesión para acceder a esta página');
+                    window.location.href = 'auth.html';
+                    return;
+                }
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuToggle = document.getElementById('menuToggle');
+            const slideMenu = document.getElementById('slideMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            const menuClose = document.getElementById('menuClose');
+
+            function toggleMenu() {
+                slideMenu.classList.toggle('open');
+                menuOverlay.classList.toggle('active');
+            }
+
+            function closeMenu() {
+                slideMenu.classList.remove('open');
+                menuOverlay.classList.remove('active');
+            }
+
+            menuToggle.addEventListener('click', toggleMenu);
+            menuOverlay.addEventListener('click', closeMenu);
+            menuClose.addEventListener('click', closeMenu);
+
+            // Close menu when clicking a menu item
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    closeMenu();
+                });
+            });
+
+            // Set current year
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+            // Upload form functionality
+            const uploadForm = document.getElementById('uploadForm');
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+            const submitBtn = document.getElementById('submitBtn');
+
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+            }
+
+            function showSuccess(message) {
+                successMessage.textContent = message;
+                successMessage.style.display = 'block';
+                errorMessage.style.display = 'none';
+            }
+
+            function clearMessages() {
+                errorMessage.style.display = 'none';
+                successMessage.style.display = 'none';
+            }
+
+            // Check if user is logged in before allowing upload
+            let currentUser = null;
+            authFunctions.onAuthStateChanged((user) => {
+                currentUser = user;
+                
+                if (user) {
+                    const username = user.email.split('@')[0];
+                    document.getElementById('username').textContent = username;
+                    document.getElementById('userNameDisplay').textContent = username;
+                    
+                    // Update desktop auth buttons
+                    updateDesktopAuthButtons(true);
+                    // Update mobile auth buttons
+                    updateMobileAuthButtons(true);
+                    
+                    // Mostrar el contenido principal si el usuario está autenticado
+                    document.querySelector('.main-content').style.display = 'block';
+                } else {
+                    document.getElementById('username').textContent = 'Invitado';
+                    document.getElementById('userNameDisplay').textContent = 'Invitado';
+                    
+                    // Update desktop auth buttons
+                    updateDesktopAuthButtons(false);
+                    // Update mobile auth buttons
+                    updateMobileAuthButtons(false);
+                    
+                    // Si llegamos aquí y no hay usuario, redirigir (seguridad adicional)
+                    if (authCheckComplete) {
+                        alert('Sesión expirada. Por favor, inicia sesión nuevamente.');
+                        window.location.href = 'auth.html';
+                    }
+                }
+            });
+
+            // Form submission
+            uploadForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                
+                // Check if user is logged in
+                if (!currentUser) {
+                    showError('Debes iniciar sesión para subir videos');
+                    return;
+                }
+
+                clearMessages();
+
+                // Get form data
+                const videoTitle = document.getElementById('videoTitle').value.trim();
+                const videoCover = document.getElementById('videoCover').value.trim();
+                const videoUrl = document.getElementById('videoUrl').value.trim();
+                const videoCategory = document.getElementById('videoCategory').value;
+                const notificationEmail = document.getElementById('notificationEmail').value.trim();
+
+                // Validation
+                if (!videoTitle || !videoCover || !videoUrl || !videoCategory || !notificationEmail) {
+                    showError('Por favor completa todos los campos obligatorios');
+                    return;
+                }
+
+                // Validate URLs
+                if (!isValidUrl(videoCover)) {
+                    showError('La URL de la portada no es válida');
+                    return;
+                }
+
+                if (!isValidUrl(videoUrl) || !videoUrl.toLowerCase().includes('.mp4')) {
+                    showError('La URL del video debe ser un archivo MP4 válido');
+                    return;
+                }
+
+                // Validate email
+                if (!isValidEmail(notificationEmail)) {
+                    showError('El correo electrónico no es válido');
+                    return;
+                }
+
+                // Change button state
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SUBIENDO...';
+                submitBtn.disabled = true;
+
+                try {
+                    // Prepare video data
+                    const videoData = {
+                        titulo: videoTitle,
+                        portada: videoCover,
+                        videoUrl1: videoUrl,
+                        categoria: videoCategory.toUpperCase(),
+                        correoOriginal: notificationEmail
+                    };
+
+                    // Submit video
+                    const result = await videoFunctions.submitVideo(videoData);
+
+                    if (result.success) {
+                        showSuccess('¡Video enviado exitosamente! Será revisado por los moderadores antes de ser publicado.');
+                        uploadForm.reset();
+                        
+                        // Scroll to success message
+                        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else {
+                        showError('Error al enviar el video: ' + result.error);
+                    }
+                } catch (error) {
+                    console.error('Error uploading video:', error);
+                    showError('Error de conexión. Intenta de nuevo.');
+                }
+
+                // Restore button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
+
+            // Utility functions
+            function isValidUrl(string) {
+                try {
+                    new URL(string);
+                    return true;
+                } catch (_) {
+                    return false;
+                }
+            }
+
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+
+            // Desktop logout functionality
+            const desktopLogoutBtn = document.getElementById('desktopLogoutBtn');
+            if (desktopLogoutBtn) {
+                desktopLogoutBtn.addEventListener('click', async function (e) {
+                    e.preventDefault();
+                    try {
+                        const result = await authFunctions.logout();
+                        if (result.success) {
+                            window.location.href = 'index.html';
+                        } else {
+                            console.error('Error al cerrar sesión:', result.error);
+                        }
+                    } catch (error) {
+                        console.error('Error al cerrar sesión:', error);
+                    }
+                });
+            }
+
+            // Mobile logout functionality
+            const mobileLogoutBtn = document.getElementById('mobileLogoutBtn');
+            if (mobileLogoutBtn) {
+                mobileLogoutBtn.addEventListener('click', async function (e) {
+                    e.preventDefault();
+                    try {
+                        const result = await authFunctions.logout();
+                        if (result.success) {
+                            closeMenu();
+                            window.location.href = 'index.html';
+                        } else {
+                            console.error('Error al cerrar sesión:', result.error);
+                        }
+                    } catch (error) {
+                        console.error('Error al cerrar sesión:', error);
+                    }
+                });
+            }
+
+            // Function to update desktop auth buttons based on auth state
+            function updateDesktopAuthButtons(isLoggedIn) {
+                const desktopAuth = document.querySelector('.desktop-auth');
+                const desktopUserMenu = document.querySelector('.desktop-user-menu');
+
+                if (isLoggedIn) {
+                    if (desktopAuth) desktopAuth.style.display = 'none';
+                    if (desktopUserMenu) desktopUserMenu.style.display = 'flex';
+                } else {
+                    if (desktopAuth) desktopAuth.style.display = 'flex';
+                    if (desktopUserMenu) desktopUserMenu.style.display = 'none';
+                }
+            }
+
+            // Function to update mobile auth buttons based on auth state
+            function updateMobileAuthButtons(isLoggedIn) {
+                const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+                const mobileRegisterBtn = document.getElementById('mobileRegisterBtn');
+                const mobileLogoutBtn = document.getElementById('mobileLogoutBtn');
+
+                if (isLoggedIn) {
+                    if (mobileLoginBtn) mobileLoginBtn.style.display = 'none';
+                    if (mobileRegisterBtn) mobileRegisterBtn.style.display = 'none';
+                    if (mobileLogoutBtn) mobileLogoutBtn.style.display = 'flex';
+                } else {
+                    if (mobileLoginBtn) mobileLoginBtn.style.display = 'flex';
+                    if (mobileRegisterBtn) mobileRegisterBtn.style.display = 'flex';
+                    if (mobileLogoutBtn) mobileLogoutBtn.style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

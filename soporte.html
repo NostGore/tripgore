@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -11,124 +12,179 @@
 
     <!-- Favicon -->
     <link rel="icon" href="https://files.catbox.moe/1b7bnr.png" type="image/png">
-
 </head>
 
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <img src="https://files.catbox.moe/cjmaz9.png" alt="TRIPGORE" class="logo-img">
-            </div>
-        </div>
-    </header>
+    
 
-    <main class="main">
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Banner -->
+        <section class="banner">
+            <div class="banner-content">
+                <h1>SOPORTE</h1>
+                <p>Centro de ayuda y reportes</p>
+            </div>
+        </section>
+
+        <!-- Support Container -->
         <div class="support-container">
-            <div class="support-header">
-                <h1>
-                    <i class="fa-solid fa-headset"></i>
-                    Centro de Soporte
-                </h1>
-                <p>¿Tienes alguna duda, queja o encontraste un error? Envíanos tu reporte y te ayudaremos.</p>
+            <!-- Support Header Info -->
+            <div class="support-info-section">
+                <div class="support-info-card">
+                    <div class="info-icon">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>Centro de Soporte</h3>
+                        <p>¿Tienes alguna duda, queja o encontraste un error? Envíanos tu reporte y te ayudaremos lo antes posible.</p>
+                    </div>
+                </div>
             </div>
 
             <!-- Login Required Message -->
-            <div id="loginRequired" class="login-required" style="display: none;">
-                <i class="fa-solid fa-lock"></i>
-                <h3>Iniciar Sesión Requerido</h3>
-                <p>Para enviar un reporte de soporte, necesitas tener una cuenta registrada e iniciar sesión.</p>
-                <a href="login.html" class="login-btn">
-                    <i class="fa-solid fa-sign-in-alt"></i>
-                    Iniciar Sesión
-                </a>
-                <a href="registro.html" class="login-btn" style="margin-left: 10px;">
-                    <i class="fa-solid fa-user-plus"></i>
-                    Registrarse
-                </a>
+            <div id="loginRequired" class="auth-required-section" style="display: none;">
+                <div class="auth-required-card">
+                    <div class="auth-icon">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <div class="auth-content">
+                        <h3>Iniciar Sesión Requerido</h3>
+                        <p>Para enviar un reporte de soporte, necesitas tener una cuenta registrada e iniciar sesión.</p>
+                        <div class="auth-buttons">
+                            <a href="auth.html" class="auth-action-btn login-action">
+                                <i class="fa-solid fa-sign-in-alt"></i>
+                                Iniciar Sesión
+                            </a>
+                            <a href="auth.html" class="auth-action-btn register-action">
+                                <i class="fa-solid fa-user-plus"></i>
+                                Registrarse
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Support Form -->
-            <div id="supportForm" class="support-form" style="display: none;">
-                <form id="reportForm">
-                    <div class="form-group">
-                        <label for="reportType" class="form-label">
-                            <i class="fa-solid fa-tag"></i>
-                            Tipo de Reporte:
-                        </label>
-                        <select id="reportType" name="reportType" class="form-select" required>
-                            <option value="">Selecciona el tipo de reporte</option>
-                            <option value="error">Error Técnico</option>
-                            <option value="bug">Bug/Fallo</option>
-                            <option value="suggestion">Sugerencia</option>
-                            <option value="complaint">Queja</option>
-                            <option value="question">Pregunta/Duda</option>
-                            <option value="other">Otro</option>
-                        </select>
+            <div id="supportForm" class="support-form-section" style="display: none;">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h3>
+                            <i class="fa-solid fa-paper-plane"></i>
+                            Enviar Reporte
+                        </h3>
+                        <p>Completa el formulario con toda la información necesaria</p>
                     </div>
 
-                    <div class="form-group">
-                        <label for="reportTitle" class="form-label">
-                            <i class="fa-solid fa-heading"></i>
-                            Título del Reporte:
-                        </label>
-                        <input type="text" id="reportTitle" name="reportTitle" class="form-input"
-                            placeholder="Describe brevemente tu reporte..." maxlength="100" required>
-                    </div>
+                    <form id="reportForm" class="support-form">
+                        <div class="form-group">
+                            <label for="reportType" class="form-label">
+                                <i class="fa-solid fa-tag"></i>
+                                Tipo de Reporte
+                            </label>
+                            <select id="reportType" name="reportType" class="form-input" required>
+                                <option value="">Selecciona el tipo de reporte</option>
+                                <option value="error">🔧 Error Técnico</option>
+                                <option value="bug">🐛 Bug/Fallo</option>
+                                <option value="suggestion">💡 Sugerencia</option>
+                                <option value="complaint">😠 Queja</option>
+                                <option value="question">❓ Pregunta/Duda</option>
+                                <option value="other">📝 Otro</option>
+                            </select>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="reportDescription" class="form-label">
-                            <i class="fa-solid fa-align-left"></i>
-                            Descripción Detallada:
-                        </label>
-                        <textarea id="reportDescription" name="reportDescription" class="form-textarea"
-                            placeholder="Describe detalladamente tu problema, duda o sugerencia..." maxlength="1000"
-                            required></textarea>
-                    </div>
+                        <div class="form-group">
+                            <label for="reportTitle" class="form-label">
+                                <i class="fa-solid fa-heading"></i>
+                                Título del Reporte
+                            </label>
+                            <input type="text" id="reportTitle" name="reportTitle" class="form-input"
+                                placeholder="Describe brevemente tu reporte..." maxlength="100" required>
+                            <div class="char-counter">
+                                <span id="titleCounter">0</span>/100 caracteres
+                            </div>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="contactEmail" class="form-label">
-                            <i class="fa-solid fa-envelope"></i>
-                            Correo de Contacto:
-                        </label>
-                        <input type="email" id="contactEmail" name="contactEmail" class="form-input"
-                            placeholder="Correo donde recibirás la respuesta..." required>
-                    </div>
+                        <div class="form-group">
+                            <label for="reportDescription" class="form-label">
+                                <i class="fa-solid fa-align-left"></i>
+                                Descripción Detallada
+                            </label>
+                            <textarea id="reportDescription" name="reportDescription" class="form-textarea"
+                                placeholder="Describe detalladamente tu problema, duda o sugerencia. Incluye pasos para reproducir el problema si es aplicable..." maxlength="1000"
+                                required></textarea>
+                            <div class="char-counter">
+                                <span id="descriptionCounter">0</span>/1000 caracteres
+                            </div>
+                        </div>
 
-                    <button type="submit" class="submit-btn">
-                        <i class="fa-solid fa-paper-plane"></i>
-                        Enviar Reporte
-                    </button>
-                </form>
+                        <div class="form-group">
+                            <label for="contactEmail" class="form-label">
+                                <i class="fa-solid fa-envelope"></i>
+                                Correo de Contacto
+                            </label>
+                            <input type="email" id="contactEmail" name="contactEmail" class="form-input"
+                                placeholder="Correo donde recibirás la respuesta..." required>
+                            <div class="input-helper">
+                                Se enviará una confirmación a este correo
+                            </div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            Enviar Reporte
+                        </button>
+                    </form>
+                </div>
             </div>
 
             <!-- Success Modal -->
-            <div id="successModal" class="success-modal">
-                <div class="modal-content">
-                    <i class="fa-solid fa-check-circle"></i>
-                    <h3>¡Reporte Enviado Exitosamente!</h3>
-                    <p>Su reporte fue enviado exitosamente, la respuesta se enviará a su correo electrónico asignado. Si
-                        no aparece en su bandeja principal revise su correo spam.</p>
-                    <button class="modal-btn" onclick="closeSuccessModal()">
-                        <i class="fa-solid fa-check"></i>
-                        Aceptar
-                    </button>
+            <div id="successModal" class="modal-overlay">
+                <div class="modal-container">
+                    <div class="modal-content">
+                        <div class="modal-icon success">
+                            <i class="fa-solid fa-check-circle"></i>
+                        </div>
+                        <h3>¡Reporte Enviado Exitosamente!</h3>
+                        <p>Su reporte fue enviado exitosamente. La respuesta se enviará a su correo electrónico asignado. Si no aparece en su bandeja principal, revise su correo spam.</p>
+                        <div class="modal-actions">
+                            <button class="modal-btn" onclick="closeSuccessModal()">
+                                <i class="fa-solid fa-check"></i>
+                                Aceptar
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
 
+    
+
     <script type="module">
         import {authFunctions, updateUserDisplay, reportFunctions} from './function-scripts/firebase.js';
 
         document.addEventListener('DOMContentLoaded', async function () {
-            await updateUserDisplay();
 
+            // Elements
             const loginRequired = document.getElementById('loginRequired');
             const supportForm = document.getElementById('supportForm');
             const reportForm = document.getElementById('reportForm');
             const successModal = document.getElementById('successModal');
-            const logoutLink = document.getElementById('logoutLink');
+
+            // Character counters
+            const titleInput = document.getElementById('reportTitle');
+            const descriptionTextarea = document.getElementById('reportDescription');
+            const titleCounter = document.getElementById('titleCounter');
+            const descriptionCounter = document.getElementById('descriptionCounter');
+
+            titleInput.addEventListener('input', function() {
+                titleCounter.textContent = this.value.length;
+            });
+
+            descriptionTextarea.addEventListener('input', function() {
+                descriptionCounter.textContent = this.value.length;
+            });
 
             let currentUser = null;
 
@@ -137,45 +193,22 @@
                 currentUser = user;
                 updateUserDisplay();
 
-                const loginLink = document.getElementById('loginLink');
-                const registerLink = document.getElementById('registerLink');
-                const adminLink = document.getElementById('adminLink');
-
                 if (user) {
                     // User is logged in - show form
                     loginRequired.style.display = 'none';
                     supportForm.style.display = 'block';
 
-                    // Update menu
-                    loginLink.style.display = 'none';
-                    registerLink.style.display = 'none';
-                    adminLink.style.display = 'block';
-                    logoutLink.style.display = 'block';
+                    
                 } else {
                     // User is not logged in - show login required
                     loginRequired.style.display = 'block';
                     supportForm.style.display = 'none';
 
-                    // Update menu
-                    loginLink.style.display = 'block';
-                    registerLink.style.display = 'block';
-                    adminLink.style.display = 'none';
-                    logoutLink.style.display = 'none';
+                    
                 }
             });
 
-            // Handle logout
-            logoutLink.addEventListener('click', async function (e) {
-                e.preventDefault();
-                try {
-                    const result = await authFunctions.logout();
-                    if (result.success) {
-                        window.location.href = 'index.html';
-                    }
-                } catch (error) {
-                    console.error('Error al cerrar sesión:', error);
-                }
-            });
+            
 
             // Handle form submission
             reportForm.addEventListener('submit', async function (e) {
@@ -187,6 +220,7 @@
                 }
 
                 const submitBtn = e.target.querySelector('.submit-btn');
+                const originalContent = submitBtn.innerHTML;
                 submitBtn.disabled = true;
                 submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
 
@@ -206,6 +240,8 @@
 
                         // Reset form
                         reportForm.reset();
+                        titleCounter.textContent = '0';
+                        descriptionCounter.textContent = '0';
                     } else {
                         throw new Error(result.error);
                     }
@@ -213,7 +249,7 @@
                     alert('Error al enviar el reporte: ' + error.message);
                 } finally {
                     submitBtn.disabled = false;
-                    submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Enviar Reporte';
+                    submitBtn.innerHTML = originalContent;
                 }
             });
 
@@ -230,12 +266,6 @@
             });
         });
     </script>
-
-    <script src="function-scripts/header.js"></script>
-    <script src="function-scripts/footer.js"></script>
-    <script src="submenu/donaciones.js"></script>
-    </head>
-
 </body>
 
 </html>

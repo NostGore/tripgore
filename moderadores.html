@@ -8,6 +8,30 @@
     <link href="style.css" rel="stylesheet" type="text/css" />
     <link href="/css/moderadores.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        .view-btn {
+            background: #007bff;
+            color: white;
+        }
+        
+        .view-btn:hover {
+            background: #0056b3;
+        }
+        
+        .video-actions {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+        
+        .action-btn {
+            flex: 1;
+            min-width: 80px;
+            font-size: 11px;
+            padding: 6px 8px;
+        }
+    </style>
 
     <!-- Favicon -->
     <link rel="icon" href="https://files.catbox.moe/1b7bnr.png" type="image/png">
@@ -185,22 +209,33 @@
             }
 
             // Handle login form submission
-            loginForm.addEventListener('submit', function (e) {
+            loginForm.addEventListener('submit', async function (e) {
                 e.preventDefault();
 
                 const email = document.getElementById('email').value;
                 const password = document.getElementById('password').value;
 
-                // Validate credentials
-                const account = validateCredentials(email, password);
+                try {
+                    // Validate credentials
+                    const account = validateCredentials(email, password);
 
-                if (account) {
-                    // Store login state
-                    localStorage.setItem('loggedInModerator', JSON.stringify(account));
-                    showModeratorPanel(account);
-                    errorMessage.style.display = 'none';
-                } else {
+                    if (account) {
+                        // Store login state
+                        localStorage.setItem('loggedInModerator', JSON.stringify(account));
+                        showModeratorPanel(account);
+                        errorMessage.style.display = 'none';
+                    } else {
+                        errorMessage.style.display = 'block';
+                        setTimeout(() => {
+                            errorMessage.style.display = 'none';
+                        }, 3000);
+                    }
+                } catch (error) {
+                    console.error('Error en login:', error);
                     errorMessage.style.display = 'block';
+                    setTimeout(() => {
+                        errorMessage.style.display = 'none';
+                    }, 3000);
                 }
             });
 
@@ -294,7 +329,7 @@
                             <button class="action-btn reject-btn" onclick="rejectVideo('${video.id}')">
                                 <i class="fa-solid fa-times"></i> Rechazar
                             </button>
-                            <button class="action-btn view-btn" onclick="window.open('${video.videoUrl}', '_blank')">
+                            <button class="action-btn view-btn" onclick="window.open('${video.videoUrl1}', '_blank')">
                                 <i class="fa-solid fa-eye"></i> Ver Video
                             </button>
                         </div>
@@ -348,22 +383,40 @@
             // Make functions global for onclick handlers
             window.approveVideo = async function (videoId, videoData) {
                 if (confirm('¿Estás seguro de que quieres aprobar este video?')) {
+                    const btn = event.target.closest('.approve-btn');
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Aprobando...';
+                    btn.disabled = true;
+
                     try {
-                        const result = await videoFunctions.approveVideo(videoId, videoData);
+                        // Parse videoData if it's a string
+                        const parsedVideoData = typeof videoData === 'string' ? JSON.parse(videoData) : videoData;
+                        
+                        const result = await videoFunctions.approveVideo(videoId, parsedVideoData);
                         if (result.success) {
                             alert('Video aprobado exitosamente');
                             loadPendingVideos(); // Reload pending videos
                         } else {
                             alert('Error al aprobar el video: ' + result.error);
+                            btn.innerHTML = originalText;
+                            btn.disabled = false;
                         }
                     } catch (error) {
+                        console.error('Error al aprobar video:', error);
                         alert('Error de conexión: ' + error.message);
+                        btn.innerHTML = originalText;
+                        btn.disabled = false;
                     }
                 }
             };
 
             window.rejectVideo = async function (videoId) {
                 if (confirm('¿Estás seguro de que quieres rechazar este video?')) {
+                    const btn = event.target.closest('.reject-btn');
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Rechazando...';
+                    btn.disabled = true;
+
                     try {
                         const result = await videoFunctions.rejectVideo(videoId);
                         if (result.success) {
@@ -371,9 +424,14 @@
                             loadPendingVideos(); // Reload pending videos
                         } else {
                             alert('Error al rechazar el video: ' + result.error);
+                            btn.innerHTML = originalText;
+                            btn.disabled = false;
                         }
                     } catch (error) {
+                        console.error('Error al rechazar video:', error);
                         alert('Error de conexión: ' + error.message);
+                        btn.innerHTML = originalText;
+                        btn.disabled = false;
                     }
                 }
             };
@@ -381,6 +439,11 @@
             // Report management functions
             window.resolveReport = async function (reportId) {
                 if (confirm('¿Estás seguro de que quieres marcar este reporte como resuelto?')) {
+                    const btn = event.target.closest('.approve-btn');
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Resolviendo...';
+                    btn.disabled = true;
+
                     try {
                         const result = await reportFunctions.resolveReport(reportId);
                         if (result.success) {
@@ -388,15 +451,25 @@
                             loadPendingReports(); // Reload pending reports
                         } else {
                             alert('Error al resolver el reporte: ' + result.error);
+                            btn.innerHTML = originalText;
+                            btn.disabled = false;
                         }
                     } catch (error) {
+                        console.error('Error al resolver reporte:', error);
                         alert('Error de conexión: ' + error.message);
+                        btn.innerHTML = originalText;
+                        btn.disabled = false;
                     }
                 }
             };
 
             window.deleteReport = async function (reportId) {
                 if (confirm('¿Estás seguro de que quieres eliminar este reporte permanentemente?')) {
+                    const btn = event.target.closest('.reject-btn');
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Eliminando...';
+                    btn.disabled = true;
+
                     try {
                         const result = await reportFunctions.deleteReport(reportId);
                         if (result.success) {
@@ -404,9 +477,14 @@
                             loadPendingReports(); // Reload pending reports
                         } else {
                             alert('Error al eliminar el reporte: ' + result.error);
+                            btn.innerHTML = originalText;
+                            btn.disabled = false;
                         }
                     } catch (error) {
+                        console.error('Error al eliminar reporte:', error);
                         alert('Error de conexión: ' + error.message);
+                        btn.innerHTML = originalText;
+                        btn.disabled = false;
                     }
                 }
             };

@@ -319,7 +319,9 @@
             border-bottom: 2px solid #DC143C;
             margin-bottom: 25px;
             text-align: left;
-            /* Alinear el título de la sección a la izquierda */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .section-title {
@@ -331,46 +333,175 @@
             margin: 0;
         }
 
+        .see-more-btn {
+            background: #DC143C;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .see-more-btn:hover {
+            background: #ff1450;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(220, 20, 60, 0.4);
+        }
+
+        .see-more-btn:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .see-more-btn.see-less {
+            background: #666;
+            border-color: #888;
+        }
+
+        .see-more-btn.see-less:hover {
+            background: #777;
+            border-color: #999;
+        }
+
+        /* Scroll to top button */
+        .scroll-to-section {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: #DC143C;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(220, 20, 60, 0.4);
+        }
+
+        .scroll-to-section:hover {
+            background: #ff1450;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(220, 20, 60, 0.6);
+        }
+
+        .scroll-to-section.show {
+            display: flex;
+        }
+
+        /* Mobile adjustments for scroll button */
+        @media (max-width: 768px) {
+            .scroll-to-section {
+                bottom: 15px;
+                right: 15px;
+                width: 45px;
+                height: 45px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .scroll-to-section {
+                bottom: 12px;
+                right: 12px;
+                width: 42px;
+                height: 42px;
+                font-size: 15px;
+            }
+        }
+
         .videos-container {
             padding: 0 20px;
             text-align: left;
-            /* Alinear a la izquierda */
         }
 
-        /* Modern Video Cards - Horizontal Layout */
-        .video-card {
-            background: linear-gradient(135deg, #1a0000, #2a0000);
-            border: 2px solid #DC143C;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: flex;
-            height: 120px;
-            position: relative;
+        /* Desktop Video Grid Layout */
+        @media (min-width: 769px) {
+            .videos-container {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+            }
+
+            .video-card {
+                background: linear-gradient(135deg, #1a0000, #2a0000);
+                border: 2px solid #DC143C;
+                border-radius: 12px;
+                overflow: hidden;
+                transition: all 0.3s ease;
+                cursor: pointer;
+                display: flex;
+                flex-direction: column;
+                height: auto;
+                position: relative;
+            }
+
+            .video-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 25px rgba(220, 20, 60, 0.4);
+                border-color: #ff1450;
+            }
+
+            .video-thumbnail {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+            }
+
+            .video-content {
+                padding: 15px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                min-height: 150px;
+            }
         }
 
-        .video-card:hover {
-            transform: translateX(5px);
-            box-shadow: 0 8px 25px rgba(220, 20, 60, 0.4);
-            border-color: #ff1450;
-        }
+        /* Mobile Video Cards - Horizontal Layout */
+        @media (max-width: 768px) {
+            .video-card {
+                background: linear-gradient(135deg, #1a0000, #2a0000);
+                border: 2px solid #DC143C;
+                border-radius: 12px;
+                margin-bottom: 15px;
+                overflow: hidden;
+                transition: all 0.3s ease;
+                cursor: pointer;
+                display: flex;
+                height: 120px;
+                position: relative;
+            }
 
-        .video-thumbnail {
-            width: 200px;
-            height: 100%;
-            object-fit: cover;
-            flex-shrink: 0;
-        }
+            .video-card:hover {
+                transform: translateX(5px);
+                box-shadow: 0 8px 25px rgba(220, 20, 60, 0.4);
+                border-color: #ff1450;
+            }
 
-        .video-content {
-            flex: 1;
-            padding: 15px 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-width: 0;
+            .video-thumbnail {
+                width: 200px;
+                height: 100%;
+                object-fit: cover;
+                flex-shrink: 0;
+            }
+
+            .video-content {
+                flex: 1;
+                padding: 15px 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                min-width: 0;
+            }
         }
 
         .video-title {
@@ -549,16 +680,6 @@
 
         /* Responsive - Mobile Large */
         @media (max-width: 768px) {
-            .all-videos-btn {
-                font-size: 14px;
-                padding: 10px 20px;
-                gap: 8px;
-            }
-
-            .all-videos-btn i {
-                font-size: 16px;
-            }
-
             .header {
                 padding: 10px 15px;
                 gap: 12px;
@@ -632,18 +753,22 @@
             .section-header {
                 padding: 0 15px 18px;
                 margin-bottom: 20px;
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
             }
 
             .section-title {
                 font-size: 20px;
             }
 
+            .see-more-btn {
+                align-self: flex-end;
+            }
+
             /* Videos grid layout para móviles - 2 videos por fila */
             .videos-container {
                 padding: 0 15px;
-            }
-
-            .videos-container {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
                 gap: 10px;
@@ -809,7 +934,7 @@
             }
 
             .video-content {
-                padding: 6px;
+                padding: 8px;
             }
 
             .video-title {
@@ -1001,42 +1126,13 @@
             color: #DC143C;
             margin-bottom: 20px;
         }
-
-        /* Styles for "Todos Los Videos" Button */
-        .all-videos-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 24px;
-            background-color: #DC143C;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            gap: 10px;
-            box-shadow: 0 4px 12px rgba(220, 20, 60, 0.5);
-        }
-
-        .all-videos-btn:hover {
-            background-color: #ff1450;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(220, 20, 60, 0.7);
-        }
-
-        .all-videos-btn i {
-            font-size: 18px;
-        }
     </style>
 </head>
 
 <body>
     <!-- Header -->
     <header class="header">
-        <i class="fas fa-bars menu-toggle" id="menuToggle"></i>
-        <img src="https://files.catbox.moe/l6hd4u.png" alt="TRIPGORE" class="logo-img">
+        <i class="fas fa-bars menu-toggle" id="menuToggle"></i>        <img src="https://files.catbox.moe/l6hd4u.png" alt="TRIPGORE" class="logo-img">
         <span class="username" id="username">Usuario</span> <!-- Este ya no aparecerá en móviles -->
 
         <!-- Desktop Auth Buttons -->
@@ -1109,7 +1205,6 @@
                 Iniciar sesión
             </a>
             <a href="auth.html" class="menu-item mobile-auth-btn" id="mobileRegisterBtn">
-```text
                 <i class="fas fa-user-plus"></i>
                 Registrarse
             </a>
@@ -1139,31 +1234,58 @@
             Al momento de abrir este video, TripGore no se responsabiliza de nada.
         </div>
 
-        <!-- Add "Todos Los Videos" Button -->
-        <div style="text-align: center; margin-bottom: 20px;">
-            <a href="videos.html" class="all-videos-btn">
-                <i class="fas fa-film"></i>
-                Todos Los Videos
-            </a>
-        </div>
-
-        <!-- Videos Recomendados -->
-        <section class="section">
+        <!-- Videos de Asesinatos -->
+        <section class="section" id="asesinatosSection">
             <div class="section-header">
-                <h2 class="section-title">Para Ti</h2>
+                <h2 class="section-title">Asesinatos</h2>
+                <button class="see-more-btn" id="seeMoreAsesinatos">Ver más</button>
             </div>
-            <div class="videos-container" id="recommendedVideos">
+            <div class="videos-container" id="asesinatosVideos">
                 <!-- Videos will be loaded here -->
             </div>
         </section>
 
-        <!-- Videos de Colaboradores -->
-        <section class="section">
+        <!-- Videos de Accidentes -->
+        <section class="section" id="accidentesSection">
             <div class="section-header">
-                <h2 class="section-title">Colaboradores</h2>
+                <h2 class="section-title">Accidentes</h2>
+                <button class="see-more-btn" id="seeMoreAccidentes">Ver más</button>
             </div>
-            <div class="videos-container" id="collaboratorVideos">
-                <!-- Collaborator videos will be loaded here -->
+            <div class="videos-container" id="accidentesVideos">
+                <!-- Videos will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Videos de Incidentes -->
+        <section class="section" id="incidentesSection">
+            <div class="section-header">
+                <h2 class="section-title">Incidentes</h2>
+                <button class="see-more-btn" id="seeMoreIncidentes">Ver más</button>
+            </div>
+            <div class="videos-container" id="incidentesVideos">
+                <!-- Videos will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Videos de Suicidios -->
+        <section class="section" id="suicidiosSection">
+            <div class="section-header">
+                <h2 class="section-title">Suicidios</h2>
+                <button class="see-more-btn" id="seeMoreSuicidios">Ver más</button>
+            </div>
+            <div class="videos-container" id="suicidiosVideos">
+                <!-- Videos will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Videos de Autolesiones -->
+        <section class="section" id="autolesionesSection">
+            <div class="section-header">
+                <h2 class="section-title">Autolesiones</h2>
+                <button class="see-more-btn" id="seeMoreAutolesiones">Ver más</button>
+            </div>
+            <div class="videos-container" id="autolesionesVideos">
+                <!-- Videos will be loaded here -->
             </div>
         </section>
     </main>
@@ -1172,6 +1294,11 @@
     <footer class="footer">
         <p>&copy; <span id="currentYear"></span> TRIPGORE. Todos los derechos reservados.</p>
     </footer>
+
+    <!-- Scroll to section button -->
+    <button class="scroll-to-section" id="scrollToSectionBtn">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script type="module">
         import mediaDB from './mediaDB.js';
@@ -1207,15 +1334,68 @@
         // Set current year
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // Load videos
-        function shuffleArray(array) {
-            const shuffled = [...array];
-            for (let i = shuffled.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-            }
-            return shuffled;
+        // Function to parse date and return timestamp for sorting
+        function parseDate(dateStr) {
+            const [day, month, year] = dateStr.split('/').map(Number);
+            return new Date(year, month - 1, day).getTime();
         }
+
+        // Function to sort videos by date (newest first)
+        function sortVideosByDate(videos) {
+            return videos.sort((a, b) => parseDate(b.fecha) - parseDate(a.fecha));
+        }
+
+        // Check if mobile view
+        function isMobile() {
+            return window.innerWidth <= 768;
+        }
+
+        // Get videos per page based on screen size
+        function getVideosPerPage() {
+            return isMobile() ? 4 : 8;
+        }
+
+        // Categories and their tracking
+        const categories = {
+            'ASESINATOS': {
+                container: 'asesinatosVideos',
+                button: 'seeMoreAsesinatos',
+                showingAll: false,
+                videos: [],
+                sectionId: 'asesinatosSection'
+            },
+            'ACCIDENTES': {
+                container: 'accidentesVideos',
+                button: 'seeMoreAccidentes',
+                showingAll: false,
+                videos: [],
+                sectionId: 'accidentesSection'
+            },
+            'INCIDENTES': {
+                container: 'incidentesVideos',
+                button: 'seeMoreIncidentes',
+                showingAll: false,
+                videos: [],
+                sectionId: 'incidentesSection'
+            },
+            'SUICIDIOS': {
+                container: 'suicidiosVideos',
+                button: 'seeMoreSuicidios',
+                showingAll: false,
+                videos: [],
+                sectionId: 'suicidiosSection'
+            },
+            'AUTOLESIONES': {
+                container: 'autolesionesVideos',
+                button: 'seeMoreAutolesiones',
+                showingAll: false,
+                videos: [],
+                sectionId: 'autolesionesSection'
+            }
+        };
+
+        // Variable to track the currently expanded section
+        let currentExpandedSection = null;
 
         function createVideoCard(video) {
             const videoCard = document.createElement('div');
@@ -1289,7 +1469,7 @@
                     const statsElement = document.getElementById(`stats-${videoId}`);
                     if (statsElement) {
                         const likesElement = statsElement.querySelector('.like-count');
-                        const dislikesElement = statsElement.querySelector('.like-count');
+                        const dislikesElement = statsElement.querySelector('.dislike-count');
                         const likesStatItem = statsElement.querySelector('.stat-item.likes');
                         const dislikesStatItem = statsElement.querySelector('.stat-item.dislikes');
 
@@ -1337,69 +1517,210 @@
             `;
         }
 
-        // Load recommended videos (8 random videos)
-        function loadRecommendedVideos() {
-            const container = document.getElementById('recommendedVideos');
-            showLoading(container);
+        // Load videos for a specific category
+        function loadCategoryVideos(categoryName, toggleView = false) {
+            const category = categories[categoryName];
+            const container = document.getElementById(category.container);
+            const button = document.getElementById(category.button);
+
+            if (!toggleView) {
+                showLoading(container);
+            }
 
             setTimeout(() => {
-                const validVideos = mediaDB.filter(video =>
-                    video.titulo && video.portada && video.video && video.autor && video.categoria
-                );
+                let videosToShow;
 
-                const shuffledVideos = shuffleArray(validVideos);
-                const recommendedVideos = shuffledVideos.slice(0, 8);
+                if (toggleView) {
+                    // If we're expanding a section, collapse any other expanded section first
+                    if (!category.showingAll && currentExpandedSection && currentExpandedSection !== categoryName) {
+                        const otherCategory = categories[currentExpandedSection];
+                        if (otherCategory.showingAll) {
+                            // Collapse the other section
+                            otherCategory.showingAll = false;
+                            const otherButton = document.getElementById(otherCategory.button);
+                            otherButton.textContent = 'Ver más';
+                            otherButton.classList.remove('see-less');
+                            
+                            // Reload the other section with limited videos
+                            const otherContainer = document.getElementById(otherCategory.container);
+                            otherContainer.innerHTML = '';
+                            const videosPerPage = getVideosPerPage();
+                            const limitedVideos = otherCategory.videos.slice(0, videosPerPage);
+                            limitedVideos.forEach(video => {
+                                const videoCard = createVideoCard(video);
+                                otherContainer.appendChild(videoCard);
+                            });
+                        }
+                    }
+
+                    // Toggle between showing all and showing limited
+                    category.showingAll = !category.showingAll;
+                } else {
+                    // Initial load - show limited
+                    category.showingAll = false;
+                }
+
+                // Update current expanded section tracker
+                if (category.showingAll) {
+                    currentExpandedSection = categoryName;
+                } else if (currentExpandedSection === categoryName) {
+                    currentExpandedSection = null;
+                }
+
+                if (category.showingAll) {
+                    // Show all videos
+                    videosToShow = category.videos;
+                    button.textContent = 'Ver menos';
+                    button.classList.add('see-less');
+                    
+                    // Show scroll button when expanding
+                    showScrollToSectionButton();
+                } else {
+                    // Show limited videos (initial amount)
+                    const videosPerPage = getVideosPerPage();
+                    videosToShow = category.videos.slice(0, videosPerPage);
+                    button.textContent = 'Ver más';
+                    button.classList.remove('see-less');
+                    
+                    // Hide scroll button if no sections are expanded
+                    if (!currentExpandedSection) {
+                        hideScrollToSectionButton();
+                    }
+                }
 
                 container.innerHTML = '';
 
-                if (recommendedVideos.length === 0) {
-                    showEmptyState(container, 'No hay videos recomendados disponibles');
+                if (videosToShow.length === 0) {
+                    showEmptyState(container, `No hay videos de ${categoryName.toLowerCase()} disponibles`);
+                    button.style.display = 'none';
                     return;
                 }
 
-                recommendedVideos.forEach(video => {
+                videosToShow.forEach(video => {
                     const videoCard = createVideoCard(video);
                     container.appendChild(videoCard);
                 });
-            }, 1000);
+
+                // Show button if there are more videos than initial load
+                const videosPerPage = getVideosPerPage();
+                if (category.videos.length > videosPerPage) {
+                    button.style.display = 'block';
+                    button.disabled = false;
+                } else {
+                    button.style.display = 'none';
+                }
+
+            }, toggleView ? 300 : 1000);
         }
 
-        // Load collaborator videos (8 random videos excluding TripGore)
-        function loadCollaboratorVideos() {
-            const container = document.getElementById('collaboratorVideos');
-            showLoading(container);
-
-            setTimeout(() => {
-                const collaboratorVideos = mediaDB.filter(video =>
-                    video.titulo && video.portada && video.video && video.autor && video.categoria &&
-                    video.autor !== 'TripGore'
+        // Initialize categories with videos
+        function initializeCategories() {
+            Object.keys(categories).forEach(categoryName => {
+                const categoryVideos = mediaDB.filter(video =>
+                    video.titulo && video.portada && video.video && video.autor &&
+                    video.categoria === categoryName
                 );
 
-                const shuffledVideos = shuffleArray(collaboratorVideos);
-                const selectedVideos = shuffledVideos.slice(0, 8);
+                // Sort videos by date (newest first)
+                categories[categoryName].videos = sortVideosByDate(categoryVideos);
 
-                container.innerHTML = '';
+                // Load initial videos
+                loadCategoryVideos(categoryName);
 
-                if (selectedVideos.length === 0) {
-                    showEmptyState(container, 'No hay videos de colaboradores disponibles');
-                    return;
-                }
-
-                selectedVideos.forEach(video => {
-                    const videoCard = createVideoCard(video);
-                    container.appendChild(videoCard);
+                // Add event listener for "see more/less" button
+                const button = document.getElementById(categories[categoryName].button);
+                button.addEventListener('click', () => {
+                    loadCategoryVideos(categoryName, true);
                 });
-            }, 1500);
+            });
+        }
+
+        // Handle window resize (only for significant size changes, not mobile scrolling)
+        let resizeTimeout;
+        let lastWidth = window.innerWidth;
+        let lastHeight = window.innerHeight;
+        
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                const currentWidth = window.innerWidth;
+                const currentHeight = window.innerHeight;
+                
+                // Only reload if there's a significant width change (orientation change or desktop resize)
+                // Ignore small height changes that happen during mobile scrolling
+                const widthChange = Math.abs(currentWidth - lastWidth);
+                const heightChange = Math.abs(currentHeight - lastHeight);
+                
+                // Only reload if width changes significantly (>100px) or if it's a major orientation change
+                if (widthChange > 100 || (widthChange > 50 && heightChange > 200)) {
+                    // Reload all categories when screen size changes significantly
+                    Object.keys(categories).forEach(categoryName => {
+                        // Reset showing state and reload
+                        const wasShowingAll = categories[categoryName].showingAll;
+                        categories[categoryName].showingAll = false;
+                        loadCategoryVideos(categoryName);
+                        // If was showing all, toggle to show all again
+                        if (wasShowingAll) {
+                            setTimeout(() => {
+                                loadCategoryVideos(categoryName, true);
+                            }, 100);
+                        }
+                    });
+                    
+                    // Update stored dimensions
+                    lastWidth = currentWidth;
+                    lastHeight = currentHeight;
+                }
+            }, 250);
+        });
+
+        // Scroll to section button functionality
+        function showScrollToSectionButton() {
+            const scrollBtn = document.getElementById('scrollToSectionBtn');
+            if (scrollBtn) {
+                scrollBtn.classList.add('show');
+            }
+        }
+
+        function hideScrollToSectionButton() {
+            const scrollBtn = document.getElementById('scrollToSectionBtn');
+            if (scrollBtn) {
+                scrollBtn.classList.remove('show');
+            }
+        }
+
+        function scrollToCurrentSection() {
+            if (currentExpandedSection) {
+                const sectionId = categories[currentExpandedSection].sectionId;
+                const sectionElement = document.getElementById(sectionId);
+                if (sectionElement) {
+                    // Get header height to account for fixed header
+                    const headerHeight = document.querySelector('.header').offsetHeight || 80;
+                    const sectionTop = sectionElement.offsetTop - headerHeight - 20; // Extra 20px padding
+                    
+                    window.scrollTo({
+                        top: sectionTop,
+                        behavior: 'smooth'
+                    });
+                }
+            }
         }
 
         // Initialize page
         document.addEventListener('DOMContentLoaded', () => {
-            loadRecommendedVideos();
-            loadCollaboratorVideos();
+            initializeCategories();
             setupHeaderAutoHide();
-            // Inicializar música de fondo
+            setupScrollToSectionButton();
             initMusicPlayer();
         });
+
+        // Setup scroll to section button
+        function setupScrollToSectionButton() {
+            const scrollBtn = document.getElementById('scrollToSectionBtn');
+            if (scrollBtn) {
+                scrollBtn.addEventListener('click', scrollToCurrentSection);
+            }
+        }
 
         // Auto-hide header functionality
         function setupHeaderAutoHide() {
