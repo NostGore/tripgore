@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRIPGORE | ROLES</title>
+    <title>TRIPGORE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="https://files.catbox.moe/1b7bnr.png" type="image/png">
 
@@ -256,228 +256,7 @@
         /* Main Content */
         .main-content {
             margin-top: 80px;
-            padding: 40px 20px;
-        }
-
-        /* Roles Header */
-        .roles-header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 30px 20px;
-            background: rgba(139, 0, 0, 0.1);
-            border-radius: 15px;
-            border: 2px solid rgba(220, 20, 60, 0.3);
-        }
-
-        .roles-header h1 {
-            font-size: 36px;
-            color: #DC143C;
-            margin-bottom: 15px;
-            text-shadow: 0 0 20px rgba(220, 20, 60, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .roles-header p {
-            font-size: 18px;
-            color: #FFB6C1;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* Roles Container */
-        .roles-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .roles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-
-        /* Role Card */
-        .role-card {
-            background: linear-gradient(145deg, #1a0000, #0a0000);
-            border: 2px solid rgba(220, 20, 60, 0.3);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .role-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(220, 20, 60, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .role-card:hover::before {
-            left: 100%;
-        }
-
-        .role-card:hover {
-            transform: translateY(-10px);
-            border-color: #DC143C;
-            box-shadow: 0 15px 40px rgba(220, 20, 60, 0.3);
-        }
-
-        .role-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            border-radius: 50%;
-            background: rgba(220, 20, 60, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 3px solid rgba(220, 20, 60, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .role-card:hover .role-icon {
-            border-color: #DC143C;
-            background: rgba(220, 20, 60, 0.2);
-            transform: scale(1.1);
-        }
-
-        .role-icon img {
-            width: 50px;
-            height: 50px;
-            object-fit: contain;
-        }
-
-        .role-name {
-            font-size: 24px;
-            font-weight: bold;
-            color: #DC143C;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .role-description {
-            color: #FFB6C1;
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .role-requirement {
-            color: #90EE90;
-            font-size: 14px;
-            font-style: italic;
-            background: rgba(144, 238, 144, 0.1);
-            padding: 10px;
-            border-radius: 10px;
-            border: 1px solid rgba(144, 238, 144, 0.3);
-        }
-
-        /* Apply Section */
-        .apply-section {
-            background: linear-gradient(145deg, #1a0000, #0a0000);
-            border: 2px solid rgba(220, 20, 60, 0.5);
-            border-radius: 20px;
-            padding: 40px;
-            text-align: center;
-            margin-top: 40px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .apply-section::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(220, 20, 60, 0.1) 0%, transparent 70%);
-            transform: translate(-50%, -50%);
-            animation: pulseGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes pulseGlow {
-
-            0%,
-            100% {
-                opacity: 0.5;
-                transform: translate(-50%, -50%) scale(1);
-            }
-
-            50% {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1.1);
-            }
-        }
-
-        .apply-title {
-            font-size: 28px;
-            color: #DC143C;
-            margin-bottom: 20px;
-            text-shadow: 0 0 15px rgba(220, 20, 60, 0.5);
-            position: relative;
-            z-index: 2;
-        }
-
-        .apply-description {
-            color: #FFB6C1;
-            font-size: 18px;
-            margin-bottom: 30px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .apply-btn {
-            background: linear-gradient(135deg, #DC143C, #ff1450);
-            color: white;
-            padding: 15px 40px;
-            border: none;
-            border-radius: 50px;
-            font-size: 18px;
-            font-weight: bold;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 2;
-            box-shadow: 0 5px 20px rgba(220, 20, 60, 0.3);
-        }
-
-        .apply-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 10px 30px rgba(220, 20, 60, 0.5);
-            background: linear-gradient(135deg, #ff1450, #DC143C);
-        }
-
-        .apply-btn i {
-            font-size: 20px;
-            animation: iconBounce 2s ease-in-out infinite;
-        }
-
-        @keyframes iconBounce {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-3px);
-            }
+            padding: 0;
         }
 
         /* Footer */
@@ -492,134 +271,6 @@
         .footer p {
             color: #FFB6C1;
             font-size: 14px;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .header {
-                padding: 12px 18px;
-                gap: 15px;
-            }
-
-            .logo-img {
-                height: 60px;
-            }
-
-            .menu-toggle {
-                font-size: 20px;
-            }
-
-            .main-content {
-                margin-top: 70px;
-                padding: 20px 15px;
-            }
-
-            .roles-header h1 {
-                font-size: 28px;
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .roles-header p {
-                font-size: 16px;
-            }
-
-            .roles-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .role-card {
-                padding: 25px 20px;
-            }
-
-            .role-icon {
-                width: 70px;
-                height: 70px;
-            }
-
-            .role-icon img {
-                width: 40px;
-                height: 40px;
-            }
-
-            .role-name {
-                font-size: 20px;
-            }
-
-            .role-description {
-                font-size: 14px;
-            }
-
-            .role-requirement {
-                font-size: 13px;
-                padding: 8px;
-            }
-
-            .apply-section {
-                padding: 30px 20px;
-            }
-
-            .apply-title {
-                font-size: 24px;
-            }
-
-            .apply-description {
-                font-size: 16px;
-            }
-
-            .apply-btn {
-                padding: 12px 30px;
-                font-size: 16px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .main-content {
-                padding: 15px 10px;
-            }
-
-            .roles-header {
-                padding: 20px 15px;
-            }
-
-            .roles-header h1 {
-                font-size: 24px;
-            }
-
-            .roles-header p {
-                font-size: 14px;
-            }
-
-            .role-card {
-                padding: 20px 15px;
-            }
-
-            .role-name {
-                font-size: 18px;
-                letter-spacing: 1px;
-            }
-
-            .role-description {
-                font-size: 13px;
-            }
-
-            .apply-section {
-                padding: 25px 15px;
-            }
-
-            .apply-title {
-                font-size: 20px;
-            }
-
-            .apply-description {
-                font-size: 14px;
-            }
-
-            .apply-btn {
-                padding: 10px 25px;
-                font-size: 14px;
-            }
         }
     </style>
 </head>
@@ -661,23 +312,23 @@
             <i class="fas fa-user"></i>
             <span id="userNameDisplay">Usuario</span>
         </a>
-        <a href="../index.html" class="menu-item">
+        <a href="index.html" class="menu-item">
             <i class="fas fa-home"></i>
             Inicio
         </a>
-        <a href="../subir.html" class="menu-item">
+        <a href="subir.html" class="menu-item">
             <i class="fas fa-upload"></i>
             Subir
         </a>
-        <a href="../chat.html" class="menu-item">
+        <a href="chat.html" class="menu-item">
             <i class="fas fa-comments"></i>
             Chat
         </a>
-        <a href="../soporte.html" class="menu-item">
+        <a href="soporte.html" class="menu-item">
             <i class="fas fa-headset"></i>
             Soporte
         </a>
-        <a href="../asistente.html" class="menu-item">
+        <a href="asistente.html" class="menu-item">
             <i class="fa-solid fa-robot"></i>
             TRIP-BOT AI
         </a>
@@ -685,11 +336,11 @@
             <i class="fab fa-discord"></i>
             Discord
         </a>
-        <a href="/submenu/colaboradores.html" class="menu-item">
+        <a href="submenu/colaboradores.html" class="menu-item">
             <i class="fas fa-users"></i>
             Colaboradores
         </a>
-        <a href="/submenu/roles.html" class="menu-item">
+        <a href="submenu/roles.html" class="menu-item">
             <i class="fas fa-crown"></i>
             Roles
         </a>
@@ -716,91 +367,6 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Roles Header -->
-        <div class="roles-header">
-            <h1>
-                <i class="fa-solid fa-crown"></i>
-                Sistema de Roles TRIPGORE
-            </h1>
-            <p>A continuación se mostrará la información de los roles que TRIPGORE tiene disponibles.</p>
-        </div>
-
-        <!-- Roles Container -->
-        <div class="roles-container">
-            <div class="roles-grid">
-                <!-- Moderador Role -->
-                <div class="role-card">
-                    <div class="role-icon">
-                        <img src="https://img.icons8.com/fluent/600/discord-moderator-program-alumni-badge.png"
-                            alt="Moderador">
-                    </div>
-                    <h3 class="role-name">Moderador</h3>
-                    <p class="role-description">
-                        Este rol es asignado a los moderadores oficiales de TRIPGORE, son encargados de moderar los
-                        videos y encargarse de mantener el orden.
-                    </p>
-                    <div class="role-requirement">
-                        Rol exclusivo del staff oficial
-                    </div>
-                </div>
-
-                <!-- TikToker Role -->
-                <div class="role-card">
-                    <div class="role-icon">
-                        <img src="https://qu.ax/RtcSt.png" alt="TikToker">
-                    </div>
-                    <h3 class="role-name">TikToker</h3>
-                    <p class="role-description">
-                        Este rol es asignado a aquellos usuarios que hablan de la página en sus videos de TikTok.
-                    </p>
-                    <div class="role-requirement">
-                        Se consigue siempre y cuando los videos publicados hablando de la web superen las 1000 vistas.
-                    </div>
-                </div>
-
-                <!-- YouTuber Role -->
-                <div class="role-card">
-                    <div class="role-icon">
-                        <img src="https://qu.ax/gqbLi.png" alt="YouTuber">
-                    </div>
-                    <h3 class="role-name">YouTuber</h3>
-                    <p class="role-description">
-                        Este rol es asignado a aquellos usuarios que hablan de la página en sus videos de YouTube.
-                    </p>
-                    <div class="role-requirement">
-                        Se consigue siempre y cuando los videos publicados hablando de la web superen las 1000 vistas.
-                    </div>
-                </div>
-
-                <!-- Verificado Role -->
-                <div class="role-card">
-                    <div class="role-icon">
-                        <img src="https://qu.ax/Xeqee.gif" alt="Verificado">
-                    </div>
-                    <h3 class="role-name">Verificado</h3>
-                    <p class="role-description">
-                        Este rol se consigue cuando los usuarios tienen una propia comunidad ya sea en TikTok, YouTube o
-                        Facebook y cuando su comunidad apoya a la página de TripGore.
-                    </p>
-                    <div class="role-requirement">
-                        Requiere tener una comunidad propia que apoye a TRIPGORE
-                    </div>
-                </div>
-            </div>
-
-            <!-- Apply Section -->
-            <div class="apply-section">
-                <h2 class="apply-title">Postula a un rol</h2>
-                <p class="apply-description">
-                    ¿Cumples con los requisitos para obtener alguno de estos roles? ¡Postúlate ahora y forma parte del
-                    equipo especial de TRIPGORE!
-                </p>
-                <a href="soporte.html" class="apply-btn">
-                    <i class="fas fa-paper-plane"></i>
-                    POSTULAR EN SOPORTE
-                </a>
-            </div>
-        </div>
     </main>
 
     <!-- Footer -->
@@ -843,18 +409,22 @@
         function setupHeaderAutoHide() {
             const header = document.querySelector('.header');
             let lastScrollTop = 0;
-            let scrollThreshold = 10;
+            let scrollThreshold = 10; // Minimum scroll distance to trigger hide/show
 
             window.addEventListener('scroll', () => {
                 const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
+                // Avoid negative scrolling values
                 if (currentScrollTop < 0) return;
 
+                // Check if scrolled enough to trigger the effect
                 if (Math.abs(currentScrollTop - lastScrollTop) < scrollThreshold) return;
 
                 if (currentScrollTop > lastScrollTop && currentScrollTop > 100) {
+                    // Scrolling down and past 100px - hide header
                     header.classList.add('hidden');
                 } else {
+                    // Scrolling up or at top - show header
                     header.classList.remove('hidden');
                 }
 
@@ -908,18 +478,23 @@
         try {
             import('./function-scripts/firebase.js').then(({authFunctions}) => {
                 authFunctions.onAuthStateChanged((user) => {
+                    // Update desktop display
                     if (user) {
                         const username = user.email.split('@')[0];
                         document.getElementById('username').textContent = username;
                         document.getElementById('userNameDisplay').textContent = username;
 
+                        // Update desktop auth buttons
                         updateDesktopAuthButtons(true);
+                        // Update mobile auth buttons
                         updateMobileAuthButtons(true);
                     } else {
                         document.getElementById('username').textContent = 'Invitado';
                         document.getElementById('userNameDisplay').textContent = 'Invitado';
 
+                        // Update desktop auth buttons
                         updateDesktopAuthButtons(false);
+                        // Update mobile auth buttons
                         updateMobileAuthButtons(false);
                     }
                 });
@@ -934,29 +509,35 @@
             updateMobileAuthButtons(false);
         }
 
+        // Function to update desktop auth buttons based on auth state
         function updateDesktopAuthButtons(isLoggedIn) {
             const desktopAuth = document.querySelector('.desktop-auth');
             const desktopUserMenu = document.querySelector('.desktop-user-menu');
 
             if (isLoggedIn) {
+                // User is logged in - hide auth buttons, show user menu
                 if (desktopAuth) desktopAuth.style.display = 'none';
                 if (desktopUserMenu) desktopUserMenu.style.display = 'flex';
             } else {
+                // User is logged out - show auth buttons, hide user menu
                 if (desktopAuth) desktopAuth.style.display = 'flex';
                 if (desktopUserMenu) desktopUserMenu.style.display = 'none';
             }
         }
 
+        // Function to update mobile auth buttons based on auth state
         function updateMobileAuthButtons(isLoggedIn) {
             const mobileLoginBtn = document.getElementById('mobileLoginBtn');
             const mobileRegisterBtn = document.getElementById('mobileRegisterBtn');
             const mobileLogoutBtn = document.getElementById('mobileLogoutBtn');
 
             if (isLoggedIn) {
+                // User is logged in - hide login/register, show logout in menu
                 if (mobileLoginBtn) mobileLoginBtn.style.display = 'none';
                 if (mobileRegisterBtn) mobileRegisterBtn.style.display = 'none';
                 if (mobileLogoutBtn) mobileLogoutBtn.style.display = 'flex';
             } else {
+                // User is logged out - show login/register, hide logout
                 if (mobileLoginBtn) mobileLoginBtn.style.display = 'flex';
                 if (mobileRegisterBtn) mobileRegisterBtn.style.display = 'flex';
                 if (mobileLogoutBtn) mobileLogoutBtn.style.display = 'none';

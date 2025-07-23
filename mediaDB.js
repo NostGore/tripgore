@@ -3602,6 +3602,15 @@ const mediaDB = [
     categoria: "AUTOLESIONES",
     fecha: "17/07/2025",
   },
+  {
+    id: "snuff-r73", //ocultos
+    titulo: "Snuff R73",
+    portada: "https://indefinide.jpg",
+    video: "https://files.catbox.moe/suzaju.mp4",
+    autor: "TripGore",
+    categoria: "OCULTO",
+    fecha: "23/07/2025",
+  },
 ];
 
 // Exportar la base de datos

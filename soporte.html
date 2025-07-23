@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -6,58 +5,136 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soporte - TRIPGORE</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
-    <link href="/css/soporte.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Favicon -->
     <link rel="icon" href="https://files.catbox.moe/1b7bnr.png" type="image/png">
+    <link rel="stylesheet" href="css/soporte.css">
 </head>
 
 <body>
-    
+    <!-- Header -->
+    <header class="header">
+        <i class="fas fa-bars menu-toggle" id="menuToggle"></i>
+        <img src="https://files.catbox.moe/l6hd4u.png" alt="TRIPGORE" class="logo-img">
+        <span class="username" id="username">Usuario</span>
+
+        <!-- Desktop Auth Buttons -->
+        <div class="desktop-auth">
+            <a href="auth.html" class="auth-btn login-btn">
+                <i class="fas fa-sign-in-alt"></i>
+                Iniciar sesión
+            </a>
+            <a href="auth.html" class="auth-btn register-btn">
+                <i class="fas fa-user-plus"></i>
+                Registrarse
+            </a>
+        </div>
+
+        <!-- Desktop User Menu -->
+        <div class="desktop-user-menu" style="display: none;">
+            <button class="auth-btn logout-btn" id="desktopLogoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                Cerrar Sesión
+            </button>
+        </div>
+    </header>
+
+    <!-- Slide Menu -->
+    <div class="slide-menu" id="slideMenu">
+        <div class="menu-close">
+            <i class="fas fa-times" id="menuClose"></i>
+        </div>
+        <a href="#" class="menu-item" id="userNameMenu">
+            <i class="fas fa-user"></i>
+            <span id="userNameDisplay">Usuario</span>
+        </a>
+        <a href="index.html" class="menu-item">
+            <i class="fas fa-home"></i>
+            Inicio
+        </a>
+        <a href="subir.html" class="menu-item">
+            <i class="fas fa-upload"></i>
+            Subir
+        </a>
+        <a href="chat.html" class="menu-item">
+            <i class="fas fa-comments"></i>
+            Chat
+        </a>
+        <a href="soporte.html" class="menu-item">
+            <i class="fas fa-headset"></i>
+            Soporte
+        </a>
+        <a href="asistente.html" class="menu-item">
+            <i class="fa-solid fa-robot"></i>
+            TRIP-BOT AI
+        </a>
+        <a href="#" class="menu-item">
+            <i class="fab fa-discord"></i>
+            Discord
+        </a>
+        <a href="submenu/colaboradores.html" class="menu-item">
+            <i class="fas fa-users"></i>
+            Colaboradores
+        </a>
+        <a href="submenu/roles.html" class="menu-item">
+            <i class="fas fa-crown"></i>
+            Roles
+        </a>
+
+        <!-- Mobile Auth Buttons -->
+        <div class="mobile-auth-section">
+            <a href="auth.html" class="menu-item mobile-auth-btn" id="mobileLoginBtn">
+                <i class="fas fa-sign-in-alt"></i>
+                Iniciar sesión
+            </a>
+            <a href="auth.html" class="menu-item mobile-auth-btn" id="mobileRegisterBtn">
+                <i class="fas fa-user-plus"></i>
+                Registrarse
+            </a>
+            <a href="#" class="menu-item mobile-auth-btn" id="mobileLogoutBtn" style="display: none;">
+                <i class="fas fa-sign-out-alt"></i>
+                Cerrar Sesión
+            </a>
+        </div>
+    </div>
+
+    <!-- Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay"></div>
 
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Banner -->
-        <section class="banner">
-            <div class="banner-content">
-                <h1>SOPORTE</h1>
-                <p>Centro de ayuda y reportes</p>
-            </div>
-        </section>
-
         <!-- Support Container -->
         <div class="support-container">
-            <!-- Support Header Info -->
+            <!-- Support Info Section -->
             <div class="support-info-section">
                 <div class="support-info-card">
                     <div class="info-icon">
-                        <i class="fa-solid fa-headset"></i>
+                        <i class="fas fa-headset"></i>
                     </div>
                     <div class="info-content">
-                        <h3>Centro de Soporte</h3>
-                        <p>¿Tienes alguna duda, queja o encontraste un error? Envíanos tu reporte y te ayudaremos lo antes posible.</p>
+                        <h3>Centro de Soporte TRIPGORE</h3>
+                        <p>Nuestro equipo está listo para ayudarte con cualquier consulta, problema técnico o sugerencia
+                            que tengas. Completa el formulario a continuación y te responderemos lo antes posible.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Login Required Message -->
-            <div id="loginRequired" class="auth-required-section" style="display: none;">
+            <!-- Auth Required Section (for non-logged users) -->
+            <div class="auth-required-section" id="authRequiredSection">
                 <div class="auth-required-card">
                     <div class="auth-icon">
-                        <i class="fa-solid fa-lock"></i>
+                        <i class="fas fa-user-lock"></i>
                     </div>
                     <div class="auth-content">
-                        <h3>Iniciar Sesión Requerido</h3>
-                        <p>Para enviar un reporte de soporte, necesitas tener una cuenta registrada e iniciar sesión.</p>
+                        <h3>Acceso Restringido</h3>
+                        <p>Para enviar una consulta de soporte, necesitas tener una cuenta en TRIPGORE. Inicia sesión o
+                            regístrate para continuar.</p>
                         <div class="auth-buttons">
                             <a href="auth.html" class="auth-action-btn login-action">
-                                <i class="fa-solid fa-sign-in-alt"></i>
+                                <i class="fas fa-sign-in-alt"></i>
                                 Iniciar Sesión
                             </a>
                             <a href="auth.html" class="auth-action-btn register-action">
-                                <i class="fa-solid fa-user-plus"></i>
+                                <i class="fas fa-user-plus"></i>
                                 Registrarse
                             </a>
                         </div>
@@ -65,206 +142,384 @@
                 </div>
             </div>
 
-            <!-- Support Form -->
-            <div id="supportForm" class="support-form-section" style="display: none;">
+            <!-- Support Form Section -->
+            <div class="support-form-section" id="supportFormSection" style="display: none;">
                 <div class="form-container">
                     <div class="form-header">
                         <h3>
-                            <i class="fa-solid fa-paper-plane"></i>
-                            Enviar Reporte
+                            <i class="fas fa-paper-plane"></i>
+                            Enviar Consulta de Soporte
                         </h3>
-                        <p>Completa el formulario con toda la información necesaria</p>
+                        <p>Completa todos los campos para enviarnos tu consulta</p>
                     </div>
 
-                    <form id="reportForm" class="support-form">
+                    <form class="support-form" id="supportForm">
+                        <div id="errorMessage" class="error-message" style="display: none;"></div>
+                        <div id="successMessage" class="success-message" style="display: none;"></div>
+
                         <div class="form-group">
-                            <label for="reportType" class="form-label">
-                                <i class="fa-solid fa-tag"></i>
-                                Tipo de Reporte
+                            <label class="form-label">
+                                <i class="fas fa-tags"></i>
+                                Tipo de Consulta
                             </label>
-                            <select id="reportType" name="reportType" class="form-input" required>
-                                <option value="">Selecciona el tipo de reporte</option>
-                                <option value="error">🔧 Error Técnico</option>
-                                <option value="bug">🐛 Bug/Fallo</option>
-                                <option value="suggestion">💡 Sugerencia</option>
-                                <option value="complaint">😠 Queja</option>
-                                <option value="question">❓ Pregunta/Duda</option>
-                                <option value="other">📝 Otro</option>
+                            <select class="form-input" id="supportType" required>
+                                <option value="">Selecciona el tipo de consulta</option>
+                                <option value="QUEJA">Queja</option>
+                                <option value="ERROR">Error Técnico</option>
+                                <option value="REPORTE">Reporte de Usuario</option>
+                                <option value="POSTULACION">Postulación</option>
+                                <option value="DUDAS">Dudas Generales</option>
+                                <option value="OTROS">Otros</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="reportTitle" class="form-label">
-                                <i class="fa-solid fa-heading"></i>
+                            <label class="form-label">
+                                <i class="fas fa-heading"></i>
                                 Título del Reporte
                             </label>
-                            <input type="text" id="reportTitle" name="reportTitle" class="form-input"
-                                placeholder="Describe brevemente tu reporte..." maxlength="100" required>
-                            <div class="char-counter">
-                                <span id="titleCounter">0</span>/100 caracteres
-                            </div>
+                            <input type="text" class="form-input" id="reportTitle"
+                                placeholder="Describe brevemente tu consulta" required maxlength="100">
+                            <div class="input-helper">Máximo 100 caracteres</div>
                         </div>
 
                         <div class="form-group">
-                            <label for="reportDescription" class="form-label">
-                                <i class="fa-solid fa-align-left"></i>
+                            <label class="form-label">
+                                <i class="fas fa-align-left"></i>
                                 Descripción Detallada
                             </label>
-                            <textarea id="reportDescription" name="reportDescription" class="form-textarea"
-                                placeholder="Describe detalladamente tu problema, duda o sugerencia. Incluye pasos para reproducir el problema si es aplicable..." maxlength="1000"
-                                required></textarea>
+                            <textarea class="form-textarea" id="reportDescription"
+                                placeholder="Proporciona todos los detalles posibles sobre tu consulta..." required
+                                maxlength="1000" rows="6"></textarea>
                             <div class="char-counter">
-                                <span id="descriptionCounter">0</span>/1000 caracteres
+                                <span id="charCount">0</span>/1000 caracteres
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="contactEmail" class="form-label">
-                                <i class="fa-solid fa-envelope"></i>
-                                Correo de Contacto
+                            <label class="form-label">
+                                <i class="fas fa-envelope"></i>
+                                Correo de Notificaciones
                             </label>
-                            <input type="email" id="contactEmail" name="contactEmail" class="form-input"
-                                placeholder="Correo donde recibirás la respuesta..." required>
-                            <div class="input-helper">
-                                Se enviará una confirmación a este correo
-                            </div>
+                            <input type="email" class="form-input" id="notificationEmail" placeholder="tu@ejemplo.com"
+                                required>
+                            <div class="input-helper">Recibirás las respuestas en este correo</div>
                         </div>
 
-                        <button type="submit" class="submit-btn">
-                            <i class="fa-solid fa-paper-plane"></i>
-                            Enviar Reporte
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            <i class="fas fa-paper-plane"></i>
+                            ENVIAR CONSULTA
                         </button>
                     </form>
-                </div>
-            </div>
-
-            <!-- Success Modal -->
-            <div id="successModal" class="modal-overlay">
-                <div class="modal-container">
-                    <div class="modal-content">
-                        <div class="modal-icon success">
-                            <i class="fa-solid fa-check-circle"></i>
-                        </div>
-                        <h3>¡Reporte Enviado Exitosamente!</h3>
-                        <p>Su reporte fue enviado exitosamente. La respuesta se enviará a su correo electrónico asignado. Si no aparece en su bandeja principal, revise su correo spam.</p>
-                        <div class="modal-actions">
-                            <button class="modal-btn" onclick="closeSuccessModal()">
-                                <i class="fa-solid fa-check"></i>
-                                Aceptar
-                            </button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </main>
 
-    
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-container">
+            <div class="modal-content">
+                <div class="modal-icon success">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3>¡Consulta Enviada!</h3>
+                <p>Hemos recibido tu consulta de soporte. Te responderemos al correo proporcionado en un plazo máximo de
+                    24-48 horas.</p>
+                <div class="modal-actions">
+                    <button class="modal-btn" onclick="closeSuccessModal()">
+                        <i class="fas fa-thumbs-up"></i>
+                        Entendido
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; <span id="currentYear"></span> TRIPGORE. Todos los derechos reservados.</p>
+    </footer>
 
     <script type="module">
-        import {authFunctions, updateUserDisplay, reportFunctions} from './function-scripts/firebase.js';
+        import {authFunctions, reportFunctions} from './function-scripts/firebase.js';
 
-        document.addEventListener('DOMContentLoaded', async function () {
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuToggle = document.getElementById('menuToggle');
+            const slideMenu = document.getElementById('slideMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            const menuClose = document.getElementById('menuClose');
 
-            // Elements
-            const loginRequired = document.getElementById('loginRequired');
+            function toggleMenu() {
+                slideMenu.classList.toggle('open');
+                menuOverlay.classList.toggle('active');
+            }
+
+            function closeMenu() {
+                slideMenu.classList.remove('open');
+                menuOverlay.classList.remove('active');
+            }
+
+            menuToggle.addEventListener('click', toggleMenu);
+            menuOverlay.addEventListener('click', closeMenu);
+            menuClose.addEventListener('click', closeMenu);
+
+            // Close menu when clicking a menu item
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    closeMenu();
+                });
+            });
+
+            // Set current year
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+            // Support form functionality
             const supportForm = document.getElementById('supportForm');
-            const reportForm = document.getElementById('reportForm');
-            const successModal = document.getElementById('successModal');
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+            const submitBtn = document.getElementById('submitBtn');
+            const charCount = document.getElementById('charCount');
+            const reportDescription = document.getElementById('reportDescription');
 
-            // Character counters
-            const titleInput = document.getElementById('reportTitle');
-            const descriptionTextarea = document.getElementById('reportDescription');
-            const titleCounter = document.getElementById('titleCounter');
-            const descriptionCounter = document.getElementById('descriptionCounter');
+            // Character counter
+            if (reportDescription && charCount) {
+                reportDescription.addEventListener('input', function () {
+                    const currentLength = this.value.length;
+                    charCount.textContent = currentLength;
 
-            titleInput.addEventListener('input', function() {
-                titleCounter.textContent = this.value.length;
-            });
+                    if (currentLength >= 950) {
+                        charCount.style.color = '#ff4444';
+                    } else if (currentLength >= 800) {
+                        charCount.style.color = '#ffaa44';
+                    } else {
+                        charCount.style.color = '#888';
+                    }
+                });
+            }
 
-            descriptionTextarea.addEventListener('input', function() {
-                descriptionCounter.textContent = this.value.length;
-            });
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+                errorMessage.scrollIntoView({behavior: 'smooth', block: 'center'});
+            }
 
+            function showSuccess(message) {
+                successMessage.textContent = message;
+                successMessage.style.display = 'block';
+                errorMessage.style.display = 'none';
+            }
+
+            function clearMessages() {
+                errorMessage.style.display = 'none';
+                successMessage.style.display = 'none';
+            }
+
+            // Check if user is logged in
             let currentUser = null;
-
-            // Auth state listener
             authFunctions.onAuthStateChanged((user) => {
                 currentUser = user;
-                updateUserDisplay();
 
                 if (user) {
-                    // User is logged in - show form
-                    loginRequired.style.display = 'none';
-                    supportForm.style.display = 'block';
+                    const username = user.email.split('@')[0];
+                    document.getElementById('username').textContent = username;
+                    document.getElementById('userNameDisplay').textContent = username;
 
-                    
-                } else {
-                    // User is not logged in - show login required
-                    loginRequired.style.display = 'block';
-                    supportForm.style.display = 'none';
+                    // Show support form, hide auth required
+                    document.getElementById('authRequiredSection').style.display = 'none';
+                    document.getElementById('supportFormSection').style.display = 'block';
 
-                    
-                }
-            });
-
-            
-
-            // Handle form submission
-            reportForm.addEventListener('submit', async function (e) {
-                e.preventDefault();
-
-                if (!currentUser) {
-                    alert('Debes iniciar sesión para enviar un reporte');
-                    return;
-                }
-
-                const submitBtn = e.target.querySelector('.submit-btn');
-                const originalContent = submitBtn.innerHTML;
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
-
-                const reportData = {
-                    tipo: document.getElementById('reportType').value,
-                    titulo: document.getElementById('reportTitle').value,
-                    descripcion: document.getElementById('reportDescription').value,
-                    correoContacto: document.getElementById('contactEmail').value
-                };
-
-                try {
-                    const result = await reportFunctions.submitReport(reportData);
-
-                    if (result.success) {
-                        // Show success modal
-                        successModal.style.display = 'flex';
-
-                        // Reset form
-                        reportForm.reset();
-                        titleCounter.textContent = '0';
-                        descriptionCounter.textContent = '0';
-                    } else {
-                        throw new Error(result.error);
+                    // Pre-fill email if available
+                    const emailInput = document.getElementById('notificationEmail');
+                    if (emailInput && user.email) {
+                        emailInput.value = user.email;
                     }
-                } catch (error) {
-                    alert('Error al enviar el reporte: ' + error.message);
-                } finally {
+
+                    // Update desktop auth buttons
+                    updateDesktopAuthButtons(true);
+                    // Update mobile auth buttons
+                    updateMobileAuthButtons(true);
+                } else {
+                    document.getElementById('username').textContent = 'Invitado';
+                    document.getElementById('userNameDisplay').textContent = 'Invitado';
+
+                    // Show auth required, hide support form
+                    document.getElementById('authRequiredSection').style.display = 'block';
+                    document.getElementById('supportFormSection').style.display = 'none';
+
+                    // Update desktop auth buttons
+                    updateDesktopAuthButtons(false);
+                    // Update mobile auth buttons
+                    updateMobileAuthButtons(false);
+                }
+            });
+
+            // Form submission
+            if (supportForm) {
+                supportForm.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+
+                    // Check if user is logged in
+                    if (!currentUser) {
+                        showError('Debes iniciar sesión para enviar una consulta de soporte');
+                        return;
+                    }
+
+                    clearMessages();
+
+                    // Get form data
+                    const supportType = document.getElementById('supportType').value;
+                    const reportTitle = document.getElementById('reportTitle').value.trim();
+                    const reportDescription = document.getElementById('reportDescription').value.trim();
+                    const notificationEmail = document.getElementById('notificationEmail').value.trim();
+
+                    // Validation
+                    if (!supportType) {
+                        showError('Por favor selecciona el tipo de consulta');
+                        return;
+                    }
+
+                    if (!reportTitle || reportTitle.length < 5) {
+                        showError('El título debe tener al menos 5 caracteres');
+                        return;
+                    }
+
+                    if (!reportDescription || reportDescription.length < 20) {
+                        showError('La descripción debe tener al menos 20 caracteres');
+                        return;
+                    }
+
+                    if (!notificationEmail || !isValidEmail(notificationEmail)) {
+                        showError('Por favor ingresa un correo electrónico válido');
+                        return;
+                    }
+
+                    // Change button state
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ENVIANDO...';
+                    submitBtn.disabled = true;
+
+                    try {
+                        // Preparar datos del reporte para Firebase
+                        const reportData = {
+                            tipo: supportType,
+                            titulo: reportTitle,
+                            descripcion: reportDescription,
+                            correoContacto: notificationEmail
+                        };
+
+                        // Enviar reporte usando Firebase
+                        const result = await reportFunctions.submitReport(reportData);
+
+                        if (result.success) {
+                            // Show success modal
+                            document.getElementById('successModal').style.display = 'flex';
+
+                            // Reset form
+                            supportForm.reset();
+                            if (charCount) charCount.textContent = '0';
+
+                            // Pre-fill email again
+                            const emailInput = document.getElementById('notificationEmail');
+                            if (emailInput && currentUser && currentUser.email) {
+                                emailInput.value = currentUser.email;
+                            }
+
+                            clearMessages();
+                        } else {
+                            showError('Error al enviar el reporte: ' + result.error);
+                        }
+                    } catch (error) {
+                        console.error('Error sending support request:', error);
+                        showError('Error de conexión. Por favor intenta de nuevo.');
+                    }
+
+                    // Restore button
+                    submitBtn.innerHTML = originalText;
                     submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalContent;
-                }
-            });
+                });
+            }
 
-            // Make closeSuccessModal global
-            window.closeSuccessModal = function () {
-                successModal.style.display = 'none';
-            };
+            // Utility functions
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
 
-            // Close modal when clicking outside
-            successModal.addEventListener('click', function (e) {
-                if (e.target === successModal) {
-                    closeSuccessModal();
+            // Desktop logout functionality
+            const desktopLogoutBtn = document.getElementById('desktopLogoutBtn');
+            if (desktopLogoutBtn) {
+                desktopLogoutBtn.addEventListener('click', async function (e) {
+                    e.preventDefault();
+                    try {
+                        const result = await authFunctions.logout();
+                        if (result.success) {
+                            window.location.href = 'index.html';
+                        } else {
+                            console.error('Error al cerrar sesión:', result.error);
+                        }
+                    } catch (error) {
+                        console.error('Error al cerrar sesión:', error);
+                    }
+                });
+            }
+
+            // Mobile logout functionality
+            const mobileLogoutBtn = document.getElementById('mobileLogoutBtn');
+            if (mobileLogoutBtn) {
+                mobileLogoutBtn.addEventListener('click', async function (e) {
+                    e.preventDefault();
+                    try {
+                        const result = await authFunctions.logout();
+                        if (result.success) {
+                            closeMenu();
+                            window.location.href = 'index.html';
+                        } else {
+                            console.error('Error al cerrar sesión:', result.error);
+                        }
+                    } catch (error) {
+                        console.error('Error al cerrar sesión:', error);
+                    }
+                });
+            }
+
+            // Function to update desktop auth buttons based on auth state
+            function updateDesktopAuthButtons(isLoggedIn) {
+                const desktopAuth = document.querySelector('.desktop-auth');
+                const desktopUserMenu = document.querySelector('.desktop-user-menu');
+
+                if (isLoggedIn) {
+                    if (desktopAuth) desktopAuth.style.display = 'none';
+                    if (desktopUserMenu) desktopUserMenu.style.display = 'flex';
+                } else {
+                    if (desktopAuth) desktopAuth.style.display = 'flex';
+                    if (desktopUserMenu) desktopUserMenu.style.display = 'none';
                 }
-            });
+            }
+
+            // Function to update mobile auth buttons based on auth state
+            function updateMobileAuthButtons(isLoggedIn) {
+                const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+                const mobileRegisterBtn = document.getElementById('mobileRegisterBtn');
+                const mobileLogoutBtn = document.getElementById('mobileLogoutBtn');
+
+                if (isLoggedIn) {
+                    if (mobileLoginBtn) mobileLoginBtn.style.display = 'none';
+                    if (mobileRegisterBtn) mobileRegisterBtn.style.display = 'none';
+                    if (mobileLogoutBtn) mobileLogoutBtn.style.display = 'flex';
+                } else {
+                    if (mobileLoginBtn) mobileLoginBtn.style.display = 'flex';
+                    if (mobileRegisterBtn) mobileRegisterBtn.style.display = 'flex';
+                    if (mobileLogoutBtn) mobileLogoutBtn.style.display = 'none';
+                }
+            }
         });
+
+        // Global function for closing success modal
+        window.closeSuccessModal = function () {
+            document.getElementById('successModal').style.display = 'none';
+        };
     </script>
 </body>
 

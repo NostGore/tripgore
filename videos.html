@@ -1126,6 +1126,245 @@
             color: #DC143C;
             margin-bottom: 20px;
         }
+
+        /* Search Section */
+        .search-section {
+            padding: 20px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .search-container {
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 50px 15px 50px;
+            background: linear-gradient(135deg, #1a0000, #2a0000);
+            border: 2px solid #DC143C;
+            border-radius: 25px;
+            color: #ffffff;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            border-color: #ff1450;
+            box-shadow: 0 0 20px rgba(220, 20, 60, 0.3);
+        }
+
+        .search-box input::placeholder {
+            color: #888;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #DC143C;
+            font-size: 18px;
+            z-index: 2;
+        }
+
+        .clear-btn {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #DC143C;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .clear-btn:hover {
+            background: rgba(220, 20, 60, 0.2);
+            color: #ff1450;
+        }
+
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 600px;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+            border: 2px solid #DC143C;
+            border-top: none;
+            border-radius: 0 0 15px 15px;
+            max-height: 400px;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8);
+        }
+
+        .search-result-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(220, 20, 60, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-result-item:hover {
+            background: rgba(220, 20, 60, 0.1);
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        .search-result-thumbnail {
+            width: 80px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-right: 12px;
+            border: 1px solid #DC143C;
+        }
+
+        .search-result-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .search-result-title {
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .search-result-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .search-result-author {
+            color: #FFB6C1;
+            font-size: 11px;
+        }
+
+        .search-result-date {
+            color: #888;
+            font-size: 11px;
+        }
+
+        .search-result-category {
+            background: #DC143C;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 9px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .search-no-results {
+            padding: 20px;
+            text-align: center;
+            color: #888;
+            font-size: 14px;
+        }
+
+        .search-no-results i {
+            color: #DC143C;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        /* Mobile adjustments for search */
+        @media (max-width: 768px) {
+            .search-container {
+                padding: 0 15px;
+            }
+
+            .search-box input {
+                padding: 12px 45px 12px 45px;
+                font-size: 14px;
+            }
+
+            .search-icon {
+                left: 15px;
+                font-size: 16px;
+            }
+
+            .search-results {
+                max-height: 300px;
+            }
+
+            .search-result-item {
+                padding: 10px 12px;
+            }
+
+            .search-result-thumbnail {
+                width: 60px;
+                height: 40px;
+                margin-right: 10px;
+            }
+
+            .search-result-title {
+                font-size: 13px;
+            }
+
+            .search-result-author,
+            .search-result-date {
+                font-size: 10px;
+            }
+
+            .search-result-category {
+                font-size: 8px;
+                padding: 1px 4px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .search-box input {
+                padding: 10px 40px 10px 40px;
+                font-size: 13px;
+            }
+
+            .search-icon {
+                left: 12px;
+                font-size: 14px;
+            }
+
+            .clear-btn {
+                right: 12px;
+                font-size: 14px;
+            }
+
+            .search-result-thumbnail {
+                width: 50px;
+                height: 35px;
+                margin-right: 8px;
+            }
+
+            .search-result-title {
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 
@@ -1233,6 +1472,22 @@
             <i class="fas fa-exclamation-triangle"></i>
             Al momento de abrir este video, TripGore no se responsabiliza de nada.
         </div>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Buscar videos..." autocomplete="off">
+                    <button id="clearSearch" class="clear-btn" style="display: none;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div id="searchResults" class="search-results" style="display: none;">
+                    <!-- Search results will appear here -->
+                </div>
+            </div>
+        </section>
 
         <!-- Videos de Asesinatos -->
         <section class="section" id="asesinatosSection">
@@ -1469,7 +1724,7 @@
                     const statsElement = document.getElementById(`stats-${videoId}`);
                     if (statsElement) {
                         const likesElement = statsElement.querySelector('.like-count');
-                        const dislikesElement = statsElement.querySelector('.dislike-count');
+                        const dislikesElement = statsElement.querySelector('.like-count');
                         const likesStatItem = statsElement.querySelector('.stat-item.likes');
                         const dislikesStatItem = statsElement.querySelector('.stat-item.dislikes');
 
@@ -1706,11 +1961,140 @@
             }
         }
 
+        // Search functionality
+        let searchTimeout;
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        const clearButton = document.getElementById('clearSearch');
+
+        function setupSearch() {
+            if (!searchInput || !searchResults || !clearButton) return;
+
+            searchInput.addEventListener('input', function() {
+                const query = this.value.trim();
+
+                // Show/hide clear button
+                if (query.length > 0) {
+                    clearButton.style.display = 'block';
+                } else {
+                    clearButton.style.display = 'none';
+                    hideSearchResults();
+                    return;
+                }
+
+                // Debounce search
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    performSearch(query);
+                }, 300);
+            });
+
+            clearButton.addEventListener('click', function() {
+                searchInput.value = '';
+                clearButton.style.display = 'none';
+                hideSearchResults();
+                searchInput.focus();
+            });
+
+            // Hide results when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.search-container')) {
+                    hideSearchResults();
+                }
+            });
+
+            // Show results when focusing on input with content
+            searchInput.addEventListener('focus', function() {
+                if (this.value.trim().length > 0) {
+                    performSearch(this.value.trim());
+                }
+            });
+        }
+
+        function performSearch(query) {
+            if (query.length < 2) {
+                hideSearchResults();
+                return;
+            }
+
+            const queryLower = query.toLowerCase();
+
+            // Filter videos (exclude OCULTO category)
+            const filteredVideos = mediaDB.filter(video => {
+                return video.categoria !== 'OCULTO' && (
+                    video.titulo.toLowerCase().includes(queryLower) ||
+                    video.autor.toLowerCase().includes(queryLower) ||
+                    video.categoria.toLowerCase().includes(queryLower)
+                );
+            });
+
+            displaySearchResults(filteredVideos, query);
+        }
+
+        function displaySearchResults(videos, query) {
+            if (videos.length === 0) {
+                searchResults.innerHTML = `
+                    <div class="search-no-results">
+                        <i class="fas fa-search"></i>
+                        <p>No se encontraron videos para "${query}"</p>
+                    </div>
+                `;
+            } else {
+                // Limit results to 8 videos
+                const limitedVideos = videos.slice(0, 8);
+
+                searchResults.innerHTML = '';
+
+                limitedVideos.forEach(video => {
+                    const resultItem = document.createElement('div');
+                    resultItem.className = 'search-result-item';
+                    resultItem.innerHTML = `
+                        <img src="${video.portada}" alt="${video.titulo}" class="search-result-thumbnail"
+                             onerror="this.src='https://via.placeholder.com/80x50/8B0000/FFFFFF?text=Error'">
+                        <div class="search-result-info">
+                            <div class="search-result-title">${highlightText(video.titulo, query)}</div>
+                            <div class="search-result-meta">
+                                <span class="search-result-author">${video.autor}</span>
+                                <span class="search-result-date">${video.fecha}</span>
+                                <span class="search-result-category">${video.categoria}</span>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Agregar event listener para navegar al video
+                    resultItem.addEventListener('click', () => {
+                        window.location.href = `video.html?id=${video.id}`;
+                        hideSearchResults();
+                    });
+                    
+                    searchResults.appendChild(resultItem);
+                });
+            }
+
+            showSearchResults();
+        }
+
+        function highlightText(text, query) {
+            const regex = new RegExp(`(${query})`, 'gi');
+            return text.replace(regex, '<span style="background: rgba(220, 20, 60, 0.3); color: #ff1450;">$1</span>');
+        }
+
+        function showSearchResults() {
+            searchResults.style.display = 'block';
+        }
+
+        function hideSearchResults() {
+            searchResults.style.display = 'none';
+        }
+
+        
+
         // Initialize page
         document.addEventListener('DOMContentLoaded', () => {
             initializeCategories();
             setupHeaderAutoHide();
             setupScrollToSectionButton();
+            setupSearch();
             initMusicPlayer();
         });
 
@@ -1729,7 +2113,7 @@
             let scrollThreshold = 10; // Minimum scroll distance to trigger hide/show
 
             window.addEventListener('scroll', () => {
-                const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const currentScrollTop = window.pageYOffset ||document.documentElement.scrollTop;
 
                 // Avoid negative scrolling values
                 if (currentScrollTop < 0) return;

@@ -501,13 +501,16 @@ export const reportFunctions = {
       const username = getUsernameFromEmail(currentUser.email);
 
       const reportWithMetadata = {
-        ...reportData,
         autor: username,
-        usuarioId: currentUser.uid,
+        correoContacto: reportData.correoContacto,
+        descripcion: reportData.descripcion,
         fecha: new Date().toLocaleDateString('es-ES'),
-        timestamp: Date.now(),
+        id: newReportRef.key,
         status: 'pending',
-        id: newReportRef.key
+        timestamp: Date.now(),
+        tipo: reportData.tipo,
+        titulo: reportData.titulo,
+        usuarioId: currentUser.uid
       };
 
       await set(newReportRef, reportWithMetadata);
@@ -517,8 +520,8 @@ export const reportFunctions = {
     }
   },
 
-  // Get pending reports for moderation
-  getPendingReports: (callback) => {
+  // Get all reports
+  getAllReports: (callback) => {
     const reportsRef = ref(realtimeDb, 'reportes');
     return onValue(reportsRef, (snapshot) => {
       const reports = [];
@@ -528,6 +531,28 @@ export const reportFunctions = {
           ...childSnapshot.val()
         });
       });
+      // Sort by timestamp (newest first)
+      reports.sort((a, b) => b.timestamp - a.timestamp);
+      callback(reports);
+    });
+  },
+
+  // Get pending reports for moderation
+  getPendingReports: (callback) => {
+    const reportsRef = ref(realtimeDb, 'reportes');
+    return onValue(reportsRef, (snapshot) => {
+      const reports = [];
+      snapshot.forEach((childSnapshot) => {
+        const report = childSnapshot.val();
+        if (report.status === 'pending') {
+          reports.push({
+            id: childSnapshot.key,
+            ...report
+          });
+        }
+      });
+      // Sort by timestamp (newest first)
+      reports.sort((a, b) => b.timestamp - a.timestamp);
       callback(reports);
     });
   },
