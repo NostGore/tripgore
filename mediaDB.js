@@ -3629,6 +3629,33 @@ const mediaDB = [
     categoria: "OCULTO",
     fecha: "23/07/2025",
   },
+  {
+    id: "4852-4856-4896-je45g7g4k2x1", //ocultos
+    titulo: "MDPOPE PARTE 1",
+    portada: "https://indefinide.jpg",
+    video: "https://vvww.sdratmue.com/v/mdpope1.mp4",
+    autor: "TripGore",
+    categoria: "OCULTO",
+    fecha: "23/07/2025",
+  },
+  {
+    id: "7354-1298-5462-bd73e5c9a214", //ocultos
+    titulo: "MDPOPE PARTE 2",
+    portada: "https://indefinide.jpg",
+    video: "https://vwvw.sdratmue.com/v/mdpope2.mp4",
+    autor: "TripGore",
+    categoria: "OCULTO",
+    fecha: "23/07/2025",
+  },
+  {
+    id: "6283-9014-3750-cf46a2d8b19e", //ocultos
+    titulo: "MDPOPE PARTE 3",
+    portada: "https://indefinide.jpg",
+    video: "https://wwvv.sdratmue.com/v/mdpope3.mp4",
+    autor: "TripGore",
+    categoria: "OCULTO",
+    fecha: "23/07/2025",
+  },
 ];
 
 // Exportar la base de datos
