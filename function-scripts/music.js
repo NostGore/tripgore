@@ -7,7 +7,7 @@ class MusicPlayer {
         this.volume = 0.3;
         this.currentTrack = null;
         this.tracks = [
-            'music/gores.mp3'
+            'music/gorex.mp3',
         ];
         this.init();
     }
@@ -31,7 +31,7 @@ class MusicPlayer {
         this.audio.setAttribute('loop', 'true');
 
         // Usar el archivo local gores.mp3
-        this.currentTrack = 'music/gores.mp3';
+        this.currentTrack = 'music/gorex.mp3';
         this.audio.src = this.currentTrack;
         
         // Intentar cargar inmediatamente
