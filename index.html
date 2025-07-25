@@ -332,7 +332,8 @@
 
             setTimeout(() => {
                 const validVideos = mediaDB.filter(video =>
-                    video.titulo && video.portada && video.video && video.autor && video.categoria
+                    video.titulo && video.portada && video.video && video.autor && video.categoria &&
+                    video.categoria !== 'OCULTO'
                 );
 
                 const shuffledVideos = shuffleArray(validVideos);
