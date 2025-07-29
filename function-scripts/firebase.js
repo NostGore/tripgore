@@ -177,7 +177,7 @@ export const videoFunctions = {
         videoUrl1: videoData.videoUrl1,
         categoria: videoData.categoria,
         correoOriginal: videoData.correoOriginal,
-        descripcion: videoData.descripcion,
+        descripcion: videoData.descripcion || '',
         autor: username,
         fecha: new Date().toLocaleDateString('es-ES'),
         timestamp: Date.now(),
@@ -188,6 +188,7 @@ export const videoFunctions = {
       await set(newVideoRef, videoWithMetadata);
       return { success: true, videoId: newVideoRef.key };
     } catch (error) {
+      console.error('Error en submitVideo:', error);
       return { success: false, error: error.message };
     }
   },
@@ -561,12 +562,19 @@ export const reportFunctions = {
   resolveReport: async (reportId) => {
     try {
       const reportRef = ref(realtimeDb, `reportes/${reportId}`);
-      await set(reportRef, {
-        ...await get(reportRef).then(snapshot => snapshot.val()),
-        status: 'resolved',
-        resolvedAt: new Date().toLocaleDateString('es-ES')
-      });
-      return { success: true };
+      const snapshot = await get(reportRef);
+      const reportData = snapshot.val();
+      
+      if (reportData) {
+        await set(reportRef, {
+          ...reportData,
+          status: 'resolved',
+          resolvedAt: new Date().toLocaleDateString('es-ES')
+        });
+        return { success: true };
+      } else {
+        return { success: false, error: 'Reporte no encontrado' };
+      }
     } catch (error) {
       return { success: false, error: error.message };
     }
