@@ -1650,7 +1650,7 @@ const mediaDB = [
   },
   {
     id: "lo mato tras no deajarse robar",
-    titulo: "Lo mato tras nod dejarse robar",
+    titulo: "Lo mato tras no dejarse robar",
     portada: "https://xxx.livegore.com//rb-include/videos/9500661236.jpg",
     video: "https://xxx.livegore.com//rb-include/videos/9500661236.mp4",
     autor: "TripGore",
