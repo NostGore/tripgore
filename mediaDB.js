@@ -1856,6 +1856,15 @@ const mediaDB = [
     fecha: "05/08/2025"
   },
   {
+    id: "3 hombres en saco de yute",
+    titulo: "3 hombres en saco de yute",
+    portada: "https://theync.com/media/thumbs/6/8/9/0/e/14623586890ed0379110.mp4/14623586890ed0379110.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/8/9/0/e/6890eed443e79.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "05/08/2025",
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
