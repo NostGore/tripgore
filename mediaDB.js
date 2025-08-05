@@ -4007,6 +4007,15 @@ const mediaDB = [
     categoria: "OCULTO",
     fecha: "23/07/2025",
   },
+  {
+    id: "7581-29f4-4b88-924f-7d3e6fc8e1ad", //ocultos
+    titulo: "No habras la puerta niña",
+    portada: "https://indefinide.jpg",
+    video: "https://files.catbox.moe/rudi31.mp4",
+    autor: "TripGore",
+    categoria: "OCULTO",
+    fecha: "4/08/2025",
+  },
 ];
 
 // Exportar la base de datos
