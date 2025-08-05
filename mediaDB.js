@@ -1730,6 +1730,132 @@ const mediaDB = [
     fecha: "31/07/2025",
   },
   {
+    id: "apunalamiento letal",
+    titulo: "Apuñalamiento letal",
+    portada: "https://theync.com/media/thumbs/6/8/9/1/6/13415056891620d042c8.mp4/13415056891620d042c8.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/9/1/6/6891629673139.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "5/08/2025",
+  },
+  {
+    id: "queman-a-mujer-y-nio-vivos",
+    titulo: "Queman a mujer y niño vivos",
+    portada: "https://theync.com/media/thumbs/6/8/9/1/e/1338618689117fa5d580.mp4/1338618689117fa5d580.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/8/9/1/e/6891e126d57dd.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "05/08/2025"
+  },
+  {
+    id: "veterinario-asesinado-a-quemarropa",
+    titulo: "Veterinario asesinado a quemarropa",
+    portada: "https://theync.com/media/thumbs/6/8/8/e/8/85886688e886ed528d.mp4/85886688e886ed528d.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/8/e/8/688e88fb051d2.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "05/08/2025"
+  },
+  {
+    id: "hombre-apualado-por-tocar-a-una-mujer",
+    titulo: "HOMBRE APUÑALADO POR TOCAR A UNA MUJER",
+    portada: "https://theync.com/media/thumbs/6/8/8/f/6/689168688f6ee5a5c7e.mp4/689168688f6ee5a5c7e.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/8/f/6/688f6f9a68233.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "05/08/2025"
+  },
+  {
+    id: "machete-vs-pistola",
+    titulo: "Machete vs pistola",
+    portada: "https://theync.com/media/thumbs/6/8/8/e/6/85886688e6e1a4eecc.mp4/85886688e6e1a4eecc.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/8/e/6/688e6e425d5eb.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "05/08/2025"
+  },
+  {
+    id: "ejecutados-por-pandilleros",
+    titulo: "Ejecutados por pandilleros",
+    portada: "https://theync.com/media/thumbs/6/8/9/1/c/6891686891b88e3389f.mp4/6891686891b88e3389f.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/9/1/c/6891cf933986f.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "05/08/2025"
+  },
+  {
+    id: "pintor-es-asesinado",
+    titulo: "Pintor es asesinado",
+    portada: "https://theync.com/media/thumbs/6/8/9/1/b/6891686891ae4fe6003.mp4/6891686891ae4fe6003.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/9/1/b/6891b192bb62b.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "05/08/2025"
+  },
+  {
+    id: "prendido-en-fuego-y-desmembrado",
+    titulo: "Prendido en fuego y desmembrado",
+    portada: "https://theync.com/media/thumbs/6/8/8/c/d/2177685688cdcff56c9f.mp4/2177685688cdcff56c9f.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/8/c/d/688cdea60d811.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "05/08/2025"
+  },
+  {
+    id: "cartel-golf0-ejecuto-a-8-personas",
+    titulo: "Cartel golf0 ejecuto a 8 personas",
+    portada: "https://xxx.livegore.com//rb-include/videos/1802584021.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1802584021.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "05/08/2025"
+  },
+  {
+    id: "soldados-disparan-en-la-cara-a-un-narco",
+    titulo: "Soldados disparan en la cara a un narco",
+    portada: "https://xxx.livegore.com//rb-include/videos/8817597823.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8817597823.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "05/08/2025"
+  },
+  {
+    id: "asesinado-por-trafico-de-drogas",
+    titulo: "Asesinado por trafico de drogas",
+    portada: "https://xxx.livegore.com//rb-include/videos/4341119346.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4341119346.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "05/08/2025"
+  },
+  {
+    id: "criminal-asesinado-a-tiros-tras-robo",
+    titulo: "Criminal asesinado a tiros tras robo",
+    portada: "https://xxx.livegore.com//rb-include/videos/20771082.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/20771082.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "05/08/2025"
+  },
+  {
+    id: "miembro-de-la-milicia-libia-ejecutado-por-un-sicario",
+    titulo: "Miembro de la milicia libia ejecutado por un sicario",
+    portada: "https://xxx.livegore.com//rb-include/videos/4881641445.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4881641445.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "05/08/2025"
+  },
+  {
+    id: "sospechoso-de-robo-asesinado-a-tiros-por-disparos-de-la-polica",
+    titulo: "Sospechoso de robo asesinado a tiros por disparos de la policía",
+    portada: "https://xxx.livegore.com//rb-include/videos/3593481197.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3593481197.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "05/08/2025"
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -2466,6 +2592,42 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "ACCIDENTES",
     fecha: "31/07/2025",
+  },
+  {
+    id: "conductor-no-ve-a-la-mujer-cruzar",
+    titulo: "Conductor no ve a la mujer cruzar",
+    portada: "https://theync.com/media/thumbs/6/8/9/1/1/1462358689107c2cf312.mp4/1462358689107c2cf312.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/8/9/1/1/689110530977d.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "05/08/2025"
+  },
+  {
+    id: "quedo-sin-extremidades",
+    titulo: "Quedo sin extremidades",
+    portada: "https://theync.com/media/thumbs/6/8/9/1/0/2177685689107674e56b.mp4/2177685689107674e56b.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/9/1/0/689107e381427.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "05/08/2025"
+  },
+  {
+    id: "accidente-mortal-en-new-york",
+    titulo: "Accidente mortal en New York",
+    portada: "https://theync.com/media/thumbs/6/8/9/0/8/2177685689082f1961c4.mp4/2177685689082f1961c4.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/9/0/8/689084669dd1d.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "05/08/2025"
+  },
+  {
+    id: "horrible-lesin-en-su-pierna",
+    titulo: "Horrible lesión en su pierna",
+    portada: "https://theync.com/media/thumbs/6/8/9/0/8/2177685689080adf2af3.mp4/2177685689080adf2af3.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/9/0/8/6890815b13104.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "05/08/2025"
   },
   {
     id: "come-la-banqueta",
@@ -3504,6 +3666,33 @@ const mediaDB = [
     fecha: "31/07/2025",
   },
   {
+    id: "as-se-resuelven-los-problemas-ahora",
+    titulo: "Así se resuelven los problemas ahora",
+    portada: "https://theync.com/media/thumbs/6/8/8/f/e/689168688fe30c2e106.mp4/689168688fe30c2e106.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/8/f/e/688fe57f31096.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "05/08/2025"
+  },
+  {
+    id: "el-repartidor-sin-paciencia",
+    titulo: "El repartidor sin paciencia",
+    portada: "https://theync.com/media/thumbs/6/8/8/f/8/689168688f837d63939.mp4/689168688f837d63939.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/8/f/8/688f84ee46814.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "05/08/2025"
+  },
+  {
+    id: "ladrones-castigados-brutalmente",
+    titulo: "Ladrones castigados brutalmente",
+    portada: "https://theync.com/media/thumbs/6/8/8/f/d/689168688fdbebc5d47.mp4/689168688fdbebc5d47.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/8/f/d/688fdd0eb5556.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "05/08/2025"
+  },
+  {
     id: "1444",
     titulo: "1444", //C-SUICIDIOS
     portada: "https://xxx.livegore.com//rb-include/videos/8122189044.jpg",
@@ -3772,6 +3961,24 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "SUICIDIOS",
     fecha: "27/07/2025",
+  },
+  {
+    id: "enfermo-mental-se-desvive",
+    titulo: "Enfermo mental se desvive",
+    portada: "https://theync.com/media/thumbs/6/8/9/0/e/21776856890df2630d53.mp4/21776856890df2630d53.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/9/0/e/6890e00aca810.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "05/08/2025"
+  },
+  {
+    id: "se-dejo-aplastar-por-un-tren",
+    titulo: "Se dejo aplastar por un tren",
+    portada: "https://theync.com/media/thumbs/6/8/9/0/e/14623586890ebc370b29.mp4/14623586890ebc370b29.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/8/9/0/e/6890eece5c135.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "05/08/2025"
   },
   {
     id: "se-apunala-en-live",
