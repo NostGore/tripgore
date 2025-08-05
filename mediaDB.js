@@ -3693,6 +3693,15 @@ const mediaDB = [
     fecha: "05/08/2025"
   },
   {
+    id: "no-tuvieron-piedad-con-el",
+    titulo: "No tuvieron piedad con el",
+    portada: "https://xxx.livegore.com//rb-include/videos/6419676234.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6419676234.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "05/08/2025"
+  },
+  {
     id: "1444",
     titulo: "1444", //C-SUICIDIOS
     portada: "https://xxx.livegore.com//rb-include/videos/8122189044.jpg",
