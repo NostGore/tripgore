@@ -1865,6 +1865,51 @@ const mediaDB = [
     fecha: "05/08/2025",
   },
   {
+    id: "la-ejecucin-de-manuel-mndez-leyva",
+    titulo: "La ejecución de Manuel Méndez Leyva",
+    portada: "https://xxx.livegore.com//rb-include/videos/9583664657.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9583664657.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "8/8/2025"
+  },
+  {
+    id: "ejecucin-con-cuchillo",
+    titulo: "Ejecución con cuchillo",
+    portada: "https://xxx.livegore.com//rb-include/videos/3317990098.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3317990098.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "8/8/2025"
+  },
+  {
+    id: "al-qaeda-mat-a-una-mujer",
+    titulo: "Al Qaeda mató a una mujer",
+    portada: "https://xxx.livegore.com//rb-include/videos/4249321534.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4249321534.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "8/8/2025"
+  },
+  {
+    id: "le-sacaron-la-cabeza-y-dieron-un-mensaje",
+    titulo: "Le sacaron la cabeza y dieron un mensaje",
+    portada: "https://xxx.livegore.com//rb-include/videos/1529904287.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1529904287.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "8/8/2025"
+  },
+  {
+    id: "un-soldado-ucraniano-apuala-a-un-soldado-ruso-en-el-ojo",
+    titulo: "Un soldado ucraniano apuñala a un soldado ruso en el ojo",
+    portada: "https://xxx.livegore.com//rb-include/videos/4907171693.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4907171693.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "8/8/2025"
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -2637,6 +2682,69 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "ACCIDENTES",
     fecha: "05/08/2025"
+  },
+  {
+    id: "accidente-del-motociclista",
+    titulo: "Accidente del motociclista",
+    portada: "https://xxx.livegore.com//rb-include/videos/173156321.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/173156321.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "8/8/2025"
+  },
+  {
+    id: "terrible-accidente-de-transito",
+    titulo: "Terrible accidente de transito",
+    portada: "https://xxx.livegore.com//rb-include/videos/6487805498.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6487805498.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "8/8/2025"
+  },
+  {
+    id: "grave-accidente-de-autobs",
+    titulo: "Grave accidente de autobús",
+    portada: "https://xxx.livegore.com//rb-include/videos/7598781469.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7598781469.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "8/8/2025"
+  },
+  {
+    id: "motociclista-herido",
+    titulo: "Motociclista herido",
+    portada: "https://xxx.livegore.com//rb-include/videos/7063552690.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7063552690.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "8/8/2025"
+  },
+  {
+    id: "derrame-en-el-carril",
+    titulo: "Derrame en el carril",
+    portada: "https://xxx.livegore.com//rb-include/videos/1351911961.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1351911961.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "8/8/2025"
+  },
+  {
+    id: "aplastado-por-una-topadora-en-ghana",
+    titulo: "APLASTADO POR UNA TOPADORA EN GHANA",
+    portada: "https://theync.com/media/thumbs/6/8/9/5/b/21776856895ba077d943.mp4/21776856895ba077d943.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/9/5/b/6895ba3fc2f30.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "8/8/2025"
+  },
+  {
+    id: "decapitado-por-un-accidente-de-transito",
+    titulo: "Decapitado por un accidente de transito",
+    portada: "https://theync.com/media/thumbs/6/8/9/2/1/217768568921306a57b7.mp4/217768568921306a57b7.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/9/2/1/6892143f319be.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "8/8/2025"
   },
   {
     id: "come-la-banqueta",
@@ -3709,6 +3817,96 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "INCIDENTES",
     fecha: "05/08/2025"
+  },
+  {
+    id: "hombre-casi-mata-a-su-pareja-a-golpes",
+    titulo: "Hombre casi mata a su pareja a golpes",
+    portada: "http://xxx.livegore.com//rb-include/videos/9306368282.jpg",
+    video: "http://xxx.livegore.com//rb-include/videos/9306368282.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "8/8/2025"
+  },
+  {
+    id: "pila-de-muertos-noche",
+    titulo: "Pila de muertos noche",
+    portada: "https://xxx.livegore.com//rb-include/videos/6076918686.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6076918686.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "8/8/2025"
+  },
+  {
+    id: "actual-guerra-2025",
+    titulo: "Actual guerra 2025",
+    portada: "https://xxx.livegore.com//rb-include/videos/6844847188.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6844847188.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "8/8/2025"
+  },
+  {
+    id: "lesiones-por-machetes",
+    titulo: "Lesiones por machetes",
+    portada: "https://xxx.livegore.com//rb-include/videos/2521143071.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2521143071.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "8/8/2025"
+  },
+  {
+    id: "karma-para-el-ladrn",
+    titulo: "Karma para el ladrón",
+    portada: "https://xxx.livegore.com//rb-include/videos/8444822574.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8444822574.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "8/8/2025"
+  },
+  {
+    id: "medio-cuerpo-colgando",
+    titulo: "Medio cuerpo colgando",
+    portada: "https://xxx.livegore.com//rb-include/videos/196106084.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/196106084.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "8/8/2025"
+  },
+  {
+    id: "tiene-que-aprender-la-leccion",
+    titulo: "Tiene que aprender la leccion",
+    portada: "https://xxx.livegore.com//rb-include/videos/741017782.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/741017782.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "8/8/2025"
+  },
+  {
+    id: "le-cortan-el-brazo-por-celos",
+    titulo: "Le cortan el brazo por celos",
+    portada: "https://xxx.livegore.com//rb-include/videos/2544207414.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2544207414.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "8/8/2025"
+  },
+  {
+    id: "por-que-querer-besar-a-un-pitbull",
+    titulo: "Por que querer besar a un pitbull",
+    portada: "https://theync.com/media/thumbs/6/8/9/4/b/13121946894a5e566dc3.mp4/13121946894a5e566dc3.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/8/9/4/b/6894b9975e1ad.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "8/8/2025"
+  },
+  {
+    id: "el-toro-solo-se-defendio",
+    titulo: "El toro solo se defendio",
+    portada: "https://theync.com/media/thumbs/6/8/9/3/5/134150568935c9998abd.mp4/134150568935c9998abd.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/9/3/5/68935d8b45a9d.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "8/8/2025"
   },
   {
     id: "1444",
