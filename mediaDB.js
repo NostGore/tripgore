@@ -1910,6 +1910,15 @@ const mediaDB = [
     fecha: "8/8/2025"
   },
   {
+    id: "donde-estan-mis-brazos",
+    titulo: "Donde estan mis brazos",
+    portada: "https://files.catbox.moe/at0egt.png",
+    video: "https://files.catbox.moe/ynzjf7.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "09/08/2025",
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
