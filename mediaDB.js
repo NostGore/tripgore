@@ -1919,6 +1919,24 @@ const mediaDB = [
     fecha: "09/08/2025",
   },
   {
+    id: "bro-lo-dejaron-sin-brazo",
+    titulo: "Bro lo dejaron sin brazo",
+    portada: "https://xxx.livegore.com//rb-include/videos/2940372861.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2940372861.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "9/8/2025"
+  },
+  {
+    id: "tiroteo-en-reunin-familiar",
+    titulo: "Tiroteo en reunión familiar",
+    portada: "https://xxx.livegore.com//rb-include/videos/2723391414.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2723391414.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "9/8/2025"
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -2754,6 +2772,24 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "ACCIDENTES",
     fecha: "8/8/2025"
+  },
+  {
+    id: "dos-heridos-en-la-autopista",
+    titulo: "Dos heridos en la autopista",
+    portada: "https://xxx.livegore.com//rb-include/videos/7264295183.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7264295183.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "9/8/2025"
+  },
+  {
+    id: "termino-debajo-del-camin-asesino",
+    titulo: "Termino debajo del camión asesino",
+    portada: "https://xxx.livegore.com//rb-include/videos/514878816.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/514878816.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "9/8/2025"
   },
   {
     id: "come-la-banqueta",
@@ -3918,6 +3954,60 @@ const mediaDB = [
     fecha: "8/8/2025"
   },
   {
+    id: "pareja-tailandesa-siendo-infiel",
+    titulo: "Pareja tailandesa siendo infiel",
+    portada: "https://xxx.livegore.com//rb-include/videos/4840281656.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4840281656.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/8/2025"
+  },
+  {
+    id: "las-ultimas-agonias",
+    titulo: "Las ultimas agonias",
+    portada: "https://xxx.livegore.com//rb-include/videos/2746021151.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2746021151.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/8/2025"
+  },
+  {
+    id: "emboscados-por-sospechoso-de-violencia-domstica",
+    titulo: "Emboscados por sospechoso de violencia doméstica",
+    portada: "https://xxx.livegore.com//rb-include/videos/5871380129.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5871380129.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/8/2025"
+  },
+  {
+    id: "consecuencias-de-un-disparo-en-la-boca",
+    titulo: "Consecuencias de un disparo en la boca",
+    portada: "https://xxx.livegore.com//rb-include/videos/8316367478.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8316367478.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/8/2025"
+  },
+  {
+    id: "castigan-a-pareja-de-ladrones",
+    titulo: "Castigan a pareja de ladrones",
+    portada: "https://xxx.livegore.com//rb-include/videos/1054510436.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1054510436.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/8/2025"
+  },
+  {
+    id: "ataque-violento-a-mujer-en-china",
+    titulo: "Ataque violento a mujer en china",
+    portada: "https://xxx.livegore.com//rb-include/videos/5473479381.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5473479381.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/8/2025"
+  },
+  {
     id: "1444",
     titulo: "1444", //C-SUICIDIOS
     portada: "https://xxx.livegore.com//rb-include/videos/8122189044.jpg",
@@ -4402,6 +4492,15 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "AUTOLESIONES",
     fecha: "31/07/2025",
+  },
+  {
+    id: "realmente-no-le-gusta-su-brazo",
+    titulo: "realmente no le gusta su brazo",
+    portada: "https://xxx.livegore.com//rb-include/videos/9944447814.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9944447814.mp4",
+    autor: "TripGore",
+    categoria: "AUTOLESIONES",
+    fecha: "9/8/2025"
   },
   {
     id: "9127-4482-3901-ae82f1a7c4d3", //ocultos
