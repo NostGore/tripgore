@@ -4547,6 +4547,15 @@ const mediaDB = [
     categoria: "OCULTO",
     fecha: "4/08/2025",
   },
+  {
+    id: "5846-54f1-5l86-857f-5v1egvd4n2be", //ocultos
+    titulo: "Niño quedo sin brazo",
+    portada: "https://indefinide.jpg",
+    video: "https://files.catbox.moe/jabh3h.mp4",
+    autor: "TripGore",
+    categoria: "OCULTO",
+    fecha: "9/08/2025",
+  },
 ];
 
 // Exportar la base de datos
