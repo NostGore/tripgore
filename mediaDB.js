@@ -1937,6 +1937,15 @@ const mediaDB = [
     fecha: "9/8/2025"
   },
   {
+    id: "la-hormiga",
+    titulo: "La Hormiga",
+    portada: "https://xxx.livegore.com//rb-include/videos/4318811283.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4318811283.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "9/08/2025",
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
