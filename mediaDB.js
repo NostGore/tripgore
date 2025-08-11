@@ -1946,6 +1946,51 @@ const mediaDB = [
     fecha: "9/08/2025",
   },
   {
+    id: "ejecucin-rabe",
+    titulo: "Ejecución árabe",
+    portada: "https://xxx.livegore.com//rb-include/videos/8049295861.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8049295861.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "11/8/2025"
+  },
+  {
+    id: "de-cabeza-y-desmembrado",
+    titulo: "De cabeza y desmembrado",
+    portada: "https://xxx.livegore.com//rb-include/videos/7468190458.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7468190458.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "11/8/2025"
+  },
+  {
+    id: "ejecucin-de-la-favela",
+    titulo: "Ejecución de la favela",
+    portada: "https://xxx.livegore.com//rb-include/videos/2903193775.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2903193775.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "11/8/2025"
+  },
+  {
+    id: "sicario-lo-asesina-a-quemaropa",
+    titulo: "Sicario lo asesina a quemaropa",
+    portada: "https://theync.com/media/thumbs/6/8/9/6/b/21776856896af2024d5a.mp4/21776856896af2024d5a.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/9/6/b/6896b0cb9560f.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "11/8/2025"
+  },
+  {
+    id: "hombre-le-da-un-hachazo-a-sujeto-sentado",
+    titulo: "Hombre le da un hachazo a sujeto sentado",
+    portada: "https://theync.com/media/thumbs/6/8/9/6/2/6891686896274bbfaa0.mp4/6891686896274bbfaa0.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/9/6/2/68962917706e2.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "11/8/2025"
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -4015,6 +4060,60 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "INCIDENTES",
     fecha: "9/8/2025"
+  },
+  {
+    id: "brutal-castigo-a-familia",
+    titulo: "Brutal castigo a familia",
+    portada: "https://xxx.livegore.com//rb-include/videos/3805718640.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3805718640.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "11/8/2025"
+  },
+  {
+    id: "no-te-sali-la-jugada",
+    titulo: "No te salió la jugada",
+    portada: "https://files.catbox.moe/mumolv.png",
+    video: "https://alivegore.com/uploads/files/2025-08/1754732886_vrtjyrtr.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "11/8/2025"
+  },
+  {
+    id: "mujer-acusada-de-secuestro-es-castigada",
+    titulo: "Mujer acusada de secuestro es castigada",
+    portada: "https://theync.com/media/thumbs/6/8/9/9/0/21776856899065a70d94.mp4/21776856899065a70d94.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/9/9/0/689907276c7fe.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "11/8/2025"
+  },
+  {
+    id: "se-graba-golpeando-a-su-novia-embarazada",
+    titulo: "Se graba golpeando a su novia embarazada",
+    portada: "https://theync.com/media/thumbs/6/8/9/9/a/21776856899ae20b9088.mp4/21776856899ae20b9088.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/9/9/a/6899af336b6a7.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "11/8/2025"
+  },
+  {
+    id: "consecuencias-del-ataque-israel-que-mat-al-periodista-de-al-jazeera-anas",
+    titulo: "CONSECUENCIAS DEL ATAQUE ISRAELÍ QUE MATÓ AL PERIODISTA DE AL JAZEERA ANAS",
+    portada: "https://theync.com/media/thumbs/6/8/9/9/1/68916868991a5c6543f.mp4/68916868991a5c6543f.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/9/9/1/68991b4fd903f.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "11/8/2025"
+  },
+  {
+    id: "conflicto-en-la-escuela",
+    titulo: "Conflicto en la escuela",
+    portada: "https://theync.com/media/thumbs/6/8/9/6/5/214435468964fb61b2f3.mp4/214435468964fb61b2f3.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/8/9/6/5/6896503ae293c.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "11/8/2025"
   },
   {
     id: "1444",
