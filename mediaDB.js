@@ -1991,6 +1991,15 @@ const mediaDB = [
     fecha: "11/8/2025"
   },
   {
+    id: "urbanizacion-malaga",
+    titulo: "Urbanización malaga",
+    portada: "https://files.catbox.moe/ezbdp8.png",
+    video: "https://files.catbox.moe/ei93n6.mp4",
+    autor: "josejaome1234",
+    categoria: "ASESINATOS",
+    fecha: "15/08/2025",
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -4609,6 +4618,15 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "AUTOLESIONES",
     fecha: "9/8/2025"
+  },
+  {
+    id: "Auto-lesion-Pankotnk-Twitter-la-cuenta-original-de-X-fue-borrada",
+    titulo: "Auto lesión Pankotnk Twitter (la cuenta original de X fue borrada)",
+    portada: "https://files.catbox.moe/awk6fo.jpg",
+    video: "https://files.catbox.moe/r5buli.mp4",
+    autor: "inarra.nohaha",
+    categoria: "AUTOLESIONES",
+    fecha: "15/08/2025",
   },
   {
     id: "9127-4482-3901-ae82f1a7c4d3", //ocultos
