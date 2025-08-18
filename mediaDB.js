@@ -2000,6 +2000,87 @@ const mediaDB = [
     fecha: "15/08/2025",
   },
   {
+    id: "sesin-de-terapia-de-pareja-vietnamita",
+    titulo: "Sesión de terapia de pareja vietnamita",
+    portada: "https://xxx.livegore.com//rb-include/videos/4646893870.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4646893870.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "polica-abati-a-tiros-a-hombre-armado",
+    titulo: "Policía abatió a tiros a hombre armado",
+    portada: "https://xxx.livegore.com//rb-include/videos/3609929857.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3609929857.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "masacre-en-un-club-nocturno-en-ecuador",
+    titulo: "Masacre en un club nocturno en Ecuador",
+    portada: "https://xxx.livegore.com//rb-include/videos/5888470713.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5888470713.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "prostituta-callejera-casi-es-asesinada-por-un-brasileo-luntico",
+    titulo: "Prostituta callejera casi es asesinada por un brasileño lunático",
+    portada: "https://xxx.livegore.com//rb-include/videos/3703583227.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3703583227.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "corneado-por-un-vagabundo",
+    titulo: "Corneado por un vagabundo",
+    portada: "https://xxx.livegore.com//rb-include/videos/9041033540.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9041033540.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "ecuatorian-brawl",
+    titulo: "Ecuatorian Brawl",
+    portada: "https://xxx.livegore.com//rb-include/videos/7224267935.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7224267935.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "un-hombre-recibi-un-disparo-de-la-polica-en-brasil",
+    titulo: "Un hombre recibió un disparo de la policía en Brasil",
+    portada: "https://xxx.livegore.com//rb-include/videos/4190879957.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4190879957.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "miembros-de-la-milicia-de-apoyo-rpido-ejecutaron-a-un-civil-sudans",
+    titulo: "Miembros de la milicia de apoyo rápido ejecutaron a un civil sudanés",
+    portada: "https://xxx.livegore.com//rb-include/videos/1558509031.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1558509031.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "un-hombre-ardiendo-vivo-en-agona",
+    titulo: "Un hombre ardiendo vivo en agonía",
+    portada: "https://xxx.livegore.com//rb-include/videos/4372865762.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4372865762.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/8/2025"
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -2853,6 +2934,105 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "ACCIDENTES",
     fecha: "9/8/2025"
+  },
+  {
+    id: "un-turbante-sucio-mata-a-una-familia-de-tres-en-florida",
+    titulo: "Un turbante sucio mata a una familia de tres en Florida",
+    portada: "https://xxx.livegore.com//rb-include/videos/4579468439.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4579468439.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "un-camin-de-18-ruedas-se-descontrola-en-medio-del-trfico-pesado",
+    titulo: "Un camión de 18 ruedas se descontrola en medio del tráfico pesado",
+    portada: "https://xxx.livegore.com//rb-include/videos/9846039684.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9846039684.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "destino-chinal-vii",
+    titulo: "Destino Chinal VII",
+    portada: "https://xxx.livegore.com//rb-include/videos/9378704922.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9378704922.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "un-hombre-que-trabajaba-en-la-construccin-cay-sobre-un-cable-elctrico-en-la-calle",
+    titulo: "Un hombre que trabajaba en la construcción cayó sobre un cable eléctrico en la calle.",
+    portada: "https://xxx.livegore.com//rb-include/videos/9590614959.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9590614959.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "el-enterrador-llega-a-tiempo",
+    titulo: "El enterrador llega a tiempo",
+    portada: "https://xxx.livegore.com//rb-include/videos/3259751563.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3259751563.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "motociclista-pierde-una-pierna-en-terrible-accidente",
+    titulo: "Motociclista pierde una pierna en terrible accidente",
+    portada: "https://xxx.livegore.com//rb-include/videos/3347138627.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3347138627.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "desagradable-accidente",
+    titulo: "Desagradable accidente",
+    portada: "https://xxx.livegore.com//rb-include/videos/9759867428.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9759867428.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "un-cigarrillo-electrnico-explota-en-la-cara-de-un-ruso",
+    titulo: "Un cigarrillo electrónico explota en la cara de un ruso",
+    portada: "https://xxx.livegore.com//rb-include/videos/8154874164.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8154874164.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "fallo-de-frenos-tres-personas-fallecieron",
+    titulo: "Fallo de frenos: Tres personas fallecieron",
+    portada: "https://xxx.livegore.com//rb-include/videos/4914813963.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4914813963.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "mal-final-accidente",
+    titulo: "Mal final (accidente)",
+    portada: "https://xxx.livegore.com//rb-include/videos/8946269634.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8946269634.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "los-duques-de-hazard-de-la-eurocopa",
+    titulo: "Los duques de Hazard de la Eurocopa",
+    portada: "https://xxx.livegore.com//rb-include/videos/3552488833.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3552488833.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "18/8/2025"
   },
   {
     id: "come-la-banqueta",
@@ -4125,6 +4305,249 @@ const mediaDB = [
     fecha: "11/8/2025"
   },
   {
+    id: "ciruga-de-favela",
+    titulo: "Cirugía de favela.",
+    portada: "https://xxx.livegore.com//rb-include/videos/682146805.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/682146805.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "dos-hombres-fueron-asesinados-y-abandonados-a-su-suerte-en-un-ro",
+    titulo: "Dos hombres fueron asesinados y abandonados a su suerte en un río",
+    portada: "https://xxx.livegore.com//rb-include/videos/2924115112.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2924115112.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "otro-punto-para-el-toro",
+    titulo: "Otro punto para el toro",
+    portada: "https://xxx.livegore.com//rb-include/videos/3659182651.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3659182651.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "karma-para-el-ladrn",
+    titulo: "Karma para el ladrón",
+    portada: "https://xxx.livegore.com//rb-include/videos/7873148806.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7873148806.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "vdeo-del-toro-del-lunes",
+    titulo: "Vídeo del toro del lunes",
+    portada: "https://xxx.livegore.com//rb-include/videos/785000417.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/785000417.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "caso-mdico-misterioso",
+    titulo: "Caso médico misterioso",
+    portada: "https://xxx.livegore.com//rb-include/videos/8820699583.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8820699583.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "otro-castigo-para-ladrones",
+    titulo: "Otro castigo para ladrones",
+    portada: "https://xxx.livegore.com//rb-include/videos/7180748539.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7180748539.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "mujer-recibe-puetazos-y-patadas-de-su-marido-tras-una-fiesta-de-borrachos-en-brasil",
+    titulo: "Mujer recibe puñetazos y patadas de su marido tras una fiesta de borrachos en Brasil",
+    portada: "https://xxx.livegore.com//rb-include/videos/8185902344.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8185902344.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "un-hombre-de-nueva-york-fue-desnudado-y-golpeado-por-decir-tonteras",
+    titulo: "Un hombre de Nueva York fue desnudado y golpeado por decir tonterías",
+    portada: "https://xxx.livegore.com//rb-include/videos/1970480112.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1970480112.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "el-francotirador-negro-de-la-arena-fue-bombardeado",
+    titulo: "El francotirador negro de la arena fue bombardeado",
+    portada: "https://xxx.livegore.com//rb-include/videos/5358328260.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5358328260.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "se-quit-el-trinquete-posedo",
+    titulo: "Se quitó el trinquete poseído",
+    portada: "https://xxx.livegore.com//rb-include/videos/7225204650.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7225204650.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "bofetada-de-anestesia",
+    titulo: "Bofetada de anestesia",
+    portada: "https://xxx.livegore.com//rb-include/videos/8772275219.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8772275219.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "movi-los-ojos-despus-de-ser-decapitada",
+    titulo: "Movió los ojos después de ser decapitada",
+    portada: "https://xxx.livegore.com//rb-include/videos/5076679647.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5076679647.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "nunca-sabes-cundo-ni-dnde-suceder",
+    titulo: "Nunca sabes cuándo ni dónde sucederá",
+    portada: "https://xxx.livegore.com//rb-include/videos/208062794.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/208062794.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "suicidio-por-parte-de-la-polica",
+    titulo: "Suicidio por parte de la policía",
+    portada: "https://xxx.livegore.com//rb-include/videos/559454238.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/559454238.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "robo-violento-en-brasil",
+    titulo: "Robo violento en Brasil",
+    portada: "https://xxx.livegore.com//rb-include/videos/6154883545.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6154883545.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "colombian-narco-warfare",
+    titulo: "Colombian Narco Warfare",
+    portada: "https://xxx.livegore.com//rb-include/videos/5987429227.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5987429227.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "nia-golpeada-y-abofeteada-por-un-escndalo",
+    titulo: "Niña golpeada y abofeteada por un escándalo",
+    portada: "https://xxx.livegore.com//rb-include/videos/7041560183.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7041560183.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "traficante-de-drogas-ruso-que-trata-con-una-mujer",
+    titulo: "Traficante de drogas ruso que trata con una mujer",
+    portada: "https://xxx.livegore.com//rb-include/videos/6452148738.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6452148738.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "enorme-pelea-de-trinquete-con-un-polica",
+    titulo: "Enorme pelea de trinquete con un policía",
+    portada: "https://xxx.livegore.com//rb-include/videos/6706214174.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6706214174.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "el-negro-de-gta-no-quiere-salir",
+    titulo: "¿El negro de GTA no quiere salir?",
+    portada: "https://xxx.livegore.com//rb-include/videos/351767539.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/351767539.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "maricn-gay-arrestado-en-indonesia",
+    titulo: "Maricón gay arrestado en Indonesia",
+    portada: "https://xxx.livegore.com//rb-include/videos/9832784617.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9832784617.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "adolescente-golpeada-y-obligada-a-comer-condn",
+    titulo: "Adolescente golpeada y obligada a comer condón",
+    portada: "https://xxx.livegore.com//rb-include/videos/9038116075.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9038116075.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "estudiante-acosado-en-escuela-china",
+    titulo: "Estudiante acosado en escuela china",
+    portada: "https://xxx.livegore.com//rb-include/videos/4130263421.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4130263421.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "cara-trgicamente-arrancada-del-cuero-cabelludo",
+    titulo: "Cara trágicamente arrancada del cuero cabelludo",
+    portada: "https://xxx.livegore.com//rb-include/videos/8533991766.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8533991766.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "karma-pedfilo-torturado-en-prisin",
+    titulo: "¡Karma! Pedófilo torturado en prisión",
+    portada: "https://xxx.livegore.com//rb-include/videos/9979115566.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9979115566.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "hombre-incinerado-instantneamente-por-un-rayo",
+    titulo: "Hombre incinerado instantáneamente por un rayo",
+    portada: "https://xxx.livegore.com//rb-include/videos/9314076714.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9314076714.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/8/2025"
+  },
+  {
     id: "1444",
     titulo: "1444", //C-SUICIDIOS
     portada: "https://xxx.livegore.com//rb-include/videos/8122189044.jpg",
@@ -4413,6 +4836,33 @@ const mediaDB = [
     fecha: "05/08/2025"
   },
   {
+    id: "un-hombre-con-problemas-mentales-trepa-a-una-torre-de-agua-y-cae-al-vaco",
+    titulo: "Un hombre con problemas mentales trepa a una torre de agua y cae al vacío.",
+    portada: "https://xxx.livegore.com//rb-include/videos/371191073.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/371191073.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "pajjet-resistente",
+    titulo: "Pajjet resistente",
+    portada: "https://xxx.livegore.com//rb-include/videos/4816384827.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4816384827.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "18/8/2025"
+  },
+  {
+    id: "un-hombre-drogado-cae-desde-un-balcn-del-noveno-piso",
+    titulo: "Un hombre drogado cae desde un balcón del noveno piso",
+    portada: "https://xxx.livegore.com//rb-include/videos/8653185307.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8653185307.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "18/8/2025"
+  },
+  {
     id: "se-apunala-en-live",
     titulo: "SE APUÑALA EN LIVE", //C-AUTOLESIONES
     portada: "https://files.catbox.moe/a5ey0v.png",
@@ -4627,6 +5077,15 @@ const mediaDB = [
     autor: "inarra.nohaha",
     categoria: "AUTOLESIONES",
     fecha: "15/08/2025",
+  },
+  {
+    id: "atencin-la-puta-se-corta",
+    titulo: "¡Atención, la puta se corta!",
+    portada: "https://xxx.livegore.com//rb-include/videos/1328289685.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1328289685.mp4",
+    autor: "TripGore",
+    categoria: "AUTOLESIONES",
+    fecha: "18/8/2025"
   },
   {
     id: "9127-4482-3901-ae82f1a7c4d3", //ocultos
