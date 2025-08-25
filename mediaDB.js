@@ -2081,6 +2081,15 @@ const mediaDB = [
     fecha: "18/8/2025"
   },
   {
+    id: "se-comen-unos-a-otros",
+    titulo: "CÁRTELES MEXICANOS SE COMEN UNOS A OTROS",
+    portada: "https://qu.ax/saPCb.png",
+    video: "https://theync.com/media/videos/6/8/a/8/5/68a853170cece.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "25/8/2025",
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
