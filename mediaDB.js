@@ -2090,6 +2090,24 @@ const mediaDB = [
     fecha: "25/8/2025",
   },
   {
+    id: "un-rompecabezas-humano-dejado-por-un-crtel-a-plena-luz-del-da",
+    titulo: "Un rompecabezas humano dejado por un cártel a plena luz del día",
+    portada: "https://xxx.livegore.com//rb-include/videos/3330782270.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3330782270.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "6/9/2025"
+  },
+  {
+    id: "la-ciruga-plstica-realizada-por-traficantes-luce-genial",
+    titulo: "La cirugía plástica realizada por traficantes luce genial",
+    portada: "https://xxx.livegore.com//rb-include/videos/3430265462.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3430265462.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "6/9/2025"
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -4557,6 +4575,60 @@ const mediaDB = [
     fecha: "18/8/2025"
   },
   {
+    id: "cadveres-de-ucranianos-esparcidos-por-todas-partes",
+    titulo: "Cadáveres de ucranianos esparcidos por todas partes",
+    portada: "https://xxx.livegore.com//rb-include/videos/2638961798.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2638961798.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "6/9/2025"
+  },
+  {
+    id: "se-le-cayo-el-craneo",
+    titulo: "Se le cayo el craneo",
+    portada: "https://xxx.livegore.com//rb-include/videos/1390591049.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1390591049.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "6/9/2025"
+  },
+  {
+    id: "su-mueca-se-identifica-como-un-unicornio",
+    titulo: "Su muñeca se identifica como un Unicornio.",
+    portada: "https://xxx.livegore.com//rb-include/videos/7709323903.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7709323903.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "6/9/2025"
+  },
+  {
+    id: "los-ciclistas-muertos",
+    titulo: "Los ciclistas muertos",
+    portada: "https://xxx.livegore.com//rb-include/videos/7330489805.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7330489805.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "6/9/2025"
+  },
+  {
+    id: "bienvenido-a-michigan",
+    titulo: "Bienvenido a Michigan",
+    portada: "https://xxx.livegore.com//rb-include/videos/8325433777.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8325433777.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "6/9/2025"
+  },
+  {
+    id: "primera-y-ltima-leccin-en-la-escuela-militar",
+    titulo: "Primera y última lección en la escuela militar",
+    portada: "https://xxx.livegore.com//rb-include/videos/9938050601.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9938050601.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "6/9/2025"
+  },
+  {
     id: "1444",
     titulo: "1444", //C-SUICIDIOS
     portada: "https://xxx.livegore.com//rb-include/videos/8122189044.jpg",
@@ -4870,6 +4942,15 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "SUICIDIOS",
     fecha: "18/8/2025"
+  },
+  {
+    id: "un-monje-deprimido-se-suicida-ahorcndose",
+    titulo: "Un monje deprimido se suicida ahorcándose",
+    portada: "https://xxx.livegore.com//rb-include/videos/4571846183.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4571846183.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "6/9/2025"
   },
   {
     id: "se-apunala-en-live",
