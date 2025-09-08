@@ -5582,6 +5582,15 @@ const mediaDB = [
     categoria: "OCULTO",
     fecha: "9/08/2025",
   },
+  {
+    id: "c9442d99-c607-4026-b50c-fc6ee0ef9355", //ocultos
+    titulo: "Snuff War Version",
+    portada: "https://indefinide.jpg",
+    video: "https://files.catbox.moe/yevqtz.mp4",
+    autor: "TripGore",
+    categoria: "OCULTO",
+    fecha: "8/09/2025",
+  },
 ];
 
 // Exportar la base de datos
