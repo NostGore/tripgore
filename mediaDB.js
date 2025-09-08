@@ -2108,6 +2108,105 @@ const mediaDB = [
     fecha: "6/9/2025"
   },
   {
+    id: "se-matan-por-un-tiktok",
+    titulo: "Se matan por un tiktok",
+    portada: "https://xxx.livegore.com//rb-include/videos/9375920691.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9375920691.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "empleado-de-cafetera-asesinado-en-el-trabajo",
+    titulo: "Empleado de cafetería asesinado en el trabajo",
+    portada: "https://xxx.livegore.com//rb-include/videos/2020274014.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2020274014.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "hombre-asesinado-a-martillazos-mientras-dorma",
+    titulo: "Hombre asesinado a martillazos mientras dormía",
+    portada: "https://xxx.livegore.com//rb-include/videos/7174162953.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7174162953.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "polica-le-dispar-a-dude-despus-de-matar-a-un-vecino",
+    titulo: "policía le disparó a Dude después de matar a un vecino",
+    portada: "https://xxx.livegore.com//rb-include/videos/7038772422.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7038772422.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "ataque-de-sicario-en-barrio-de-la-paz",
+    titulo: "ATAQUE DE SICARIO EN BARRIO DE LA PAZ",
+    portada: "https://xxx.livegore.com//rb-include/videos/1092490581.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1092490581.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "la-mayiza-interroga-y-decapita-a-miembro-de-chapiza",
+    titulo: "La Mayiza Interroga y decapita a miembro de Chapiza",
+    portada: "https://xxx.livegore.com//rb-include/videos/1187684359.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1187684359.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "los-musulmanes-saben-tratar-a-las-mujeres",
+    titulo: "Los musulmanes saben tratar a las mujeres.",
+    portada: "https://xxx.livegore.com//rb-include/videos/2506052311.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2506052311.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "mierda-sucede",
+    titulo: "Mierda sucede",
+    portada: "https://theync.com/media/thumbs/6/8/b/d/e/168636868bd94fcc9907.mp4/168636868bd94fcc9907.mp4-4.jpg",
+    video: "https://theync.com/media/videos/6/8/b/d/e/68bdec3ce88b8.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "chica-caliente-asesinada-en-carolina-del-norte",
+    titulo: "Chica caliente asesinada en Carolina del Norte",
+    portada: "https://theync.com/media/thumbs/6/8/b/c/1/163405468bc1022ae5ef.mp4/163405468bc1022ae5ef.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/b/c/1/68bc107447324.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "primera-y-ltima-leccin-en-la-escuela-militar",
+    titulo: "Primera y última lección en la escuela militar",
+    portada: "https://theync.com/media/thumbs/6/8/b/b/a/68916868bba285e63ad.mp4/68916868bba285e63ad.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/b/b/a/68bba3ef917f4.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "ladrn-capturado-y-los-combatientes-qassami",
+    titulo: "Ladrón capturado y los combatientes qassami",
+    portada: "https://theync.com/media/thumbs/6/8/b/c/6/68916868bc6b9fbd6f6.mp4/68916868bc6b9fbd6f6.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/b/c/6/68bc6c8fd8983.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "8/9/2025"
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -3060,6 +3159,123 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "ACCIDENTES",
     fecha: "18/8/2025"
+  },
+  {
+    id: "sigue-usando-ese-celular",
+    titulo: "Sigue usando ese celular",
+    portada: "https://xxx.livegore.com//rb-include/videos/4521667426.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4521667426.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "retroceder-nunca-ha-sido-tan-avanzado-para-la-tragedia",
+    titulo: "Retroceder nunca ha sido tan avanzado para la tragedia",
+    portada: "https://xxx.livegore.com//rb-include/videos/3613054482.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3613054482.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "desfile-militar-atropellado",
+    titulo: "Desfile militar atropellado",
+    portada: "https://xxx.livegore.com//rb-include/videos/5198838789.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5198838789.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "el-viaje-nocturno-termin-con-los-faros-apagados-para-siempre",
+    titulo: "El viaje nocturno terminó con los faros apagados para siempre",
+    portada: "https://xxx.livegore.com//rb-include/videos/4818076300.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4818076300.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "las-barandillas-no-son-decoraciones-opcionales",
+    titulo: "las barandillas no son decoraciones opcionales",
+    portada: "https://xxx.livegore.com//rb-include/videos/5814419998.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5814419998.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "dos-ruedas-cero-suerte",
+    titulo: "Dos ruedas, cero suerte",
+    portada: "https://xxx.livegore.com//rb-include/videos/5693906270.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5693906270.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "india-dnde-ms",
+    titulo: "India. ¿dónde más?",
+    portada: "https://xxx.livegore.com//rb-include/videos/4856774038.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4856774038.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "billete-de-ida-incluido",
+    titulo: "billete de ida incluido",
+    portada: "https://xxx.livegore.com//rb-include/videos/8299481612.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8299481612.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "mediosaccidente-el-trfico-no-le-sobrevivi",
+    titulo: "MediosAccidente el tráfico no le sobrevivió",
+    portada: "https://xxx.livegore.com//rb-include/videos/7632333952.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7632333952.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "corazn-latiendo-fuera-de-su-cuerpo",
+    titulo: "Corazón latiendo fuera de su cuerpo",
+    portada: "https://xxx.livegore.com//rb-include/videos/5435008332.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5435008332.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "motociclista-choc-por-un-auto-que-iba-a-toda-velocidad",
+    titulo: "Motociclista chocó por un auto que iba a toda velocidad",
+    portada: "https://xxx.livegore.com//rb-include/videos/777544230.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/777544230.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "su-viaje-del-ltimo-sbado-por-la-maana",
+    titulo: "Su viaje del último sábado por la mañana",
+    portada: "https://xxx.livegore.com//rb-include/videos/7885325122.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7885325122.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "truco-fallido",
+    titulo: "Truco fallido",
+    portada: "https://xxx.livegore.com//rb-include/videos/1574590406.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1574590406.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "8/9/2025"
   },
   {
     id: "come-la-banqueta",
@@ -4629,6 +4845,123 @@ const mediaDB = [
     fecha: "6/9/2025"
   },
   {
+    id: "no-resulto-como-esperaba",
+    titulo: "No resulto como esperaba",
+    portada: "https://xxx.livegore.com//rb-include/videos/838195625.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/838195625.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "asesinado-por-perros-callejeros",
+    titulo: "Asesinado por perros callejeros",
+    portada: "https://xxx.livegore.com//rb-include/videos/7339838529.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7339838529.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "polluelo-decapitado-en-brasil",
+    titulo: "Polluelo decapitado en Brasil",
+    portada: "https://xxx.livegore.com//rb-include/videos/9765726001.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9765726001.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "la-tecnologa-se-encuentra-con-el-caos",
+    titulo: "La tecnología se encuentra con el caos",
+    portada: "https://xxx.livegore.com//rb-include/videos/313828969.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/313828969.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "sospechoso-de-robo-asesinado-a-tiros-por-agentes-de-polica-de-texas",
+    titulo: "Sospechoso de robo asesinado a tiros por agentes de policía de Texas",
+    portada: "https://xxx.livegore.com//rb-include/videos/8313060677.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8313060677.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "las-calles-se-pusieron-rojas-en-la-noche",
+    titulo: "Las calles se pusieron rojas en la noche",
+    portada: "https://xxx.livegore.com//rb-include/videos/2733415164.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2733415164.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "recin-salido-de-prisin",
+    titulo: "Recién salido de prisión",
+    portada: "https://xxx.livegore.com//rb-include/videos/5221433257.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5221433257.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "pandillero-haitiano-asesinado-por-la-polica",
+    titulo: "Pandillero haitiano asesinado por la policía",
+    portada: "https://xxx.livegore.com//rb-include/videos/4367502350.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4367502350.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "brutal-ataque-al-toro-en-nicaragua",
+    titulo: "Brutal ataque al toro en nicaragua",
+    portada: "https://xxx.livegore.com//rb-include/videos/6591756055.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6591756055.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "superman-contra-meth-head",
+    titulo: "Superman contra Meth Head",
+    portada: "https://xxx.livegore.com//rb-include/videos/3912369650.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3912369650.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "se-le-cay-todo",
+    titulo: "Se le cayó todo",
+    portada: "https://xxx.livegore.com//rb-include/videos/8766357847.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8766357847.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "intenta-derribar-un-dron-mala-idea",
+    titulo: "Intenta derribar un dron (mala idea)",
+    portada: "https://theync.com/media/thumbs/6/8/b/c/f/188383668bcfb647c64f.mp4/188383668bcfb647c64f.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/b/c/f/68bcfbc41db84.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "un-tipo-se-dispar-accidentalmente-en-la-cara",
+    titulo: "Un tipo se disparó accidentalmente en la cara",
+    portada: "https://theync.com/media/thumbs/6/8/b/a/0/217768568ba09c55fc30.mp4/217768568ba09c55fc30.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/b/a/0/68ba0b6bac3e8.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "8/9/2025"
+  },
+  {
     id: "1444",
     titulo: "1444", //C-SUICIDIOS
     portada: "https://xxx.livegore.com//rb-include/videos/8122189044.jpg",
@@ -4951,6 +5284,24 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "SUICIDIOS",
     fecha: "6/9/2025"
+  },
+  {
+    id: "ruso-suicida",
+    titulo: "Ruso suicida",
+    portada: "https://xxx.livegore.com//rb-include/videos/2143366127.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2143366127.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "8/9/2025"
+  },
+  {
+    id: "mujer-salta-del-tejado-tras-el-desafo-de-su-marido",
+    titulo: "Mujer salta del tejado tras el desafío de su marido",
+    portada: "https://xxx.livegore.com//rb-include/videos/4929008889.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4929008889.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "8/9/2025"
   },
   {
     id: "se-apunala-en-live",
