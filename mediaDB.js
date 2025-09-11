@@ -2207,6 +2207,15 @@ const mediaDB = [
     fecha: "8/9/2025"
   },
   {
+    id: "asesinato-de-charlie-kirk",
+    titulo: "Asesinato de Charlie Kirk",
+    portada: "https://xxx.livegore.com//rb-include/videos/9782394361.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9782394361.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "11/9/2025"
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
