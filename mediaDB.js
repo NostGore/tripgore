@@ -2216,6 +2216,87 @@ const mediaDB = [
     fecha: "11/9/2025"
   },
   {
+    id: "prisionero-salt-y-fue-asesinado-a-pualadas-en-su-celda",
+    titulo: "Prisionero saltó y fue asesinado a puñaladas en su celda.",
+    portada: "https://xxx.livegore.com//rb-include/videos/8145542005.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8145542005.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "11/9/2025"
+  },
+  {
+    id: "ucraniano-rabioso-puesto-a-dormir",
+    titulo: "Ucraniano rabioso puesto a dormir",
+    portada: "https://xxx.livegore.com//rb-include/videos/2279635150.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2279635150.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "11/9/2025"
+  },
+  {
+    id: "secuestrado-y-ejecutado-por-pandilla-tras-falso-rescate",
+    titulo: "Secuestrado y ejecutado por pandilla tras falso rescate.",
+    portada: "https://xxx.livegore.com//rb-include/videos/2731799329.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2731799329.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "11/9/2025"
+  },
+  {
+    id: "coche-atropella-a-una-mujer-que-caminaba",
+    titulo: "Coche atropella a una mujer que caminaba",
+    portada: "https://xxx.livegore.com//rb-include/videos/8973019802.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8973019802.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "11/9/2025"
+  },
+  {
+    id: "autoridad-asesinada-mientras-vea-ftbol",
+    titulo: "Autoridad asesinada mientras veía fútbol",
+    portada: "https://xxx.livegore.com//rb-include/videos/8321562688.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8321562688.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "11/9/2025"
+  },
+  {
+    id: "miembro-de-una-pandilla-asesinado-a-tiros-a-rivales",
+    titulo: "Miembro de una pandilla asesinado a tiros a rivales",
+    portada: "https://xxx.livegore.com//rb-include/videos/2492598649.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2492598649.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "11/9/2025"
+  },
+  {
+    id: "hombre-armado-asesinado-por-policia",
+    titulo: "Hombre armado asesinado por policia",
+    portada: "https://xxx.livegore.com//rb-include/videos/7558521958.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7558521958.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "11/9/2025"
+  },
+  {
+    id: "chica-escort-tetona-asesinada-por-su-ex",
+    titulo: "Chica escort tetona asesinada por su EX",
+    portada: "https://theync.com/media/thumbs/6/8/c/0/9/131219468c079a6f101c.mp4/131219468c079a6f101c.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/8/c/0/9/68c09e51e25a6.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "11/9/2025"
+  },
+  {
+    id: "apualamiento-de-la-ucraniana-iryna-zarutska",
+    titulo: "APUÑALAMIENTO DE LA UCRANIANA IRYNA ZARUTSKA",
+    portada: "https://theync.com/media/thumbs/6/8/c/0/8/217768568c08bd3023f8.mp4/217768568c08bd3023f8.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/c/0/8/68c08d989fefb.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "11/9/2025"
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -3285,6 +3366,69 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "ACCIDENTES",
     fecha: "8/9/2025"
+  },
+  {
+    id: "comparti-sus-pensamientos-con-las-calles",
+    titulo: "Compartió sus pensamientos con las calles",
+    portada: "https://xxx.livegore.com//rb-include/videos/5907604452.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5907604452.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "11/9/2025"
+  },
+  {
+    id: "explota-tubera-de-gas-en-mxico",
+    titulo: "EXPLOTA TUBERÍA DE GAS EN MÉXICO",
+    portada: "https://xxx.livegore.com//rb-include/videos/1721927998.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1721927998.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "11/9/2025"
+  },
+  {
+    id: "catstrofe-en-autobs",
+    titulo: "Catástrofe en autobús",
+    portada: "https://xxx.livegore.com//rb-include/videos/6753621660.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6753621660.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "11/9/2025"
+  },
+  {
+    id: "conductor-de-ciclomoto-sufre-un-ataque",
+    titulo: "Conductor de ciclomoto sufre un ataque",
+    portada: "https://xxx.livegore.com//rb-include/videos/4018127038.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4018127038.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "11/9/2025"
+  },
+  {
+    id: "paseo-en-motocicleta",
+    titulo: "Paseo en motocicleta",
+    portada: "https://xxx.livegore.com//rb-include/videos/4996354510.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4996354510.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "11/9/2025"
+  },
+  {
+    id: "explosin-de-camin-cisterna-de-gas",
+    titulo: "Explosión de camión cisterna de gas",
+    portada: "https://xxx.livegore.com//rb-include/videos/4215884059.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4215884059.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "11/9/2025"
+  },
+  {
+    id: "ella-nunca-lo-vio-venir",
+    titulo: "Ella nunca lo vio venir",
+    portada: "https://theync.com/media/thumbs/6/8/c/1/6/163405468c1681aa4065.mp4/163405468c1681aa4065.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/8/c/1/6/68c168803fe9c.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "11/9/2025"
   },
   {
     id: "come-la-banqueta",
@@ -4969,6 +5113,51 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "INCIDENTES",
     fecha: "8/9/2025"
+  },
+  {
+    id: "tren-surfista-cocinado",
+    titulo: "Tren surfista cocinado",
+    portada: "https://xxx.livegore.com//rb-include/videos/6925396206.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6925396206.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "11/9/2025"
+  },
+  {
+    id: "los-cerdos-ucranianos-arden-bien",
+    titulo: "Los cerdos ucranianos arden bien",
+    portada: "https://xxx.livegore.com//rb-include/videos/1828008103.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1828008103.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "11/9/2025"
+  },
+  {
+    id: "golpeado-por-estafar-a-su-jefe",
+    titulo: "Golpeado por estafar a su jefe",
+    portada: "https://xxx.livegore.com//rb-include/videos/6474867123.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6474867123.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "11/9/2025"
+  },
+  {
+    id: "golpeado-tras-arresto-policial",
+    titulo: "Golpeado tras arresto policial",
+    portada: "https://xxx.livegore.com//rb-include/videos/2478942768.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2478942768.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "11/9/2025"
+  },
+  {
+    id: "soldado-ucraniano-se-mata-accidentalmente-con-una-granada",
+    titulo: "Soldado ucraniano se mata accidentalmente con una granada",
+    portada: "https://xxx.livegore.com//rb-include/videos/3751008384.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3751008384.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "11/9/2025"
   },
   {
     id: "1444",
