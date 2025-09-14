@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TRIPGORE | CHAT</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="icon" href="https://files.catbox.moe/1b7bnr.png" type="image/png">
     <link rel="stylesheet" href="css/chat.css">
+    <meta name="description" content="Chat en vivo de TRIPGORE - Comunidad de terror y horror">
+    <meta name="keywords" content="chat, terror, horror, comunidad, tripgore">
+    <meta name="author" content="TRIPGORE">
 
 </head>
 
@@ -15,7 +18,7 @@
     <!-- Header -->
     <header class="header">
         <i class="fas fa-bars menu-toggle" id="menuToggle"></i>
-        <img src="https://files.catbox.moe/l6hd4u.png" alt="TRIPGORE" class="logo-img">
+        <img src="https://files.catbox.moe/l6hd4u.png" alt="TRIPGORE Logo" class="logo-img" width="80" height="80">
         <span class="username" id="username">Usuario</span>
 
         <!-- Desktop Auth Buttons -->
@@ -110,12 +113,12 @@
             <h3 class="modal-title">Confirmar Eliminación</h3>
             <p class="modal-message">¿Estás seguro que quieres eliminar este mensaje?</p>
             <div class="modal-buttons">
-                <button class="modal-btn modal-btn-confirm" id="confirmDeleteBtn">
-                    <i class="fas fa-trash"></i>
+                <button class="modal-btn modal-btn-confirm" id="confirmDeleteBtn" aria-label="Confirmar eliminación">
+                    <i class="fas fa-trash" aria-hidden="true"></i>
                     Aceptar
                 </button>
-                <button class="modal-btn modal-btn-cancel" id="cancelDeleteBtn">
-                    <i class="fas fa-times"></i>
+                <button class="modal-btn modal-btn-cancel" id="cancelDeleteBtn" aria-label="Cancelar eliminación">
+                    <i class="fas fa-times" aria-hidden="true"></i>
                     Cancelar
                 </button>
             </div>
@@ -126,13 +129,6 @@
     <main class="main-content">
         <!-- Chat Container -->
         <div class="chat-container">
-            <!-- Chat Header -->
-            <div class="chat-header">
-                <div class="chat-title">
-                    <i class="fas fa-comments"></i>
-                    <h1>Chat en Vivo TRIPGORE</h1>
-                </div>
-            </div>
 
             <!-- Chat Messages Area -->
             <div class="chat-messages" id="chatMessages">
@@ -166,8 +162,8 @@
                             <i class="fas fa-reply"></i>
                             Respondiendo a <strong id="replyAuthor"></strong>
                         </span>
-                        <button type="button" class="cancel-reply" onclick="cancelReply()">
-                            <i class="fas fa-times"></i>
+                        <button type="button" class="cancel-reply" onclick="cancelReply()" aria-label="Cancelar respuesta">
+                            <i class="fas fa-times" aria-hidden="true"></i>
                         </button>
                     </div>
                     <div class="reply-preview-text" id="replyText"></div>
@@ -175,12 +171,12 @@
                 <form class="chat-input-form" id="chatForm">
                     <div class="input-wrapper">
                         <textarea class="chat-input" id="messageInput" placeholder="Escribe tu mensaje aquí..." rows="1"
-                            maxlength="500"></textarea>
+                            maxlength="500" aria-label="Escribe tu mensaje aquí" autocomplete="off"></textarea>
                         <div class="char-counter">
                             <span id="charCount">0</span>/500
                         </div>
-                        <button type="submit" class="send-btn" id="sendBtn">
-                            <i class="fas fa-paper-plane"></i>
+                        <button type="submit" class="send-btn" id="sendBtn" aria-label="Enviar mensaje">
+                            <i class="fas fa-paper-plane" aria-hidden="true"></i>
                         </button>
                     </div>
                 </form>
@@ -407,7 +403,7 @@
             if (isImageUrl(text)) {
                 const imageUrl = extractImageUrl(text);
                 if (imageUrl) {
-                    imageHtml = `<img src="${imageUrl}" alt="Imagen compartida" class="message-image" onclick="window.open('${imageUrl}', '_blank')">`;
+                    imageHtml = `<img src="${imageUrl}" alt="Imagen compartida" class="message-image" onclick="window.open('${imageUrl}', '_blank')" loading="lazy">`;
                     // Remove image URL from text to avoid duplication
                     messageContent = text.replace(imageUrl, '').trim();
                 }
@@ -429,12 +425,12 @@
             if (currentUser) {
                 optionsHtml = `
                     <div class="message-options">
-                        <button class="option-btn reply-btn" onclick="replyToMessage('${messageId}', '${author}', '${text.replace(/'/g, "\\'")}')">
-                            <i class="fas fa-reply"></i>
+                        <button class="option-btn reply-btn" onclick="replyToMessage('${messageId}', '${author}', '${text.replace(/'/g, "\\'")}')" aria-label="Responder mensaje">
+                            <i class="fas fa-reply" aria-hidden="true"></i>
                         </button>
                         ${isOwn || (currentUserRole && (currentUserRole.rol === 'moderador')) ?
-                        `<button class="option-btn delete-btn" onclick="deleteMessage('${messageId}', ${isOwn})">
-                                <i class="fas fa-trash"></i>
+                        `<button class="option-btn delete-btn" onclick="deleteMessage('${messageId}', ${isOwn})" aria-label="Eliminar mensaje">
+                                <i class="fas fa-trash" aria-hidden="true"></i>
                             </button>` : ''
                     }
                     </div>
