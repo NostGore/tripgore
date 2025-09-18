@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir Video - TRIPGORE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../responsive/responsive.css">
+    <style>
+        /* Estilos específicos para la página de subida */
+        .upload-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .upload-header {
+            background: linear-gradient(135deg, #8B0000 0%, #DC143C 25%, #B22222 50%, #8B0000 75%, #660000 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px 15px 0 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border: 2px solid #444;
+            border-bottom: none;
+            position: relative;
+        }
+
+        .upload-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.1) 100%);
+            border-radius: 13px 13px 0 0;
+            pointer-events: none;
+        }
+
+        .upload-header h1 {
+            font-size: 28px;
+            margin: 0 0 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .upload-header h1::before {
+            content: "📹";
+            font-size: 24px;
+        }
+
+        .upload-header p {
+            margin: 0;
+            font-size: 16px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .upload-form {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 25%, #1a1a1a 50%, #0d0d0d 75%, #1a1a1a 100%);
+            padding: 40px;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border: 2px solid #333;
+            border-top: none;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #fff;
+            font-size: 14px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-group label i {
+            margin-right: 8px;
+            color: #ff0000;
+            width: 16px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #444;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            color: #fff;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #ff0000;
+            background: linear-gradient(135deg, #333 0%, #222 100%);
+            box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.2), inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-input::placeholder {
+            color: #888;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #444;
+            border-radius: 8px;
+            font-size: 16px;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: #ff0000;
+            background: linear-gradient(135deg, #333 0%, #222 100%);
+            box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.2), inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-select option {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+
+        .submit-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #444;
+            text-align: center;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+            background: linear-gradient(135deg, #cc0000 0%, #990000 100%);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .submit-btn i {
+            font-size: 16px;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #444 0%, #333 100%);
+            color: white;
+            border: 2px solid #555;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-right: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(135deg, #555 0%, #444 100%);
+            border-color: #666;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .loading-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 20px 25px;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            z-index: 10000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        }
+
+        .notification.error {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        }
+
+        .notification i {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        .form-help {
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .form-help i {
+            color: #ff0000;
+        }
+
+        .required {
+            color: #ff0000;
+        }
+
+        /* Estilos para la sección Generar Link MP4 */
+        .link-generator-section {
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            border: 2px solid #444;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .generator-header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #444;
+        }
+
+        .generator-header h3 {
+            color: #fff;
+            font-size: 20px;
+            margin: 0 0 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .generator-header h3 i {
+            color: #ff0000;
+        }
+
+        .generator-header p {
+            color: #ccc;
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .catbox-iframe-container {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+            border: 1px solid #333;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .iframe-header {
+            background: #2a2a2a;
+            padding: 15px 20px;
+            border-bottom: 1px solid #444;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .iframe-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .iframe-info i {
+            color: #ff0000;
+        }
+
+        .open-external-btn {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .open-external-btn:hover {
+            background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+        }
+
+        .catbox-iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            background: white;
+        }
+
+        .iframe-help {
+            background: rgba(255, 0, 0, 0.1);
+            border-top: 1px solid #ff0000;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ff0000;
+            font-size: 14px;
+        }
+
+        .iframe-help i {
+            font-size: 16px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .iframe-header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .catbox-iframe {
+                height: 500px;
+            }
+            
+            .iframe-help {
+                flex-direction: column;
+                text-align: center;
+                gap: 5px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .catbox-iframe {
+                height: 400px;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .upload-container {
+                margin: 20px auto;
+                padding: 0 15px;
+            }
+
+            .upload-header {
+                padding: 20px;
+            }
+
+            .upload-header h1 {
+                font-size: 24px;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .upload-form {
+                padding: 25px;
+            }
+
+            .form-input,
+            .form-select,
+            .form-textarea {
+                padding: 12px;
+                font-size: 14px;
+            }
+
+            .submit-btn {
+                padding: 15px 30px;
+                font-size: 16px;
+            }
+
+            .back-btn {
+                padding: 10px 20px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .upload-header h1 {
+                font-size: 20px;
+            }
+
+            .upload-form {
+                padding: 20px;
+            }
+
+            .submit-section {
+                margin-top: 30px;
+                padding-top: 20px;
+            }
+
+            .back-btn {
+                margin-right: 0;
+                margin-bottom: 15px;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .submit-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Container - Se carga dinámicamente desde header.js -->
+    <div id="header-container"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="upload-container">
+            <div class="upload-header">
+                <h1>Subir Nuevo Video</h1>
+                <p>Comparte tu contenido con la comunidad TRIPGORE</p>
+            </div>
+
+            <form class="upload-form" id="uploadForm">
+                <div class="form-group">
+                    <label for="videoTitle">
+                        <i class="fa-solid fa-heading"></i>
+                        Título del Video <span class="required">*</span>
+                    </label>
+                    <input 
+                        type="text" 
+                        id="videoTitle" 
+                        name="videoTitle" 
+                        class="form-input" 
+                        placeholder="Ingresa un título descriptivo para tu video"
+                        required
+                        maxlength="100"
+                    >
+                    <div class="form-help">
+                        <i class="fa-solid fa-info-circle"></i>
+                        Máximo 100 caracteres
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="videoLink">
+                        <i class="fa-solid fa-link"></i>
+                        Enlace del Video <span class="required">*</span>
+                    </label>
+                    <input 
+                        type="url" 
+                        id="videoLink" 
+                        name="videoLink" 
+                        class="form-input" 
+                        placeholder="https://ejemplo.com/video.mp4"
+                        required
+                    >
+                    <div class="form-help">
+                        <i class="fa-solid fa-info-circle"></i>
+                        Asegúrate de que el enlace sea accesible públicamente
+                    </div>
+                </div>
+
+                <!-- Sección Generar Link MP4 -->
+                <div class="form-group">
+                    <div class="link-generator-section">
+                        <div class="generator-header">
+                            <h3>
+                                <i class="fa-solid fa-cloud-upload-alt"></i>
+                                Generar Link MP4
+                            </h3>
+                            <p>Sube tu video directamente usando Catbox.moe</p>
+                        </div>
+                        
+                        <div class="catbox-iframe-container">
+                            <div class="iframe-header">
+                                <div class="iframe-info">
+                                    <i class="fa-solid fa-external-link-alt"></i>
+                                    <span>Catbox.moe - Servicio de alojamiento de archivos</span>
+                                </div>
+                                <button type="button" class="open-external-btn" onclick="openCatboxExternal()">
+                                    <i class="fa-solid fa-external-link-alt"></i>
+                                    Abrir en nueva pestaña
+                                </button>
+                            </div>
+                            
+                            <iframe 
+                                src="https://catbox.moe" 
+                                class="catbox-iframe"
+                                title="Catbox.moe - Upload Files"
+                                allow="camera; microphone; fullscreen">
+                            </iframe>
+                            
+                            <div class="iframe-help">
+                                <i class="fa-solid fa-info-circle"></i>
+                                <span>Una vez que subas tu video, copia el enlace generado y pégalo en el campo "Enlace del Video" de arriba.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="videoCategory">
+                        <i class="fa-solid fa-tags"></i>
+                        Categoría <span class="required">*</span>
+                    </label>
+                    <select id="videoCategory" name="videoCategory" class="form-select" required>
+                        <option value="">Selecciona una categoría</option>
+                        <option value="asesinatos">Asesinatos</option>
+                        <option value="accidentes">Accidentes</option>
+                        <option value="incidentes">Incidentes</option>
+                        <option value="suicidios">Suicidios</option>
+                        <option value="autolesiones">Autolesiones</option>
+                        <option value="otros">Otros</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="notificationEmail">
+                        <i class="fa-solid fa-envelope"></i>
+                        Correo para Notificaciones <span class="required">*</span>
+                    </label>
+                    <input 
+                        type="email" 
+                        id="notificationEmail" 
+                        name="notificationEmail" 
+                        class="form-input" 
+                        placeholder="tu@email.com"
+                        required
+                    >
+                    <div class="form-help">
+                        <i class="fa-solid fa-info-circle"></i>
+                        Te contactaremos por correo sobre el estado de tu video
+                    </div>
+                </div>
+
+
+                <div class="submit-section">
+                    <button type="button" class="back-btn" onclick="goBack()">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Volver
+                    </button>
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <i class="fa-solid fa-upload"></i>
+                        <span>Subir Video</span>
+                        <div class="loading-spinner" id="loadingSpinner"></div>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <i class="fa-solid fa-check-circle"></i>
+        <span id="notificationText">Mensaje de notificación</span>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
+    <!-- Incluir Firebase primero -->
+    <script type="module" src="../js/firebase.js"></script>
+
+    <!-- Incluir el archivo header.js después -->
+    <script src="../js/header.js"></script>
+
+
+    <script>
+        // Función para volver atrás
+        function goBack() {
+            window.history.back();
+        }
+
+        // Función para mostrar notificaciones
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notificationText');
+            const icon = notification.querySelector('i');
+            
+            notificationText.textContent = message;
+            notification.className = `notification ${type}`;
+            
+            if (type === 'success') {
+                icon.className = 'fa-solid fa-check-circle';
+            } else {
+                icon.className = 'fa-solid fa-exclamation-triangle';
+            }
+            
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 5000);
+        }
+
+        // Función para validar URL
+        function isValidUrl(string) {
+            try {
+                new URL(string);
+                return true;
+            } catch (_) {
+                return false;
+            }
+        }
+
+        // Función para validar email
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Función para subir video (ahora usa la función de firebase.js)
+        async function uploadVideo(videoData) {
+            try {
+                // Usar la función uploadPendingVideo de firebase.js
+                const result = await uploadPendingVideo(videoData);
+                return result;
+            } catch (error) {
+                console.error('Error al guardar video:', error);
+                return { success: false, error: error.message };
+            }
+        }
+
+        // Manejar envío del formulario
+        document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const submitText = submitBtn.querySelector('span');
+            
+            // Obtener datos del formulario
+            const formData = new FormData(this);
+            const videoData = {
+                title: formData.get('videoTitle').trim(),
+                link: formData.get('videoLink').trim(),
+                category: formData.get('videoCategory'),
+                email: formData.get('notificationEmail').trim(),
+                status: 'pending',
+                submittedAt: new Date().toISOString(),
+                submittedBy: getCurrentUser() ? getCurrentUser().email : 'anonymous'
+            };
+            
+            // Validaciones
+            if (!videoData.title) {
+                showNotification('Por favor ingresa un título para el video', 'error');
+                return;
+            }
+            
+            if (!isValidUrl(videoData.link)) {
+                showNotification('Por favor ingresa un enlace válido', 'error');
+                return;
+            }
+            
+            if (!videoData.category) {
+                showNotification('Por favor selecciona una categoría', 'error');
+                return;
+            }
+            
+            if (!isValidEmail(videoData.email)) {
+                showNotification('Por favor ingresa un correo electrónico válido', 'error');
+                return;
+            }
+            
+            // Mostrar estado de carga
+            submitBtn.disabled = true;
+            loadingSpinner.style.display = 'block';
+            submitText.textContent = 'Subiendo...';
+            
+            try {
+                const result = await uploadVideo(videoData);
+                
+                if (result.success) {
+                    showNotification('¡Video subido exitosamente! Te contactaremos por correo sobre su estado.', 'success');
+                    
+                    // Limpiar formulario
+                    this.reset();
+                    
+                    // Redirigir después de 3 segundos
+                    setTimeout(() => {
+                        const currentPath = window.location.pathname;
+                        
+                        // Buscar la posición de 'tripppgore' y ir a esa carpeta
+                        const tripppgoreIndex = currentPath.indexOf('/tripppgore');
+                        if (tripppgoreIndex !== -1) {
+                            const basePath = currentPath.substring(0, tripppgoreIndex + '/tripppgore'.length);
+                            window.location.href = basePath + '/index.html';
+                        } else {
+                            // Fallback: ir al directorio actual
+                            window.location.href = './index.html';
+                        }
+                    }, 3000);
+                } else {
+                    showNotification('Error al subir el video. Por favor intenta nuevamente.', 'error');
+                }
+            } catch (error) {
+                showNotification('Error inesperado. Por favor intenta nuevamente.', 'error');
+            } finally {
+                // Restaurar botón
+                submitBtn.disabled = false;
+                loadingSpinner.style.display = 'none';
+                submitText.textContent = 'Subir Video';
+            }
+        });
+
+        // Validación en tiempo real
+        document.getElementById('videoLink').addEventListener('blur', function() {
+            const link = this.value.trim();
+            if (link && !isValidUrl(link)) {
+                this.style.borderColor = '#ff0000';
+                showNotification('El enlace no tiene un formato válido', 'error');
+            } else {
+                this.style.borderColor = '#e0e0e0';
+            }
+        });
+
+        document.getElementById('notificationEmail').addEventListener('blur', function() {
+            const email = this.value.trim();
+            if (email && !isValidEmail(email)) {
+                this.style.borderColor = '#ff0000';
+                showNotification('El correo electrónico no tiene un formato válido', 'error');
+            } else {
+                this.style.borderColor = '#e0e0e0';
+            }
+        });
+
+        // Contador de caracteres
+        document.getElementById('videoTitle').addEventListener('input', function() {
+            const maxLength = 100;
+            const currentLength = this.value.length;
+            const helpText = this.nextElementSibling;
+            
+            if (currentLength > maxLength * 0.9) {
+                helpText.style.color = '#ff0000';
+            } else {
+                helpText.style.color = '#666';
+            }
+        });
+
+        // Función para abrir Catbox en nueva pestaña
+        function openCatboxExternal() {
+            window.open('https://catbox.moe', '_blank');
+        }
+
+    </script>
+</body>
+
+</html>

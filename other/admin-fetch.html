@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - TRIPGORE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../responsive/responsive.css">
+    <style>
+        /* Estilos específicos para el panel de administración */
+        .admin-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            min-height: calc(100vh - 80px);
+        }
+
+        /* Mejoras para móviles */
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            -webkit-overflow-scrolling: touch;
+            overflow-x: hidden;
+        }
+
+        .video-card {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .video-title {
+            word-break: break-word;
+            hyphens: auto;
+        }
+
+        .info-item a {
+            word-break: break-all;
+            overflow-wrap: break-word;
+        }
+
+        /* Integración con responsive.css */
+        @media (max-width: 768px) {
+            .admin-container {
+                margin: 15px auto;
+                padding: 0 10px;
+            }
+
+            .admin-header {
+                padding: 15px;
+                margin-bottom: 0;
+                border-radius: 8px 8px 0 0;
+            }
+
+            .admin-header h1 {
+                font-size: 20px;
+                margin-bottom: 8px;
+                text-align: center;
+            }
+
+            .admin-header h1::before {
+                font-size: 18px;
+            }
+
+            .admin-header p {
+                font-size: 13px;
+                text-align: center;
+            }
+
+            .admin-content {
+                padding: 15px;
+                border-radius: 0 0 8px 8px;
+            }
+
+            .video-card {
+                padding: 12px;
+                margin: 10px 0;
+                border-radius: 8px;
+            }
+
+            .video-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .video-title {
+                font-size: 16px;
+                line-height: 1.3;
+                margin-bottom: 8px;
+            }
+
+            .video-status {
+                align-self: flex-start;
+                font-size: 10px;
+                padding: 4px 8px;
+            }
+
+            .video-info {
+                grid-template-columns: 1fr;
+                gap: 8px;
+                margin-bottom: 15px;
+            }
+
+            .info-item {
+                padding: 6px 8px;
+                font-size: 12px;
+                border-radius: 6px;
+            }
+
+            .info-item i {
+                font-size: 12px;
+                width: 16px;
+            }
+
+            .video-actions {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+                padding: 12px 15px;
+                font-size: 12px;
+                border-radius: 6px;
+            }
+
+            .load-btn {
+                padding: 10px 20px;
+                font-size: 13px;
+                margin-bottom: 20px;
+            }
+
+            .back-btn {
+                padding: 8px 15px;
+                font-size: 12px;
+                margin-bottom: 12px;
+            }
+
+            .no-videos {
+                padding: 30px 15px;
+                font-size: 16px;
+            }
+
+            .no-videos i {
+                font-size: 36px;
+                margin-bottom: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .admin-container {
+                margin: 10px auto;
+                padding: 0 8px;
+            }
+
+            .admin-header {
+                padding: 12px;
+            }
+
+            .admin-header h1 {
+                font-size: 18px;
+            }
+
+            .admin-header h1::before {
+                font-size: 16px;
+            }
+
+            .admin-content {
+                padding: 12px 8px;
+            }
+
+            .video-card {
+                padding: 10px;
+                margin: 8px 0;
+            }
+
+            .video-title {
+                font-size: 14px;
+            }
+
+            .info-item {
+                padding: 5px 6px;
+                font-size: 11px;
+            }
+
+            .btn {
+                padding: 10px 12px;
+                font-size: 11px;
+            }
+
+            .load-btn {
+                padding: 8px 15px;
+                font-size: 12px;
+            }
+
+            .back-btn {
+                padding: 6px 12px;
+                font-size: 11px;
+            }
+        }
+
+        .admin-header {
+            background: linear-gradient(135deg, #8B0000 0%, #DC143C 25%, #B22222 50%, #8B0000 75%, #660000 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px 15px 0 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border: 2px solid #444;
+            border-bottom: none;
+            position: relative;
+        }
+
+        .admin-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.1) 100%);
+            border-radius: 13px 13px 0 0;
+            pointer-events: none;
+        }
+
+        .admin-header h1 {
+            font-size: 28px;
+            margin: 0 0 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .admin-header h1::before {
+            content: "⚙️";
+            font-size: 24px;
+        }
+
+        .admin-header p {
+            margin: 0;
+            font-size: 16px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .admin-content {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 25%, #1a1a1a 50%, #0d0d0d 75%, #1a1a1a 100%);
+            padding: 40px;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border: 2px solid #333;
+            border-top: none;
+        }
+
+        .load-btn {
+            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+            margin-bottom: 30px;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        .load-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+            background: linear-gradient(135deg, #cc0000 0%, #990000 100%);
+        }
+
+        .video-card {
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            border: 2px solid #444;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover {
+            border-color: #ff0000;
+            box-shadow: 0 6px 15px rgba(255, 0, 0, 0.2);
+        }
+
+        .video-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .video-title {
+            color: #fff;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0;
+            flex: 1;
+        }
+
+        .video-status {
+            background: #ff0000;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .video-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ccc;
+            font-size: 14px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border-left: 4px solid #ff0000;
+        }
+
+        .info-item i {
+            color: #ff0000;
+            width: 20px;
+            font-size: 16px;
+        }
+
+        .info-item a {
+            color: #ff0000;
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .info-item a:hover {
+            text-decoration: underline;
+        }
+
+        .video-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        .btn-approve {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+        }
+
+        .btn-approve:hover {
+            background: linear-gradient(135deg, #20c997 0%, #28a745 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+        }
+
+        .btn-reject {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+        }
+
+        .btn-reject:hover {
+            background: linear-gradient(135deg, #c82333 0%, #dc3545 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(220, 53, 69, 0.3);
+        }
+
+        .btn-view {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+        }
+
+        .btn-view:hover {
+            background: linear-gradient(135deg, #0056b3 0%, #007bff 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+        }
+
+        .loading {
+            text-align: center;
+            color: #fff;
+            font-size: 18px;
+            padding: 40px;
+        }
+
+        .loading i {
+            color: #ff0000;
+            margin-right: 10px;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Estilos para carga de autenticación */
+        .loading-auth {
+            text-align: center;
+            color: #fff;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            border: 2px solid #444;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .loading-auth .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 0, 0, 0.3);
+            border-top: 4px solid #ff0000;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px auto;
+        }
+
+        .loading-auth p {
+            color: #ccc;
+            font-size: 16px;
+            margin: 0;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .no-videos {
+            text-align: center;
+            color: #ccc;
+            font-size: 18px;
+            padding: 40px;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            border: 2px solid #444;
+            border-radius: 10px;
+        }
+
+        .no-videos i {
+            color: #ff0000;
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #444 0%, #333 100%);
+            color: white;
+            border: 2px solid #555;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(135deg, #555 0%, #444 100%);
+            border-color: #666;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Estilos para mensaje de no logueado */
+        .not-logged-in-message {
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            border: 2px solid #444;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .message-icon {
+            margin-bottom: 30px;
+        }
+
+        .message-icon i {
+            font-size: 64px;
+            color: #ff0000;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+
+        .not-logged-in-message h2 {
+            color: #fff;
+            font-size: 28px;
+            margin: 0 0 15px 0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .not-logged-in-message p {
+            color: #ccc;
+            font-size: 16px;
+            margin: 0 0 40px 0;
+            line-height: 1.5;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-login {
+            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+        }
+
+        .btn-login:hover {
+            background: linear-gradient(135deg, #cc0000 0%, #990000 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+        }
+
+        .btn-home {
+            background: linear-gradient(135deg, #444 0%, #333 100%);
+            color: white;
+            border: 2px solid #555;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-home:hover {
+            background: linear-gradient(135deg, #555 0%, #444 100%);
+            border-color: #666;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn-retry {
+            background: linear-gradient(135deg, #ff6600 0%, #ff8800 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3);
+        }
+
+        .btn-retry:hover {
+            background: linear-gradient(135deg, #ff8800 0%, #ffaa00 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 102, 0, 0.4);
+        }
+
+        /* Responsive para mensaje de no logueado */
+        @media (max-width: 768px) {
+            .not-logged-in-message {
+                padding: 40px 20px;
+                margin: 20px 0;
+            }
+
+            .message-icon i {
+                font-size: 48px;
+            }
+
+            .not-logged-in-message h2 {
+                font-size: 24px;
+            }
+
+            .not-logged-in-message p {
+                font-size: 14px;
+            }
+
+            .auth-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-login,
+            .btn-home {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+
+        /* Responsive adicional para pantallas grandes */
+        @media (max-width: 1200px) {
+            .admin-container {
+                max-width: 1000px;
+                margin: 30px auto;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .admin-container {
+                max-width: 800px;
+                margin: 25px auto;
+            }
+
+            .video-info {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Container - Se carga dinámicamente desde header.js -->
+    <div id="header-container"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="admin-container">
+            <a href="#" onclick="goToHome(); return false;" class="back-btn">
+                <i class="fa-solid fa-arrow-left"></i>
+                Volver al Inicio
+            </a>
+
+            <div class="admin-header">
+                <h1>Panel de Administración</h1>
+                <p>Gestiona los videos pendientes de aprobación</p>
+            </div>
+
+            <div class="admin-content">
+                <div id="loading-auth" class="loading-auth">
+                    <div class="loading-spinner"></div>
+                    <p>Verificando autenticación...</p>
+                </div>
+                
+                <div id="admin-panel" style="display: none;">
+                    <button class="load-btn" onclick="cargarVideos()">
+                        <i class="fa-solid fa-sync-alt"></i>
+                        Cargar Videos Pendientes
+                    </button>
+                    
+                    <div id="videos"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
+    <!-- Incluir Firebase primero -->
+    <script type="module" src="../js/firebase.js"></script>
+
+    <!-- Incluir el archivo header.js después -->
+    <script src="../js/header.js"></script>
+
+    <script>
+        // Función para ir al inicio (copiada de header.js)
+        function goToHome() {
+            const currentPath = window.location.pathname;
+            
+            // Si estamos en index.html con parámetros, limpiar los parámetros
+            if (currentPath.includes('index.html')) {
+                // Si ya estamos en index.html, solo limpiar parámetros
+                window.location.href = currentPath.split('?')[0];
+            } else {
+                // Si estamos en otra página, ir a la raíz del proyecto
+                // Buscar la posición de 'tripppgore' y ir a esa carpeta
+                const tripppgoreIndex = currentPath.indexOf('/tripppgore');
+                if (tripppgoreIndex !== -1) {
+                    const basePath = currentPath.substring(0, tripppgoreIndex + '/tripppgore'.length);
+                    window.location.href = basePath + '/index.html';
+                } else {
+                    // Fallback: ir al directorio actual
+                    window.location.href = './index.html';
+                }
+            }
+        }
+
+        const DATABASE_URL = 'https://triplegore-default-rtdb.firebaseio.com/video-pending.json';
+
+        async function cargarVideos() {
+            try {
+                console.log('Cargando videos con Fetch...');
+                const response = await fetch(DATABASE_URL);
+                const data = await response.json();
+                
+                console.log('Datos recibidos:', data);
+                
+                if (data) {
+                    mostrarVideos(data);
+                } else {
+                    document.getElementById('videos').innerHTML = '<p>No hay videos pendientes</p>';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('videos').innerHTML = '<p>Error al cargar videos: ' + error.message + '</p>';
+            }
+        }
+
+        function mostrarVideos(videos) {
+            const container = document.getElementById('videos');
+            
+            if (Object.keys(videos).length === 0) {
+                container.innerHTML = `
+                    <div class="no-videos">
+                        <i class="fa-solid fa-check-circle"></i>
+                        <p>No hay videos pendientes de aprobación</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = '';
+            Object.keys(videos).forEach(videoId => {
+                const video = videos[videoId];
+                html += `
+                    <div class="video-card">
+                        <div class="video-header">
+                            <h3 class="video-title">${video.title}</h3>
+                            <span class="video-status">${video.status}</span>
+                        </div>
+                        
+                        <div class="video-info">
+                            <div class="info-item">
+                                <i class="fa-solid fa-tag"></i>
+                                <span><strong>Categoría:</strong> ${video.category}</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fa-solid fa-envelope"></i>
+                                <span><strong>Correo:</strong> ${video.email}</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fa-solid fa-calendar"></i>
+                                <span><strong>Fecha:</strong> ${new Date(video.timestamp).toLocaleString()}</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fa-solid fa-user"></i>
+                                <span><strong>Autor:</strong> ${video.submittedBy}</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fa-solid fa-link"></i>
+                                <span><strong>Video:</strong> <a href="${video.link}" target="_blank">${video.link}</a></span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fa-solid fa-fingerprint"></i>
+                                <span><strong>ID:</strong> ${videoId}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="video-actions">
+                            <button class="btn btn-view" onclick="verVideo('${video.link}')">
+                                <i class="fa-solid fa-play"></i>
+                                Ver Video
+                            </button>
+                            <button class="btn btn-approve" onclick="aprobarVideo('${videoId}')">
+                                <i class="fa-solid fa-check"></i>
+                                Aprobar
+                            </button>
+                            <button class="btn btn-reject" onclick="rechazarVideo('${videoId}')">
+                                <i class="fa-solid fa-times"></i>
+                                Rechazar
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        function verVideo(link) {
+            window.open(link, '_blank');
+        }
+
+        async function aprobarVideo(videoId) {
+            if (confirm('¿Aprobar este video?')) {
+                try {
+                    // Obtener el video
+                    const response = await fetch(`https://triplegore-default-rtdb.firebaseio.com/video-pending/${videoId}.json`);
+                    const video = await response.json();
+                    
+                    // Mover a videos aprobados
+                    await fetch(`https://triplegore-default-rtdb.firebaseio.com/videos/${videoId}.json`, {
+                        method: 'PUT',
+                        body: JSON.stringify(video)
+                    });
+                    
+                    // Eliminar de pendientes
+                    await fetch(`https://triplegore-default-rtdb.firebaseio.com/video-pending/${videoId}.json`, {
+                        method: 'DELETE'
+                    });
+                    
+                    alert('Video aprobado');
+                    cargarVideos();
+                } catch (error) {
+                    alert('Error: ' + error.message);
+                }
+            }
+        }
+
+        async function rechazarVideo(videoId) {
+            if (confirm('¿Estás seguro de que quieres rechazar este video?')) {
+                try {
+                    // Obtener el video
+                    const response = await fetch(`https://triplegore-default-rtdb.firebaseio.com/video-pending/${videoId}.json`);
+                    const video = await response.json();
+                    video.rejectionReason = 'Rechazado por administrador';
+                    
+                    // Mover a videos rechazados
+                    await fetch(`https://triplegore-default-rtdb.firebaseio.com/video-rejected/${videoId}.json`, {
+                        method: 'PUT',
+                        body: JSON.stringify(video)
+                    });
+                    
+                    // Eliminar de pendientes
+                    await fetch(`https://triplegore-default-rtdb.firebaseio.com/video-pending/${videoId}.json`, {
+                        method: 'DELETE'
+                    });
+                    
+                    alert('Video rechazado');
+                    cargarVideos();
+                } catch (error) {
+                    alert('Error: ' + error.message);
+                }
+            }
+        }
+
+        // Verificar autenticación y cargar contenido
+        document.addEventListener('DOMContentLoaded', function() {
+            // Esperar a que el header se cargue y luego verificar autenticación
+            setTimeout(() => {
+                checkAuthenticationByHeader();
+            }, 1000);
+            
+            // También verificar periódicamente hasta que el header esté listo
+            const checkHeaderInterval = setInterval(() => {
+                if (checkAuthenticationByHeader()) {
+                    clearInterval(checkHeaderInterval);
+                }
+            }, 500);
+            
+            // Limpiar el intervalo después de 10 segundos
+            setTimeout(() => {
+                clearInterval(checkHeaderInterval);
+            }, 10000);
+        });
+
+        // Función para verificar autenticación basándose en el header
+        function checkAuthenticationByHeader() {
+            console.log('Verificando autenticación por header...');
+            
+            // Buscar elementos del header que indiquen que el usuario está logueado
+            const userEmail = document.querySelector('.user-email');
+            const mobileUserEmail = document.querySelector('.mobile-user-profile .user-email');
+            const logoutBtn = document.querySelector('.logout-btn');
+            const mobileLogoutBtn = document.querySelector('.mobile-user-profile .logout-btn');
+            
+            console.log('Elementos encontrados:', {
+                userEmail: userEmail ? userEmail.textContent : 'No encontrado',
+                mobileUserEmail: mobileUserEmail ? mobileUserEmail.textContent : 'No encontrado',
+                logoutBtn: logoutBtn ? 'Encontrado' : 'No encontrado',
+                mobileLogoutBtn: mobileLogoutBtn ? 'Encontrado' : 'No encontrado'
+            });
+            
+            // Verificar si hay indicadores de usuario logueado
+            const isLoggedIn = (
+                (userEmail && userEmail.textContent && userEmail.textContent !== 'No logueado') ||
+                (mobileUserEmail && mobileUserEmail.textContent && mobileUserEmail.textContent !== 'No logueado') ||
+                logoutBtn ||
+                mobileLogoutBtn
+            );
+            
+            console.log('Usuario logueado detectado:', isLoggedIn);
+            
+            const loadingAuth = document.getElementById('loading-auth');
+            const adminPanel = document.getElementById('admin-panel');
+            
+            // Ocultar loading
+            if (loadingAuth) {
+                loadingAuth.style.display = 'none';
+            }
+            
+            if (isLoggedIn) {
+                // Usuario logueado, mostrar panel y cargar videos
+                console.log('Usuario autenticado detectado por header, mostrando panel...');
+                if (adminPanel) {
+                    adminPanel.style.display = 'block';
+                }
+                cargarVideos();
+                return true; // Indica que se completó la verificación
+            } else {
+                // Usuario no logueado, mostrar mensaje
+                console.log('Usuario no autenticado detectado por header');
+                showNotLoggedInMessage();
+                return false; // Indica que necesita seguir verificando
+            }
+        }
+
+        // Función de respaldo para verificar autenticación
+        function checkAuthenticationFallback() {
+            console.log('Usando verificación de respaldo...');
+            
+            // Intentar usar Firebase Auth directamente
+            if (typeof auth !== 'undefined' && auth.currentUser) {
+                console.log('Usuario encontrado via auth.currentUser:', auth.currentUser.email);
+                const loadingAuth = document.getElementById('loading-auth');
+                const adminPanel = document.getElementById('admin-panel');
+                
+                if (loadingAuth) {
+                    loadingAuth.style.display = 'none';
+                }
+                if (adminPanel) {
+                    adminPanel.style.display = 'block';
+                }
+                cargarVideos();
+            } else {
+                console.log('No se encontró usuario autenticado');
+                showNotLoggedInMessage();
+            }
+        }
+
+        // Función para verificar autenticación
+        function checkAuthentication() {
+            console.log('Verificando autenticación...');
+            
+            // Verificar si las funciones de Firebase están disponibles
+            if (typeof getCurrentUser !== 'function') {
+                console.error('getCurrentUser no está disponible');
+                showNotLoggedInMessage();
+                return;
+            }
+            
+            const currentUser = getCurrentUser();
+            const loadingAuth = document.getElementById('loading-auth');
+            const adminPanel = document.getElementById('admin-panel');
+            
+            console.log('Usuario actual:', currentUser);
+            
+            // Ocultar loading
+            if (loadingAuth) {
+                loadingAuth.style.display = 'none';
+            }
+            
+            if (!currentUser) {
+                // Usuario no logueado, mostrar mensaje y redirigir
+                console.log('Usuario no autenticado, mostrando mensaje de acceso restringido');
+                showNotLoggedInMessage();
+            } else {
+                // Usuario logueado, mostrar panel y cargar videos
+                console.log('Usuario autenticado:', currentUser.email);
+                if (adminPanel) {
+                    adminPanel.style.display = 'block';
+                }
+                cargarVideos();
+            }
+        }
+
+        // Función para mostrar mensaje de no logueado
+        function showNotLoggedInMessage() {
+            const adminContent = document.querySelector('.admin-content');
+            adminContent.innerHTML = `
+                <div class="not-logged-in-message">
+                    <div class="message-icon">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <h2>Acceso Restringido</h2>
+                    <p>Necesitas iniciar sesión para acceder al panel de administración.</p>
+                    <div class="auth-buttons">
+                        <a href="#" onclick="goToAuth(); return false;" class="btn btn-login">
+                            <i class="fa-solid fa-sign-in-alt"></i>
+                            Iniciar Sesión
+                        </a>
+                        <a href="#" onclick="retryAuthentication(); return false;" class="btn btn-retry">
+                            <i class="fa-solid fa-refresh"></i>
+                            Reintentar
+                        </a>
+                        <a href="#" onclick="goToHome(); return false;" class="btn btn-home">
+                            <i class="fa-solid fa-home"></i>
+                            Volver al Inicio
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Función para reintentar autenticación
+        function retryAuthentication() {
+            console.log('Reintentando autenticación...');
+            const adminContent = document.querySelector('.admin-content');
+            adminContent.innerHTML = `
+                <div class="loading-auth">
+                    <div class="loading-spinner"></div>
+                    <p>Reintentando verificación...</p>
+                </div>
+            `;
+            
+            // Esperar un momento y verificar nuevamente usando el header
+            setTimeout(() => {
+                checkAuthenticationByHeader();
+            }, 1000);
+        }
+
+        // Función para ir a la página de autenticación
+        function goToAuth() {
+            const currentPath = window.location.pathname;
+            const tripppgoreIndex = currentPath.indexOf('/tripppgore');
+            if (tripppgoreIndex !== -1) {
+                const basePath = currentPath.substring(0, tripppgoreIndex + '/tripppgore'.length);
+                window.location.href = basePath + '/auth/auth.html';
+            } else {
+                window.location.href = './auth/auth.html';
+            }
+        }
+    </script>
+</body>
+</html>
