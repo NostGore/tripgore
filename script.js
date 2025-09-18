@@ -171,7 +171,17 @@ function renderVideos() {
 
 // Función para renderizar la página actual
 function renderCurrentPage() {
+    console.log('🎬 Iniciando renderCurrentPage()');
+    console.log('📊 allVideos.length:', allVideos ? allVideos.length : 'No definido');
+    console.log('📊 currentPage:', currentPage);
+    console.log('📊 videosPerPage:', videosPerPage);
+    
     const videosGrid = document.getElementById('videosGrid');
+    
+    if (!videosGrid) {
+        console.error('❌ No se encontró videosGrid');
+        return;
+    }
 
     // Limpiar el grid
     videosGrid.innerHTML = '';
@@ -180,11 +190,13 @@ function renderCurrentPage() {
     const startIndex = (currentPage - 1) * videosPerPage;
     const endIndex = Math.min(startIndex + videosPerPage, allVideos.length);
 
-    console.log(`Renderizando página ${currentPage}: videos ${startIndex + 1} a ${endIndex}`);
+    console.log(`🎯 Renderizando página ${currentPage}: videos ${startIndex + 1} a ${endIndex} de ${allVideos.length} total`);
 
     // Renderizar videos de la página actual
     for (let i = startIndex; i < endIndex; i++) {
         const video = allVideos[i];
+        console.log(`📹 Renderizando video ${i + 1}: ${video.titulo} (${video.categoria})`);
+        
         const videoCard = document.createElement('div');
         videoCard.className = 'content-card';
         videoCard.setAttribute('data-categoria', video.categoria);
@@ -210,7 +222,7 @@ function renderCurrentPage() {
         videosGrid.appendChild(videoCard);
     }
 
-    console.log('Renderizado completado. Videos mostrados:', videosGrid.children.length);
+    console.log('✅ Renderizado completado. Videos mostrados:', videosGrid.children.length);
 
     // Agregar efectos hover después de renderizar
     addHoverEffects();
@@ -538,26 +550,84 @@ function setupSearch() {
 
 // Función para filtrar por categoría
 function setupCategoryFilter() {
-    const categoryLinks = document.querySelectorAll('.secondary-nav-links a');
+    console.log('🔧 Configurando filtros de categoría...');
+    
+    // Esperar un poco más para asegurar que el DOM esté completamente renderizado
+    setTimeout(() => {
+        const categoryLinks = document.querySelectorAll('.secondary-nav-links a');
+        console.log('📋 Enlaces de categoría encontrados:', categoryLinks.length);
 
-    categoryLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
+        if (categoryLinks.length === 0) {
+            console.error('❌ No se encontraron enlaces de categoría. Reintentando...');
+            // Reintentar después de un poco más
+            setTimeout(() => {
+                const retryLinks = document.querySelectorAll('.secondary-nav-links a');
+                console.log('🔄 Reintento - Enlaces encontrados:', retryLinks.length);
+                if (retryLinks.length > 0) {
+                    configureCategoryLinks(retryLinks);
+                }
+            }, 1000);
+            return;
+        }
 
-            // Remover clase active de todos los enlaces
-            categoryLinks.forEach(l => l.classList.remove('active'));
-            // Agregar clase active al enlace clickeado
-            link.classList.add('active');
+        configureCategoryLinks(categoryLinks);
+    }, 100);
+}
 
-            const category = link.textContent.trim();
-            filterVideosByCategory(category);
-        });
+function configureCategoryLinks(categoryLinks) {
+    console.log('🔗 Configurando enlaces de categoría...');
+    
+    categoryLinks.forEach((link, index) => {
+        console.log(`🔗 Configurando enlace ${index + 1}: "${link.textContent.trim()}"`);
+        
+        // Remover event listeners existentes para evitar duplicados
+        link.removeEventListener('click', handleCategoryClick);
+        
+        // Agregar nuevo event listener
+        link.addEventListener('click', handleCategoryClick);
     });
+    
+    console.log('✅ Filtros de categoría configurados correctamente');
+}
+
+function handleCategoryClick(e) {
+    e.preventDefault();
+    const link = e.target;
+    console.log('🖱️ Click en categoría:', link.textContent.trim());
+
+    // Remover clase active de todos los enlaces
+    const allLinks = document.querySelectorAll('.secondary-nav-links a');
+    allLinks.forEach(l => l.classList.remove('active'));
+    
+    // Agregar clase active al enlace clickeado
+    link.classList.add('active');
+
+    const category = link.textContent.trim();
+    console.log('🎯 Llamando a filterVideosByCategory con:', category);
+    filterVideosByCategory(category);
 }
 
 function filterVideosByCategory(category) {
+    console.log('🔍 Iniciando filtrado por categoría:', category);
+    console.log('📊 mediaDB disponible:', typeof mediaDB !== 'undefined');
+    console.log('📊 Total videos en mediaDB:', mediaDB ? mediaDB.length : 'No definido');
+    
     const videosGrid = document.getElementById('videosGrid');
     const paginationContainer = document.getElementById('paginationContainer');
+    
+    if (!videosGrid) {
+        console.error('❌ No se encontró videosGrid');
+        return;
+    }
+    
+    if (!mediaDB) {
+        console.error('❌ mediaDB no está disponible');
+        return;
+    }
+    
+    // Mostrar todas las categorías disponibles para debug
+    const allCategories = [...new Set(mediaDB.map(v => v.categoria))];
+    console.log('📋 Categorías disponibles en mediaDB:', allCategories);
     
     // Crear indicador de carga si no existe
     let loadingIndicator = document.getElementById('loadingIndicator');
@@ -595,12 +665,30 @@ function filterVideosByCategory(category) {
             // Mostrar todos los videos (excluyendo OCULTO) mezclados por fecha
             const filteredVideos = mediaDB.filter(video => video.categoria !== 'OCULTO');
             allVideos = sortVideosByDate([...filteredVideos]);
-            console.log(`Mostrando TODOS los videos mezclados por fecha: ${allVideos.length} videos`);
+            console.log(`✅ Mostrando TODOS los videos mezclados por fecha: ${allVideos.length} videos`);
         } else {
             // Filtrar videos por categoría específica (excluyendo OCULTO)
             const filteredVideos = mediaDB.filter(video => video.categoria === category && video.categoria !== 'OCULTO');
             allVideos = sortVideosByDate([...filteredVideos]);
-            console.log(`Mostrando videos de categoría "${category}": ${allVideos.length} videos`);
+            console.log(`✅ Mostrando videos de categoría "${category}": ${allVideos.length} videos`);
+            
+            // Debug: mostrar algunos ejemplos de videos filtrados
+            if (filteredVideos.length > 0) {
+                console.log('📋 Ejemplos de videos filtrados:', filteredVideos.slice(0, 3).map(v => ({ titulo: v.titulo, categoria: v.categoria })));
+            } else {
+                console.log('⚠️ No se encontraron videos para la categoría:', category);
+                console.log('🔍 Verificando coincidencias exactas...');
+                
+                // Verificar si hay coincidencias parciales
+                const partialMatches = mediaDB.filter(video => 
+                    video.categoria.toLowerCase().includes(category.toLowerCase()) && 
+                    video.categoria !== 'OCULTO'
+                );
+                console.log('🔍 Coincidencias parciales encontradas:', partialMatches.length);
+                if (partialMatches.length > 0) {
+                    console.log('📋 Categorías con coincidencias parciales:', [...new Set(partialMatches.map(v => v.categoria))]);
+                }
+            }
         }
 
         // Recalcular paginación
@@ -622,14 +710,94 @@ function filterVideosByCategory(category) {
         videosGrid.style.transform = 'translateY(0)';
         paginationContainer.style.opacity = '1';
 
-        console.log(`Filtro por categoría: "${category}" - ${allVideos.length} videos encontrados`);
+        console.log(`🎯 Filtro por categoría: "${category}" - ${allVideos.length} videos encontrados`);
     }, 300); // 300ms delay for smooth transition
+}
+
+// Función de prueba para verificar el filtrado
+function testCategoryFiltering() {
+    console.log('🧪 INICIANDO PRUEBA DE FILTRADO');
+    console.log('📊 mediaDB disponible:', typeof mediaDB !== 'undefined');
+    console.log('📊 Total videos:', mediaDB ? mediaDB.length : 'No definido');
+    
+    if (mediaDB) {
+        // Contar videos por categoría
+        const categories = {};
+        mediaDB.forEach(video => {
+            categories[video.categoria] = (categories[video.categoria] || 0) + 1;
+        });
+        console.log('📋 Videos por categoría:', categories);
+        
+        // Probar filtrado manual
+        const asesinatosVideos = mediaDB.filter(video => video.categoria === 'ASESINATOS');
+        console.log('🔪 Videos de ASESINATOS encontrados:', asesinatosVideos.length);
+        if (asesinatosVideos.length > 0) {
+            console.log('📹 Primeros 3 videos de ASESINATOS:', asesinatosVideos.slice(0, 3).map(v => v.titulo));
+        }
+    }
+    
+    // Verificar elementos del DOM
+    const videosGrid = document.getElementById('videosGrid');
+    const categoryLinks = document.querySelectorAll('.secondary-nav-links a');
+    console.log('🎯 videosGrid encontrado:', !!videosGrid);
+    console.log('🔗 Enlaces de categoría encontrados:', categoryLinks.length);
+}
+
+// Función para verificar el estado del filtrado
+function debugFilteringState() {
+    console.log('🔍 === DEBUG DEL ESTADO DE FILTRADO ===');
+    console.log('📊 mediaDB disponible:', typeof mediaDB !== 'undefined');
+    console.log('📊 Total videos:', mediaDB ? mediaDB.length : 'No definido');
+    
+    if (mediaDB) {
+        const categories = [...new Set(mediaDB.map(v => v.categoria))];
+        console.log('📋 Categorías disponibles:', categories);
+        
+        categories.forEach(cat => {
+            const count = mediaDB.filter(v => v.categoria === cat).length;
+            console.log(`  - ${cat}: ${count} videos`);
+        });
+    }
+    
+    const categoryLinks = document.querySelectorAll('.secondary-nav-links a');
+    console.log('🔗 Enlaces de categoría encontrados:', categoryLinks.length);
+    categoryLinks.forEach((link, index) => {
+        console.log(`  ${index + 1}. "${link.textContent.trim()}"`);
+    });
+    
+    const videosGrid = document.getElementById('videosGrid');
+    console.log('🎯 videosGrid encontrado:', !!videosGrid);
+    console.log('🎯 Videos actualmente mostrados:', videosGrid ? videosGrid.children.length : 'No disponible');
+    
+    console.log('🔍 === FIN DEBUG ===');
 }
 
 // Configurar funcionalidades cuando la página esté lista
 document.addEventListener('DOMContentLoaded', () => {
-    setupSearch();
-    setupCategoryFilter();
+    console.log('🚀 DOM cargado, iniciando configuración...');
+    
+    // Esperar a que mediaDB esté cargado antes de configurar los filtros
+    setTimeout(() => {
+        if (typeof mediaDB !== 'undefined') {
+            console.log('✅ mediaDB cargado, configurando filtros...');
+            setupSearch();
+            setupCategoryFilter();
+            debugFilteringState();
+        } else {
+            console.error('❌ mediaDB no está disponible para configurar filtros');
+        }
+    }, 500);
+    
+    // Configurar filtros también cuando la ventana esté completamente cargada
+    window.addEventListener('load', () => {
+        console.log('🔄 Ventana completamente cargada, reconfigurando filtros...');
+        setTimeout(() => {
+            if (typeof mediaDB !== 'undefined') {
+                setupCategoryFilter();
+                debugFilteringState();
+            }
+        }, 200);
+    });
 });
 
 // Add hover effects to cards (se ejecutará después de renderVideos)
