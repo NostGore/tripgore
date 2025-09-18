@@ -648,10 +648,10 @@
                 const tripppgoreIndex = currentPath.indexOf('/tripppgore');
                 if (tripppgoreIndex !== -1) {
                     const basePath = currentPath.substring(0, tripppgoreIndex + '/tripppgore'.length);
-                    window.location.href = basePath + '/index.html';
+                    window.location.href = basePath + '/';
                 } else {
                     // Fallback: ir al directorio actual
-                    window.location.href = './index.html';
+                    window.location.href = './';
                 }
             }
         }

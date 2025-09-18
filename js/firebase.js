@@ -158,17 +158,19 @@ async function loginUser(email, password) {
 
 // Función para redirigir después del login exitoso
 function redirectAfterLogin() {
-    // Redirigir a la página principal
+    // Redirigir directamente al archivo index.html en la raíz
     const currentPath = window.location.pathname;
-    
-    // Buscar la posición de 'tripppgore' y ir a esa carpeta
     const tripppgoreIndex = currentPath.indexOf('/tripppgore');
     if (tripppgoreIndex !== -1) {
         const basePath = currentPath.substring(0, tripppgoreIndex + '/tripppgore'.length);
         window.location.href = basePath + '/index.html';
     } else {
-        // Fallback: ir al directorio actual
-        window.location.href = './index.html';
+        // Si estamos en auth/, ir a la carpeta padre
+        if (currentPath.includes('/auth/')) {
+            window.location.href = '../index.html';
+        } else {
+            window.location.href = './index.html';
+        }
     }
 }
 
