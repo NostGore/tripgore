@@ -158,20 +158,8 @@ async function loginUser(email, password) {
 
 // Función para redirigir después del login exitoso
 function redirectAfterLogin() {
-    // Redirigir directamente al archivo index.html en la raíz
-    const currentPath = window.location.pathname;
-    const tripppgoreIndex = currentPath.indexOf('/tripppgore');
-    if (tripppgoreIndex !== -1) {
-        const basePath = currentPath.substring(0, tripppgoreIndex + '/tripppgore'.length);
-        window.location.href = basePath + '/index.html';
-    } else {
-        // Si estamos en auth/, ir a la carpeta padre
-        if (currentPath.includes('/auth/')) {
-            window.location.href = '../index.html';
-        } else {
-            window.location.href = './index.html';
-        }
-    }
+    // Redirigir específicamente a tripgore/index.html
+    window.location.href = '../index.html';
 }
 
 // ------------------- Video Functions (basado en tripgore/function-scripts/firebase.js) -------------------
