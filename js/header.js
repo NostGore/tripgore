@@ -42,7 +42,7 @@ function loadHeader() {
 
         <!-- Enlaces promocionales desktop -->
         <div class="promo-links">
-            <a href="#" class="yellow" onclick="showRemoveAdsModal()">Elimina los anuncios - Clic aquí</a>
+            <a href="#" class="yellow" onclick="showRemoveAdsModal()">Sin Anuncios</a>
         </div>
 
         <!-- Container de búsqueda -->
@@ -143,7 +143,7 @@ function loadHeader() {
             <div class="mobile-promo-links">
                 <a href="#" onclick="showRemoveAdsModal()">
                     <i class="fa-solid fa-ad"></i>
-                    Elimina los anuncios - Clic aquí
+                    Sin Anuncios
                 </a>
             </div>
         </div>
@@ -743,40 +743,14 @@ function showRemoveAdsModal() {
 
 // Función para ir al inicio
 function goToHome() {
-    // Obtener la ruta actual del proyecto
-    const currentPath = window.location.pathname;
-    
-    // Si estamos en index.html con parámetros, limpiar los parámetros
-    if (currentPath.includes('index.html')) {
-        // Si ya estamos en index.html, solo limpiar parámetros
-        window.location.href = currentPath.split('?')[0];
-    } else {
-        // Si estamos en otra página, ir a la raíz del proyecto
-        // Buscar la posición de 'tripgore' y ir a esa carpeta
-        const tripgoreIndex = currentPath.indexOf('/tripgore');
-        if (tripgoreIndex !== -1) {
-            const basePath = currentPath.substring(0, tripgoreIndex + '/tripgore'.length);
-            window.location.href = basePath + '/index.html';
-        } else {
-            // Fallback: ir al directorio actual
-            window.location.href = './index.html';
-        }
-    }
+    // Redirigir directamente a la URL completa del sitio
+    window.location.href = 'https://tripgore.space/index.html';
 }
 
 // Función para ir a una página específica con parámetros
 function goToPage(page) {
-    const currentPath = window.location.pathname;
-    
-    // Buscar la posición de 'tripgore' y ir a esa carpeta
-    const tripgoreIndex = currentPath.indexOf('/tripgore');
-    if (tripgoreIndex !== -1) {
-        const basePath = currentPath.substring(0, tripgoreIndex + '/tripgore'.length);
-        window.location.href = basePath + '/index.html?page=' + page;
-    } else {
-        // Fallback: ir al directorio actual
-        window.location.href = './index.html?page=' + page;
-    }
+    // Redirigir directamente a la URL completa del sitio con parámetros
+    window.location.href = 'https://tripgore.space/index.html?page=' + page;
 }
 
 // Función para abrir el cliente de correo con soporte
