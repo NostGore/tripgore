@@ -742,10 +742,10 @@
                     setTimeout(() => {
                         const currentPath = window.location.pathname;
                         
-                        // Buscar la posición de 'tripppgore' y ir a esa carpeta
-                        const tripppgoreIndex = currentPath.indexOf('/tripppgore');
-                        if (tripppgoreIndex !== -1) {
-                            const basePath = currentPath.substring(0, tripppgoreIndex + '/tripppgore'.length);
+                        // Buscar la posición de 'tripgore' y ir a esa carpeta
+                        const tripgoreIndex = currentPath.indexOf('/tripgore');
+                        if (tripgoreIndex !== -1) {
+                            const basePath = currentPath.substring(0, tripgoreIndex + '/tripgore'.length);
                             window.location.href = basePath + '/index.html';
                         } else {
                             // Fallback: ir al directorio actual

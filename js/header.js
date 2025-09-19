@@ -752,10 +752,10 @@ function goToHome() {
         window.location.href = currentPath.split('?')[0];
     } else {
         // Si estamos en otra página, ir a la raíz del proyecto
-        // Buscar la posición de 'tripppgore' y ir a esa carpeta
-        const tripppgoreIndex = currentPath.indexOf('/tripppgore');
-        if (tripppgoreIndex !== -1) {
-            const basePath = currentPath.substring(0, tripppgoreIndex + '/tripppgore'.length);
+        // Buscar la posición de 'tripgore' y ir a esa carpeta
+        const tripgoreIndex = currentPath.indexOf('/tripgore');
+        if (tripgoreIndex !== -1) {
+            const basePath = currentPath.substring(0, tripgoreIndex + '/tripgore'.length);
             window.location.href = basePath + '/index.html';
         } else {
             // Fallback: ir al directorio actual
@@ -768,10 +768,10 @@ function goToHome() {
 function goToPage(page) {
     const currentPath = window.location.pathname;
     
-    // Buscar la posición de 'tripppgore' y ir a esa carpeta
-    const tripppgoreIndex = currentPath.indexOf('/tripppgore');
-    if (tripppgoreIndex !== -1) {
-        const basePath = currentPath.substring(0, tripppgoreIndex + '/tripppgore'.length);
+    // Buscar la posición de 'tripgore' y ir a esa carpeta
+    const tripgoreIndex = currentPath.indexOf('/tripgore');
+    if (tripgoreIndex !== -1) {
+        const basePath = currentPath.substring(0, tripgoreIndex + '/tripgore'.length);
         window.location.href = basePath + '/index.html?page=' + page;
     } else {
         // Fallback: ir al directorio actual
