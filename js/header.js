@@ -23,7 +23,7 @@ function loadHeader() {
 
             <!-- Navegación desktop -->
             <div class="nav-links">
-                <a href="https://tripgore.space" onclick="goToHome()" style="font-weight: bold;">INICIO</a>
+                <a href="https://tripgore.space/index" style="font-weight: bold;">INICIO</a>
                 <a href="#" onclick="openSupportEmail(); return false;" style="font-weight: bold;">SOPORTE</a>
                 <a href="https://t.me/perritogoree" style="font-weight: bold;">Telegram</a>
                 <a href="https://discord.gg/pS7qvjP4S5" style="font-weight: bold;">Discord</a>
@@ -109,8 +109,8 @@ function loadHeader() {
                 <i class="fa-solid fa-home"></i> Navegación
             </div>
             <div class="mobile-nav-links">
-                <a href="#" onclick="goToHome()">
-                    <i class="fa-solid fa-home"></i>
+                <a href="https://tripgore.space/index">
+                    <i class="fa-brands fa-telegram"></i>
                     INICIO
                 </a>
                 <a href="#" onclick="openSupportEmail(); return false;">
