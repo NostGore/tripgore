@@ -23,7 +23,7 @@ function loadHeader() {
 
             <!-- Navegación desktop -->
             <div class="nav-links">
-                <a href="#" onclick="goToHome()" style="font-weight: bold;">INICIO</a>
+                <a href="https://tripgore.space" onclick="goToHome()" style="font-weight: bold;">INICIO</a>
                 <a href="#" onclick="openSupportEmail(); return false;" style="font-weight: bold;">SOPORTE</a>
                 <a href="https://t.me/perritogoree" style="font-weight: bold;">Telegram</a>
                 <a href="https://discord.gg/pS7qvjP4S5" style="font-weight: bold;">Discord</a>
