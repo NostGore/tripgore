@@ -275,7 +275,7 @@ const mediaDB = [
     id: "no-te-duermas-morena",
     titulo: "No te duermas morena",
     portada: "https://files.catbox.moe/q9a05t.png",
-    video: "https://forogore.net/data/video/1/1122-ce27403355895b0ceff4cc07a171fc40.mp4",
+    video: "https://xxx.livegore.com//rb-include/videos/1197943678.mp4",
     autor: "TripGore",
     categoria: "ASESINATOS",
     fecha: "29/05/25",
