@@ -2333,6 +2333,42 @@ const mediaDB = [
     fecha: "19/9/2025"
   },
   {
+    id: "le-destruyeron-la-cabeza",
+    titulo: "Le destruyeron la cabeza",
+    portada: "https://xxx.livegore.com//rb-include/videos/3858922012.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3858922012.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "21/9/2025"
+  },
+  {
+    id: "ejecucin-de-disparos-contra-el-cartel-de-mxico",
+    titulo: "Ejecución de disparos contra el cartel de México",
+    portada: "https://xxx.livegore.com//rb-include/videos/5586222657.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5586222657.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "21/9/2025"
+  },
+  {
+    id: "rompecabezas-humano-dejado-por-un-cartel-a-plena-luz-del-da",
+    titulo: "Rompecabezas humano dejado por un cartel a plena luz del día",
+    portada: "https://xxx.livegore.com//rb-include/videos/3330782270.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3330782270.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "21/9/2025"
+  },
+  {
+    id: "carnicero-en-vietnam",
+    titulo: "Carnicero en vietnam",
+    portada: "https://seegore.com/wp-content/uploads/2025/08/vietnamese-butcher_thumb1-360x270.jpg",
+    video: "https://seegore.com/wp-content/uploads/2025/08/vietnamese-butcher.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "21/9/2025"
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -3591,6 +3627,33 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "ACCIDENTES",
     fecha: "19/9/2025"
+  },
+  {
+    id: "nio-trgicamente-arrastrado-bajo-un-camin-de-arena",
+    titulo: "Niño trágicamente arrastrado bajo un camión de arena",
+    portada: "https://xxx.livegore.com//rb-include/videos/3243854041.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3243854041.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "21/9/2025"
+  },
+  {
+    id: "camionero-borracho-choca-contra-un-motociclista",
+    titulo: "Camionero borracho choca contra un motociclista",
+    portada: "https://seegore.com/wp-content/uploads/2025/05/drunk-truck-driver-rams-into-a-motorcyclist_thumb1-360x270.jpg",
+    video: "https://seegore.com/wp-content/uploads/2025/05/drunk-truck-driver-rams-into-a-motorcyclist.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "21/9/2025"
+  },
+  {
+    id: "petardo-hiri-a-un-nio",
+    titulo: "Petardo hirió a un niño",
+    portada: "https://seegore.com/wp-content/uploads/2025/02/firecracker-injured-a-kid_thumb1-360x270.jpg",
+    video: "https://seegore.com/wp-content/uploads/2025/02/firecracker-injured-a-kid.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "21/9/2025"
   },
   {
     id: "come-la-banqueta",
@@ -5412,6 +5475,24 @@ const mediaDB = [
     fecha: "19/9/2025"
   },
   {
+    id: "debera-haberse-quedado-en-casa",
+    titulo: "Debería haberse quedado en casa",
+    portada: "https://xxx.livegore.com//rb-include/videos/8368682307.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8368682307.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "21/9/2025"
+  },
+  {
+    id: "frer-la-carne-ucraniana",
+    titulo: "Freír la carne ucraniana",
+    portada: "https://xxx.livegore.com//rb-include/videos/3556129676.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3556129676.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "21/9/2025"
+  },
+  {
     id: "1444",
     titulo: "1444", //C-SUICIDIOS
     portada: "https://xxx.livegore.com//rb-include/videos/8122189044.jpg",
@@ -5977,6 +6058,15 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "AUTOLESIONES",
     fecha: "18/8/2025"
+  },
+  {
+    id: "me-pregunto-como-llego-a-estar-asi",
+    titulo: "Me pregunto como llego a estar asi",
+    portada: "https://xxx.livegore.com//rb-include/videos/7152100848.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7152100848.mp4",
+    autor: "normnando256",
+    categoria: "AUTOLESIONES",
+    fecha: "21/9/2025"
   },
   {
     id: "9127-4482-3901-ae82f1a7c4d3", //ocultos
