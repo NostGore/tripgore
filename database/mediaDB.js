@@ -2369,6 +2369,132 @@ const mediaDB = [
     fecha: "21/9/2025"
   },
   {
+    id: "hams-ejecuta-pblicamente-a-tres-habitantes-de-gaza",
+    titulo: "Hamás ejecuta públicamente a tres habitantes de Gaza",
+    portada: "https://theync.com/media/thumbs/6/8/d/0/5/68916868d05a3835033.mp4/68916868d05a3835033.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/d/0/5/68d05b26426aa.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "23/9/2025"
+  },
+  {
+    id: "actriz-britnica-quamigo-masacrado-por-gnsteres-rivalese-llama-la-atencin",
+    titulo: "Actriz británica quAmigo masacrado por gánsteres rivalese llama la atención",
+    portada: "https://theync.com/media/thumbs/6/8/d/1/5/117048268d156dee2dba.mp4/117048268d156dee2dba.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/8/d/1/5/68d15755d84b2.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "23/9/2025"
+  },
+  {
+    id: "intentan-secuestrar-a-un-hombre-equivocado",
+    titulo: "INTENTAN SECUESTRAR A UN HOMBRE EQUIVOCADO",
+    portada: "https://theync.com/media/thumbs/6/8/d/1/d/217768568d1dda225b40.mp4/217768568d1dda225b40.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/d/1/d/68d1de925d7fd.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "23/9/2025"
+  },
+  {
+    id: "guardia-de-seguridad-que-dorma-en-bicicleta",
+    titulo: "Guardia de seguridad que dormía en bicicleta",
+    portada: "https://theync.com/media/thumbs/6/8/d/1/c/185886868d14d2d6ebf7.mp4/185886868d14d2d6ebf7.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/d/1/c/68d1c63ec7856.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "23/9/2025"
+  },
+  {
+    id: "decapitados-en-brasil",
+    titulo: "Decapitados en Brasil",
+    portada: "https://xxx.livegore.com//rb-include/videos/6691115247.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6691115247.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "23/9/2025"
+  },
+  {
+    id: "sicarios-del-tercer-mundo",
+    titulo: "Sicarios del Tercer Mundo",
+    portada: "https://xxx.livegore.com//rb-include/videos/8107578409.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8107578409.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "23/9/2025"
+  },
+  {
+    id: "camionero-estpido-no-ve",
+    titulo: "Camionero estúpido no ve",
+    portada: "https://xxx.livegore.com//rb-include/videos/8794682547.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8794682547.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "23/9/2025"
+  },
+  {
+    id: "coche-sin-ojos",
+    titulo: "Coche sin ojos",
+    portada: "https://xxx.livegore.com//rb-include/videos/7115332963.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7115332963.mp4",
+    autor: "normnando256",
+    categoria: "ASESINATOS",
+    fecha: "23/9/2025"
+  },
+  {
+    id: "hasta-que-se-acaben-las-balas",
+    titulo: "Hasta que se acaben las balas",
+    portada: "https://xxx.livegore.com//rb-include/videos/3514115936.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3514115936.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "23/9/2025"
+  },
+  {
+    id: "un-turco-asesina-a-un-embajador-ruso",
+    titulo: "Un turco asesina a un embajador ruso",
+    portada: "https://xxx.livegore.com//rb-include/videos/8096186304.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8096186304.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "23/9/2025"
+  },
+  {
+    id: "disparos-masivos-en-la-cabeza",
+    titulo: "Disparos masivos en la cabeza",
+    portada: "https://xxx.livegore.com//rb-include/videos/5207130252.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5207130252.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "23/9/2025"
+  },
+  {
+    id: "ousmane-dembl-celebrando-su-baln-de-oro-con-sus-amigos",
+    titulo: "Ousmane Dembélé celebrando su Balón de Oro con sus amigos",
+    portada: "https://xxx.livegore.com//rb-include/videos/2129975892.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2129975892.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "23/9/2025"
+  },
+  {
+    id: "tipo-ataca-a-hombre-con-espada",
+    titulo: "Tipo ataca a hombre con espada",
+    portada: "https://xxx.livegore.com//rb-include/videos/6789245414.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6789245414.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "23/9/2025"
+  },
+  {
+    id: "asesinato-brutal-en-myanmar",
+    titulo: "Asesinato brutal en Myanmar",
+    portada: "https://xxx.livegore.com//rb-include/videos/6431101970.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6431101970.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "23/9/2025"
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -3654,6 +3780,96 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "ACCIDENTES",
     fecha: "21/9/2025"
+  },
+  {
+    id: "motociclista-e-influencer-perdi-el-control",
+    titulo: "Motociclista e influencer perdió el control",
+    portada: "https://theync.com/media/thumbs/6/8/d/0/7/68916868d0716b57fdc.mp4/68916868d0716b57fdc.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/d/0/7/68d07296b89d2.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "23/9/2025"
+  },
+  {
+    id: "hombre-empalado-tras-accidente-automovilstico",
+    titulo: "Hombre empalado tras accidente automovilístico",
+    portada: "https://theync.com/media/thumbs/6/8/d/1/c/70653068d15c38eb164.mp4/70653068d15c38eb164.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/8/d/1/c/68d1c57e81b07.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "23/9/2025"
+  },
+  {
+    id: "hombre-se-queda-sin-nariz",
+    titulo: "Hombre se queda sin nariz",
+    portada: "https://theync.com/media/thumbs/6/8/d/0/0/217768568d00ee39323f.mp4/217768568d00ee39323f.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/d/0/0/68d00fae1e652.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "23/9/2025"
+  },
+  {
+    id: "explosin-en-turqua",
+    titulo: "Explosión en Turquía",
+    portada: "https://xxx.livegore.com//rb-include/videos/4043813031.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4043813031.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "23/9/2025"
+  },
+  {
+    id: "idiota-con-un-lambo",
+    titulo: "Idiota con un Lambo",
+    portada: "https://xxx.livegore.com//rb-include/videos/7849651831.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7849651831.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "23/9/2025"
+  },
+  {
+    id: "mal-da-para-trabajar",
+    titulo: "Mal día para trabajar",
+    portada: "https://xxx.livegore.com//rb-include/videos/7563671874.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7563671874.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "23/9/2025"
+  },
+  {
+    id: "por-no-mirara-bien",
+    titulo: "Por no mirara bien",
+    portada: "https://xxx.livegore.com//rb-include/videos/7149699539.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7149699539.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "23/9/2025"
+  },
+  {
+    id: "mujer-atrapada-en-la-rueda-de-un-coche",
+    titulo: "Mujer atrapada en la rueda de un coche",
+    portada: "https://xxx.livegore.com//rb-include/videos/7440244127.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7440244127.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "23/9/2025"
+  },
+  {
+    id: "otro-mal-dia-para-trabajar",
+    titulo: "Otro mal dia para trabajar",
+    portada: "https://xxx.livegore.com//rb-include/videos/797611302.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/797611302.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "23/9/2025"
+  },
+  {
+    id: "cerebro-tras-la-ejecucin-de-un-pandillero-en-su-coche",
+    titulo: "Cerebro tras la ejecución de un pandillero en su coche",
+    portada: "https://xxx.livegore.com//rb-include/videos/2799959476.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2799959476.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "23/9/2025"
   },
   {
     id: "come-la-banqueta",
@@ -5493,6 +5709,42 @@ const mediaDB = [
     fecha: "21/9/2025"
   },
   {
+    id: "esto-pasa-en-reino-unido",
+    titulo: "Esto pasa en Reino Unido",
+    portada: "https://xxx.livegore.com//rb-include/videos/730628427.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/730628427.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "23/9/2025"
+  },
+  {
+    id: "idiota-embestido-por-un-tren",
+    titulo: "Idiota embestido por un tren",
+    portada: "https://xxx.livegore.com//rb-include/videos/1960571734.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1960571734.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "23/9/2025"
+  },
+  {
+    id: "streamer-sufre-explosin-de-metano",
+    titulo: "Streamer sufre explosión de metano",
+    portada: "https://xxx.livegore.com//rb-include/videos/1440112483.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1440112483.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "23/9/2025"
+  },
+  {
+    id: "impresionante-operacin-de-la-swat",
+    titulo: "Impresionante operación de la Swat",
+    portada: "https://xxx.livegore.com//rb-include/videos/7166088363.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7166088363.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "23/9/2025"
+  },
+  {
     id: "1444",
     titulo: "1444", //C-SUICIDIOS
     portada: "https://xxx.livegore.com//rb-include/videos/8122189044.jpg",
@@ -5833,6 +6085,24 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "SUICIDIOS",
     fecha: "8/9/2025"
+  },
+  {
+    id: "un-tipo-desnudo-se-pone-delante-del-tren",
+    titulo: "Un tipo desnudo se pone delante del tren",
+    portada: "https://theync.com/media/thumbs/6/8/d/2/0/117048268d202520124b.mp4/117048268d202520124b.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/8/d/2/0/68d2032270134.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "23/9/2025"
+  },
+  {
+    id: "depresin-en-china",
+    titulo: "Depresión en China",
+    portada: "https://theync.com/media/thumbs/6/8/d/1/c/217768568d1cbfb40cfa.mp4/217768568d1cbfb40cfa.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/8/d/1/c/68d1cdee3b8fd.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "23/9/2025"
   },
   {
     id: "se-apunala-en-live",
