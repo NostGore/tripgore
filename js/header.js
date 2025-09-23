@@ -5,7 +5,7 @@ function loadHeader() {
     <header class="header">
         <div class="header-top">
             <div class="logo">
-                <img src="https://files.catbox.moe/l6hd4u.png" alt="Logo TRIPGORE">
+                <img src="img/tripgore-logo.png" alt="Logo TRIPGORE">
             </div>
 
             <!-- Menú hamburguesa para móviles -->
@@ -75,7 +75,7 @@ function loadHeader() {
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-header">
             <div class="logo">
-                <img src="https://files.catbox.moe/l6hd4u.png" alt="Logo TRIPGORE">
+                <img src="img/tripgore-logo.png" alt="Logo TRIPGORE">
             </div>
         </div>
 
