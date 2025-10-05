@@ -2585,6 +2585,15 @@ const mediaDB = [
     fecha: "5/10/2025"
   },
   {
+    id: "se-equivocoo-de-rutaa",
+    titulo: "Se equivoco de ruta",
+    portada: "https://files.catbox.moe/a7md4l.png",
+    video: "https://files.catbox.moe/q90oez.mp4",
+    autor: "robeetomario863",
+    categoria: "ASESINATOS",
+    fecha: "5/10/2025"
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
