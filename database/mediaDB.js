@@ -2495,6 +2495,96 @@ const mediaDB = [
     fecha: "23/9/2025"
   },
   {
+    id: "decapitacin-filipina",
+    titulo: "Decapitación filipina.",
+    portada: "https://xxx.livegore.com//rb-include/videos/9224995346.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9224995346.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "4/10/2025"
+  },
+  {
+    id: "derrotado-por-algunos-negros",
+    titulo: "Derrotado por algunos negros",
+    portada: "https://xxx.livegore.com//rb-include/videos/154553591.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/154553591.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "4/10/2025"
+  },
+  {
+    id: "as-trata-cartel-a-los-ladrones",
+    titulo: "ASÍ TRATA CARTEL A LOS LADRONES",
+    portada: "https://xxx.livegore.com//rb-include/videos/5943425009.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5943425009.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "4/10/2025"
+  },
+  {
+    id: "mujer-decapitada-mientras-estaba-atada",
+    titulo: "MUJER DECAPITADA MIENTRAS ESTABA ATADA",
+    portada: "https://xxx.livegore.com//rb-include/videos/7379611064.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7379611064.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "4/10/2025"
+  },
+  {
+    id: "vdeo-del-crtel-de-la-vieja-escuela",
+    titulo: "VÍDEO DEL CÁRTEL DE LA VIEJA ESCUELA",
+    portada: "https://xxx.livegore.com//rb-include/videos/600368767.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/600368767.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "4/10/2025"
+  },
+  {
+    id: "la-peluca-de-europa-occidental-colgada-de-aryan-russian",
+    titulo: "La peluca de Europa occidental colgada de Aryan Russian",
+    portada: "https://xxx.livegore.com//rb-include/videos/3802191661.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3802191661.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "4/10/2025"
+  },
+  {
+    id: "mujer-ejecutada-por-mafiosos-de-favela",
+    titulo: "Mujer ejecutada por mafiosos de Favela",
+    portada: "https://theync.com/media/thumbs/6/8/d/f/d/117048268dfd42e12cd1.mp4/117048268dfd42e12cd1.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/8/d/f/d/68dfd48b48661.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "5/10/2025"
+  },
+  {
+    id: "hombre-secuestrado-y-asesinado-a-tiros-en-un-pozo",
+    titulo: "Hombre secuestrado y asesinado a tiros en un pozo",
+    portada: "https://theync.com/media/thumbs/6/8/d/f/9/217768568df9b2436f3d.mp4/217768568df9b2436f3d.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/d/f/9/68df9e2aa1b5b.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "5/10/2025"
+  },
+  {
+    id: "asesinato-de-un-dj-famoso-en-sudfrica",
+    titulo: "Asesinato de un DJ famoso en Sudáfrica",
+    portada: "https://theync.com/media/thumbs/6/8/d/e/4/217768568de4280f2756.mp4/217768568de4280f2756.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/d/e/4/68de434b6af73.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "5/10/2025"
+  },
+  {
+    id: "cartel-decapit-a-un-hombre-terryffied-sin-piedad",
+    titulo: "Cartel decapitó a un hombre Terryffied sin piedad",
+    portada: "https://theync.com/media/thumbs/6/8/d/b/c/134150568dbcb15c2c37.mp4/134150568dbcb15c2c37.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/8/d/b/c/68dbcb6ae1f6f.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "5/10/2025"
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -3870,6 +3960,114 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "ACCIDENTES",
     fecha: "23/9/2025"
+  },
+  {
+    id: "karma-mortal-para-el-ladrn",
+    titulo: "Karma mortal para el ladrón",
+    portada: "https://xxx.livegore.com//rb-include/videos/9167032744.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9167032744.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "4/10/2025"
+  },
+  {
+    id: "accidente-en-vietnam-an-giang",
+    titulo: "Accidente en Vietnam An Giang",
+    portada: "https://xxx.livegore.com//rb-include/videos/837703426.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/837703426.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "4/10/2025"
+  },
+  {
+    id: "menos-tres-en-la-india",
+    titulo: "¡menos tres en la India!",
+    portada: "https://xxx.livegore.com//rb-include/videos/1637821504.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1637821504.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "4/10/2025"
+  },
+  {
+    id: "otro-trabajador-desafortunado-en-vietnam",
+    titulo: "Otro trabajador desafortunado en Vietnam",
+    portada: "https://xxx.livegore.com//rb-include/videos/4764969111.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4764969111.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "4/10/2025"
+  },
+  {
+    id: "el-trabajador-del-recinto-ferial-tiene-un-da-de-mierda",
+    titulo: "El trabajador del recinto ferial tiene un día de mierda",
+    portada: "https://xxx.livegore.com//rb-include/videos/1366105247.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1366105247.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "4/10/2025"
+  },
+  {
+    id: "tres-muertos-tras-accidente-ilegal-en-una-carrera-callejera",
+    titulo: "Tres muertos tras accidente ilegal en una carrera callejera",
+    portada: "https://xxx.livegore.com//rb-include/videos/2134043397.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2134043397.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "4/10/2025"
+  },
+  {
+    id: "climber-muere-en-cada-desde-durante-una-transmisin-en-vivo",
+    titulo: "Climber muere en caída desde durante una transmisión en vivo",
+    portada: "https://xxx.livegore.com//rb-include/videos/1789933401.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1789933401.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "4/10/2025"
+  },
+  {
+    id: "el-tipo-perdi-la-cabeza",
+    titulo: "El tipo perdió la cabeza",
+    portada: "https://xxx.livegore.com//rb-include/videos/8813649904.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8813649904.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "4/10/2025"
+  },
+  {
+    id: "gta-en-la-vida-real",
+    titulo: "GTA en la vida real",
+    portada: "https://xxx.livegore.com//rb-include/videos/1887839999.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1887839999.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "4/10/2025"
+  },
+  {
+    id: "transformador-chino",
+    titulo: "Transformador chino",
+    portada: "https://xxx.livegore.com//rb-include/videos/1825745217.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1825745217.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "4/10/2025"
+  },
+  {
+    id: "accidente-desagradable",
+    titulo: "Accidente desagradable",
+    portada: "https://xxx.livegore.com//rb-include/videos/9464479479.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9464479479.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "4/10/2025"
+  },
+  {
+    id: "los-cerebros-de-la-anciana-volaron-sobre-el-asfalto",
+    titulo: "Los cerebros de la anciana volaron sobre el asfalto",
+    portada: "https://theync.com/media/thumbs/6/8/d/f/d/131219468dfdf3773a22.mp4/131219468dfdf3773a22.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/8/d/f/d/68dfdf8eda765.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "5/10/2025"
   },
   {
     id: "come-la-banqueta",
@@ -5743,6 +5941,105 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "INCIDENTES",
     fecha: "23/9/2025"
+  },
+  {
+    id: "cadveres-duermen-tranquilamente-en-la-calle",
+    titulo: "Cadáveres duermen tranquilamente en la calle.",
+    portada: "https://xxx.livegore.com//rb-include/videos/4077964317.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4077964317.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "4/10/2025"
+  },
+  {
+    id: "galones-de-sangre",
+    titulo: "GALONES DE SANGRE",
+    portada: "https://xxx.livegore.com//rb-include/videos/6110238810.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6110238810.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "4/10/2025"
+  },
+  {
+    id: "pelea-rusa",
+    titulo: "Pelea rusa",
+    portada: "https://xxx.livegore.com//rb-include/videos/146084749.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/146084749.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "4/10/2025"
+  },
+  {
+    id: "muerte-al-deudor",
+    titulo: "Muerte al deudor",
+    portada: "https://xxx.livegore.com//rb-include/videos/5143077359.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5143077359.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "4/10/2025"
+  },
+  {
+    id: "un-tipo-apuala-fatalmente-a-su-vecino",
+    titulo: "Un tipo apuñala fatalmente a su vecino",
+    portada: "https://xxx.livegore.com//rb-include/videos/9041366903.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9041366903.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "4/10/2025"
+  },
+  {
+    id: "el-pblico-atrap-y-golpe-a-activistas-de-la-liga-chhatra",
+    titulo: "El público atrapó y golpeó a activistas de la Liga Chhatra",
+    portada: "https://xxx.livegore.com//rb-include/videos/832923841.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/832923841.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "4/10/2025"
+  },
+  {
+    id: "mujer-brutalmente-golpeada-y-pisoteada-en-la-cabeza",
+    titulo: "Mujer brutalmente golpeada y pisoteada en la cabeza",
+    portada: "https://theync.com/media/thumbs/6/8/d/e/e/89862868decea961b8a.mp4/89862868decea961b8a.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/8/d/e/e/68dee57b55864.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "5/10/2025"
+  },
+  {
+    id: "hombre-noqueado-con-roca-durante-pelea",
+    titulo: "Hombre noqueado con roca durante pelea",
+    portada: "https://theync.com/media/thumbs/6/8/d/f/e/217768568dfe3ec2f16c.mp4/217768568dfe3ec2f16c.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/d/f/e/68dfe4b6a7a93.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "5/10/2025"
+  },
+  {
+    id: "empresario-encontrado-muerto-en-su-coche",
+    titulo: "Empresario encontrado muerto en su coche",
+    portada: "https://theync.com/media/thumbs/6/8/d/d/5/185886868dd53d2ed083.mp4/185886868dd53d2ed083.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/d/d/5/68dd552b5c101.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "5/10/2025"
+  },
+  {
+    id: "aplicara-para-miss-pacman",
+    titulo: "Aplicara para Miss Pacman?",
+    portada: "https://files.catbox.moe/g8vpdx.png",
+    video: "https://forogore.net/data/video/343/343232-298ee7c010e455544a8462bd4308b9cb.mp4",
+    autor: "normnando256",
+    categoria: "INCIDENTES",
+    fecha: "5/10/2025"
+  },
+  {
+    id: "cabeza-completamente-agusanada",
+    titulo: "Cabeza completamente agusanada",
+    portada: "https://files.catbox.moe/wh2a9o.png",
+    video: "https://forogore.net/data/video/343/343229-d48e5ad214f571a2abd03d547edb8877.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "5/10/2025"
   },
   {
     id: "1444",
