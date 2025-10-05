@@ -674,7 +674,7 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <div class="admin-container">
+        <div class="admin-container" style="display: none;">
             <a href="#" onclick="goToHome(); return false;" class="back-btn">
                 <i class="fa-solid fa-arrow-left"></i>
                 Volver al Inicio
@@ -886,22 +886,37 @@
 
         // Verificar autenticación y cargar contenido
         document.addEventListener('DOMContentLoaded', function() {
-            // Esperar a que el header se cargue y luego verificar autenticación
+            const correctPassword = "tgdev258";
+            // Usamos un pequeño retraso para asegurar que la página se renderice antes del prompt
             setTimeout(() => {
-                checkAuthenticationByHeader();
-            }, 1000);
-            
-            // También verificar periódicamente hasta que el header esté listo
-            const checkHeaderInterval = setInterval(() => {
-                if (checkAuthenticationByHeader()) {
-                    clearInterval(checkHeaderInterval);
+                const enteredPassword = prompt("Por favor, ingresa la contraseña de administrador:", "");
+
+                const adminContainer = document.querySelector('.admin-container');
+                const mainContent = document.querySelector('.main-content');
+
+                if (enteredPassword === correctPassword) {
+                    // Contraseña correcta, mostrar el panel y proceder con la verificación de login
+                    adminContainer.style.display = 'block';
+                    checkAuthenticationByHeader();
+                } else {
+                    // Contraseña incorrecta, mostrar mensaje de acceso denegado
+                    mainContent.innerHTML = `
+                        <div class="not-logged-in-message" style="margin-top: 50px;">
+                            <div class="message-icon">
+                                <i class="fa-solid fa-ban"></i>
+                            </div>
+                            <h2>Acceso Denegado</h2>
+                            <p>La contraseña ingresada es incorrecta. No tienes permiso para ver esta página.</p>
+                            <div class="auth-buttons">
+                                <a href="#" onclick="goToHome(); return false;" class="btn-home">
+                                    <i class="fa-solid fa-home"></i>
+                                    Volver al Inicio
+                                </a>
+                            </div>
+                        </div>
+                    `;
                 }
-            }, 500);
-            
-            // Limpiar el intervalo después de 10 segundos
-            setTimeout(() => {
-                clearInterval(checkHeaderInterval);
-            }, 10000);
+            }, 100);
         });
 
         // Función para verificar autenticación basándose en el header

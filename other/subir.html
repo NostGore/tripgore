@@ -463,10 +463,6 @@
 
 
                 <div class="submit-section">
-                    <button type="button" class="back-btn" onclick="goBack()">
-                        <i class="fa-solid fa-arrow-left"></i>
-                        Volver
-                    </button>
                     <button type="submit" class="submit-btn" id="submitBtn">
                         <i class="fa-solid fa-upload"></i>
                         <span>Subir Video</span>
@@ -513,11 +509,6 @@
                 });
         }
         
-        // Función para volver atrás
-        function goBack() {
-            window.history.back();
-        }
-
         // Función para mostrar notificaciones
         function showNotification(message, type = 'success') {
             const notification = document.getElementById('notification');

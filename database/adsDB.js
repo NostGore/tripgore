@@ -1,6 +1,23 @@
 // Base de datos de anuncios para TRIPGORE
 // Organizada por categorías para fácil gestión
 
+/**
+ * Base de datos para los anuncios emergentes (pop-up) en la página de inicio.
+ * Cada anuncio tiene:
+ * - id: Identificador único.
+ * - imagen: URL de la imagen a mostrar.
+ * - direccion: URL a la que se redirige al hacer clic en la imagen.
+ */
+const popupAds = [
+    {
+        id: "subir-video",
+        imagen: "https://files.catbox.moe/cgy2f7.jpg", // Imagen de ejemplo
+        direccion: "other/subir.html"
+    }
+    // Puedes agregar más anuncios aquí en el futuro
+    // { id: "popup_ad_2", imagen: "path/to/image2.png", direccion: "otra/pagina.html" }
+];
+
 const adsDB = {
     // Anuncios de notificaciones push
     "Push-Notification": [
@@ -407,6 +424,7 @@ function insertAds(category = null, targetElement = 'head') {
 // Exportar para uso en otros archivos
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
+        popupAds,
         adsDB,
         getAdsByCategory,
         getAllActiveAds,

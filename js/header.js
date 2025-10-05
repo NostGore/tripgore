@@ -738,7 +738,7 @@ function openVideoFromModal(videoId) {
 
 // Función para mostrar modal de eliminar anuncios
 function showRemoveAdsModal() {
-    alert('¡Funcionalidad de eliminación de anuncios!\n\nEsta función permitiría al usuario suscribirse a una versión premium sin anuncios.\n\nEn una implementación real, aquí se mostraría información sobre planes premium, métodos de pago, etc.');
+    alert('¡Esta opcion aun esta en desarrollo..!');
 }
 
 // Función para ir al inicio
