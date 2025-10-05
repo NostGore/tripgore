@@ -115,8 +115,9 @@ function updateHeaderForGuestUser() {
 // Función para hacer logout
 function logoutUser() {
     signOut(auth).then(() => {
-        console.log('Usuario deslogueado exitosamente');
+        console.log('Usuario cerró sesión exitosamente');
         // El onAuthStateChanged se encargará de actualizar la UI
+        window.location.reload(); // Recargar la página automáticamente
     }).catch((error) => {
         console.error('Error al desloguear:', error);
     });

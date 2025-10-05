@@ -388,7 +388,7 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <div class="upload-container">
+        <div class="upload-container" id="uploadContainer" style="display: none;">
             <div class="upload-header">
                 <h1>Subir Nuevo Video</h1>
                 <p>Comparte tu contenido con la comunidad TRIPGORE</p>
@@ -471,6 +471,24 @@
                 </div>
             </form>
         </div>
+
+        <!-- Mensaje para usuarios no autenticados -->
+        <div id="auth-message" style="display: none;">
+            <div class="not-logged-in-message" style="max-width: 800px; margin: 40px auto; text-align: center; padding: 40px; background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%); border-radius: 15px; border: 2px solid #444;">
+                <div class="message-icon" style="margin-bottom: 20px;">
+                    <i class="fa-solid fa-lock" style="font-size: 48px; color: #ff0000;"></i>
+                </div>
+                <h2 style="color: #fff; font-size: 24px; margin-bottom: 15px;">Acceso Restringido</h2>
+                <p style="color: #ccc; font-size: 16px; margin-bottom: 30px;">Debes iniciar sesión para poder subir videos.</p>
+                <div class="auth-buttons" style="display: flex; gap: 15px; justify-content: center;">
+                    <a href="../auth/auth.html" class="btn-login" style="background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%); color: white; border: none; padding: 12px 25px; border-radius: 8px; font-size: 14px; font-weight: bold; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-sign-in-alt"></i>
+                        Iniciar Sesión
+                    </a>
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <!-- Notification -->
@@ -488,6 +506,32 @@
     <!-- Incluir el archivo header.js después -->
     <script src="../js/header.js"></script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Función para verificar el estado de autenticación con reintentos
+            function checkAuthWithRetry(retries = 0) {
+                // Las funciones isUserLoggedIn y getCurrentUser vienen de firebase.js
+                if (window.isUserLoggedIn && window.isUserLoggedIn()) {
+                    // Usuario logueado, mostrar el formulario
+                    document.getElementById('uploadContainer').style.display = 'block';
+                    document.getElementById('auth-message').style.display = 'none';
+                    console.log('Acceso permitido: Usuario autenticado.');
+                } else if (retries < 15) {
+                    // Si firebase.js aún no ha cargado, reintentar
+                    console.log(`Verificando autenticación... (Intento ${retries + 1})`);
+                    setTimeout(() => checkAuthWithRetry(retries + 1), 200);
+                } else {
+                    // Después de varios intentos, asumir que no está logueado y mostrar mensaje
+                    document.getElementById('uploadContainer').style.display = 'none';
+                    document.getElementById('auth-message').style.display = 'block';
+                    console.log('Acceso denegado: Usuario no autenticado.');
+                }
+            }
+
+            // Iniciar la verificación
+            checkAuthWithRetry();
+        });
+    </script>
 
     <script>
         // Inicializar EmailJS
