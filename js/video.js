@@ -10,7 +10,8 @@ let isPlaying = false;
 
 // Función para toggle like
 async function toggleLike() {
-    if (!currentUser) {
+    // Verificar autenticación usando las funciones de Firebase
+    if (!window.isUserLoggedIn || !window.isUserLoggedIn()) {
         alert('Debes iniciar sesión para dar like');
         return;
     }
@@ -46,7 +47,8 @@ async function toggleLike() {
 
 // Función para toggle dislike
 async function toggleDislike() {
-    if (!currentUser) {
+    // Verificar autenticación usando las funciones de Firebase
+    if (!window.isUserLoggedIn || !window.isUserLoggedIn()) {
         alert('Debes iniciar sesión para dar dislike');
         return;
     }
@@ -171,17 +173,25 @@ function loadLikesDislikes(videoId) {
     });
     
     // Load user's like status
-    if (currentUser) {
-        window.videoFunctions.getUserLike(videoId, currentUser.uid, (userLike) => {
-            if (userLike) {
-                isLiked = userLike.type === 'like';
-                isDisliked = userLike.type === 'dislike';
-            } else {
-                isLiked = false;
-                isDisliked = false;
-            }
-            updateLikeButtons();
-        });
+    if (window.isUserLoggedIn && window.isUserLoggedIn()) {
+        const currentUser = window.getCurrentUser();
+        if (currentUser) {
+            window.videoFunctions.getUserLike(videoId, currentUser.uid, (userLike) => {
+                if (userLike) {
+                    isLiked = userLike.type === 'like';
+                    isDisliked = userLike.type === 'dislike';
+                } else {
+                    isLiked = false;
+                    isDisliked = false;
+                }
+                updateLikeButtons();
+            });
+        }
+    } else {
+        // Usuario no logueado, resetear estados
+        isLiked = false;
+        isDisliked = false;
+        updateLikeButtons();
     }
 }
 
@@ -618,17 +628,51 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             currentUser = null;
             console.log('❌ Usuario no logueado');
+            // Reset like/dislike states when user logs out
+            if (currentVideoId) {
+                isLiked = false;
+                isDisliked = false;
+                updateLikeButtons();
+            }
+        }
+    };
+    
+    // Función para verificar autenticación con reintentos
+    const checkAuthWithRetry = (retries = 0) => {
+        if (window.isUserLoggedIn && window.getCurrentUser) {
+            checkAuth();
+        } else if (retries < 10) {
+            console.log(`🔄 Reintentando verificación de auth (${retries + 1}/10)...`);
+            setTimeout(() => checkAuthWithRetry(retries + 1), 200);
+        } else {
+            console.log('❌ No se pudo verificar autenticación después de 10 intentos');
+            currentUser = null;
         }
     };
     
     // Check immediately
-    checkAuth();
-    
-    // Check again after a short delay to ensure Firebase is loaded
-    setTimeout(checkAuth, 1000);
+    checkAuthWithRetry();
     
     // Listen for auth state changes
     if (window.addEventListener) {
         window.addEventListener('storage', checkAuth);
+    }
+    
+    // También verificar cuando se hace clic en like/dislike
+    const likeBtn = document.getElementById('likeBtn');
+    const dislikeBtn = document.getElementById('dislikeBtn');
+    
+    if (likeBtn) {
+        likeBtn.addEventListener('click', () => {
+            // Verificar auth antes de proceder
+            setTimeout(checkAuth, 100);
+        });
+    }
+    
+    if (dislikeBtn) {
+        dislikeBtn.addEventListener('click', () => {
+            // Verificar auth antes de proceder
+            setTimeout(checkAuth, 100);
+        });
     }
 });

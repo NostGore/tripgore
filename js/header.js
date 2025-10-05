@@ -42,7 +42,7 @@ function loadHeader() {
 
         <!-- Enlaces promocionales desktop -->
         <div class="promo-links">
-            <a href="#" class="yellow" onclick="showRemoveAdsModal()">Sin Anuncios</a>
+            <a href="#" class="yellow" onclick="showRemoveAdsModal()">Eliminar Anuncios</a>
         </div>
 
         <!-- Container de búsqueda -->
@@ -143,7 +143,7 @@ function loadHeader() {
             <div class="mobile-promo-links">
                 <a href="#" onclick="showRemoveAdsModal()">
                     <i class="fa-solid fa-ad"></i>
-                    Sin Anuncios
+                    Eliminar Anuncios
                 </a>
             </div>
         </div>

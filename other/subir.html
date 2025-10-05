@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../responsive/responsive.css">
+    <script src="//static.filestackapi.com/filestack-js/4.x.x/filestack.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
         /* Estilos específicos para la página de subida */
         .upload-container {
@@ -115,6 +117,19 @@
 
         .form-input::placeholder {
             color: #888;
+        }
+
+        .form-input[readonly] {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+            border-color: #555;
+            color: #666;
+            cursor: not-allowed;
+        }
+
+        .form-input[readonly]:focus {
+            border-color: #555;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+            box-shadow: none;
         }
 
         .form-select {
@@ -269,138 +284,35 @@
             color: #ff0000;
         }
 
-        /* Estilos para la sección Generar Link MP4 */
-        .link-generator-section {
-            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
-            border: 2px solid #444;
-            border-radius: 10px;
-            padding: 25px;
-            margin-top: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .generator-header {
-            text-align: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #444;
-        }
-
-        .generator-header h3 {
-            color: #fff;
-            font-size: 20px;
-            margin: 0 0 10px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .generator-header h3 i {
-            color: #ff0000;
-        }
-
-        .generator-header p {
-            color: #ccc;
-            margin: 0;
-            font-size: 14px;
-        }
-
-        .catbox-iframe-container {
-            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
-            border: 1px solid #333;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .iframe-header {
-            background: #2a2a2a;
-            padding: 15px 20px;
-            border-bottom: 1px solid #444;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .iframe-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #fff;
-            font-size: 14px;
-        }
-
-        .iframe-info i {
-            color: #ff0000;
-        }
-
-        .open-external-btn {
-            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+        /* Estilos para el botón de subida de Filestack */
+        .filestack-btn {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
             color: white;
             border: none;
-            padding: 8px 15px;
-            border-radius: 6px;
-            font-size: 12px;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .open-external-btn:hover {
-            background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
-        }
-
-        .catbox-iframe {
-            width: 100%;
-            height: 600px;
-            border: none;
-            background: white;
-        }
-
-        .iframe-help {
-            background: rgba(255, 0, 0, 0.1);
-            border-top: 1px solid #ff0000;
-            padding: 15px 20px;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 10px;
-            color: #ff0000;
-            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            width: 100%;
+            justify-content: center;
         }
 
-        .iframe-help i {
-            font-size: 16px;
+        .filestack-btn:hover {
+            background: linear-gradient(135deg, #2980b9 0%, #1f618d 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .iframe-header {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
-            }
-            
-            .catbox-iframe {
-                height: 500px;
-            }
-            
-            .iframe-help {
-                flex-direction: column;
-                text-align: center;
-                gap: 5px;
-            }
+        .filestack-btn i {
+            font-size: 18px;
         }
 
-        @media (max-width: 480px) {
-            .catbox-iframe {
-                height: 400px;
-            }
-        }
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -513,52 +425,24 @@
                         id="videoLink" 
                         name="videoLink" 
                         class="form-input" 
-                        placeholder="https://ejemplo.com/video.mp4"
+                        placeholder="Haz clic en 'Cargar Video' para subir tu archivo"
                         required
+                        readonly
                     >
                     <div class="form-help">
                         <i class="fa-solid fa-info-circle"></i>
-                        Asegúrate de que el enlace sea accesible públicamente
+                        Este campo se llena automáticamente cuando subas un video
                     </div>
                 </div>
 
-                <!-- Sección Generar Link MP4 -->
+                <!-- Botón de subida con Filestack -->
                 <div class="form-group">
-                    <div class="link-generator-section">
-                        <div class="generator-header">
-                            <h3>
-                                <i class="fa-solid fa-cloud-upload-alt"></i>
-                                Generar Link MP4
-                            </h3>
-                            <p>Sube tu video directamente usando Catbox.moe</p>
-                        </div>
-                        
-                        <div class="catbox-iframe-container">
-                            <div class="iframe-header">
-                                <div class="iframe-info">
-                                    <i class="fa-solid fa-external-link-alt"></i>
-                                    <span>Catbox.moe - Servicio de alojamiento de archivos</span>
-                                </div>
-                                <button type="button" class="open-external-btn" onclick="openCatboxExternal()">
-                                    <i class="fa-solid fa-external-link-alt"></i>
-                                    Abrir en nueva pestaña
-                                </button>
-                            </div>
-                            
-                            <iframe 
-                                src="https://catbox.moe" 
-                                class="catbox-iframe"
-                                title="Catbox.moe - Upload Files"
-                                allow="camera; microphone; fullscreen">
-                            </iframe>
-                            
-                            <div class="iframe-help">
-                                <i class="fa-solid fa-info-circle"></i>
-                                <span>Una vez que subas tu video, copia el enlace generado y pégalo en el campo "Enlace del Video" de arriba.</span>
-                            </div>
-                        </div>
-                    </div>
+                    <button type="button" id="filestackPicker" class="filestack-btn">
+                        <i class="fa-solid fa-upload"></i>
+                        Cargar Video
+                    </button>
                 </div>
+
 
                 <div class="form-group">
                     <label for="videoCategory">
@@ -576,24 +460,6 @@
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <label for="notificationEmail">
-                        <i class="fa-solid fa-envelope"></i>
-                        Correo para Notificaciones <span class="required">*</span>
-                    </label>
-                    <input 
-                        type="email" 
-                        id="notificationEmail" 
-                        name="notificationEmail" 
-                        class="form-input" 
-                        placeholder="tu@email.com"
-                        required
-                    >
-                    <div class="form-help">
-                        <i class="fa-solid fa-info-circle"></i>
-                        Te contactaremos por correo sobre el estado de tu video
-                    </div>
-                </div>
 
 
                 <div class="submit-section">
@@ -628,6 +494,25 @@
 
 
     <script>
+        // Inicializar EmailJS
+        emailjs.init("fKLtKUKveDIu6l_so");
+        
+        // Función para enviar correo de notificación
+        function sendEmailNotification() {
+            const templateParams = {
+                to_email: "colabmc.net@gmail.com",
+                subject: "Nuevo video subido a la plataforma",
+                message: "Alguien a subido un nuevo video a la plataforma"
+            };
+            
+            emailjs.send("powe_center", "template_5dp3lai", templateParams)
+                .then(function(response) {
+                    console.log('Correo enviado exitosamente:', response);
+                }, function(error) {
+                    console.error('Error al enviar correo:', error);
+                });
+        }
+        
         // Función para volver atrás
         function goBack() {
             window.history.back();
@@ -665,11 +550,6 @@
             }
         }
 
-        // Función para validar email
-        function isValidEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
-        }
 
         // Función para subir video (ahora usa la función de firebase.js)
         async function uploadVideo(videoData) {
@@ -697,7 +577,6 @@
                 title: formData.get('videoTitle').trim(),
                 link: formData.get('videoLink').trim(),
                 category: formData.get('videoCategory'),
-                email: formData.get('notificationEmail').trim(),
                 status: 'pending',
                 submittedAt: new Date().toISOString(),
                 submittedBy: getCurrentUser() ? getCurrentUser().email : 'anonymous'
@@ -719,11 +598,6 @@
                 return;
             }
             
-            if (!isValidEmail(videoData.email)) {
-                showNotification('Por favor ingresa un correo electrónico válido', 'error');
-                return;
-            }
-            
             // Mostrar estado de carga
             submitBtn.disabled = true;
             loadingSpinner.style.display = 'block';
@@ -733,25 +607,13 @@
                 const result = await uploadVideo(videoData);
                 
                 if (result.success) {
-                    showNotification('¡Video subido exitosamente! Te contactaremos por correo sobre su estado.', 'success');
+                    showNotification('¡Video subido exitosamente!', 'success');
+                    
+                    // Enviar correo de notificación al administrador
+                    sendEmailNotification();
                     
                     // Limpiar formulario
                     this.reset();
-                    
-                    // Redirigir después de 3 segundos
-                    setTimeout(() => {
-                        const currentPath = window.location.pathname;
-                        
-                        // Buscar la posición de 'tripgore' y ir a esa carpeta
-                        const tripgoreIndex = currentPath.indexOf('/tripgore');
-                        if (tripgoreIndex !== -1) {
-                            const basePath = currentPath.substring(0, tripgoreIndex + '/tripgore'.length);
-                            window.location.href = basePath + '/index.html';
-                        } else {
-                            // Fallback: ir al directorio actual
-                            window.location.href = './index.html';
-                        }
-                    }, 3000);
                 } else {
                     showNotification('Error al subir el video. Por favor intenta nuevamente.', 'error');
                 }
@@ -776,15 +638,6 @@
             }
         });
 
-        document.getElementById('notificationEmail').addEventListener('blur', function() {
-            const email = this.value.trim();
-            if (email && !isValidEmail(email)) {
-                this.style.borderColor = '#ff0000';
-                showNotification('El correo electrónico no tiene un formato válido', 'error');
-            } else {
-                this.style.borderColor = '#e0e0e0';
-            }
-        });
 
         // Contador de caracteres
         document.getElementById('videoTitle').addEventListener('input', function() {
@@ -799,10 +652,59 @@
             }
         });
 
-        // Función para abrir Catbox en nueva pestaña
-        function openCatboxExternal() {
-            window.open('https://catbox.moe', '_blank');
+        // ===== FILESTACK INTEGRATION =====
+        
+        // Inicializar Filestack (reemplaza con tu API key)
+        let filestackClient = null;
+        
+        // Función para inicializar Filestack cuando esté disponible
+        function initFilestack() {
+            if (typeof filestack !== 'undefined') {
+                filestackClient = filestack.init('A2edgtOSkSwWvL5YVdRBBz'); // Reemplaza con tu API key
+                setupFilestackPicker();
+            } else {
+                // Reintentar después de un breve delay
+                setTimeout(initFilestack, 100);
+            }
         }
+        
+        // Configurar el picker de Filestack
+        function setupFilestackPicker() {
+            const options = {
+                onUploadDone: (response) => {
+                    console.log('Upload completed:', response);
+                    if (response.filesUploaded && response.filesUploaded.length > 0) {
+                        const file = response.filesUploaded[0];
+                        useVideoLink(file.url);
+                    }
+                },
+                maxFiles: 1,
+                accept: ['video/*'],
+                fromSources: ['local_file_system'],
+                uploadInBackground: false
+            };
+            
+            const picker = filestackClient.picker(options);
+            
+            document.getElementById('filestackPicker').addEventListener('click', function(e) {
+                e.preventDefault();
+                picker.open();
+            });
+        }
+        
+        // Usar el enlace del video en el formulario
+        function useVideoLink(url) {
+            const videoLinkInput = document.getElementById('videoLink');
+            videoLinkInput.value = url;
+            videoLinkInput.style.borderColor = '#27ae60';
+            showNotification('Video cargado exitosamente. El enlace se ha agregado automáticamente.', 'success');
+        }
+        
+        // Inicializar Filestack cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', function() {
+            initFilestack();
+        });
+
 
     </script>
 </body>
