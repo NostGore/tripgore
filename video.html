@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/video.css">
     <link rel="stylesheet" href="responsive/responsive.css">
 
-    <script>(function(s){s.dataset.zone=\'9394873\',s.src=\'https://gizokraijaw.net/vignette.min.js\'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement(\'script\')))</script>
+    <!--mtag -->
     <script src="https://upskittyan.com/act/files/tag.min.js?z=9387446" data-cfasync="false" async></script>
     <script src="https://vaugroar.com/act/files/tag.min.js?z=9394867" data-cfasync="false" async></script>
 </head>
@@ -110,7 +110,7 @@
 
             <!-- Anuncio externo debajo de Related Videos -->
             <div class="external-ad">
-                <a href="#" target="_blank" rel="noopener noreferrer" class="ad-link">
+                <a href="https://otieu.com/4/9980510" target="_blank" rel="noopener noreferrer" class="ad-link">
                     <img src="https://files.catbox.moe/84d2j6.jpeg" alt="Anuncio externo" class="ad-image">
                 </a>
             </div>
@@ -137,35 +137,35 @@
     <script src="js/video.js"></script>
 
     <script>
-        // Cargar anuncios cuando el DOM esté listo
-        document.addEventListener('DOMContentLoaded', function() {
-            // Esperar un poco para que todos los scripts se carguen
-            setTimeout(function() {
-                try {
-                    // Insertar anuncios de notificaciones push en el head
-                    if (typeof insertAds === 'function') {
-                        insertAds('Push-Notification', 'head');
-                        console.log('✅ Anuncios Push-Notification cargados en video.html');
+            // Cargar anuncios cuando el DOM esté listo
+            document.addEventListener('DOMContentLoaded', function () {
+                // Esperar un poco para que todos los scripts se carguen
+                setTimeout(function () {
+                    try {
+                        // Insertar anuncios de notificaciones push en el head
+                        if (typeof insertAds === 'function') {
+                            insertAds('Push-Notification', 'head');
+                            console.log('✅ Anuncios Push-Notification cargados en video.html');
+                        }
+
+                        // Insertar anuncios vignette en el body
+                        if (typeof insertAds === 'function') {
+                            insertAds('Vignette-Banner', 'body');
+                            console.log('✅ Anuncios Vignette-Banner cargados en video.html');
+                        }
+
+                        // Insertar anuncios in-page push en el body
+                        if (typeof insertAds === 'function') {
+                            insertAds('In-Page-Push', 'body');
+                            console.log('✅ Anuncios In-Page-Push cargados en video.html');
+                        }
+
+                        console.log('🎯 Todos los anuncios han sido cargados correctamente en video.html');
+                    } catch (error) {
+                        console.error('❌ Error al cargar anuncios en video.html:', error);
                     }
-                    
-                    // Insertar anuncios vignette en el body
-                    if (typeof insertAds === 'function') {
-                        insertAds('Vignette-Banner', 'body');
-                        console.log('✅ Anuncios Vignette-Banner cargados en video.html');
-                    }
-                    
-                    // Insertar anuncios in-page push en el body
-                    if (typeof insertAds === 'function') {
-                        insertAds('In-Page-Push', 'body');
-                        console.log('✅ Anuncios In-Page-Push cargados en video.html');
-                    }
-                    
-                    console.log('🎯 Todos los anuncios han sido cargados correctamente en video.html');
-                } catch (error) {
-                    console.error('❌ Error al cargar anuncios en video.html:', error);
-                }
-            }, 1000);
-        });
+                }, 1000);
+            });
     </script>
 </body>
 
