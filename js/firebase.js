@@ -48,6 +48,36 @@ function updateHeaderForLoggedUser(user) {
     // Extraer el nombre de usuario del email (sin @gmail.com)
     const email = user.email;
     const username = email.split('@')[0];
+    
+    // Función para actualizar insignias cuando estén listas
+    function updateUserBadges() {
+        if (typeof getUserBadgesHTML !== 'undefined') {
+            getUserBadgesHTML(username).then(badges => {
+                // Solo actualizar si hay insignias
+                if (badges && badges.trim() !== '') {
+                    const userEmailElements = document.querySelectorAll('.user-email');
+                    userEmailElements.forEach(element => {
+                        if (element.textContent.includes(username)) {
+                            element.innerHTML = badges + username;
+                        }
+                    });
+                }
+            }).catch(error => {
+                console.log('No se pudieron cargar las insignias:', error);
+            });
+        }
+    }
+
+    // Mostrar enlaces al perfil
+    const profileLink = document.getElementById('profileLink');
+    const mobileProfileLink = document.getElementById('mobileProfileLink');
+    
+    if (profileLink) {
+        profileLink.style.display = 'inline-block';
+    }
+    if (mobileProfileLink) {
+        mobileProfileLink.style.display = 'block';
+    }
 
     // Actualizar perfil desktop
     if (userActions) {
@@ -57,12 +87,19 @@ function updateHeaderForLoggedUser(user) {
                     <i class="fa-solid fa-user-circle user-icon"></i>
                     <span class="user-email">${username}</span>
                 </div>
+                <a href="perfil.html" class="logout-btn" style="text-decoration: none; margin-right: 10px;">
+                    <i class="fa-solid fa-user"></i>
+                    Perfil
+                </a>
                 <button class="logout-btn" onclick="logoutUser()">
                     <i class="fa-solid fa-sign-out-alt"></i>
                     Salir
                 </button>
             </div>
         `;
+        
+        // Actualizar insignias después de crear el HTML
+        updateUserBadges();
     }
 
     // Actualizar perfil móvil
@@ -73,12 +110,19 @@ function updateHeaderForLoggedUser(user) {
                     <i class="fa-solid fa-user-circle user-icon"></i>
                     <span class="user-email">${username}</span>
                 </div>
+                <a href="perfil.html" class="logout-btn" style="text-decoration: none; margin-right: 10px;">
+                    <i class="fa-solid fa-user"></i>
+                    Perfil
+                </a>
                 <button class="logout-btn" onclick="logoutUser()">
                     <i class="fa-solid fa-sign-out-alt"></i>
                     Cerrar sesión
                 </button>
             </div>
         `;
+        
+        // Actualizar insignias después de crear el HTML
+        updateUserBadges();
     }
 }
 
@@ -86,6 +130,17 @@ function updateHeaderForLoggedUser(user) {
 function updateHeaderForGuestUser() {
     const userActions = document.querySelector('.user-actions');
     const mobileUserProfile = document.querySelector('.mobile-user-profile');
+
+    // Ocultar enlaces al perfil
+    const profileLink = document.getElementById('profileLink');
+    const mobileProfileLink = document.getElementById('mobileProfileLink');
+    
+    if (profileLink) {
+        profileLink.style.display = 'none';
+    }
+    if (mobileProfileLink) {
+        mobileProfileLink.style.display = 'none';
+    }
 
     // Actualizar perfil desktop
     if (userActions) {

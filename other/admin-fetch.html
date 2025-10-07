@@ -697,6 +697,18 @@
                         Cargar Videos Pendientes
                     </button>
                     
+                    <!-- Sección Usuarios -->
+                    <div class="users-section" style="margin: 20px 0 30px 0;">
+                        <h2 style="color:#fff; margin-bottom: 12px; display:flex; align-items:center; gap:10px;">
+                            <i class="fa-solid fa-users"></i>
+                            Usuarios
+                        </h2>
+                        <button class="load-btn" onclick="openUserLikesModal()" style="margin-bottom:0;">
+                            <i class="fa-solid fa-heart"></i>
+                            User Likes
+                        </button>
+                    </div>
+
                     <div id="videos"></div>
                 </div>
             </div>
@@ -880,6 +892,118 @@
                     cargarVideos();
                 } catch (error) {
                     alert('Error: ' + error.message);
+                }
+            }
+        }
+
+        // ---------------------- Usuarios: User Likes Modal ----------------------
+        let userLikesModalLoaded = false;
+
+        function openUserLikesModal() {
+            ensureUserLikesModal();
+            const overlay = document.getElementById('userLikesModal');
+            if (!overlay) return;
+            overlay.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            if (!userLikesModalLoaded) {
+                fetchAndRenderUserLikes();
+            }
+        }
+
+        function closeUserLikesModal() {
+            const overlay = document.getElementById('userLikesModal');
+            if (!overlay) return;
+            overlay.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeUserLikesModal();
+            }
+        });
+
+        function ensureUserLikesModal() {
+            if (document.getElementById('userLikesModal')) return;
+            const modalHtml = `
+                <div class="modal-overlay" id="userLikesModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000;">
+                    <div class="modal-content" style="max-width:700px; margin:60px auto; background:#1a1a1a; border:2px solid #444; border-radius:12px; padding:20px; color:#fff; box-shadow:0 10px 30px rgba(0,0,0,0.6);">
+                        <div class="modal-header" style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+                            <h3 style="margin:0; display:flex; align-items:center; gap:10px;"><i class=\"fa-solid fa-heart\" style=\"color:#ff0000;\"></i> Usuarios por Likes</h3>
+                            <button class="modal-close" onclick="closeUserLikesModal()" style="background:none; border:none; color:#fff; font-size:22px; cursor:pointer;">&times;</button>
+                        </div>
+                        <div id="userLikesBody" style="max-height:60vh; overflow:auto;">
+                            <div style="text-align:center; color:#ccc; padding:20px;">
+                                <i class="fa-solid fa-circle-notch" style="animation: spin 1s linear infinite; color:#ff0000;"></i>
+                                Cargando...
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+            // Cerrar al hacer clic fuera
+            const overlay = document.getElementById('userLikesModal');
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) closeUserLikesModal();
+            });
+        }
+
+        async function fetchAndRenderUserLikes() {
+            try {
+                const body = document.getElementById('userLikesBody');
+                if (!body) return;
+                body.innerHTML = `<div style="text-align:center; color:#ccc; padding:20px;"><i class=\"fa-solid fa-circle-notch\" style=\"animation: spin 1s linear infinite; color:#ff0000;\"></i> Cargando...</div>`;
+
+                // Usar REST de Firebase para obtener todos los likes
+                const resp = await fetch('https://triplegore-default-rtdb.firebaseio.com/likes.json');
+                const likesTree = await resp.json();
+
+                const userIdToStats = {};
+                // Estructura esperada: likes/{videoId}/{userId} = { userId, username, type }
+                if (likesTree && typeof likesTree === 'object') {
+                    Object.keys(likesTree).forEach((videoId) => {
+                        const perVideo = likesTree[videoId];
+                        if (!perVideo || typeof perVideo !== 'object') return;
+                        Object.keys(perVideo).forEach((userId) => {
+                            const likeObj = perVideo[userId];
+                            if (!likeObj || likeObj.type !== 'like') return; // solo likes
+                            const username = likeObj.username || (likeObj.userId ? likeObj.userId.slice(0,6) : 'Usuario');
+                            if (!userIdToStats[userId]) {
+                                userIdToStats[userId] = { userId, username, likes: 0 };
+                            }
+                            userIdToStats[userId].likes += 1;
+                        });
+                    });
+                }
+
+                const users = Object.values(userIdToStats).sort((a, b) => b.likes - a.likes);
+
+                if (users.length === 0) {
+                    body.innerHTML = `<div class=\"no-videos\" style=\"text-align:center;\"><i class=\"fa-solid fa-user\"></i><p>No hay likes registrados</p></div>`;
+                    userLikesModalLoaded = true;
+                    return;
+                }
+
+                // Renderizar lista
+                const listHtml = users.map((u, idx) => `
+                    <div style="display:flex; align-items:center; justify-content:space-between; padding:12px 14px; margin:10px 0; background:rgba(255,255,255,0.05); border-left:4px solid #ff0000; border-radius:8px;">
+                        <div style="display:flex; align-items:center; gap:12px;">
+                            <span style="display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; background:#ff0000; color:#fff; border-radius:6px; font-weight:700;">${idx + 1}</span>
+                            <div>
+                                <div style="font-weight:700; color:#fff;">${u.username}</div>
+                                <div style="color:#aaa; font-size:12px;">${u.userId}</div>
+                            </div>
+                        </div>
+                        <div style="font-weight:700; color:#fff; display:flex; align-items:center; gap:8px;"><i class=\"fa-solid fa-heart\" style=\"color:#ff4d4d;\"></i> ${u.likes}</div>
+                    </div>
+                `).join('');
+
+                body.innerHTML = listHtml;
+                userLikesModalLoaded = true;
+            } catch (err) {
+                const body = document.getElementById('userLikesBody');
+                if (body) {
+                    body.innerHTML = `<div style=\"color:#f88; padding:20px;\">Error al cargar likes: ${err?.message || err}</div>`;
                 }
             }
         }

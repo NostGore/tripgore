@@ -128,10 +128,10 @@ function updateLikeButtons() {
 // Cargar datos del video por ID
 function loadVideoById(videoId) {
     if (typeof mediaDB === 'undefined') return;
-    // excluir OCULTO
-    const video = mediaDB.find(v => v.id === videoId && v.categoria !== 'OCULTO');
+    // Buscar video por ID (incluyendo videos OCULTOS)
+    const video = mediaDB.find(v => v.id === videoId);
     if (!video) {
-        console.error('Video no encontrado o es OCULTO');
+        console.error('Video no encontrado');
         return;
     }
 
@@ -198,7 +198,20 @@ function loadLikesDislikes(videoId) {
 // Cargar videos relacionados aleatorios desde mediaDB
 function loadRelatedVideosRandom(currentId) {
     if (typeof mediaDB === 'undefined') return;
-    const candidates = mediaDB.filter(v => v.categoria !== 'OCULTO' && v.id !== currentId);
+    // Obtener el video actual para determinar si mostrar videos ocultos
+    const currentVideo = mediaDB.find(v => v.id === currentId);
+    const isCurrentVideoHidden = currentVideo && currentVideo.categoria === 'OCULTO';
+    
+    // Si el video actual es oculto, mostrar videos ocultos en relacionados
+    // Si no, excluir videos ocultos de los relacionados
+    const candidates = mediaDB.filter(v => {
+        if (v.id === currentId) return false; // Excluir el video actual
+        if (isCurrentVideoHidden) {
+            return true; // Mostrar todos los videos si el actual es oculto
+        } else {
+            return v.categoria !== 'OCULTO'; // Excluir ocultos si el actual no es oculto
+        }
+    });
     const shuffled = [...candidates].sort(() => Math.random() - 0.5).slice(0, 5);
     const relatedList = document.getElementById('relatedVideosList');
     relatedList.innerHTML = shuffled.map(v => `
@@ -244,10 +257,24 @@ function pushToHistory(id) {
     }
 }
 
-// Obtener un ID aleatorio excluyendo OCULTO y el actual
+// Obtener un ID aleatorio excluyendo el actual
 function getRandomVideoId(excludeId) {
     if (typeof mediaDB === 'undefined') return null;
-    const candidates = mediaDB.filter(v => v.categoria !== 'OCULTO' && v.id !== excludeId);
+    // Obtener el video actual para determinar si mostrar videos ocultos
+    const currentVideo = mediaDB.find(v => v.id === excludeId);
+    const isCurrentVideoHidden = currentVideo && currentVideo.categoria === 'OCULTO';
+    
+    // Si el video actual es oculto, incluir videos ocultos en la selección
+    // Si no, excluir videos ocultos
+    const candidates = mediaDB.filter(v => {
+        if (v.id === excludeId) return false; // Excluir el video actual
+        if (isCurrentVideoHidden) {
+            return true; // Incluir todos los videos si el actual es oculto
+        } else {
+            return v.categoria !== 'OCULTO'; // Excluir ocultos si el actual no es oculto
+        }
+    });
+    
     if (candidates.length === 0) return null;
     const pick = candidates[Math.floor(Math.random() * candidates.length)];
     return pick.id;
@@ -389,48 +416,109 @@ function loadComments() {
         // Filter main comments (not replies)
         const mainComments = comments.filter(comment => !comment.parentId);
         
-        let commentsHTML = '';
-        mainComments.forEach(comment => {
-            // Get replies for this comment
-            const replies = comments.filter(reply => reply.parentId === comment.id);
+        // Función para renderizar comentarios con insignias
+        async function renderCommentsWithBadges() {
+            let commentsHTML = '';
             
-            commentsHTML += `
-                <div class="comment">
-                    <div class="comment-header">
-                        <span class="comment-author">${comment.autor}</span>
-                        <span class="comment-date">${comment.fecha}</span>
-                    </div>
-                    <div class="comment-text">${comment.texto}</div>
-                    <div class="comment-actions">
-                        <button class="reply-btn" onclick="showReplyForm('${comment.id}')">
-                            <i class="fa-solid fa-reply"></i> Responder
-                        </button>
-                    </div>
-                    <div class="reply-form" id="reply-form-${comment.id}" style="display: none;">
-                        <textarea class="reply-input" placeholder="Escribe tu respuesta..."></textarea>
-                        <div>
-                            <button class="reply-submit-btn" onclick="submitReply('${comment.id}')">
-                                <i class="fa-solid fa-reply"></i> Responder
-                            </button>
-                            <button class="reply-cancel-btn" onclick="hideReplyForm('${comment.id}')">
-                                Cancelar
-                            </button>
-                        </div>
-                    </div>
-                    ${replies.map(reply => `
-                        <div class="reply-comment">
-                            <div class="comment-header">
-                                <span class="comment-author">${reply.autor}</span>
-                                <span class="comment-date">${reply.fecha}</span>
+            for (const comment of mainComments) {
+                // Get replies for this comment
+                const replies = comments.filter(reply => reply.parentId === comment.id);
+                
+                // Obtener insignias del autor del comentario (asíncrono)
+                let authorBadges = '';
+                if (typeof getUserBadgesHTML !== 'undefined') {
+                    try {
+                        authorBadges = await getUserBadgesHTML(comment.autor);
+                    } catch (error) {
+                        console.log('Error obteniendo insignias para', comment.autor, ':', error);
+                        authorBadges = '';
+                    }
+                }
+            
+                // Procesar respuestas de forma asíncrona
+                let repliesHTML = '';
+                for (const reply of replies) {
+                    let replyBadges = '';
+                    if (typeof getUserBadgesHTML !== 'undefined') {
+                        try {
+                            replyBadges = await getUserBadgesHTML(reply.autor);
+                        } catch (error) {
+                            console.log('Error obteniendo insignias para reply', reply.autor, ':', error);
+                            replyBadges = '';
+                        }
+                    }
+                    const replyInitial = (reply.autor || '?').trim().charAt(0).toUpperCase();
+                    const replyRole = (typeof window.getUserPrimaryRole === 'function') ? (window.getUserPrimaryRole(reply.autor) || '') : '';
+                    const replyRoleBadgeHTML = replyRole ? `<span class=\"comment-role-badge\">${replyRole}</span>` : '';
+
+                    repliesHTML += `
+                        <div class="comment-row reply">
+                            <div class="comment-avatar" title="${reply.autor}"><span>${replyInitial}</span></div>
+                            <div class="comment-main">
+                                <div class="comment-meta">
+                                    <span class="comment-time">${reply.fecha}</span>
+                                </div>
+                                <div class="comment-bubble">
+                                    <div class="comment-topline">
+                                        <div class=\"comment-identity\">
+                                            <span class=\"comment-username\">${replyBadges}${reply.autor}</span>
+                                            ${replyRoleBadgeHTML}
+                                        </div>
+                                    </div>
+                                    <div class="comment-text">${reply.texto}</div>
+                                </div>
                             </div>
-                            <div class="comment-text">${reply.texto}</div>
                         </div>
-                    `).join('')}
-                </div>
-            `;
-        });
+                    `;
+                }
+                
+                const initial = (comment.autor || '?').trim().charAt(0).toUpperCase();
+                const role = (typeof window.getUserPrimaryRole === 'function') ? (window.getUserPrimaryRole(comment.autor) || '') : '';
+                const roleBadgeHTML = role ? `<span class=\"comment-role-badge\">${role}</span>` : '';
+
+                commentsHTML += `
+                    <div class="comment-row">
+                        <div class="comment-avatar" title="${comment.autor}"><span>${initial}</span></div>
+                        <div class="comment-main">
+                            <div class="comment-meta">
+                                <span class="comment-time">${comment.fecha}</span>
+                                <button class="comment-share" onclick="shareCurrentVideo()" title="Compartir"><i class="fa-solid fa-share-nodes"></i></button>
+                            </div>
+                            <div class="comment-bubble">
+                                <div class="comment-topline">
+                                    <div class=\"comment-identity\">
+                                        <span class=\"comment-username\">${authorBadges}${comment.autor}</span>
+                                        ${roleBadgeHTML}
+                                    </div>
+                                    <button class="comment-number" title="#">#</button>
+                                </div>
+                                <div class="comment-text">${comment.texto}</div>
+                                <div class="comment-actions">
+                                    <button class="reply-btn" onclick="showReplyForm('${comment.id}')">
+                                        <i class="fa-solid fa-reply"></i> Responder
+                                    </button>
+                                </div>
+                                <div class="reply-form" id="reply-form-${comment.id}" style="display: none;">
+                                    <textarea class="reply-input" placeholder="Escribe tu respuesta..."></textarea>
+                                    <div>
+                                        <button class="reply-submit-btn" onclick="submitReply('${comment.id}')">
+                                            <i class="fa-solid fa-reply"></i> Responder
+                                        </button>
+                                        <button class="reply-cancel-btn" onclick="hideReplyForm('${comment.id}')">Cancelar</button>
+                                    </div>
+                                </div>
+                                ${repliesHTML}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            commentsList.innerHTML = commentsHTML;
+        }
         
-        commentsList.innerHTML = commentsHTML;
+        // Llamar a la función asíncrona
+        renderCommentsWithBadges();
     });
 }
 
@@ -449,32 +537,50 @@ function buildCommentTree(comments) {
     return roots;
 }
 
-function renderCommentTree(nodes, level = 0) {
-    return nodes.map(node => `
-                <div class="comment-item" style="margin-left:${level * 16}px;">
-                    <div class="comment-header">
-                        <span class="comment-author">${node.author}</span>
-                        <span class="comment-date">${node.date}</span>
-                    </div>
-                    <div class="comment-text">${node.text}</div>
-                    <div style="margin-top:8px;">
-                        <button class="reply-btn" onclick="showReplyForm(${node.id})">
+async function renderCommentTree(nodes, level = 0) {
+    const results = [];
+    
+    for (const node of nodes) {
+        let nodeBadges = '';
+        if (typeof getUserBadgesHTML !== 'undefined') {
+            try {
+                nodeBadges = await getUserBadgesHTML(node.author);
+            } catch (error) {
+                console.log('Error obteniendo insignias para', node.author, ':', error);
+                nodeBadges = '';
+            }
+        }
+        
+        const childrenHTML = node.children && node.children.length ? await renderCommentTree(node.children, level + 1) : '';
+        
+        results.push(`
+            <div class="comment-item" style="margin-left:${level * 16}px;">
+                <div class="comment-header">
+                    <span class="comment-author">${nodeBadges}${node.author}</span>
+                    <span class="comment-date">${node.date}</span>
+                </div>
+                <div class="comment-text">${node.text}</div>
+                <div style="margin-top:8px;">
+                    <button class="reply-btn" onclick="showReplyForm(${node.id})">
+                        <i class="fa-solid fa-reply"></i>
+                        Responder
+                    </button>
+                </div>
+                <div id="reply-form-${node.id}" style="display:none; margin-top:10px;">
+                    <div class="comment-input-group">
+                        <textarea class="comment-input" id="reply-input-${node.id}" placeholder="Escribe tu respuesta..." rows="2"></textarea>
+                        <button class="reply-submit-btn" onclick="submitReply(${node.id})">
                             <i class="fa-solid fa-reply"></i>
                             Responder
                         </button>
                     </div>
-                    <div id="reply-form-${node.id}" style="display:none; margin-top:10px;">
-                        <div class="comment-input-group">
-                            <textarea class="comment-input" id="reply-input-${node.id}" placeholder="Escribe tu respuesta..." rows="2"></textarea>
-                            <button class="reply-submit-btn" onclick="submitReply(${node.id})">
-                                <i class="fa-solid fa-reply"></i>
-                                Responder
-                            </button>
-                        </div>
-                    </div>
-                    ${node.children && node.children.length ? renderCommentTree(node.children, level + 1) : ''}
                 </div>
-            `).join('');
+                ${childrenHTML}
+            </div>
+        `);
+    }
+    
+    return results.join('');
 }
 
 // Mostrar formulario de respuesta

@@ -13,6 +13,23 @@
             margin-right: auto;
             padding: 0 20px;
         }
+        
+        .loading-colaboradores {
+            text-align: center;
+            padding: 40px 20px;
+            color: #fff;
+        }
+        
+        .loading-colaboradores i {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #ff0000;
+        }
+        
+        .loading-colaboradores p {
+            margin: 0;
+            font-size: 16px;
+        }
 
         .colaboradores-grid {
             display: grid;
@@ -82,6 +99,13 @@
             font-size: 16px;
             font-weight: bold;
             margin: 0 0 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .colaborador-name .user-badge {
+            margin-right: 4px;
         }
 
         .colaborador-stats {
@@ -139,6 +163,13 @@
             font-size: 20px;
             margin: 0;
             font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .colaborador-header h3 .user-badge {
+            margin-right: 4px;
         }
 
         .back-to-colaboradores {
