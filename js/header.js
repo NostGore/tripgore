@@ -161,6 +161,13 @@ function toggleMobileMenu() {
     mobileMenu.classList.toggle('show');
     menuToggle.classList.toggle('active');
 
+	// Al abrir el menú, sincronizar estado de autenticación
+	if (mobileMenu.classList.contains('show')) {
+		if (typeof window !== 'undefined' && typeof window.isUserLoggedIn === 'function') {
+			try { syncAuthUI(); } catch (e) { /* noop */ }
+		}
+	}
+
     // Prevenir scroll del body cuando el menú está abierto
     if (mobileMenu.classList.contains('show')) {
         document.body.style.overflow = 'hidden';
@@ -211,7 +218,94 @@ function initializeHeader() {
 
         // Configurar eventos móviles
         setupMobileEvents();
+
+		// Sincronizar estado de autenticación (usa funciones globales de firebase.js)
+		if (typeof window !== 'undefined' && typeof window.isUserLoggedIn === 'function') {
+			// Intento inmediato
+			try { syncAuthUI(); } catch (e) { /* noop */ }
+			// Reintentos cortos para cubrir la inicialización de Firebase
+			let attempts = 0;
+			(function retrySync() {
+				attempts++;
+				try { syncAuthUI(); } catch (e) { /* noop */ }
+				if (attempts < 10) {
+					setTimeout(retrySync, 300);
+				}
+			})();
+		}
     }
+}
+
+// Actualiza la UI del header (desktop y móvil) según el estado de autenticación actual
+function syncAuthUI() {
+	const isLogged = typeof window.isUserLoggedIn === 'function' ? window.isUserLoggedIn() : false;
+	const user = isLogged && typeof window.getCurrentUser === 'function' ? window.getCurrentUser() : null;
+
+	const userActions = document.querySelector('.user-actions');
+	const mobileUserProfile = document.querySelector('.mobile-user-profile');
+
+	if (isLogged && user && user.email) {
+		const username = user.email.split('@')[0];
+
+		if (userActions) {
+			userActions.innerHTML = `
+				<div class="user-profile">
+					<div class="user-info">
+						<i class="fa-solid fa-user-circle user-icon"></i>
+						<span class="user-email">${username}</span>
+					</div>
+					<a href="perfil.html" class="logout-btn" style="text-decoration: none; margin-right: 10px;">
+						<i class="fa-solid fa-user"></i>
+						Perfil
+					</a>
+					<button class="logout-btn" onclick="logoutUser()">
+						<i class="fa-solid fa-sign-out-alt"></i>
+						Salir
+					</button>
+				</div>
+			`;
+		}
+
+		if (mobileUserProfile) {
+			mobileUserProfile.innerHTML = `
+				<div class="user-profile">
+					<div class="user-info">
+						<i class="fa-solid fa-user-circle user-icon"></i>
+						<span class="user-email">${username}</span>
+					</div>
+					<a href="perfil.html" class="logout-btn" style="text-decoration: none; margin-right: 10px;">
+						<i class="fa-solid fa-user"></i>
+						Perfil
+					</a>
+					<button class="logout-btn" onclick="logoutUser()">
+						<i class="fa-solid fa-sign-out-alt"></i>
+						Cerrar sesión
+					</button>
+				</div>
+			`;
+		}
+	} else {
+		if (userActions) {
+			userActions.innerHTML = `
+				<a href="auth/auth.html">Iniciar Sesión</a>
+				<a href="auth/auth.html">Registrarse</a>
+			`;
+		}
+		if (mobileUserProfile) {
+			mobileUserProfile.innerHTML = `
+				<div class="user-profile">
+					<div class="user-info">
+						<i class="fa-solid fa-lock user-icon"></i>
+						<span class="user-email">No logueado</span>
+					</div>
+					<a href="auth/auth.html" class="logout-btn">
+						<i class="fa-solid fa-sign-in-alt"></i>
+						Iniciar sesión
+					</a>
+				</div>
+			`;
+		}
+	}
 }
 
 // Función para configurar eventos móviles
