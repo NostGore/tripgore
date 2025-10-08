@@ -703,10 +703,69 @@
                             <i class="fa-solid fa-users"></i>
                             Usuarios
                         </h2>
-                        <button class="load-btn" onclick="openUserLikesModal()" style="margin-bottom:0;">
-                            <i class="fa-solid fa-heart"></i>
-                            User Likes
-                        </button>
+                        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                            <button class="load-btn" onclick="openUserLikesModal()" style="margin-bottom:0;">
+                                <i class="fa-solid fa-heart"></i>
+                                User Likes
+                            </button>
+                            <button class="load-btn" onclick="openUserCommentsModal()" style="margin-bottom:0;">
+                                <i class="fa-solid fa-comment"></i>
+                                User Comments
+                            </button>
+                            <button class="load-btn" onclick="openUserVideosModal()" style="margin-bottom:0;">
+                                <i class="fa-solid fa-video"></i>
+                                User Videos
+                            </button>
+                            <button class="load-btn" onclick="openTopCommentedVideosModal()" style="margin-bottom:0;">
+                                <i class="fa-solid fa-ranking-star"></i>
+                                Top Videos Comentados
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Sección Bots -->
+                    <div class="bots-section" style="margin: 20px 0 30px 0;">
+                        <h2 style="color:#fff; margin-bottom: 12px; display:flex; align-items:center; gap:10px;">
+                            <i class="fa-solid fa-robot"></i>
+                            Bots
+                        </h2>
+                        <div style="display:grid; gap:12px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); background: rgba(255,255,255,0.05); border:2px solid #444; border-radius:10px; padding:16px;">
+                            <div style="display:flex; flex-direction:column; gap:6px;">
+                                <label for="botAction" style="color:#ccc; font-size:13px;">Acción</label>
+                                <select id="botAction" style="background:#111; color:#fff; border:1px solid #555; border-radius:8px; padding:10px;">
+                                    <option value="like">Like</option>
+                                    <option value="dislike">Dislike</option>
+                                    <option value="comentario">Comentario</option>
+                                </select>
+                            </div>
+                            <div style="display:flex; flex-direction:column; gap:6px;">
+                                <label for="botUsername" style="color:#ccc; font-size:13px;">Usuario</label>
+                                <input id="botUsername" placeholder="Ingresa el nombre de usuario" style="background:#111; color:#fff; border:1px solid #555; border-radius:8px; padding:10px;" />
+                            </div>
+                            <div style="display:flex; flex-direction:column; gap:6px;">
+                                <label style="color:#ccc; font-size:13px;">Video</label>
+                                <button id="openSelectVideoModalBtn" class="btn btn-view" type="button" style="width:max-content;">
+                                    <i class="fa-solid fa-list"></i>
+                                    Seleccionar video
+                                </button>
+                                <small id="botSelectedVideoTitle" style="color:#aaa; display:block; margin-top:4px;"></small>
+                            </div>
+                            <div id="botQuantityWrap" style="display:flex; flex-direction:column; gap:6px;">
+                                <label for="botQuantity" style="color:#ccc; font-size:13px;">Cantidad</label>
+                                <input id="botQuantity" type="number" min="1" value="1" style="background:#111; color:#fff; border:1px solid #555; border-radius:8px; padding:10px;" />
+                            </div>
+                            <div id="botCommentWrap" style="display:none; flex-direction:column; gap:6px; grid-column: 1 / -1;">
+                                <label for="botComment" style="color:#ccc; font-size:13px;">Escribe tu comentario</label>
+                                <textarea id="botComment" rows="3" placeholder="Escribe tu comentario" style="background:#111; color:#fff; border:1px solid #555; border-radius:8px; padding:10px;"></textarea>
+                            </div>
+                        </div>
+                        <div style="display:flex; gap:12px; align-items:center; margin-top:12px; flex-wrap:wrap;">
+                            <button class="btn btn-approve" id="botSendBtn" style="padding: 12px 18px;">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                Enviar
+                            </button>
+                            <span id="botStatus" style="color:#ccc; font-size:14px;"></span>
+                        </div>
                     </div>
 
                     <div id="videos"></div>
@@ -896,6 +955,217 @@
             }
         }
 
+        // ---------------------- Bots: UI y lógica ----------------------
+        let botVideosIndex = null; // cache de { id, title }
+        let botSelectedVideo = { id: null, title: null };
+        let botMediaLoaded = false;
+
+        function initBotsUI() {
+            try {
+                const actionSel = document.getElementById('botAction');
+                const qtyWrap = document.getElementById('botQuantityWrap');
+                const cmtWrap = document.getElementById('botCommentWrap');
+                const openModalBtn = document.getElementById('openSelectVideoModalBtn');
+                const statusEl = document.getElementById('botStatus');
+                const sendBtn = document.getElementById('botSendBtn');
+                const titleHint = document.getElementById('botSelectedVideoTitle');
+
+                if (!actionSel || !qtyWrap || !cmtWrap || !openModalBtn || !sendBtn) return;
+
+                // Mostrar/ocultar campos según acción
+                const updateActionUI = () => {
+                    const action = actionSel.value;
+                    if (action === 'comentario') {
+                        cmtWrap.style.display = 'flex';
+                        qtyWrap.style.display = 'none';
+                    } else {
+                        cmtWrap.style.display = 'none';
+                        qtyWrap.style.display = 'flex';
+                    }
+                };
+                actionSel.removeEventListener('change', updateActionUI);
+                actionSel.addEventListener('change', updateActionUI);
+                updateActionUI();
+
+                // Modal de selección de video
+                ensureSelectVideoModal();
+                openModalBtn.addEventListener('click', async () => {
+                    titleHint.textContent = '';
+                    await openSelectVideoModal();
+                });
+
+                // Envío
+                const onSend = async () => {
+                    statusEl.textContent = '';
+                    const action = actionSel.value;
+                    const username = (document.getElementById('botUsername')?.value || '').trim();
+                    const quantityRaw = parseInt(document.getElementById('botQuantity')?.value || '1', 10);
+                    const commentText = (document.getElementById('botComment')?.value || '').trim();
+                    const videoId = botSelectedVideo.id;
+
+                    if (!username) { statusEl.textContent = 'Ingresa un usuario'; return; }
+                    if (!videoId) { statusEl.textContent = 'Selecciona un video de la lista'; return; }
+
+                    try {
+                        if (action === 'comentario') {
+                            if (!commentText) { statusEl.textContent = 'Escribe tu comentario'; return; }
+                            await sendBotComment({ videoId, username, commentText });
+                            statusEl.textContent = 'Comentario enviado correctamente';
+                        } else {
+                            const qty = Math.max(quantityRaw || 1, 1);
+                            await sendBotReactions({ videoId, username, type: action, quantity: qty });
+                            statusEl.textContent = `${action === 'like' ? 'Likes' : 'Dislikes'} enviados: ${qty}`;
+                        }
+                    } catch (e) {
+                        statusEl.textContent = `Error: ${e?.message || e}`;
+                    }
+                };
+                sendBtn.removeEventListener('click', onSend);
+                sendBtn.addEventListener('click', onSend);
+            } catch (e) {
+                console.error('initBotsUI error', e);
+            }
+        }
+
+        // Modal para seleccionar video desde mediaDB.js
+        function ensureSelectVideoModal() {
+            if (document.getElementById('selectVideoModal')) return;
+            const modalHtml = `
+                <div id="selectVideoModal" class="modal-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000;">
+                    <div class="modal-content" style="max-width:900px; margin:40px auto; background:#1a1a1a; border:2px solid #444; border-radius:12px; padding:16px; color:#fff; box-shadow:0 10px 30px rgba(0,0,0,0.6);">
+                        <div style="display:flex; align-items:center; gap:10px; justify-content:space-between; margin-bottom:10px;">
+                            <h3 style="margin:0; display:flex; align-items:center; gap:10px;"><i class=\"fa-solid fa-video\" style=\"color:#ff0000;\"></i> Seleccionar video</h3>
+                            <button onclick="closeSelectVideoModal()" style="background:none; border:none; color:#fff; font-size:22px; cursor:pointer;">&times;</button>
+                        </div>
+                        <div style="display:flex; gap:10px; margin-bottom:10px;">
+                            <input id="selectVideoSearch" placeholder="Buscar por título..." style="flex:1; background:#111; color:#fff; border:1px solid #555; border-radius:8px; padding:10px;" />
+                            <button id="refreshMediaBtn" class="btn btn-view" type="button" style="white-space:nowrap;"><i class=\"fa-solid fa-rotate\"></i> Recargar</button>
+                        </div>
+                        <div id="selectVideoList" style="max-height:60vh; overflow:auto; border:1px solid #333; border-radius:8px;">
+                            <div style="text-align:center; color:#ccc; padding:20px;"><i class=\"fa-solid fa-circle-notch\" style=\"animation: spin 1s linear infinite; color:#ff0000;\"></i> Cargando...</div>
+                        </div>
+                    </div>
+                </div>`;
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+            const overlay = document.getElementById('selectVideoModal');
+            overlay.addEventListener('click', (e) => { if (e.target === overlay) closeSelectVideoModal(); });
+        }
+
+        async function openSelectVideoModal() {
+            const overlay = document.getElementById('selectVideoModal');
+            const listEl = document.getElementById('selectVideoList');
+            const searchEl = document.getElementById('selectVideoSearch');
+            const refreshBtn = document.getElementById('refreshMediaBtn');
+            overlay.style.display = 'block';
+
+            const loadMedia = async () => {
+                try {
+                    listEl.innerHTML = `<div style=\"text-align:center; color:#ccc; padding:20px;\"><i class=\"fa-solid fa-circle-notch\" style=\"animation: spin 1s linear infinite; color:#ff0000;\"></i> Cargando...</div>`;
+                    const mediaResponse = await fetch('../database/mediaDB.js');
+                    const mediaText = await mediaResponse.text();
+                    const arrayMatch = mediaText.match(/const mediaDB = (\[[\s\S]*?\]);/);
+                    if (!arrayMatch) throw new Error('No se pudo extraer la base de datos de videos');
+                    const media = eval(arrayMatch[1]);
+                    botVideosIndex = media.map((v, idx) => ({ id: v.codigo || v.id || String(idx), title: v.titulo || v.title || '', raw: v }));
+                    botMediaLoaded = true;
+                    renderMediaList(botVideosIndex);
+                } catch (err) {
+                    listEl.innerHTML = `<div style=\"color:#f88; padding:20px;\">Error al cargar mediaDB: ${err?.message || err}</div>`;
+                }
+            };
+
+            const renderMediaList = (items) => {
+                if (!items || items.length === 0) {
+                    listEl.innerHTML = `<div style=\"text-align:center; color:#ccc; padding:20px;\">No hay videos</div>`;
+                    return;
+                }
+                listEl.innerHTML = items.slice(0, 200).map((v) => `
+                    <div class=\"media-item\" data-video-id=\"${v.id}\" data-video-title=\"${(v.title || '').replace(/\"/g,'\\\"')}\" 
+                        style=\"padding:12px; border-bottom:1px solid #333; cursor:pointer; display:flex; gap:12px; align-items:flex-start;\">
+                        <div style=\"display:flex; align-items:center; justify-content:center; width:28px;\"><i class=\"fa-solid fa-video\" style=\"color:#ff0000;\"></i></div>
+                        <div style=\"flex:1;\">
+                            <div style=\"color:#fff; font-weight:700;\">${v.title || 'Sin título'}</div>
+                            <div style=\"color:#aaa; font-size:12px;\">ID: ${v.id}</div>
+                        </div>
+                        <button class=\"btn btn-approve\" type=\"button\">Seleccionar</button>
+                    </div>
+                `).join('');
+
+                listEl.querySelectorAll('.media-item').forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        const videoId = item.dataset.videoId;
+                        const videoTitle = item.dataset.videoTitle;
+                        botSelectedVideo = { id: videoId, title: videoTitle };
+                        const titleHint = document.getElementById('botSelectedVideoTitle');
+                        if (titleHint) {
+                            titleHint.textContent = `Video seleccionado: ${videoTitle}`;
+                            titleHint.style.color = '#28a745';
+                        }
+                        closeSelectVideoModal();
+                    });
+                });
+            };
+
+            const onSearch = () => {
+                const q = (searchEl.value || '').trim().toLowerCase();
+                const items = !q ? botVideosIndex : botVideosIndex.filter(v => (v.title || '').toLowerCase().includes(q));
+                renderMediaList(items);
+            };
+
+            searchEl.removeEventListener('input', onSearch);
+            searchEl.addEventListener('input', onSearch);
+            refreshBtn.onclick = loadMedia;
+
+            if (!botMediaLoaded) await loadMedia();
+        }
+
+        function closeSelectVideoModal() {
+            const overlay = document.getElementById('selectVideoModal');
+            if (overlay) overlay.style.display = 'none';
+        }
+
+        async function sendBotComment({ videoId, username, commentText }) {
+            const timestamp = Date.now();
+            const fecha = new Date(timestamp).toLocaleString();
+            
+            // Registrar en comments_bot para tracking
+            await fetch(`https://triplegore-default-rtdb.firebaseio.com/comments_bot/${videoId}.json`, {
+                method: 'POST',
+                body: JSON.stringify({ username, texto: commentText, timestamp, fecha })
+            });
+            
+            // Crear comentario real en comments/{videoId} - esto es lo que verán los usuarios
+            const createResp = await fetch(`https://triplegore-default-rtdb.firebaseio.com/comments/${videoId}.json`, {
+                method: 'POST',
+                body: JSON.stringify({ 
+                    texto: commentText, 
+                    autor: username, 
+                    fecha, 
+                    timestamp,
+                    id: `bot_${timestamp}_${Math.random().toString(36).substr(2, 9)}`
+                })
+            });
+            
+            const createData = await createResp.json();
+            const generatedId = createData && createData.name ? createData.name : `bot_${timestamp}`;
+            
+            // Actualizar el comentario con su ID
+            await fetch(`https://triplegore-default-rtdb.firebaseio.com/comments/${videoId}/${generatedId}.json`, {
+                method: 'PATCH',
+                body: JSON.stringify({ id: generatedId })
+            });
+        }
+
+        async function sendBotReactions({ videoId, username, type, quantity }) {
+            // Guardar como contador numérico único por bot
+            const cleaned = username.replace(/\s+/g, '_').toLowerCase();
+            const key = `bot_${cleaned}_${type}`; // p.ej. bot_agustin_like
+            await fetch(`https://triplegore-default-rtdb.firebaseio.com/likes/${videoId}/${key}.json`, {
+                method: 'PUT',
+                body: JSON.stringify(quantity)
+            });
+        }
+
         // ---------------------- Usuarios: User Likes Modal ----------------------
         let userLikesModalLoaded = false;
 
@@ -910,6 +1180,156 @@
             }
         }
 
+        // ---------------------- Top Videos Comentados Modal ----------------------
+        let topCommentedModalLoaded = false;
+
+        function openTopCommentedVideosModal() {
+            ensureTopCommentedVideosModal();
+            const overlay = document.getElementById('topCommentedVideosModal');
+            if (!overlay) return;
+            overlay.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            if (!topCommentedModalLoaded) {
+                fetchAndRenderTopCommentedVideos();
+            }
+        }
+
+        function closeTopCommentedVideosModal() {
+            const overlay = document.getElementById('topCommentedVideosModal');
+            if (!overlay) return;
+            overlay.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        function ensureTopCommentedVideosModal() {
+            if (document.getElementById('topCommentedVideosModal')) return;
+            const modalHtml = `
+                <div class="modal-overlay" id="topCommentedVideosModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000;">
+                    <div class="modal-content" style="max-width:800px; margin:60px auto; background:#1a1a1a; border:2px solid #444; border-radius:12px; padding:20px; color:#fff; box-shadow:0 10px 30px rgba(0,0,0,0.6);">
+                        <div class="modal-header" style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+                            <h3 style="margin:0; display:flex; align-items:center; gap:10px;"><i class=\"fa-solid fa-ranking-star\" style=\"color:#ffaa00;\"></i> Top Videos Comentados</h3>
+                            <button class="modal-close" onclick="closeTopCommentedVideosModal()" style="background:none; border:none; color:#fff; font-size:22px; cursor:pointer;">&times;</button>
+                        </div>
+                        <div style="display:flex; gap:10px; align-items:center; margin-bottom:10px;">
+                            <input id="topCommentedSearch" placeholder="Buscar por título..." style="flex:1; background:#111; color:#fff; border:1px solid #555; border-radius:8px; padding:10px;" />
+                            <button id="reloadTopCommentedBtn" class="btn btn-view" type="button" style="white-space:nowrap;"><i class=\"fa-solid fa-rotate\"></i> Recargar</button>
+                        </div>
+                        <div id="topCommentedBody" style="max-height:60vh; overflow:auto;">
+                            <div style="text-align:center; color:#ccc; padding:20px;">
+                                <i class="fa-solid fa-circle-notch" style="animation: spin 1s linear infinite; color:#ffaa00;"></i>
+                                Cargando...
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+            const overlay = document.getElementById('topCommentedVideosModal');
+            overlay.addEventListener('click', (e) => { if (e.target === overlay) closeTopCommentedVideosModal(); });
+        }
+
+        async function fetchAndRenderTopCommentedVideos() {
+            try {
+                const body = document.getElementById('topCommentedBody');
+                if (!body) return;
+                body.innerHTML = `<div style=\"text-align:center; color:#ccc; padding:20px;\"><i class=\"fa-solid fa-circle-notch\" style=\"animation: spin 1s linear infinite; color:#ffaa00;\"></i> Cargando...</div>`;
+
+                // Obtener todos los comentarios
+                const resp = await fetch('https://triplegore-default-rtdb.firebaseio.com/comments.json');
+                const commentsTree = await resp.json();
+
+                // Contar por videoId
+                const videoCounts = {};
+                if (commentsTree && typeof commentsTree === 'object') {
+                    Object.keys(commentsTree).forEach((videoId) => {
+                        const perVideo = commentsTree[videoId];
+                        if (!perVideo || typeof perVideo !== 'object') return;
+                        let count = 0;
+                        Object.keys(perVideo).forEach((commentId) => {
+                            const commentObj = perVideo[commentId];
+                            if (commentObj && commentObj.texto) count += 1;
+                        });
+                        if (count > 0) videoCounts[videoId] = count;
+                    });
+                }
+
+                // Cargar mediaDB para resolver títulos
+                const mediaResponse = await fetch('../database/mediaDB.js');
+                const mediaText = await mediaResponse.text();
+                const arrayMatch = mediaText.match(/const mediaDB = (\[[\s\S]*?\]);/);
+                const media = arrayMatch ? eval(arrayMatch[1]) : [];
+                const idToTitle = {};
+                if (Array.isArray(media)) {
+                    media.forEach(v => {
+                        const id = v.codigo || v.id;
+                        const title = v.titulo || v.title || '';
+                        if (id) idToTitle[id] = title;
+                    });
+                }
+
+                // Crear arreglo ordenado
+                const items = Object.entries(videoCounts).map(([videoId, count]) => ({
+                    videoId,
+                    count,
+                    title: idToTitle[videoId] || '(Sin título)'
+                })).sort((a, b) => b.count - a.count);
+
+                if (items.length === 0) {
+                    body.innerHTML = `<div class=\"no-videos\" style=\"text-align:center;\"><i class=\"fa-solid fa-comment\"></i><p>No hay comentarios registrados</p></div>`;
+                    topCommentedModalLoaded = true;
+                    return;
+                }
+
+                const listHtml = items.map((it, idx) => `
+                    <div style=\"display:flex; align-items:center; justify-content:space-between; padding:12px 14px; margin:10px 0; background:rgba(255,255,255,0.05); border-left:4px solid #ffaa00; border-radius:8px;\">
+                        <div style=\"display:flex; align-items:center; gap:12px;\">
+                            <span style=\"display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; background:#ffaa00; color:#000; border-radius:6px; font-weight:700;\">${idx + 1}</span>
+                            <div>
+                                <div style=\"font-weight:700; color:#fff;\">${it.title}</div>
+                                <div style=\"color:#aaa; font-size:12px;\">${it.videoId}</div>
+                            </div>
+                        </div>
+                        <div style=\"display:flex; align-items:center; gap:10px;\">
+                            <div style=\"font-weight:700; color:#fff; display:flex; align-items:center; gap:8px;\"><i class=\"fa-solid fa-comment\" style=\"color:#ffaa00;\"></i> ${it.count}</div>
+                            <a href=\"../video.html?id=${it.videoId}\" target=\"_blank\" class=\"btn btn-view\" style=\"padding:8px 12px;\"><i class=\"fa-solid fa-arrow-up-right-from-square\"></i> Ver</a>
+                        </div>
+                    </div>
+                `).join('');
+
+                body.innerHTML = listHtml;
+                topCommentedModalLoaded = true;
+
+                // Filtro por título
+                const searchEl = document.getElementById('topCommentedSearch');
+                const reloadBtn = document.getElementById('reloadTopCommentedBtn');
+                if (searchEl) {
+                    const applyFilter = () => {
+                        const q = (searchEl.value || '').trim().toLowerCase();
+                        const filtered = !q ? items : items.filter(x => (x.title || '').toLowerCase().includes(q));
+                        body.innerHTML = filtered.map((it, idx) => `
+                            <div style=\"display:flex; align-items:center; justify-content:space-between; padding:12px 14px; margin:10px 0; background:rgba(255,255,255,0.05); border-left:4px solid #ffaa00; border-radius:8px;\">
+                                <div style=\"display:flex; align-items:center; gap:12px;\">
+                                    <span style=\"display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; background:#ffaa00; color:#000; border-radius:6px; font-weight:700;\">${idx + 1}</span>
+                                    <div>
+                                        <div style=\"font-weight:700; color:#fff;\">${it.title}</div>
+                                        <div style=\"color:#aaa; font-size:12px;\">${it.videoId}</div>
+                                    </div>
+                                </div>
+                                <div style=\"display:flex; align-items:center; gap:10px;\">
+                                    <div style=\"font-weight:700; color:#fff; display:flex; align-items:center; gap:8px;\"><i class=\"fa-solid fa-comment\" style=\"color:#ffaa00;\"></i> ${it.count}</div>
+                                    <a href=\"../video.html?id=${it.videoId}\" target=\"_blank\" class=\"btn btn-view\" style=\"padding:8px 12px;\"><i class=\"fa-solid fa-arrow-up-right-from-square\"></i> Ver</a>
+                                </div>
+                            </div>
+                        `).join('');
+                    };
+                    searchEl.oninput = applyFilter;
+                }
+                if (reloadBtn) reloadBtn.onclick = fetchAndRenderTopCommentedVideos;
+            } catch (err) {
+                const body = document.getElementById('topCommentedBody');
+                if (body) body.innerHTML = `<div style=\"color:#f88; padding:20px;\">Error al cargar top comentados: ${err?.message || err}</div>`;
+            }
+        }
+
         function closeUserLikesModal() {
             const overlay = document.getElementById('userLikesModal');
             if (!overlay) return;
@@ -920,6 +1340,8 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeUserLikesModal();
+                closeUserCommentsModal();
+                closeUserVideosModal();
             }
         });
 
@@ -1008,6 +1430,222 @@
             }
         }
 
+        // ---------------------- Usuarios: User Comments Modal ----------------------
+        let userCommentsModalLoaded = false;
+
+        function openUserCommentsModal() {
+            ensureUserCommentsModal();
+            const overlay = document.getElementById('userCommentsModal');
+            if (!overlay) return;
+            overlay.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            if (!userCommentsModalLoaded) {
+                fetchAndRenderUserComments();
+            }
+        }
+
+        function closeUserCommentsModal() {
+            const overlay = document.getElementById('userCommentsModal');
+            if (!overlay) return;
+            overlay.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        function ensureUserCommentsModal() {
+            if (document.getElementById('userCommentsModal')) return;
+            const modalHtml = `
+                <div class="modal-overlay" id="userCommentsModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000;">
+                    <div class="modal-content" style="max-width:700px; margin:60px auto; background:#1a1a1a; border:2px solid #444; border-radius:12px; padding:20px; color:#fff; box-shadow:0 10px 30px rgba(0,0,0,0.6);">
+                        <div class="modal-header" style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+                            <h3 style="margin:0; display:flex; align-items:center; gap:10px;"><i class=\"fa-solid fa-comment\" style=\"color:#007bff;\"></i> Usuarios por Comentarios</h3>
+                            <button class="modal-close" onclick="closeUserCommentsModal()" style="background:none; border:none; color:#fff; font-size:22px; cursor:pointer;">&times;</button>
+                        </div>
+                        <div id="userCommentsBody" style="max-height:60vh; overflow:auto;">
+                            <div style="text-align:center; color:#ccc; padding:20px;">
+                                <i class="fa-solid fa-circle-notch" style="animation: spin 1s linear infinite; color:#007bff;"></i>
+                                Cargando...
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+            // Cerrar al hacer clic fuera
+            const overlay = document.getElementById('userCommentsModal');
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) closeUserCommentsModal();
+            });
+        }
+
+        async function fetchAndRenderUserComments() {
+            try {
+                const body = document.getElementById('userCommentsBody');
+                if (!body) return;
+                body.innerHTML = `<div style="text-align:center; color:#ccc; padding:20px;"><i class=\"fa-solid fa-circle-notch\" style=\"animation: spin 1s linear infinite; color:#007bff;\"></i> Cargando...</div>`;
+
+                // Usar REST de Firebase para obtener todos los comentarios
+                const resp = await fetch('https://triplegore-default-rtdb.firebaseio.com/comments.json');
+                const commentsTree = await resp.json();
+
+                const userStats = {};
+                // Estructura real: comments/{videoId}/{commentId} = { texto, autor, fecha, timestamp, id }
+                if (commentsTree && typeof commentsTree === 'object') {
+                    Object.keys(commentsTree).forEach((videoId) => {
+                        const perVideo = commentsTree[videoId];
+                        if (!perVideo || typeof perVideo !== 'object') return;
+                        Object.keys(perVideo).forEach((commentId) => {
+                            const commentObj = perVideo[commentId];
+                            if (!commentObj || !commentObj.autor) return;
+                            
+                            const username = commentObj.autor;
+                            if (!userStats[username]) {
+                                userStats[username] = { username, comments: 0 };
+                            }
+                            userStats[username].comments += 1;
+                        });
+                    });
+                }
+
+                const users = Object.values(userStats).sort((a, b) => b.comments - a.comments);
+
+                if (users.length === 0) {
+                    body.innerHTML = `<div class=\"no-videos\" style=\"text-align:center;\"><i class=\"fa-solid fa-user\"></i><p>No hay comentarios registrados</p></div>`;
+                    userCommentsModalLoaded = true;
+                    return;
+                }
+
+                // Renderizar lista
+                const listHtml = users.map((u, idx) => `
+                    <div style="display:flex; align-items:center; justify-content:space-between; padding:12px 14px; margin:10px 0; background:rgba(255,255,255,0.05); border-left:4px solid #007bff; border-radius:8px;">
+                        <div style="display:flex; align-items:center; gap:12px;">
+                            <span style="display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; background:#007bff; color:#fff; border-radius:6px; font-weight:700;">${idx + 1}</span>
+                            <div>
+                                <div style="font-weight:700; color:#fff;">${u.username}</div>
+                                <div style="color:#aaa; font-size:12px;">Usuario</div>
+                            </div>
+                        </div>
+                        <div style="font-weight:700; color:#fff; display:flex; align-items:center; gap:8px;"><i class=\"fa-solid fa-comment\" style=\"color:#4d9fff;\"></i> ${u.comments}</div>
+                    </div>
+                `).join('');
+
+                body.innerHTML = listHtml;
+                userCommentsModalLoaded = true;
+            } catch (err) {
+                const body = document.getElementById('userCommentsBody');
+                if (body) {
+                    body.innerHTML = `<div style=\"color:#f88; padding:20px;\">Error al cargar comentarios: ${err?.message || err}</div>`;
+                }
+            }
+        }
+
+        // ---------------------- Usuarios: User Videos Modal ----------------------
+        let userVideosModalLoaded = false;
+
+        function openUserVideosModal() {
+            ensureUserVideosModal();
+            const overlay = document.getElementById('userVideosModal');
+            if (!overlay) return;
+            overlay.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            if (!userVideosModalLoaded) {
+                fetchAndRenderUserVideos();
+            }
+        }
+
+        function closeUserVideosModal() {
+            const overlay = document.getElementById('userVideosModal');
+            if (!overlay) return;
+            overlay.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        function ensureUserVideosModal() {
+            if (document.getElementById('userVideosModal')) return;
+            const modalHtml = `
+                <div class="modal-overlay" id="userVideosModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000;">
+                    <div class="modal-content" style="max-width:700px; margin:60px auto; background:#1a1a1a; border:2px solid #444; border-radius:12px; padding:20px; color:#fff; box-shadow:0 10px 30px rgba(0,0,0,0.6);">
+                        <div class="modal-header" style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+                            <h3 style="margin:0; display:flex; align-items:center; gap:10px;"><i class=\"fa-solid fa-video\" style=\"color:#28a745;\"></i> Usuarios por Videos</h3>
+                            <button class="modal-close" onclick="closeUserVideosModal()" style="background:none; border:none; color:#fff; font-size:22px; cursor:pointer;">&times;</button>
+                        </div>
+                        <div id="userVideosBody" style="max-height:60vh; overflow:auto;">
+                            <div style="text-align:center; color:#ccc; padding:20px;">
+                                <i class="fa-solid fa-circle-notch" style="animation: spin 1s linear infinite; color:#28a745;"></i>
+                                Cargando...
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+            // Cerrar al hacer clic fuera
+            const overlay = document.getElementById('userVideosModal');
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) closeUserVideosModal();
+            });
+        }
+
+        async function fetchAndRenderUserVideos() {
+            try {
+                const body = document.getElementById('userVideosBody');
+                if (!body) return;
+                body.innerHTML = `<div style="text-align:center; color:#ccc; padding:20px;"><i class=\"fa-solid fa-circle-notch\" style=\"animation: spin 1s linear infinite; color:#28a745;\"></i> Cargando...</div>`;
+
+                // Obtener datos de mediaDB.js
+                const mediaResponse = await fetch('../database/mediaDB.js');
+                const mediaText = await mediaResponse.text();
+                
+                // Extraer el array de videos del archivo JavaScript
+                const arrayMatch = mediaText.match(/const mediaDB = (\[[\s\S]*?\]);/);
+                if (!arrayMatch) {
+                    throw new Error('No se pudo extraer la base de datos de videos');
+                }
+                
+                // Evaluar el array de forma segura
+                const mediaDB = eval(arrayMatch[1]);
+                
+                // Contar videos por autor
+                const userStats = {};
+                mediaDB.forEach(video => {
+                    if (video.autor) {
+                        const autor = video.autor;
+                        if (!userStats[autor]) {
+                            userStats[autor] = { autor, videos: 0 };
+                        }
+                        userStats[autor].videos += 1;
+                    }
+                });
+
+                const users = Object.values(userStats).sort((a, b) => b.videos - a.videos);
+
+                if (users.length === 0) {
+                    body.innerHTML = `<div class=\"no-videos\" style=\"text-align:center;\"><i class=\"fa-solid fa-user\"></i><p>No hay videos registrados</p></div>`;
+                    userVideosModalLoaded = true;
+                    return;
+                }
+
+                // Renderizar lista
+                const listHtml = users.map((u, idx) => `
+                    <div style="display:flex; align-items:center; justify-content:space-between; padding:12px 14px; margin:10px 0; background:rgba(255,255,255,0.05); border-left:4px solid #28a745; border-radius:8px;">
+                        <div style="display:flex; align-items:center; gap:12px;">
+                            <span style="display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; background:#28a745; color:#fff; border-radius:6px; font-weight:700;">${idx + 1}</span>
+                            <div>
+                                <div style="font-weight:700; color:#fff;">${u.autor}</div>
+                                <div style="color:#aaa; font-size:12px;">Autor</div>
+                            </div>
+                        </div>
+                        <div style="font-weight:700; color:#fff; display:flex; align-items:center; gap:8px;"><i class=\"fa-solid fa-video\" style=\"color:#4dff4d;\"></i> ${u.videos}</div>
+                    </div>
+                `).join('');
+
+                body.innerHTML = listHtml;
+                userVideosModalLoaded = true;
+            } catch (err) {
+                const body = document.getElementById('userVideosBody');
+                if (body) {
+                    body.innerHTML = `<div style=\"color:#f88; padding:20px;\">Error al cargar videos: ${err?.message || err}</div>`;
+                }
+            }
+        }
+
         // Verificar autenticación y cargar contenido
         document.addEventListener('DOMContentLoaded', function() {
             const correctPassword = "tgdev258";
@@ -1084,6 +1722,8 @@
                 if (adminPanel) {
                     adminPanel.style.display = 'block';
                 }
+                // Inicializar Bots UI cuando el panel esté visible
+                initBotsUI();
                 cargarVideos();
                 return true; // Indica que se completó la verificación
             } else {

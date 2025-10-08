@@ -320,17 +320,24 @@ const videoFunctions = {
     return onValue(likesRef, (snapshot) => {
       const likes = [];
       const dislikes = [];
+      let botLikesCount = 0;
+      let botDislikesCount = 0;
 
       snapshot.forEach((childSnapshot) => {
-        const like = childSnapshot.val();
-        if (like.type === 'like') {
-          likes.push(like);
-        } else {
-          dislikes.push(like);
+        const key = childSnapshot.key;
+        const val = childSnapshot.val();
+        if (typeof val === 'number') {
+          // Contador de bot, p.ej. bot_agustin_like: 100
+          if (key && key.endsWith('_like')) botLikesCount += val;
+          else if (key && key.endsWith('_dislike')) botDislikesCount += val;
+        } else if (val && typeof val === 'object') {
+          if (val.type === 'like') likes.push(val);
+          else dislikes.push(val);
         }
       });
 
-      callback({ likes, dislikes });
+      // Incluir los contadores de bot como totales adicionales
+      callback({ likes, dislikes, botLikesCount, botDislikesCount });
     });
   },
 

@@ -552,26 +552,22 @@ function setupSearch() {
 function setupCategoryFilter() {
     console.log('🔧 Configurando filtros de categoría...');
     
-    // Esperar un poco más para asegurar que el DOM esté completamente renderizado
-    setTimeout(() => {
+    // Función para configurar los enlaces cuando estén disponibles
+    function trySetupCategoryFilter() {
         const categoryLinks = document.querySelectorAll('.secondary-nav-links a');
         console.log('📋 Enlaces de categoría encontrados:', categoryLinks.length);
 
         if (categoryLinks.length === 0) {
-            console.error('❌ No se encontraron enlaces de categoría. Reintentando...');
-            // Reintentar después de un poco más
-            setTimeout(() => {
-                const retryLinks = document.querySelectorAll('.secondary-nav-links a');
-                console.log('🔄 Reintento - Enlaces encontrados:', retryLinks.length);
-                if (retryLinks.length > 0) {
-                    configureCategoryLinks(retryLinks);
-                }
-            }, 1000);
+            console.log('⏳ Enlaces no encontrados, reintentando en 200ms...');
+            setTimeout(trySetupCategoryFilter, 200);
             return;
         }
 
         configureCategoryLinks(categoryLinks);
-    }, 100);
+    }
+    
+    // Intentar configurar inmediatamente
+    trySetupCategoryFilter();
 }
 
 function configureCategoryLinks(categoryLinks) {
@@ -592,6 +588,8 @@ function configureCategoryLinks(categoryLinks) {
 
 function handleCategoryClick(e) {
     e.preventDefault();
+    e.stopPropagation();
+    
     const link = e.target;
     console.log('🖱️ Click en categoría:', link.textContent.trim());
 
@@ -604,6 +602,14 @@ function handleCategoryClick(e) {
 
     const category = link.textContent.trim();
     console.log('🎯 Llamando a filterVideosByCategory con:', category);
+    
+    // Asegurar que mediaDB esté disponible antes de filtrar
+    if (typeof mediaDB === 'undefined') {
+        console.error('❌ mediaDB no está disponible para filtrar');
+        alert('Error: Base de datos no disponible. Recarga la página.');
+        return;
+    }
+    
     filterVideosByCategory(category);
 }
 
@@ -772,32 +778,48 @@ function debugFilteringState() {
     console.log('🔍 === FIN DEBUG ===');
 }
 
+// Función para inicializar todo cuando esté listo
+function initializeApp() {
+    console.log('🚀 Inicializando aplicación...');
+    
+    if (typeof mediaDB === 'undefined') {
+        console.log('⏳ Esperando mediaDB...');
+        setTimeout(initializeApp, 100);
+        return;
+    }
+    
+    console.log('✅ mediaDB disponible, configurando funcionalidades...');
+    setupSearch();
+    setupCategoryFilter();
+    debugFilteringState();
+    
+    // Verificar que los filtros funcionen
+    setTimeout(() => {
+        const categoryLinks = document.querySelectorAll('.secondary-nav-links a');
+        console.log('🔍 Verificación final - Enlaces encontrados:', categoryLinks.length);
+        if (categoryLinks.length > 0) {
+            console.log('✅ Filtros de categoría configurados correctamente');
+        } else {
+            console.error('❌ Error: No se pudieron configurar los filtros');
+        }
+    }, 1000);
+}
+
 // Configurar funcionalidades cuando la página esté lista
 document.addEventListener('DOMContentLoaded', () => {
     console.log('🚀 DOM cargado, iniciando configuración...');
-    
-    // Esperar a que mediaDB esté cargado antes de configurar los filtros
+    initializeApp();
+});
+
+// Configurar filtros también cuando la ventana esté completamente cargada
+window.addEventListener('load', () => {
+    console.log('🔄 Ventana completamente cargada, verificando configuración...');
     setTimeout(() => {
         if (typeof mediaDB !== 'undefined') {
-            console.log('✅ mediaDB cargado, configurando filtros...');
-            setupSearch();
             setupCategoryFilter();
             debugFilteringState();
-        } else {
-            console.error('❌ mediaDB no está disponible para configurar filtros');
         }
-    }, 500);
-    
-    // Configurar filtros también cuando la ventana esté completamente cargada
-    window.addEventListener('load', () => {
-        console.log('🔄 Ventana completamente cargada, reconfigurando filtros...');
-        setTimeout(() => {
-            if (typeof mediaDB !== 'undefined') {
-                setupCategoryFilter();
-                debugFilteringState();
-            }
-        }, 200);
-    });
+    }, 200);
 });
 
 // Add hover effects to cards (se ejecutará después de renderVideos)
@@ -815,3 +837,60 @@ function addHoverEffects() {
 
 // Agregar efectos hover después de renderizar videos
 setTimeout(addHoverEffects, 100);
+
+// Función de prueba para verificar filtros (disponible en consola)
+window.testFilters = function() {
+    console.log('🧪 === PRUEBA DE FILTROS ===');
+    
+    // Verificar mediaDB
+    if (typeof mediaDB === 'undefined') {
+        console.error('❌ mediaDB no está disponible');
+        return;
+    }
+    
+    console.log('✅ mediaDB disponible con', mediaDB.length, 'videos');
+    
+    // Verificar enlaces de categoría
+    const categoryLinks = document.querySelectorAll('.secondary-nav-links a');
+    console.log('🔗 Enlaces de categoría encontrados:', categoryLinks.length);
+    
+    if (categoryLinks.length === 0) {
+        console.error('❌ No se encontraron enlaces de categoría');
+        return;
+    }
+    
+    // Mostrar enlaces disponibles
+    categoryLinks.forEach((link, index) => {
+        console.log(`${index + 1}. "${link.textContent.trim()}"`);
+    });
+    
+    // Probar filtrado manual
+    const testCategory = 'ASESINATOS';
+    const testVideos = mediaDB.filter(video => video.categoria === testCategory);
+    console.log(`🔍 Videos de ${testCategory}:`, testVideos.length);
+    
+    if (testVideos.length > 0) {
+        console.log('📹 Ejemplos:', testVideos.slice(0, 3).map(v => v.titulo));
+    }
+    
+    // Simular click en ASESINATOS
+    const asesinatosLink = Array.from(categoryLinks).find(link => 
+        link.textContent.trim() === 'ASESINATOS'
+    );
+    
+    if (asesinatosLink) {
+        console.log('🖱️ Simulando click en ASESINATOS...');
+        asesinatosLink.click();
+    } else {
+        console.error('❌ No se encontró enlace de ASESINATOS');
+    }
+    
+    console.log('🧪 === FIN PRUEBA ===');
+};
+
+// Función para forzar reconfiguración de filtros
+window.reconfigureFilters = function() {
+    console.log('🔧 Reconfigurando filtros...');
+    setupCategoryFilter();
+    debugFilteringState();
+};

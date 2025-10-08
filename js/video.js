@@ -168,8 +168,11 @@ function loadLikesDislikes(videoId) {
         const likeCount = document.getElementById('likeCount');
         const dislikeCount = document.getElementById('dislikeCount');
         
-        if (likeCount) likeCount.textContent = data.likes.length;
-        if (dislikeCount) dislikeCount.textContent = data.dislikes.length;
+        const totalLikes = (data.likes?.length || 0) + (data.botLikesCount || 0);
+        const totalDislikes = (data.dislikes?.length || 0) + (data.botDislikesCount || 0);
+
+        if (likeCount) likeCount.textContent = totalLikes;
+        if (dislikeCount) dislikeCount.textContent = totalDislikes;
     });
     
     // Load user's like status
