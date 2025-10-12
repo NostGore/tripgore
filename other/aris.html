@@ -426,18 +426,18 @@
 
         <!-- Code Input Section -->
         <div class="code-input-section" id="codeInputSection">
-            <h3 class="code-input-title" id="codeInputTitle">Ingresa el código de acceso</h3>
+            <h3 class="code-input-title" id="codeInputTitle">Ingresa el código oculto</h3>
             <div class="code-input-container">
-                <input type="text" class="code-input" id="codeInput" placeholder="XXXX-XXXX-XXXX-XXXXXXXXXXXX" maxlength="35">
+                <input type="text" class="code-input" id="codeInput" placeholder="Codigo oculto..." maxlength="50">
             </div>
             <button class="code-submit-btn" onclick="verifyCode()">
-                <i class="fas fa-check"></i> Verificar Código
+                <i class="fas fa-key"></i> Validar código
             </button>
             <button class="code-cancel-btn" onclick="hideCodeInput()">
                 <i class="fas fa-times"></i> Cancelar
             </button>
             <div class="error-message" id="errorMessage">
-                <i class="fas fa-exclamation-triangle"></i> Código inválido. Intenta nuevamente.
+                <i class="fas fa-exclamation-triangle"></i> Código incorrecto. Intenta nuevamente.
             </div>
         </div>
 
@@ -482,6 +482,10 @@
                 const response = await fetch('../database/codigos.json');
                 codigosData = await response.json();
                 console.log('✅ Códigos cargados:', codigosData.codigos.length);
+                console.log('📋 Lista de códigos disponibles:');
+                codigosData.codigos.forEach((codigo, index) => {
+                    console.log(`${index + 1}. ${codigo.codigo} - ${codigo.titulo}`);
+                });
             } catch (error) {
                 console.error('❌ Error al cargar códigos:', error);
             }
@@ -497,7 +501,7 @@
             const result = document.getElementById('videoResult');
 
             // Configurar título para Contenido Oculto
-            title.textContent = 'Ingresa el código para Contenido Oculto';
+            title.textContent = 'Ingresa el código oculto';
             
             // Limpiar campos y ocultar resultado previo
             input.value = '';
@@ -527,6 +531,29 @@
             result.classList.remove('active');
         }
 
+        // Función de debug para probar la carga de códigos
+        function testCodeLoading() {
+            console.log('🔧 === DEBUG MODE ===');
+            console.log('🔧 codigosData:', codigosData);
+            
+            if (!codigosData) {
+                console.log('❌ codigosData es null - recargando...');
+                loadCodigos();
+                return;
+            }
+            
+            console.log('🔧 Número de códigos cargados:', codigosData.codigos.length);
+            console.log('🔧 Estructura de datos:', codigosData);
+            
+            // Probar con el primer código
+            const primerCodigo = codigosData.codigos[0];
+            if (primerCodigo) {
+                console.log('🔧 Probando con el primer código:', primerCodigo.codigo);
+                document.getElementById('codeInput').value = primerCodigo.codigo;
+                console.log('🔧 Código insertado en el input');
+            }
+        }
+
         // Verificar código
         function verifyCode() {
             const input = document.getElementById('codeInput');
@@ -541,13 +568,35 @@
             }
 
             if (!code) {
-                errorMsg.textContent = '⚠️ Por favor ingresa un código.';
+                errorMsg.textContent = '⚠️ Por favor ingresa el codigo oculto.';
                 errorMsg.classList.add('active');
                 return;
             }
 
-            // Buscar el código en la base de datos
-            const codigoEncontrado = codigosData.codigos.find(c => c.codigo === code);
+            // Normalizar el código ingresado (remover guiones y espacios, convertir a minúsculas)
+            const normalizedCode = code.replace(/[-\s]/g, '').toLowerCase();
+            
+            console.log('🔍 Verificando codigo secreto:', code);
+            console.log('🔍 Codigo normalizado:', normalizedCode);
+            console.log('🔍 Longitud:', code.length);
+            
+            // Buscar el código en la base de datos (comparación flexible)
+            let codigoEncontrado = null;
+            
+            for (let i = 0; i < codigosData.codigos.length; i++) {
+                const codigoDb = codigosData.codigos[i];
+                const normalizedDbCode = codigoDb.codigo.replace(/[-\s]/g, '').toLowerCase();
+                
+                console.log(`🔍 Comparando con código ${i + 1}: ${codigoDb.codigo}`);
+                console.log(`🔍 Normalizado DB: ${normalizedDbCode}`);
+                console.log(`🔍 Coincidencia: ${normalizedDbCode === normalizedCode}`);
+                
+                if (normalizedDbCode === normalizedCode) {
+                    codigoEncontrado = codigoDb;
+                    console.log('✅ Codigo válido encontrado:', codigoDb.codigo);
+                    break;
+                }
+            }
 
             if (codigoEncontrado) {
                 // Código válido - mostrar resultado
@@ -576,12 +625,12 @@
 
                 console.log('✅ Código verificado:', codigoEncontrado.titulo);
             } else {
-                // Código inválido
-                errorMsg.textContent = '❌ Código inválido. Verifica e intenta nuevamente.';
+                // Contraseña incorrecta
+                errorMsg.textContent = '❌ Codigo incorrecto. Verifica e intenta nuevamente.';
                 errorMsg.classList.add('active');
                 result.classList.remove('active');
                 
-                console.log('❌ Código inválido:', code);
+                console.log('❌ Codigo incorrecto:', code);
             }
         }
 
@@ -594,19 +643,10 @@
             }
         });
 
-        // Formatear código mientras se escribe
+        // Permitir entrada libre como contraseña (sin formateo automático)
         document.getElementById('codeInput').addEventListener('input', function(e) {
-            let value = e.target.value.replace(/[^a-zA-Z0-9]/g, '');
-            let formatted = '';
-            
-            for (let i = 0; i < value.length; i++) {
-                if (i === 4 || i === 8 || i === 12) {
-                    formatted += '-';
-                }
-                formatted += value[i];
-            }
-            
-            e.target.value = formatted;
+            // No hacer formateo automático - permitir entrada libre
+            console.log('🔤 Código ingresado:', e.target.value);
         });
 
         // Cargar anuncios cuando el DOM esté listo
