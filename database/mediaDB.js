@@ -2594,6 +2594,87 @@ const mediaDB = [
     fecha: "5/10/2025"
   },
   {
+    id: "asistente-de-gasolinera-asesinada-a-tiros-por-su-expareja",
+    titulo: "Asistente de gasolinera asesinada a tiros por su expareja",
+    portada: "https://xxx.livegore.com//rb-include/videos/6005397988.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6005397988.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "12/10/2025"
+  },
+  {
+    id: "pap-es-asesinado-a-tiros-en-un-allanamiento-de-morada",
+    titulo: "Papá es asesinado a tiros en un allanamiento de morada",
+    portada: "https://xxx.livegore.com//rb-include/videos/3199280039.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3199280039.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "12/10/2025"
+  },
+  {
+    id: "este-pequeo-chinky-fue-al-mercado",
+    titulo: "Este pequeño chinky fue al mercado..",
+    portada: "https://xxx.livegore.com//rb-include/videos/7865906432.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7865906432.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "12/10/2025"
+  },
+  {
+    id: "dos-hombres-bien-decapitados-en-mxico",
+    titulo: "DOS HOMBRES BIEN DECAPITADOS EN MÉXICO",
+    portada: "https://xxx.livegore.com//rb-include/videos/1112938681.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1112938681.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "12/10/2025"
+  },
+  {
+    id: "miembro-del-cdg-brutalmente-decapitado-por-el-cartel-los-z",
+    titulo: "Miembro del CDG brutalmente decapitado por el Cartel Los Z",
+    portada: "https://xxx.livegore.com//rb-include/videos/9614700018.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9614700018.mp4",
+    autor: "normnando256",
+    categoria: "ASESINATOS",
+    fecha: "12/10/2025"
+  },
+  {
+    id: "dos-ladrones-ejecutados-por-cartel",
+    titulo: "Dos ladrones ejecutados por cartel",
+    portada: "https://xxx.livegore.com//rb-include/videos/8186158975.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8186158975.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "12/10/2025"
+  },
+  {
+    id: "hombre-ejecutado-por-cartel",
+    titulo: "Hombre ejecutado por cartel",
+    portada: "https://xxx.livegore.com//rb-include/videos/689093554.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/689093554.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "12/10/2025"
+  },
+  {
+    id: "cartel-decapitado-brutalmente-a-un-rival-en-mxico",
+    titulo: "Cartel decapitado brutalmente a un rival en México",
+    portada: "https://xxx.livegore.com//rb-include/videos/3099831612.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3099831612.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "12/10/2025"
+  },
+  {
+    id: "karma-fir-the-thief-in-peru",
+    titulo: "Karma fir the thief in Peru",
+    portada: "https://xxx.livegore.com//rb-include/videos/3681799117.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3681799117.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "12/10/2025"
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -4077,6 +4158,87 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "ACCIDENTES",
     fecha: "5/10/2025"
+  },
+  {
+    id: "hombre-pierde-una-mano-en-colisin-entre-camin-y-autobs",
+    titulo: "Hombre pierde una mano en colisión entre camión y autobús",
+    portada: "https://xxx.livegore.com//rb-include/videos/7732982649.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7732982649.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "12/10/2025"
+  },
+  {
+    id: "camin-de-basura-retrocede-atropellando-a-una-abuela-de-89-aos",
+    titulo: "Camión de basura retrocede atropellando a una abuela de 89 años",
+    portada: "https://xxx.livegore.com//rb-include/videos/6301948167.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6301948167.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "12/10/2025"
+  },
+  {
+    id: "pizza-humana-un-hombre-fue-atropellado-por-un-camin",
+    titulo: "¡pizza humana! Un hombre fue atropellado por un camión",
+    portada: "https://xxx.livegore.com//rb-include/videos/7904519150.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7904519150.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "12/10/2025"
+  },
+  {
+    id: "pizza-humana-version-2",
+    titulo: "Pizza humana version 2",
+    portada: "https://xxx.livegore.com//rb-include/videos/2761190673.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2761190673.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "12/10/2025"
+  },
+  {
+    id: "una-forma-bastante-tonta-de-morir",
+    titulo: "Una forma bastante tonta de morir",
+    portada: "https://xxx.livegore.com//rb-include/videos/1699757194.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1699757194.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "12/10/2025"
+  },
+  {
+    id: "gran-muf",
+    titulo: "¡¡Gran muf!!",
+    portada: "https://xxx.livegore.com//rb-include/videos/2445988305.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2445988305.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "12/10/2025"
+  },
+  {
+    id: "conductor-ebrio",
+    titulo: "¿Conductor ebrio?",
+    portada: "https://xxx.livegore.com//rb-include/videos/9446073924.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9446073924.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "12/10/2025"
+  },
+  {
+    id: "otro-da-en-la-india",
+    titulo: "Otro día en la India",
+    portada: "https://xxx.livegore.com//rb-include/videos/9350151447.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9350151447.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "12/10/2025"
+  },
+  {
+    id: "tonto-sobre-ruedas",
+    titulo: "Tonto sobre ruedas",
+    portada: "https://xxx.livegore.com//rb-include/videos/5026132343.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5026132343.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "12/10/2025"
   },
   {
     id: "come-la-banqueta",
@@ -6051,6 +6213,51 @@ const mediaDB = [
     fecha: "5/10/2025"
   },
   {
+    id: "compilacin-de-autoinmolacin",
+    titulo: "Compilación de autoinmolación",
+    portada: "https://xxx.livegore.com//rb-include/videos/1928578880.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1928578880.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "12/10/2025"
+  },
+  {
+    id: "viejo-coo-asesinado-a-golpes-por-un-coo-ms-joven",
+    titulo: "Viejo coño asesinado a golpes por un coño más joven",
+    portada: "https://xxx.livegore.com//rb-include/videos/3268668064.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3268668064.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "12/10/2025"
+  },
+  {
+    id: "hombre-cortado-en-la-cara-durante-la-pelea",
+    titulo: "Hombre cortado en la cara durante la pelea",
+    portada: "https://xxx.livegore.com//rb-include/videos/7161440961.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7161440961.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "12/10/2025"
+  },
+  {
+    id: "ladrn-golpeado-por-robar-pollos",
+    titulo: "Ladrón golpeado por robar pollos",
+    portada: "https://xxx.livegore.com//rb-include/videos/6389400246.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6389400246.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "12/10/2025"
+  },
+  {
+    id: "mltiples-cabezas-decapitadas-expuestas-en-una-valla",
+    titulo: "Múltiples cabezas decapitadas expuestas en una valla",
+    portada: "https://xxx.livegore.com//rb-include/videos/1131117912.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1131117912.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "12/10/2025"
+  },
+  {
     id: "1444",
     titulo: "1444", //C-SUICIDIOS
     portada: "https://xxx.livegore.com//rb-include/videos/8122189044.jpg",
@@ -6645,6 +6852,15 @@ const mediaDB = [
     fecha: "21/9/2025"
   },
   {
+    id: "mujer-se-apuala-el-pecho",
+    titulo: "Mujer se apuñala el pecho",
+    portada: "https://xxx.livegore.com//rb-include/videos/523781902.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/523781902.mp4",
+    autor: "TripGore",
+    categoria: "AUTOLESIONES",
+    fecha: "12/10/2025"
+  },
+  {
     id: "9127-4482-3901-ae82f1a7c4d3", //ocultos
     titulo: "Snuff R73",
     portada: "https://files.catbox.moe/2ljma5.png",
@@ -6706,5 +6922,14 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "OCULTO",
     fecha: "8/09/2025",
+  },
+  {
+    id: "4da70eac-bcea-4b57-a5b9-1e81a4feba61", //ocultos
+    titulo: "Niño Pizza",
+    portada: "https://files.catbox.moe/2ljma5.png",
+    video: "https://xxx.livegore.com//rb-include/videos/6140091554.mp4",
+    autor: "TripGore",
+    categoria: "OCULTO",
+    fecha: "12/10/2025",
   },
 ];
