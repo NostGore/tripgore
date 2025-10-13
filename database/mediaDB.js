@@ -2675,6 +2675,24 @@ const mediaDB = [
     fecha: "12/10/2025"
   },
   {
+    id: "3-guys-1-hammer",
+    titulo: "3 guys 1 hammer",
+    portada: "https://files.catbox.moe/kx74uq.png",
+    video: "https://cdn.filestackcontent.com/rMPS9zRISOujhi4ehJCt",
+    autor: "lennarmateocalcinatapia",
+    categoria: "ASESINATOS",
+    fecha: "13/10/2025"
+  },
+  {
+    id: "One-guy-one-hammer",
+    titulo: "One guy one hammer",
+    portada: "https://files.catbox.moe/i9lw2f.png",
+    video: "https://cdn.filestackcontent.com/am6wkssNSGSYoQlzF4hY",
+    autor: "lennarmateocalcinatapia",
+    categoria: "ASESINATOS",
+    fecha: "13/10/2025"
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -6616,6 +6634,15 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "SUICIDIOS",
     fecha: "23/9/2025"
+  },
+  {
+    id: "anon-phonarak",
+    titulo: "anon phonarak",
+    portada: "https://files.catbox.moe/taavrw.png",
+    video: "https://files.catbox.moe/yn05fj.MP4",
+    autor: "samuel.catrilef",
+    categoria: "SUICIDIOS",
+    fecha: "13/10/2025"
   },
   {
     id: "se-apunala-en-live",
