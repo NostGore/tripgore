@@ -2693,6 +2693,33 @@ const mediaDB = [
     fecha: "13/10/2025"
   },
   {
+    id: "peleas-callejeras-serca-de-una-escuelapablo-neruda",
+    titulo: "Peleas callejeras Serca de una escuela (Pablo Neruda)",
+    portada: "https://files.catbox.moe/f7vmv5.png",
+    video: "https://files.catbox.moe/01p60w.mp4",
+    autor: "guitarherostyles783",
+    categoria: "ASESINATOS",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "por-mugrosa",
+    titulo: "POR MUGROSA",
+    portada: "https://files.catbox.moe/klmuj0.png",
+    video: "https://files.catbox.moe/nhxadk.mp4",
+    autor: "mientrastambien509",
+    categoria: "ASESINATOS",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "Ayayay",
+    titulo: "Ayayay",
+    portada: "https://files.catbox.moe/rim7v3.png",
+    video: "https://cdn.filestackcontent.com/t5ZfDydUTrmVBwk085Kb",
+    autor: "frenandot3",
+    categoria: "ASESINATOS",
+    fecha: "18/10/2025"
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
