@@ -2882,6 +2882,150 @@ const mediaDB = [
     fecha: "18/10/2025"
   },
   {
+    id: "sorpresa-ha-llegado-la-muerte",
+    titulo: "SORPRESA, HA LLEGADO LA MUERTE",
+    portada: "https://xxx.livegore.com//rb-include/videos/3228051112.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3228051112.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "hombre-asesinado-a-quemarropa",
+    titulo: "HOMBRE ASESINADO A QUEMARROPA",
+    portada: "https://xxx.livegore.com//rb-include/videos/8072342351.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8072342351.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "pareja-asesinada-a-tiros-en-brasil",
+    titulo: "Pareja asesinada a tiros en brasil",
+    portada: "https://xxx.livegore.com//rb-include/videos/6101871789.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6101871789.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "doble-homicidio-brutal-captado-por-cctv",
+    titulo: "DOBLE HOMICIDIO BRUTAL CAPTADO POR CCTV",
+    portada: "https://xxx.livegore.com//rb-include/videos/4789307.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4789307.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "hombre-asesinado-con-varios-disparos",
+    titulo: "HOMBRE ASESINADO CON VARIOS DISPAROS",
+    portada: "https://xxx.livegore.com//rb-include/videos/3640500339.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3640500339.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "lder-de-pandilla-asesinado-por-francotirador-del-ejrcito-en-colombia",
+    titulo: "Líder de pandilla asesinado por francotirador del ejército en Colombia",
+    portada: "https://xxx.livegore.com//rb-include/videos/8385480907.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8385480907.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "hombre-de-negocios-y-otras-dos-personas-muertos-en-un-tiroteo",
+    titulo: "HOMBRE DE NEGOCIOS Y OTRAS DOS PERSONAS MUERTOS EN UN TIROTEO",
+    portada: "https://xxx.livegore.com//rb-include/videos/7999159502.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7999159502.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "hombre-de-memphis-asesinado-a-tiros-en-facebook-en-vivo",
+    titulo: "Hombre de Memphis asesinado a tiros en Facebook EN VIVO",
+    portada: "https://xxx.livegore.com//rb-include/videos/2465673168.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2465673168.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "nio-brutalmente-asesinado-por-su-propio-padre",
+    titulo: "Niño brutalmente asesinado por su propio padre",
+    portada: "https://xxx.livegore.com//rb-include/videos/4611793416.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4611793416.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "joven-mata-a-su-ex-novia-a-plena-luz-del-da-en-brasil",
+    titulo: "Joven mata a su ex novia a plena luz del día en Brasil",
+    portada: "https://xxx.livegore.com//rb-include/videos/5740182762.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5740182762.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "hombre-asesinado-a-tiros-a-plena-luz-del-da",
+    titulo: "HOMBRE ASESINADO A TIROS A PLENA LUZ DEL DÍA",
+    portada: "https://xxx.livegore.com//rb-include/videos/9760780506.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9760780506.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "hombre-asesinado-por-sicarios",
+    titulo: "Hombre asesinado por Sicarios",
+    portada: "https://xxx.livegore.com//rb-include/videos/621593897.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/621593897.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "un-tipo-recibi-un-disparo-en-la-cabeza-en-filipinas",
+    titulo: "Un tipo recibió un disparo en la cabeza en Filipinas",
+    portada: "https://xxx.livegore.com//rb-include/videos/557082430.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/557082430.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "asesino-detenido-a-punta-de-pistola-y-asesinado-a-pualadas-con-destornillador",
+    titulo: "Asesino detenido a punta de pistola y asesinado a puñaladas con destornillador",
+    portada: "https://xxx.livegore.com//rb-include/videos/2818891024.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2818891024.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "cuello-de-primo-adolescente-cortado-porque-se-venga-de-su-to",
+    titulo: "Cuello de primo adolescente cortado porque se venga de su tío",
+    portada: "https://xxx.livegore.com//rb-include/videos/9512778543.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9512778543.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "tortura-extrema",
+    titulo: "Tortura extrema",
+    portada: "https://xxx.livegore.com//rb-include/videos/2617293596.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2617293596.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "19/10/2025"
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -4563,6 +4707,15 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "ACCIDENTES",
     fecha: "18/10/2025"
+  },
+  {
+    id: "gimnasia-se-rompe-el-fmur-durante-una-actuacin",
+    titulo: "Gimnasia se rompe el fémur durante una actuación",
+    portada: "https://xxx.livegore.com//rb-include/videos/4574289540.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4574289540.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "19/10/2025"
   },
   {
     id: "come-la-banqueta",
@@ -6636,6 +6789,78 @@ const mediaDB = [
     fecha: "18/10/2025"
   },
   {
+    id: "asalto-termina-en-muerte",
+    titulo: "Asalto termina en muerte",
+    portada: "https://xxx.livegore.com//rb-include/videos/5771744255.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5771744255.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "mujer-violada-muerta",
+    titulo: "Mujer violada muerta",
+    portada: "https://xxx.livegore.com//rb-include/videos/9652639906.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9652639906.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "nia-involucrada-en-trfico-de-drogas",
+    titulo: "Niña involucrada en tráfico de drogas",
+    portada: "https://xxx.livegore.com//rb-include/videos/4650368303.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4650368303.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "taxista-ejecutada-por-extorsionadores-en-bogot",
+    titulo: "Taxista ejecutada por extorsionadores en Bogotá",
+    portada: "https://xxx.livegore.com//rb-include/videos/7600090499.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7600090499.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "empresario-secuestrado-encontrado-asesinado-y-enterrado",
+    titulo: "Empresario secuestrado encontrado asesinado y enterrado",
+    portada: "https://xxx.livegore.com//rb-include/videos/4511992484.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4511992484.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "lo-torturan-quemndole-la-polla-con-un-encendedor",
+    titulo: "Lo torturan quemándole la polla con un encendedor",
+    portada: "https://xxx.livegore.com//rb-include/videos/6220563603.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6220563603.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "hombre-golpea-cruelmente-a-esposa-indefensa",
+    titulo: "Hombre golpea cruelmente a esposa indefensa",
+    portada: "https://xxx.livegore.com//rb-include/videos/7922889282.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7922889282.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "un-hombre-ataca-brutalmente-a-su-hermana",
+    titulo: "Un hombre ataca brutalmente a su hermana",
+    portada: "https://xxx.livegore.com//rb-include/videos/9455281607.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9455281607.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "19/10/2025"
+  },
+  {
     id: "1444",
     titulo: "1444", //C-SUICIDIOS
     portada: "https://xxx.livegore.com//rb-include/videos/8122189044.jpg",
@@ -7032,6 +7257,150 @@ const mediaDB = [
     fecha: "18/10/2025"
   },
   {
+    id: "mujer-se-deja-caer-del-piso-18",
+    titulo: "Mujer se deja caer del piso 18",
+    portada: "https://xxx.livegore.com//rb-include/videos/8822106826.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8822106826.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "la-streamer-japonesa-transmite-en-vivo-su-suicidio",
+    titulo: "La streamer japonesa transmite en vivo su suicidio",
+    portada: "https://xxx.livegore.com//rb-include/videos/3560274466.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3560274466.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "anciano-se-arroja-debajo-del-camin-despus-de-la-muerte-de-su-esposa",
+    titulo: "Anciano se arroja debajo del camión después de la muerte de su esposa",
+    portada: "https://xxx.livegore.com//rb-include/videos/268560820.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/268560820.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "un-hombre-se-suicida-saltando-de-un-edificio-en-sao-paulo",
+    titulo: "Un hombre se suicida saltando de un edificio en Sao Paulo",
+    portada: "https://xxx.livegore.com//rb-include/videos/1019397065.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1019397065.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "sospechoso-de-apualar-a-su-esposa-salta-a-la-muerte",
+    titulo: "Sospechoso de apuñalar a su esposa salta a la muerte",
+    portada: "https://xxx.livegore.com//rb-include/videos/3825628766.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3825628766.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "una-chica-se-suicid-tras-una-discusin-con-su-novio",
+    titulo: "Una chica se suicidó tras una discusión con su novio",
+    portada: "https://xxx.livegore.com//rb-include/videos/6124548758.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6124548758.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "dos-chicas-japonesas-saltan-desde-el-edificio-alto-en-vivo",
+    titulo: "Dos chicas japonesas saltan desde el edificio alto en vivo",
+    portada: "https://xxx.livegore.com//rb-include/videos/9070717296.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9070717296.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "chica-fue-intimidada-lo-que-la-hizo-saltar-del-edificio",
+    titulo: "Chica fue intimidada, lo que la hizo saltar del edificio",
+    portada: "https://xxx.livegore.com//rb-include/videos/7780522764.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7780522764.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "adolescente-suicida-se-parti-por-la-mitad-del-salto",
+    titulo: "Adolescente suicida se partió por la mitad del salto",
+    portada: "https://xxx.livegore.com//rb-include/videos/4519135435.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4519135435.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "el-hombre-deprimido-ya-ha-tenido-suficiente-de-vivir-en-brasil",
+    titulo: "El hombre deprimido ya ha tenido suficiente de vivir en Brasil",
+    portada: "https://xxx.livegore.com//rb-include/videos/8651134036.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8651134036.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "compilacin-mujeres-ahorcadas",
+    titulo: "COMPILACIÓN MUJERES AHORCADAS",
+    portada: "https://xxx.livegore.com//rb-include/videos/8493228554.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8493228554.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "chica-colombiana-desnuda-salta-desde-un-edificio-alto",
+    titulo: "Chica colombiana desnuda salta desde un edificio alto",
+    portada: "https://xxx.livegore.com//rb-include/videos/5225829239.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5225829239.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "maneras-chinas",
+    titulo: "Maneras chinas",
+    portada: "https://xxx.livegore.com//rb-include/videos/9826674442.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9826674442.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "suicidio-por-polica",
+    titulo: "Suicidio por policía",
+    portada: "https://xxx.livegore.com//rb-include/videos/6001479066.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6001479066.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "nio-vietnamita-intenta-suicidarse-bebiendo-detergente",
+    titulo: "Niño vietnamita intenta suicidarse bebiendo detergente",
+    portada: "https://xxx.livegore.com//rb-include/videos/9336598552.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9336598552.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "un-hombre-no-identificado-muere-por-suicidio",
+    titulo: "UN HOMBRE NO IDENTIFICADO MUERE POR SUICIDIO",
+    portada: "https://xxx.livegore.com//rb-include/videos/8679156880.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8679156880.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "19/10/2025"
+  },
+  {
     id: "se-apunala-en-live",
     titulo: "SE APUÑALA EN LIVE", //C-AUTOLESIONES
     portada: "https://files.catbox.moe/a5ey0v.png",
@@ -7273,6 +7642,24 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "AUTOLESIONES",
     fecha: "12/10/2025"
+  },
+  {
+    id: "por-eso-no-quieres-sobrevivir-a-un-suicidio-con-escopeta",
+    titulo: "POR ESO NO QUIERES SOBREVIVIR A UN SUICIDIO CON ESCOPETA",
+    portada: "https://xxx.livegore.com//rb-include/videos/3772891606.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3772891606.mp4",
+    autor: "TripGore",
+    categoria: "AUTOLESIONES",
+    fecha: "19/10/2025"
+  },
+  {
+    id: "hombre-protestando-contra-la-crueldad-animal",
+    titulo: "Hombre protestando contra la crueldad animal",
+    portada: "https://xxx.livegore.com//rb-include/videos/906305457.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/906305457.mp4",
+    autor: "TripGore",
+    categoria: "AUTOLESIONES",
+    fecha: "19/10/2025"
   },
   {
     id: "9127-4482-3901-ae82f1a7c4d3", //ocultos
