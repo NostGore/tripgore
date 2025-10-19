@@ -2720,6 +2720,168 @@ const mediaDB = [
     fecha: "18/10/2025"
   },
   {
+    id: "las-3-chicas-de-argentina",
+    titulo: "las 3 chicas de argentina",
+    portada: "https://files.catbox.moe/ff5ify.png",
+    video: "https://files.catbox.moe/9ep7gu.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "el-hombre-consigui-lo-que-buscaba",
+    titulo: "El hombre consiguió lo que buscaba",
+    portada: "https://xxx.livegore.com//rb-include/videos/3433194267.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3433194267.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "hombre-asesinado-a-pualadas-por-una-deuda",
+    titulo: "HOMBRE ASESINADO A PUÑALADAS POR UNA DEUDA",
+    portada: "https://xxx.livegore.com//rb-include/videos/5862063230.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5862063230.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "sicario-mata-a-tiros-a-un-empresario",
+    titulo: "Sicario mata a tiros a un empresario",
+    portada: "https://xxx.livegore.com//rb-include/videos/3618425144.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3618425144.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "hombre-acusado-de-matar-a-toda-una-familia",
+    titulo: "Hombre acusado de matar a toda una familia",
+    portada: "https://theync.com/media/thumbs/6/8/f/1/e/55243368f1ed115ed93.mp4/55243368f1ed115ed93.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/8/f/1/e/68f1ee25226a1.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "general-paquistan-asesinado-por-combatientes-afganos",
+    titulo: "General paquistaní asesinado por combatientes afganos",
+    portada: "https://theync.com/media/thumbs/6/8/f/1/1/68916868f11551814a4.mp4/68916868f11551814a4.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/f/1/1/68f1168474874.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "mujer-apualada-en-ataque-aleatorio-en-australia",
+    titulo: "Mujer apuñalada en ataque aleatorio en Australia",
+    portada: "https://theync.com/media/thumbs/6/8/f/2/0/217768568f20b1b75b51.mp4/217768568f20b1b75b51.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/f/2/0/68f20be9297e0.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "el-ladrn-es-desmembrado-vivo",
+    titulo: "El ladrón es desmembrado vivo",
+    portada: "https://theync.com/media/thumbs/6/8/f/0/b/217768568f0b6c235700.mp4/217768568f0b6c235700.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/f/0/b/68f0b810dfca1.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "dos-agentes-de-polica-emboscados-y-abatidos-a-tiros",
+    titulo: "Dos agentes de policía emboscados y abatidos a tiros",
+    portada: "https://theync.com/media/thumbs/6/8/f/0/1/217768568f01ca035404.mp4/217768568f01ca035404.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/f/0/1/68f01d24b8709.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "sangre-y-muerte-aleatorias",
+    titulo: "Sangre y muerte aleatorias",
+    portada: "https://theync.com/media/thumbs/6/8/e/f/d/168636868efd1040d8bc.mp4/168636868efd1040d8bc.mp4-1.jpg",
+    video: "https://theync.com/media/videos/6/8/e/f/d/68efdc3912498.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "sicario-mata-a-tiros-a-un-hombre-de-negocios",
+    titulo: "Sicario mata a tiros a un hombre de negocios",
+    portada: "https://theync.com/media/thumbs/6/8/f/2/6/217768568f26d5f1a7c9.mp4/217768568f26d5f1a7c9.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/f/2/6/68f26e590843f.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "hombre-acusado-de-robar-golpeado-por-lderes-de-aldeas",
+    titulo: "Hombre acusado de robar golpeado por líderes de aldeas",
+    portada: "https://theync.com/media/thumbs/6/8/f/2/0/217768568f203809356e.mp4/217768568f203809356e.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/f/2/0/68f2060cb63c3.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "el-hombre-fue-provocado-y-trat-de-evitar-la-pelea",
+    titulo: "El hombre fue provocado y trató de evitar la pelea",
+    portada: "https://theync.com/media/thumbs/6/8/f/0/0/134150568f0088322cec.mp4/134150568f0088322cec.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/f/0/0/68f009b05236c.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "dos-ladrones-fueron-desnudados-y-asesinados",
+    titulo: "Dos ladrones fueron desnudados y asesinados",
+    portada: "https://theync.com/media/thumbs/6/8/e/f/d/217768568efdabaad8b0.mp4/217768568efdabaad8b0.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/e/f/d/68efdbfc9ea9e.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "secuelas-de-esa-ejecucin-de-hamas",
+    titulo: "Secuelas de esa ejecución de HAMAS",
+    portada: "https://theync.com/media/thumbs/6/8/e/f/6/217768568ef5f47e59bb.mp4/217768568ef5f47e59bb.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/e/f/6/68ef60b48684f.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "crteles-santa-rosa-lima-interroga-y-golpea-a-un-ladrn",
+    titulo: "Cárteles Santa Rosa Lima interroga y golpea a un ladrón",
+    portada: "https://theync.com/media/thumbs/6/8/e/d/1/120011268ecfe939f673.mp4/120011268ecfe939f673.mp4-7.jpg",
+    video: "https://theync.com/media/videos/6/8/e/d/1/68ed1070173a2.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "los-miembros-de-la-pandilla-usan-una-pistola-automtica",
+    titulo: "Los miembros de la pandilla usan una pistola automática",
+    portada: "https://theync.com/media/thumbs/6/8/e/c/c/217768568ecbf3e8b021.mp4/217768568ecbf3e8b021.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/e/c/c/68ecc0c067c88.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "hombre-asesinado-por-su-hermano",
+    titulo: "HOMBRE ASESINADO POR SU HERMANO",
+    portada: "https://theync.com/media/thumbs/6/8/e/c/7/55243368ec75aebe0c6.mp4/55243368ec75aebe0c6.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/8/e/c/7/68ec7673ece75.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/10/2025"
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -4284,6 +4446,123 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "ACCIDENTES",
     fecha: "12/10/2025"
+  },
+  {
+    id: "los-gordos-pueden-destruir-edificios",
+    titulo: "Los gordos pueden destruir edificios",
+    portada: "https://xxx.livegore.com//rb-include/videos/6264377734.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6264377734.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "pasajera-muerta-colgando-de-una-camioneta-estrellada",
+    titulo: "Pasajera muerta colgando de una camioneta estrellada",
+    portada: "https://xxx.livegore.com//rb-include/videos/2892496380.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2892496380.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "motociclista-atropellado-por-un-autobs-antes-de-aplastarle-la-cabeza",
+    titulo: "Motociclista atropellado por un autobús antes de aplastarle la cabeza",
+    portada: "https://xxx.livegore.com//rb-include/videos/5185571801.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5185571801.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "un-hombre-fue-asesinado-por-una-llanta-suelta",
+    titulo: "Un hombre fue asesinado por una llanta suelta",
+    portada: "https://xxx.livegore.com//rb-include/videos/7586231869.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7586231869.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "nia-herida-en-accidente-de-moto",
+    titulo: "NIÑA HERIDA EN ACCIDENTE DE MOTO",
+    portada: "https://xxx.livegore.com//rb-include/videos/1765713216.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1765713216.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "el-trabajador-cay-en-la-esquiladora-de-man",
+    titulo: "EL TRABAJADOR CAYÓ EN LA ESQUILADORA DE MANÍ",
+    portada: "https://theync.com/media/thumbs/6/8/f/0/f/55243368f0f18301cbd.mp4/55243368f0f18301cbd.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/8/f/0/f/68f0f23072f4e.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "cuando-el-truco-del-dragn-sale-mal",
+    titulo: "CUANDO EL TRUCO DEL DRAGÓN SALE MAL",
+    portada: "https://theync.com/media/thumbs/6/8/e/f/d/55243368efcf51ebd99.mp4/55243368efcf51ebd99.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/8/e/f/d/68efd04490ea0.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "snake-savior-muere-tras-la-mordedura-de-cobra",
+    titulo: "SNAKE SAVIOR MUERE TRAS LA MORDEDURA DE COBRA",
+    portada: "https://theync.com/media/thumbs/6/8/e/e/d/55243368eedc35a62fb.mp4/55243368eedc35a62fb.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/8/e/e/d/68eedd384a29b.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "explosin-de-gas-mata-a-tres-personas-en-rumana",
+    titulo: "Explosión de gas mata a tres personas en Rumanía",
+    portada: "https://theync.com/media/thumbs/6/8/f/3/5/177242568f2d5eb6394d.mp4/177242568f2d5eb6394d.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/8/f/3/5/68f35bd42243e.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "el-tipo-se-cae-del-edificio",
+    titulo: "EL TIPO SE CAE DEL EDIFICIO",
+    portada: "https://theync.com/media/thumbs/6/8/f/2/6/55243368f26d4ebcb71.mp4/55243368f26d4ebcb71.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/8/f/2/6/68f26de0e6b5c.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "anciana-siendo-picada-por-una-serpiente-venenosa",
+    titulo: "ANCIANA SIENDO PICADA POR UNA SERPIENTE VENENOSA",
+    portada: "https://theync.com/media/thumbs/6/8/f/2/6/55243368f264982b5a8.mp4/55243368f264982b5a8.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/8/f/2/6/68f265ac60f07.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "de-alguna-manera-todava-est-vivo",
+    titulo: "De alguna manera todavía está vivo",
+    portada: "https://theync.com/media/thumbs/6/8/f/1/f/217768568f1fc5525ff2.mp4/217768568f1fc5525ff2.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/f/1/f/68f1fd24b29e5.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "accidentes-de-trfico-mortales",
+    titulo: "Accidentes de tráfico mortales",
+    portada: "https://theync.com/media/thumbs/6/8/f/0/8/197333068f06c7f7bac5.mp4/197333068f06c7f7bac5.mp4-7.jpg",
+    video: "https://theync.com/media/videos/6/8/f/0/8/68f089bef02a0.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "18/10/2025"
   },
   {
     id: "come-la-banqueta",
@@ -6303,6 +6582,60 @@ const mediaDB = [
     fecha: "12/10/2025"
   },
   {
+    id: "cortar-lenguas-como-castigo-en-irak-2004",
+    titulo: "Cortar lenguas como castigo en Irak 2004",
+    portada: "https://xxx.livegore.com//rb-include/videos/1308012180.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1308012180.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "poltico-argentino-colapsa-repentinamente-y-muere",
+    titulo: "Político argentino colapsa repentinamente y muere",
+    portada: "https://theync.com/media/thumbs/6/8/f/3/5/179835468f2c0ea98b55.mp4/179835468f2c0ea98b55.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/8/f/3/5/68f35bc4d9fbe.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "chica-que-grita-recibe-puetazos-y-patadas",
+    titulo: "Chica que grita recibe puñetazos y patadas",
+    portada: "https://theync.com/media/thumbs/6/8/f/0/b/217768568f0b19ead666.mp4/217768568f0b19ead666.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/f/0/b/68f0b2342dd8d.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "hombre-atacado-por-una-manada-de-prostitutas",
+    titulo: "Hombre atacado por una manada de prostitutas",
+    portada: "https://theync.com/media/thumbs/6/8/e/f/4/217768568ef4c8823f27.mp4/217768568ef4c8823f27.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/e/f/4/68ef4db8640bc.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "violador-siendo-golpeado",
+    titulo: "VIOLADOR SIENDO GOLPEADO",
+    portada: "https://theync.com/media/thumbs/6/8/e/f/1/55243368ef15b56e2d1.mp4/55243368ef15b56e2d1.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/8/e/f/1/68ef16683246f.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "el-soldado-perdi-la-mitad-de-su-cuerpo-despus-del-ataque",
+    titulo: "El soldado perdió la mitad de su cuerpo después del ataque",
+    portada: "https://theync.com/media/thumbs/6/8/e/c/b/68916868ecbd6d5e4a0.mp4/68916868ecbd6d5e4a0.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/e/c/b/68ecbf1bb5540.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/10/2025"
+  },
+  {
     id: "1444",
     titulo: "1444", //C-SUICIDIOS
     portada: "https://xxx.livegore.com//rb-include/videos/8122189044.jpg",
@@ -6670,6 +7003,33 @@ const mediaDB = [
     autor: "samuel.catrilef",
     categoria: "SUICIDIOS",
     fecha: "13/10/2025"
+  },
+  {
+    id: "ruso-saltando-desde-un-edificio-de-apartamentos",
+    titulo: "Ruso saltando desde un edificio de apartamentos",
+    portada: "https://xxx.livegore.com//rb-include/videos/2389045250.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2389045250.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "una-nia-se-suicid-tras-romper-con-su-novio",
+    titulo: "una niña se suicidó tras romper con su novio",
+    portada: "https://theync.com/media/thumbs/6/8/f/1/5/131219468f15eabd0f43.mp4/131219468f15eabd0f43.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/8/f/1/5/68f15f2c4a242.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "18/10/2025"
+  },
+  {
+    id: "mujer-se-quema-sola",
+    titulo: "Mujer se quema sola",
+    portada: "https://cdn2.kaotic.com/thumbs/2025/10/ab3940012c.jpg",
+    video: "https://cdns2.kaotic.com/key=vwRwMsKKDpPKaadfl6pT6Q,end=1760852584/speed=1.3/buffer=7.0/2025/10/ab3940012c.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "18/10/2025"
   },
   {
     id: "se-apunala-en-live",
