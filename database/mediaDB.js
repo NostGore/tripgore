@@ -7665,7 +7665,7 @@ const mediaDB = [
     id: "9127-4482-3901-ae82f1a7c4d3", //ocultos
     titulo: "Snuff R73",
     portada: "https://files.catbox.moe/2ljma5.png",
-    video: "https://files.catbox.moe/r07b9u.mp4",
+    video: "https://files.catbox.moe/sfvx4p.mp4",
     autor: "TripGore",
     categoria: "OCULTO",
     fecha: "23/07/2025",
