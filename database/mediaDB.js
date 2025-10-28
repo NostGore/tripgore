@@ -3026,6 +3026,24 @@ const mediaDB = [
     fecha: "19/10/2025"
   },
   {
+    id: "no-me-mates-wey",
+    titulo: "NO ME MATES WEY",
+    portada: "https://files.catbox.moe/gjeuz6.png",
+    video: "https://files.catbox.moe/h1n0ra.mp4",
+    autor: "mientrastambien509",
+    categoria: "ASESINATOS",
+    fecha: "28/10/2025"
+  },
+  {
+    id: "penso-que-trabajaria-solo-2-meses",
+    titulo: "PENSO QUE TRABAJARIA SOLO 2 MESES",
+    portada: "https://files.catbox.moe/hm5kop.png",
+    video: "https://files.catbox.moe/iwnsmv.mp4",
+    autor: "mientrastambien509",
+    categoria: "ASESINATOS",
+    fecha: "28/10/2025"
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -4716,6 +4734,15 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "ACCIDENTES",
     fecha: "19/10/2025"
+  },
+  {
+    id: "se-abri-la-cabeza",
+    titulo: "Se abrió la cabeza",
+    portada: "https://files.catbox.moe/c2h8q5.png",
+    video: "https://files.catbox.moe/qfxpu6.mp4",
+    autor: "lolopepe",
+    categoria: "ACCIDENTES",
+    fecha: "28/10/2025"
   },
   {
     id: "come-la-banqueta",
