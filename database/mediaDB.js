@@ -3044,6 +3044,33 @@ const mediaDB = [
     fecha: "28/10/2025"
   },
   {
+    id: "mujer-asesinada-a-pualadas-por-su-ex-marido",
+    titulo: "MUJER ASESINADA A PUÑALADAS POR SU EX MARIDO",
+    portada: "https://xxx.livegore.com//rb-include/videos/5268334285.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5268334285.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "31/10/2025"
+  },
+  {
+    id: "1-spic-1-chainsaw",
+    titulo: "1 spic 1 chainsaw",
+    portada: "https://xxx.livegore.com//rb-include/videos/7089425828.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7089425828.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "31/10/2025"
+  },
+  {
+    id: "hombre-asesinado-a-tiros-tras-una-discusin",
+    titulo: "HOMBRE ASESINADO A TIROS TRAS UNA DISCUSIÓN",
+    portada: "https://xxx.livegore.com//rb-include/videos/976388868.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/976388868.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "31/10/2025"
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -4752,6 +4779,78 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "INCIDENTES",
     fecha: "29/05/25",
+  },
+  {
+    id: "ocho-muertos-en-accidente-de-trfico",
+    titulo: "Ocho muertos en accidente de tráfico",
+    portada: "https://xxx.livegore.com//rb-include/videos/756444595.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/756444595.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "31/10/2025"
+  },
+  {
+    id: "borracho-muere-tras-ser-atropellado-por-un-autobs",
+    titulo: "BORRACHO MUERE TRAS SER ATROPELLADO POR UN AUTOBÚS",
+    portada: "https://xxx.livegore.com//rb-include/videos/8864398081.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8864398081.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "31/10/2025"
+  },
+  {
+    id: "pareja-muere-en-terrible-accidente",
+    titulo: "pareja muere en terrible accidente",
+    portada: "https://xxx.livegore.com//rb-include/videos/716159143.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/716159143.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "31/10/2025"
+  },
+  {
+    id: "un-contenedor-cay-sobre-este-hombre",
+    titulo: "UN CONTENEDOR CAYÓ SOBRE ESTE HOMBRE",
+    portada: "https://xxx.livegore.com//rb-include/videos/2451148801.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2451148801.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "31/10/2025"
+  },
+  {
+    id: "el-ciclo-de-la-estupidez",
+    titulo: "El ciclo de la estupidez",
+    portada: "https://xxx.livegore.com//rb-include/videos/322596975.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/322596975.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "31/10/2025"
+  },
+  {
+    id: "hombre-se-sumerge-y-se-ahoga-en-una-piscina-en-china",
+    titulo: "hombre se sumerge y se ahoga en una piscina en China",
+    portada: "https://xxx.livegore.com//rb-include/videos/4462117156.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4462117156.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "31/10/2025"
+  },
+  {
+    id: "hombre-pierde-una-pierna-en-las-vas-del-tren",
+    titulo: "Hombre pierde una pierna en las vías del tren",
+    portada: "https://xxx.livegore.com//rb-include/videos/5141722015.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5141722015.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "31/10/2025"
+  },
+  {
+    id: "motorclist-perdi-la-cabeza-en-un-accidente",
+    titulo: "MOTORCLIST PERDIÓ LA CABEZA EN UN ACCIDENTE",
+    portada: "https://xxx.livegore.com//rb-include/videos/6515138112.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6515138112.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "31/10/2025"
   },
   {
     id: "le-corta-sus-partes",
@@ -6888,6 +6987,114 @@ const mediaDB = [
     fecha: "19/10/2025"
   },
   {
+    id: "un-agente-graba-a-su-compaero-abofeteando-a-un-paciente-en-un-hospital",
+    titulo: "Un agente graba a su compañero abofeteando a un paciente en un hospital.",
+    portada: "https://xxx.livegore.com//rb-include/videos/1016945508.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1016945508.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "31/10/2025"
+  },
+  {
+    id: "un-hombre-escupe-fuego-durante-una-pelea-callejera",
+    titulo: "Un hombre escupe fuego durante una pelea callejera.",
+    portada: "https://xxx.livegore.com//rb-include/videos/7858248362.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7858248362.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "31/10/2025"
+  },
+  {
+    id: "dahmer-drone-decapita-y-rompe-el-cofre-ruso",
+    titulo: "Dahmer Drone decapita y rompe el cofre ruso",
+    portada: "https://xxx.livegore.com//rb-include/videos/5991095155.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5991095155.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "31/10/2025"
+  },
+  {
+    id: "karma-para-este-ladrn",
+    titulo: "Karma para este ladrón",
+    portada: "https://xxx.livegore.com//rb-include/videos/7787775285.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7787775285.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "31/10/2025"
+  },
+  {
+    id: "cerebro-medio-ruso-intacto-salido-del-crneo",
+    titulo: "Cerebro medio ruso intacto salido del cráneo",
+    portada: "https://xxx.livegore.com//rb-include/videos/137746664.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/137746664.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "31/10/2025"
+  },
+  {
+    id: "observar-un-incendio-en-una-casa-casi-termina-fatalmente",
+    titulo: "Observar un incendio en una casa casi termina fatalmente",
+    portada: "https://xxx.livegore.com//rb-include/videos/8626398234.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8626398234.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "31/10/2025"
+  },
+  {
+    id: "golpear-a-un-hombre-en-la-alcantarilla",
+    titulo: "Golpear a un hombre en la alcantarilla",
+    portada: "https://xxx.livegore.com//rb-include/videos/4382568602.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4382568602.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "31/10/2025"
+  },
+  {
+    id: "dos-bandidos-derrotados-tras-un-intento-de-robar-a-un-vendedor",
+    titulo: "Dos bandidos derrotados tras un intento de robar a un vendedor",
+    portada: "https://xxx.livegore.com//rb-include/videos/4605933679.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4605933679.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "31/10/2025"
+  },
+  {
+    id: "brasil-fortaleza-cear-la-polica-mata-a-7-narcotraficantes",
+    titulo: "Brasil - Fortaleza, Ceará. La policía mata a 7 narcotraficantes.",
+    portada: "https://xxx.livegore.com//rb-include/videos/7868127981.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7868127981.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "31/10/2025"
+  },
+  {
+    id: "miembro-de-una-pandilla-decapitado",
+    titulo: "Miembro de una pandilla decapitado",
+    portada: "https://xxx.livegore.com//rb-include/videos/2331011057.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2331011057.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "31/10/2025"
+  },
+  {
+    id: "oficial-dispara-a-un-sospechoso-que-sac-un-arma-durante-una-persecucin",
+    titulo: "Oficial dispara a un sospechoso que sacó un arma durante una persecución",
+    portada: "https://xxx.livegore.com//rb-include/videos/9666681699.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9666681699.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "31/10/2025"
+  },
+  {
+    id: "selfie-informal-en-su",
+    titulo: "Selfie informal en Su",
+    portada: "https://xxx.livegore.com//rb-include/videos/1737890117.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1737890117.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "31/10/2025"
+  },
+  {
     id: "1444",
     titulo: "1444", //C-SUICIDIOS
     portada: "https://xxx.livegore.com//rb-include/videos/8122189044.jpg",
@@ -7428,6 +7635,15 @@ const mediaDB = [
     fecha: "19/10/2025"
   },
   {
+    id: "mujer-intenta-suicidarse-en-un-centro-comercial",
+    titulo: "Mujer intenta suicidarse en un centro comercial",
+    portada: "https://xxx.livegore.com//rb-include/videos/6353979455.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6353979455.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "31/10/2025"
+  },
+  {
     id: "se-apunala-en-live",
     titulo: "SE APUÑALA EN LIVE", //C-AUTOLESIONES
     portada: "https://files.catbox.moe/a5ey0v.png",
@@ -7687,6 +7903,15 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "AUTOLESIONES",
     fecha: "19/10/2025"
+  },
+  {
+    id: "hombre-salta-debajo-de-un-autobs-en-movimiento",
+    titulo: "Hombre salta debajo de un autobús en movimiento",
+    portada: "https://xxx.livegore.com//rb-include/videos/5155910681.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5155910681.mp4",
+    autor: "TripGore",
+    categoria: "AUTOLESIONES",
+    fecha: "31/10/2025"
   },
   {
     id: "9127-4482-3901-ae82f1a7c4d3", //ocultos
