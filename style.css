@@ -5,15 +5,104 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --app-background-color: #060606;
+            --app-foreground-color: #f2f2f2;
+            --app-base-radial: radial-gradient(circle at 50% 38%, #2a2a2a 0%, #171717 45%, #050505 75%);
+            --app-noise-texture: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+        }
+
+        html,
+        body {
+            background-color: var(--app-background-color);
+            min-height: 100%;
+        }
+
+        html {
+            position: relative;
+        }
+
         body {
             font-family: Arial, sans-serif;
-            background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmxhY2slMjB0ZXh0dXJlc3xlbnwwfHwwfHx8MA%3D%3D');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: white;
+            color: var(--app-foreground-color);
             min-height: 100vh;
+            position: relative;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 10;
+        }
+
+        body::before,
+        body::after,
+        html::before,
+        html::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            display: block;
+        }
+
+        body::before {
+            background: var(--app-base-radial);
+            z-index: 0;
+        }
+
+        body::after {
+            background-image: var(--app-noise-texture);
+            background-size: 512px 512px;
+            opacity: 0.2;
+            mix-blend-mode: lighten;
+            z-index: 1;
+        }
+
+        html::before {
+            background: radial-gradient(circle at 60% 38%, rgba(255, 255, 255, 0.08), transparent 65%);
+            animation: background-flicker 4s infinite;
+            mix-blend-mode: overlay;
+            opacity: 0.85;
+            z-index: 2;
+        }
+
+        html::after {
+            background:
+                radial-gradient(circle at 18% 82%, rgba(255, 255, 255, 0.04), transparent 60%),
+                radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.035), transparent 60%);
+            animation: move-shadows 30s infinite linear alternate;
+            mix-blend-mode: soft-light;
+            opacity: 0.9;
+            z-index: 1;
+        }
+
+        @keyframes background-flicker {
+            0%,
+            19%,
+            21%,
+            23%,
+            25%,
+            54%,
+            56%,
+            100% {
+                opacity: 0.85;
+            }
+
+            20%,
+            24%,
+            55% {
+                opacity: 0.35;
+            }
+        }
+
+        @keyframes move-shadows {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(-4%, 4%) scale(1.1);
+            }
         }
 
         /* Header */

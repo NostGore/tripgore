@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../responsive/responsive.css">
-    <script src="//static.filestackapi.com/filestack-js/4.x.x/filestack.min.js"></script>
+    <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
         /* Estilos específicos para la página de subida */
@@ -284,8 +284,8 @@
             color: #ff0000;
         }
 
-        /* Estilos para el botón de subida de Filestack */
-        .filestack-btn {
+        /* Estilos para el botón de subida de Cloudinary */
+        .cloudinary-btn {
             background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
             color: white;
             border: none;
@@ -303,14 +303,169 @@
             justify-content: center;
         }
 
-        .filestack-btn:hover {
+        .cloudinary-btn:hover {
             background: linear-gradient(135deg, #2980b9 0%, #1f618d 100%);
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
         }
 
-        .filestack-btn i {
+        .cloudinary-btn i {
             font-size: 18px;
+        }
+
+
+        /* Modal de confirmación */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.7);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 11000;
+            padding: 20px;
+        }
+
+        .modal.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+            border: 2px solid #333;
+            border-radius: 16px;
+            padding: 40px 30px;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 0, 0, 0.15) 0%, rgba(255, 0, 0, 0) 70%);
+            z-index: 0;
+        }
+
+        .modal-content h2 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 24px;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+            position: relative;
+            z-index: 1;
+        }
+
+        .modal-content p {
+            color: #ccc;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .modal-content p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .modal-close-btn {
+            margin-top: 25px;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .modal-close-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(255, 0, 0, 0.35);
+            background: linear-gradient(135deg, #cc0000 0%, #990000 100%);
+        }
+
+        .success-animation {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 4px solid rgba(39, 174, 96, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px auto;
+            position: relative;
+            z-index: 1;
+            animation: pulseRing 1.6s ease-in-out infinite;
+        }
+
+        .success-animation::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid rgba(39, 174, 96, 0.2);
+            animation: pulseRing 1.6s ease-in-out infinite;
+            animation-delay: 0.3s;
+        }
+
+        .success-animation i {
+            color: #27ae60;
+            font-size: 42px;
+            animation: popIn 0.4s ease both;
+            text-shadow: 0 4px 10px rgba(39, 174, 96, 0.3);
+        }
+
+        @keyframes pulseRing {
+            0% {
+                transform: scale(0.85);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.85);
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0.4);
+                opacity: 0;
+            }
+            80% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        body.modal-open {
+            overflow: hidden;
         }
 
 
@@ -435,9 +590,9 @@
                     </div>
                 </div>
 
-                <!-- Botón de subida con Filestack -->
+                <!-- Botón de subida con Cloudinary -->
                 <div class="form-group">
-                    <button type="button" id="filestackPicker" class="filestack-btn">
+                    <button type="button" id="cloudinaryPicker" class="cloudinary-btn">
                         <i class="fa-solid fa-upload"></i>
                         Cargar Video
                     </button>
@@ -495,6 +650,19 @@
     <div id="notification" class="notification">
         <i class="fa-solid fa-check-circle"></i>
         <span id="notificationText">Mensaje de notificación</span>
+    </div>
+
+    <!-- Modal de éxito -->
+    <div id="successModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="successModalTitle">
+        <div class="modal-content">
+            <div class="success-animation">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h2 id="successModalTitle">Video enviado a revision exitosamente</h2>
+            <p>Su video paso a revision y no sera visto en la web hasta que un adminstrador lo apruebe, la notificacion del estado del video sera enviado a su correo con el que se registro.</p>
+            <p>La revision demora normalmente de 1h a 2d</p>
+            <button type="button" id="closeSuccessModal" class="modal-close-btn">Entendido</button>
+        </div>
     </div>
 
     <!-- Scroll to Top Button -->
@@ -575,6 +743,45 @@
             }, 5000);
         }
 
+        const successModal = document.getElementById('successModal');
+        const closeSuccessModalButton = document.getElementById('closeSuccessModal');
+
+        function showSuccessModal() {
+            if (!successModal) return;
+            successModal.classList.add('show');
+            successModal.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('modal-open');
+
+            if (closeSuccessModalButton) {
+                closeSuccessModalButton.focus();
+            }
+        }
+
+        function hideSuccessModal() {
+            if (!successModal) return;
+            successModal.classList.remove('show');
+            successModal.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('modal-open');
+        }
+
+        if (closeSuccessModalButton) {
+            closeSuccessModalButton.addEventListener('click', hideSuccessModal);
+        }
+
+        if (successModal) {
+            successModal.addEventListener('click', function(event) {
+                if (event.target === successModal) {
+                    hideSuccessModal();
+                }
+            });
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && successModal && successModal.classList.contains('show')) {
+                hideSuccessModal();
+            }
+        });
+
         // Función para validar URL
         function isValidUrl(string) {
             try {
@@ -642,13 +849,19 @@
                 const result = await uploadVideo(videoData);
                 
                 if (result.success) {
-                    showNotification('¡Video subido exitosamente!', 'success');
-                    
+                    showSuccessModal();
+
                     // Enviar correo de notificación al administrador
                     sendEmailNotification();
                     
                     // Limpiar formulario
                     this.reset();
+
+                    const videoLinkInput = document.getElementById('videoLink');
+                    if (videoLinkInput) {
+                        videoLinkInput.style.borderColor = '#e0e0e0';
+                        delete videoLinkInput.dataset.cloudinaryPublicId;
+                    }
                 } else {
                     showNotification('Error al subir el video. Por favor intenta nuevamente.', 'error');
                 }
@@ -687,57 +900,69 @@
             }
         });
 
-        // ===== FILESTACK INTEGRATION =====
-        
-        // Inicializar Filestack (reemplaza con tu API key)
-        let filestackClient = null;
-        
-        // Función para inicializar Filestack cuando esté disponible
-        function initFilestack() {
-            if (typeof filestack !== 'undefined') {
-                filestackClient = filestack.init('ApHvsw2jVRm6unztAjI9yz'); // Reemplaza con tu API key
-                setupFilestackPicker();
+        // ===== CLOUDINARY INTEGRATION =====
+
+        let cloudinaryWidget = null;
+        let cloudinaryButtonInitialized = false;
+
+        function initCloudinaryWidget() {
+            if (typeof cloudinary !== 'undefined') {
+                cloudinaryWidget = cloudinary.createUploadWidget({
+                    cloudName: 'dlypbv6rh',
+                    uploadPreset: 'ml_default',
+                    folder: 'media',
+                    resourceType: 'video',
+                    multiple: false,
+                    maxFileSize: 104857600
+                }, (error, result) => {
+                    if (error) {
+                        console.error('Error al subir:', error);
+                        showNotification(`Error al subir el video: ${error.message || 'Error desconocido'}`, 'error');
+                        return;
+                    }
+
+                    if (result && result.event === 'success' && result.info) {
+                        console.log('Upload completed:', result);
+                        handleCloudinaryUploadSuccess(result.info);
+                    }
+                });
+
+                setupCloudinaryButton();
             } else {
-                // Reintentar después de un breve delay
-                setTimeout(initFilestack, 100);
+                setTimeout(initCloudinaryWidget, 100);
             }
         }
-        
-        // Configurar el picker de Filestack
-        function setupFilestackPicker() {
-            const options = {
-                onUploadDone: (response) => {
-                    console.log('Upload completed:', response);
-                    if (response.filesUploaded && response.filesUploaded.length > 0) {
-                        const file = response.filesUploaded[0];
-                        useVideoLink(file.url);
-                    }
-                },
-                maxFiles: 1,
-                accept: ['video/*'],
-                fromSources: ['local_file_system'],
-                uploadInBackground: false
-            };
-            
-            const picker = filestackClient.picker(options);
-            
-            document.getElementById('filestackPicker').addEventListener('click', function(e) {
+
+        function setupCloudinaryButton() {
+            if (cloudinaryButtonInitialized) return;
+
+            const uploadButton = document.getElementById('cloudinaryPicker');
+            if (!uploadButton) return;
+
+            uploadButton.addEventListener('click', function(e) {
                 e.preventDefault();
-                picker.open();
+                if (cloudinaryWidget) {
+                    cloudinaryWidget.open();
+                }
             });
+
+            cloudinaryButtonInitialized = true;
         }
-        
-        // Usar el enlace del video en el formulario
-        function useVideoLink(url) {
+
+        function handleCloudinaryUploadSuccess(info) {
             const videoLinkInput = document.getElementById('videoLink');
-            videoLinkInput.value = url;
-            videoLinkInput.style.borderColor = '#27ae60';
-            showNotification('Video cargado exitosamente. El enlace se ha agregado automáticamente.', 'success');
+
+            if (info.secure_url) {
+                videoLinkInput.value = info.secure_url;
+                videoLinkInput.style.borderColor = '#27ae60';
+                videoLinkInput.dataset.cloudinaryPublicId = info.public_id || '';
+            } else {
+                showNotification('La respuesta de Cloudinary no contiene un enlace válido.', 'error');
+            }
         }
-        
-        // Inicializar Filestack cuando el DOM esté listo
+
         document.addEventListener('DOMContentLoaded', function() {
-            initFilestack();
+            initCloudinaryWidget();
         });
 
 
