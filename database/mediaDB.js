@@ -1025,7 +1025,7 @@ const mediaDB = [
     video: "https://xxx.livegore.com//rb-include/videos/2090406203.mp4",
     autor: "TripGore",
     categoria: "ASESINATOS",
-    fecha: "14/26/25",
+    fecha: "14/06/25",
   },
   {
     id: "decapitacion-a-hijo-de-12-anos-de-un-narco",

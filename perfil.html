@@ -636,6 +636,9 @@
     
     <!-- Incluir la base de datos de videos -->
     <script src="database/mediaDB.js"></script>
+
+    <!-- Incluir roles de usuarios -->
+    <script src="js/roles.js"></script>
     
     <!-- Incluir el archivo header.js -->
     <script src="js/header.js"></script>
@@ -736,7 +739,7 @@
                 <div class="profile-avatar">
                     ${username.charAt(0).toUpperCase()}
                 </div>
-                <h1 class="profile-username">${username}</h1>
+                <h1 class="profile-username" data-user-badge="${username}">${username}</h1>
                 <p class="profile-email">${user.email}</p>
                 <div class="dashboard-stats">
                     <div class="stat-card">
@@ -757,6 +760,10 @@
                     </div>
                 </div>
             `;
+
+            if (window.decorateElementsWithBadges) {
+                window.decorateElementsWithBadges();
+            }
 
             // Cargar datos del usuario
             loadUserLikes();
@@ -911,7 +918,7 @@
                                     <span class="video-date">${video.fecha}</span>
                                 </div>
                                 <div class="video-author">
-                                    <i class="fa-solid fa-user"></i> ${video.autor}
+                                    <i class="fa-solid fa-user"></i> <span data-user-badge="${video.autor}">${video.autor}</span>
                                 </div>
                             </div>
                         </div>
@@ -925,6 +932,10 @@
                 }
                 document.getElementById('likesCount').textContent = likedVideos.length;
                 document.getElementById('likedCount').textContent = `${likedVideos.length} video${likedVideos.length !== 1 ? 's' : ''}`;
+
+                if (window.decorateElementsWithBadges) {
+                    window.decorateElementsWithBadges();
+                }
             }, 1000);
         }
 
@@ -968,7 +979,7 @@
                                     <span class="video-date">${video.fecha}</span>
                                 </div>
                                 <div class="video-author">
-                                    <i class="fa-solid fa-user"></i> ${video.autor}
+                                    <i class="fa-solid fa-user"></i> <span data-user-badge="${video.autor}">${video.autor}</span>
                                 </div>
                             </div>
                         </div>
@@ -982,6 +993,10 @@
                 }
                 document.getElementById('dislikesCount').textContent = dislikedVideos.length;
                 document.getElementById('dislikedCount').textContent = `${dislikedVideos.length} video${dislikedVideos.length !== 1 ? 's' : ''}`;
+
+                if (window.decorateElementsWithBadges) {
+                    window.decorateElementsWithBadges();
+                }
             }, 1000);
         }
 
@@ -1209,7 +1224,7 @@
                                 <span class="video-date">${video.approvedAt ? new Date(video.approvedAt).toLocaleDateString('es-ES') : video.fecha}</span>
                             </div>
                             <div class="video-author">
-                                <i class="fa-solid fa-user"></i> ${video.autor || 'Usuario'}
+                                <i class="fa-solid fa-user"></i> <span data-user-badge="${video.autor || 'Usuario'}">${video.autor || 'Usuario'}</span>
                             </div>
                             <div style="margin-top: 8px; font-size: 12px; color: #ff0000;">
                                 <i class="fa-solid fa-check-circle"></i> ${video.status === 'approved' ? 'Aprobado' : 'Pendiente'}
@@ -1228,6 +1243,10 @@
             // Actualizar contadores
             document.getElementById('myVideosStatsCount').textContent = videos.length;
             document.getElementById('myVideosCount').textContent = `${videos.length} video${videos.length !== 1 ? 's' : ''}`;
+
+            if (window.decorateElementsWithBadges) {
+                window.decorateElementsWithBadges();
+            }
         }
 
         // Función para abrir video (reutilizada del index.html)

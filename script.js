@@ -4,13 +4,70 @@ let currentPage = 1;
 let videosPerPage = 25; // 5 filas × 5 columnas = 25 videos por página
 let totalPages = 1;
 let allVideos = [];
+let collaboratorSyncInitialized = false;
+
+function mergeCollaboratorVideos(videos) {
+    if (typeof window.mergeCollaboratorVideosIntoMediaDB !== 'function') {
+        return false;
+    }
+
+    return window.mergeCollaboratorVideosIntoMediaDB(videos);
+}
+
+function initializeCollaboratorVideosIntegration() {
+    if (collaboratorSyncInitialized) {
+        return;
+    }
+
+    collaboratorSyncInitialized = true;
+
+    const handleVideos = (videos) => {
+        const changed = mergeCollaboratorVideos(videos);
+        if (changed) {
+            console.log('✅ Videos de colaboradores sincronizados');
+            renderVideos();
+            renderRecommendedVideos();
+            renderHiddenVideos();
+            if (typeof window.refreshLikeroBadges === 'function') {
+                window.refreshLikeroBadges();
+            }
+            if (typeof window.refreshComentorBadges === 'function') {
+                window.refreshComentorBadges();
+            }
+            if (typeof window.refreshBadgeDecorations === 'function') {
+                window.refreshBadgeDecorations();
+            }
+        }
+    };
+
+    if (typeof window.fetchCollaboratorVideosOnce === 'function') {
+        window.fetchCollaboratorVideosOnce()
+            .then(handleVideos)
+            .catch((error) => console.error('Error al precargar videos de colaboradores:', error));
+    }
+
+    if (typeof window.subscribeCollaboratorVideos === 'function') {
+        window.subscribeCollaboratorVideos(handleVideos);
+    }
+}
 
 // Función para convertir fecha DD/MM/YY a objeto Date para ordenamiento
 function parseDate(dateString) {
-    const [day, month, year] = dateString.split('/');
-    // Convertir año de 2 dígitos a 4 dígitos (asumiendo 2000-2099)
-    const fullYear = parseInt(year) + 2000;
-    return new Date(fullYear, parseInt(month) - 1, parseInt(day));
+    if (!dateString) {
+        return new Date(0);
+    }
+
+    const parts = dateString.split('/');
+    if (parts.length !== 3) {
+        return new Date(dateString);
+    }
+
+    const [dayStr, monthStr, yearStr] = parts;
+    const day = parseInt(dayStr, 10) || 1;
+    const month = (parseInt(monthStr, 10) || 1) - 1;
+    const year = yearStr.length === 2 ? 2000 + parseInt(yearStr, 10) : parseInt(yearStr, 10);
+
+    return new Date(year, month, day);
 }
 
 // Función para ordenar videos por fecha (más reciente primero)
@@ -209,7 +266,7 @@ function renderCurrentPage() {
                                 <i class="fa-solid fa-calendar"></i>
                                 <span>${video.fecha}</span>
                             </span>
-                            <span class="author-info"><i class="fa-solid fa-user"></i> ${video.autor}</span>
+                            <span class="author-info"><i class="fa-solid fa-user"></i> <span data-user-badge="${video.autor}">${video.autor}</span></span>
                         </div>
                     </div>
                 `;
@@ -226,6 +283,10 @@ function renderCurrentPage() {
 
     // Agregar efectos hover después de renderizar
     addHoverEffects();
+
+    if (window.decorateElementsWithBadges) {
+        window.decorateElementsWithBadges();
+    }
 }
 
 // Función para crear botones de paginación
@@ -426,6 +487,7 @@ function closeVideoModal() {
 // Cargar videos cuando la página esté lista
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM cargado, verificando mediaDB...');
+    initializeCollaboratorVideosIntegration();
     // Esperar un poco para asegurar que mediaDB.js se haya cargado
     setTimeout(() => {
         if (typeof mediaDB !== 'undefined') {
@@ -433,6 +495,10 @@ document.addEventListener('DOMContentLoaded', () => {
             renderVideos();
             renderRecommendedVideos();
             renderHiddenVideos();
+            if (typeof window.subscribeCollaboratorVideos === 'function' && !collaboratorSyncInitialized) {
+                // Garantizar que la suscripción siga activa tras la primera carga
+                initializeCollaboratorVideosIntegration();
+            }
         } else {
             console.error('mediaDB no se cargó correctamente');
             // Intentar cargar de nuevo después de un poco más
@@ -442,6 +508,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     renderVideos();
                     renderRecommendedVideos();
                     renderHiddenVideos();
+                    if (typeof window.subscribeCollaboratorVideos === 'function' && !collaboratorSyncInitialized) {
+                        initializeCollaboratorVideosIntegration();
+                    }
                 } else {
                     console.error('mediaDB sigue sin estar disponible');
                     document.getElementById('videosGrid').innerHTML = '<p>Error: No se pudo cargar la base de datos de videos. Verifica que el archivo mediaDB.js esté disponible.</p>';

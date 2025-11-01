@@ -5,6 +5,8 @@ let isLiked = false;
 let isDisliked = false;
 let isFavorited = false;
 let isPlaying = false;
+let collaboratorSubscriptionActive = false;
+let collaboratorInitialLoadPromise = null;
 
 // Reproductor por iframe: no se requiere lógica de play/pause manual
 
@@ -441,8 +443,8 @@ function loadComments() {
                                 </div>
                                 <div class="comment-bubble">
                                     <div class="comment-topline">
-                                        <div class="comment-identity">
-                                            <span class="comment-username">${reply.autor}</span>
+                                <div class="comment-identity">
+                                    <span class="comment-username" data-user-badge="${reply.autor}">${reply.autor}</span>
                                         </div>
                                         <button class="comment-number" title="#">#</button>
                                     </div>
@@ -465,8 +467,8 @@ function loadComments() {
                             </div>
                             <div class="comment-bubble">
                                 <div class="comment-topline">
-                                        <div class="comment-identity">
-                                            <span class="comment-username">${comment.autor}</span>
+                                <div class="comment-identity">
+                                    <span class="comment-username" data-user-badge="${comment.autor}">${comment.autor}</span>
                                     </div>
                                     <button class="comment-number" title="#">#</button>
                                 </div>
@@ -493,6 +495,10 @@ function loadComments() {
             }
             
             commentsList.innerHTML = commentsHTML;
+
+            if (window.decorateElementsWithBadges) {
+                window.decorateElementsWithBadges();
+            }
         }
         
         renderCommentsWithBadges();
@@ -614,16 +620,76 @@ function downloadCurrentVideo() {
     document.body.removeChild(a);
 }
 
+function ensureCollaboratorVideosLoaded() {
+    if (collaboratorInitialLoadPromise) {
+        return collaboratorInitialLoadPromise;
+    }
+
+    collaboratorInitialLoadPromise = new Promise((resolve) => {
+        const mergeVideos = (videos) => {
+            if (typeof window.mergeCollaboratorVideosIntoMediaDB === 'function') {
+                window.mergeCollaboratorVideosIntoMediaDB(videos);
+            }
+        };
+
+        if (typeof window.fetchCollaboratorVideosOnce === 'function') {
+            window.fetchCollaboratorVideosOnce()
+                .then((videos) => {
+                    mergeVideos(videos);
+                    resolve();
+                })
+                .catch((error) => {
+                    console.error('Error al cargar videos de colaboradores (una vez):', error);
+                    resolve();
+                });
+        } else {
+            resolve();
+        }
+
+        if (!collaboratorSubscriptionActive && typeof window.subscribeCollaboratorVideos === 'function') {
+            collaboratorSubscriptionActive = true;
+
+            window.subscribeCollaboratorVideos((videos) => {
+                const changed = typeof window.mergeCollaboratorVideosIntoMediaDB === 'function'
+                    ? window.mergeCollaboratorVideosIntoMediaDB(videos)
+                    : false;
+
+                if (changed) {
+                    if (typeof window.refreshLikeroBadges === 'function') {
+                        window.refreshLikeroBadges();
+                    }
+                    if (typeof window.refreshComentorBadges === 'function') {
+                        window.refreshComentorBadges();
+                    }
+
+                    const updatedVideo = currentVideoId && typeof mediaDB !== 'undefined'
+                        ? mediaDB.find(v => v.id === currentVideoId)
+                        : null;
+
+                    if (currentVideoId && updatedVideo) {
+                        loadVideoById(currentVideoId);
+                        loadRelatedVideosRandom(currentVideoId);
+                    }
+                }
+            });
+        }
+    });
+
+    return collaboratorInitialLoadPromise;
+}
+
 // Inicializar la página
 document.addEventListener('DOMContentLoaded', function () {
     const id = getQueryParam('id');
-    if (id) {
-        // Registrar en historial y cargar datos
-        pushToHistory(id);
-        loadVideoById(id);
-        loadRelatedVideosRandom(id);
-        loadComments();
-    }
+    ensureCollaboratorVideosLoaded().then(() => {
+        if (id) {
+            // Registrar en historial y cargar datos
+            pushToHistory(id);
+            loadVideoById(id);
+            loadRelatedVideosRandom(id);
+            loadComments();
+        }
+    });
     
     // Event listener para el botón de comentario
     const submitCommentBtn = document.getElementById('submitComment');

@@ -22,6 +22,192 @@ const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getDatabase(app);
 
+// ------------------- Helpers -------------------
+
+function slugifyTitle(value) {
+    return String(value || '')
+        .toLowerCase()
+        .trim()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
+}
+
+function createMediaId(title, originalId = '') {
+    const base = slugifyTitle(title);
+    const suffixSource = String(originalId || '')
+        .replace(/[^a-z0-9]/gi, '')
+        .toLowerCase()
+        .slice(-5);
+    const suffix = suffixSource ? `-${suffixSource}` : '';
+    const id = `${base || 'video'}${suffix}`.replace(/(^-|-$)/g, '');
+    return id || `video-${Date.now()}`;
+}
+
+function formatDateToDMY(value) {
+    if (!value) {
+        return formatDateToDMY(new Date());
+    }
+
+    if (typeof value === 'string') {
+        const parts = value.split('/');
+        if (parts.length === 3) {
+            const [d, m, y] = parts;
+            const day = parseInt(d, 10) || 1;
+            const month = (parseInt(m, 10) || 1) - 1;
+            const year = y.length === 2 ? 2000 + parseInt(y, 10) : parseInt(y, 10);
+            const dateObj = new Date(year, month, day);
+            if (!Number.isNaN(dateObj.getTime())) {
+                return `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()}`;
+            }
+        }
+
+        const parsed = new Date(value);
+        if (!Number.isNaN(parsed.getTime())) {
+            return `${parsed.getDate()}/${parsed.getMonth() + 1}/${parsed.getFullYear()}`;
+        }
+    }
+
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) {
+        return '1/1/1970';
+    }
+
+    return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+}
+
+function parseMediaDate(value) {
+    if (!value) return new Date(0);
+
+    if (typeof value === 'string') {
+        const parts = value.split('/');
+        if (parts.length === 3) {
+            const [d, m, y] = parts;
+            const day = parseInt(d, 10) || 1;
+            const month = (parseInt(m, 10) || 1) - 1;
+            const year = y.length === 2 ? 2000 + parseInt(y, 10) : parseInt(y, 10);
+            const parsed = new Date(year, month, day);
+            if (!Number.isNaN(parsed.getTime())) {
+                return parsed;
+            }
+        }
+
+        const parsed = new Date(value);
+        if (!Number.isNaN(parsed.getTime())) {
+            return parsed;
+        }
+    }
+
+    const fallback = new Date(value);
+    return Number.isNaN(fallback.getTime()) ? new Date(0) : fallback;
+}
+
+function ensureCoverFromVideo(videoUrl = '', currentCover = '') {
+    const cover = currentCover || '';
+    if (cover && /\.(jpe?g|png|webp)$/i.test(cover)) {
+        return cover;
+    }
+
+    if (!videoUrl) {
+        return cover;
+    }
+
+    try {
+        const url = new URL(videoUrl);
+        const pathname = url.pathname.replace(/\.(mp4|mov|mkv)$/i, '.jpg');
+        url.pathname = pathname;
+        return url.toString();
+    } catch (err) {
+        return videoUrl.replace(/\.(mp4|mov|mkv)$/i, '.jpg');
+    }
+}
+
+const RESERVED_SOURCE_KEYS = new Set([
+    'id', 'titulo', 'title', 'nombre',
+    'portada', 'thumbnail', 'cover',
+    'video', 'videourl', 'url', 'link',
+    'autor', 'author',
+    'categoria', 'category',
+    'fecha', 'date',
+    'status',
+    'submittedat', 'submittedby',
+    'approvedat', 'approvedby',
+    'idoriginal', 'origen',
+    'timestamp', 'lastsyncedat'
+]);
+
+function createMediaEntry(source = {}, options = {}) {
+    const {
+        statusOverride,
+        approvedAtOverride,
+        approvedByOverride,
+        idOverride,
+        lastSyncedAtOverride
+    } = options;
+
+    const originalId = source.idOriginal || source.id || source.firebaseKey || source.key || '';
+    const title = (source.titulo || source.title || source.nombre || 'Video sin título').toString();
+    const id = idOverride || createMediaId(title, originalId);
+    const videoUrl = source.video || source.videoUrl || source.url || source.link || '';
+    const cover = ensureCoverFromVideo(videoUrl, source.portada || source.thumbnail || source.cover || '');
+    const category = source.categoria || source.category || 'COLABORADORES';
+    const author = source.autor || source.author || source.submittedBy || 'Colaborador';
+    const status = statusOverride || source.status || 'pending';
+    const submittedAt = source.submittedAt || new Date().toISOString();
+    const submittedBy = source.submittedBy || author;
+    const approvedAt = approvedAtOverride !== undefined
+        ? approvedAtOverride
+        : source.approvedAt || null;
+    const approvedBy = approvedByOverride !== undefined
+        ? approvedByOverride
+        : source.approvedBy || null;
+
+    const baseEntry = {
+        id,
+        titulo: title,
+        portada: cover,
+        video: videoUrl,
+        autor: author,
+        categoria: category,
+        fecha: formatDateToDMY(source.fecha || source.date || source.fechaSubida || new Date())
+    };
+
+    const runtimeEntry = {
+        ...baseEntry,
+        link: videoUrl,
+        title,
+        category,
+        status,
+        submittedAt,
+        submittedBy,
+        approvedAt: approvedAt || null,
+        approvedBy: approvedBy || null,
+        origen: source.origen || 'colaboradores',
+        idOriginal: originalId || id,
+        timestamp: source.timestamp || Date.now(),
+        lastSyncedAt: lastSyncedAtOverride || source.lastSyncedAt || null
+    };
+
+    return runtimeEntry;
+}
+
+function normalizeVideoForStorage(videoId, data = {}, options = {}) {
+    return createMediaEntry({ ...data, idOriginal: videoId }, options);
+}
+
+function extractMediaRecord(entry) {
+    return {
+        id: entry.id,
+        titulo: entry.titulo,
+        portada: entry.portada,
+        video: entry.video,
+        autor: entry.autor,
+        categoria: entry.categoria,
+        fecha: entry.fecha
+    };
+}
+
 // Variable global para el usuario actual
 let currentUser = null;
 
@@ -366,17 +552,26 @@ async function uploadPendingVideo(videoData) {
     try {
         const videosRef = dbRef(db, 'video-pending');
         const newVideoRef = push(videosRef);
-        
-        // Agregar metadatos al video
-        videoData.id = newVideoRef.key;
-        videoData.timestamp = Date.now();
-        videoData.status = 'pending';
-        videoData.submittedAt = new Date().toISOString();
-        videoData.submittedBy = getCurrentUser() ? getCurrentUser().email : 'anonymous';
-        
-        await set(newVideoRef, videoData);
-        
-        console.log('Video pendiente guardado exitosamente:', videoData);
+
+        const now = new Date();
+        const baseData = {
+            ...videoData,
+            status: 'pending',
+            submittedAt: now.toISOString(),
+            submittedBy: getCurrentUser() ? getCurrentUser().email : 'anonymous',
+            approvedAt: null,
+            approvedBy: null,
+            timestamp: Date.now(),
+            idOriginal: newVideoRef.key
+        };
+
+        const normalizedVideo = normalizeVideoForStorage(newVideoRef.key, baseData, {
+            statusOverride: 'pending'
+        });
+
+        await set(newVideoRef, normalizedVideo);
+
+        console.log('Video pendiente guardado exitosamente:', normalizedVideo);
         return { success: true, videoId: newVideoRef.key };
     } catch (error) {
         console.error('Error al guardar video pendiente:', error);
@@ -405,19 +600,30 @@ function getPendingVideos(callback) {
 // Función para aprobar un video
 async function approveVideo(videoId, videoData) {
     try {
-        // Mover el video de pending a approved
-        const approvedRef = dbRef(db, `videos/${videoId}`);
+        const now = new Date().toISOString();
+        const publicRef = dbRef(db, `videos/${videoId}`);
         const pendingRef = dbRef(db, `video-pending/${videoId}`);
-        
-        // Actualizar datos del video
-        videoData.status = 'approved';
-        videoData.approvedAt = new Date().toISOString();
-        videoData.approvedBy = getCurrentUser() ? getCurrentUser().email : 'admin';
-        
-        // Guardar en videos aprobados
-        await set(approvedRef, videoData);
-        
-        // Eliminar de pendientes
+
+        let sourceData = videoData;
+        if (!sourceData || Object.keys(sourceData).length === 0) {
+            const pendingSnapshot = await get(pendingRef);
+            if (pendingSnapshot.exists()) {
+                sourceData = pendingSnapshot.val();
+            }
+        }
+
+        const normalizedVideo = normalizeVideoForStorage(videoId, {
+            ...sourceData,
+            status: 'approved',
+            lastSyncedAt: now
+        }, {
+            statusOverride: 'approved',
+            approvedAtOverride: now,
+            approvedByOverride: getCurrentUser() ? getCurrentUser().email : 'admin',
+            lastSyncedAtOverride: now
+        });
+
+        await set(publicRef, extractMediaRecord(normalizedVideo));
         await remove(pendingRef);
         
         console.log('Video aprobado exitosamente:', videoId);
@@ -433,6 +639,7 @@ async function rejectVideo(videoId, reason = '') {
     try {
         const rejectedRef = dbRef(db, `video-rejected/${videoId}`);
         const pendingRef = dbRef(db, `video-pending/${videoId}`);
+        const publicRef = dbRef(db, `videos/${videoId}`);
         
         // Obtener datos del video pendiente
         const videoSnapshot = await get(pendingRef);
@@ -451,6 +658,7 @@ async function rejectVideo(videoId, reason = '') {
         
         // Eliminar de pendientes
         await remove(pendingRef);
+        await remove(publicRef);
         
         console.log('Video rechazado exitosamente:', videoId);
         return { success: true };
@@ -477,6 +685,194 @@ async function getVideoById(videoId) {
     }
 }
 
+// ------------------- Collaborator Videos -------------------
+
+function normalizeCollaboratorVideo(videoId, data = {}) {
+    if (!videoId) {
+        return null;
+    }
+
+    return normalizeVideoForStorage(videoId, data, {
+        statusOverride: data.status || 'approved',
+        approvedAtOverride: data.approvedAt || data.lastSyncedAt || null,
+        approvedByOverride: data.approvedBy || null,
+        lastSyncedAtOverride: data.lastSyncedAt || null
+    });
+}
+
+function mergeCollaboratorVideosIntoMediaDB(videos) {
+    if (typeof window === 'undefined') {
+        return false;
+    }
+
+    if (!Array.isArray(videos) || videos.length === 0) {
+        return false;
+    }
+
+    if (!Array.isArray(window.mediaDB)) {
+        window.mediaDB = [];
+    }
+
+    window.collaboratorMeta = window.collaboratorMeta || new Map();
+
+    let existingMap = new Map(window.mediaDB.map(video => [video.id, video]));
+    const mapByOriginal = new Map();
+    window.mediaDB.forEach(video => {
+        if (!video) return;
+        const meta = window.collaboratorMeta.get(video.id);
+        if (meta && meta.idOriginal) {
+            mapByOriginal.set(meta.idOriginal, video);
+        }
+    });
+    let changed = false;
+
+    const normalizeEntry = (video) => {
+        if (!video) return null;
+
+        const record = normalizeCollaboratorVideo(video.idOriginal || video.id, video);
+        window.collaboratorMeta.set(record.id, {
+            idOriginal: record.idOriginal,
+            status: record.status,
+            submittedAt: record.submittedAt,
+            submittedBy: record.submittedBy,
+            approvedAt: record.approvedAt,
+            approvedBy: record.approvedBy,
+            origen: record.origen,
+            timestamp: record.timestamp
+        });
+        return record;
+    };
+
+    videos.forEach(rawVideo => {
+        if (!rawVideo) return;
+        const candidateId = rawVideo.idOriginal || rawVideo.id;
+        const normalized = normalizeCollaboratorVideo(candidateId, rawVideo);
+        if (!normalized || !normalized.id || normalized.origen !== 'colaboradores') return;
+
+        let current = mapByOriginal.get(normalized.idOriginal) || existingMap.get(normalized.id);
+        if (current) {
+            const normalizedCurrent = normalizeEntry({ ...current, ...normalized });
+            Object.assign(current, normalizedCurrent);
+            existingMap.set(current.id, current);
+            if (current.idOriginal) {
+                mapByOriginal.set(current.idOriginal, current);
+            }
+        } else {
+            const normalizedEntry = normalizeEntry(normalized);
+
+            if (existingMap.has(normalizedEntry.id)) {
+                const existingBackup = existingMap.get(normalizedEntry.id);
+                const merged = { ...existingBackup, ...normalizedEntry };
+                const index = window.mediaDB.findIndex(video => video.id === normalizedEntry.id);
+
+                if (index !== -1) {
+                    window.mediaDB[index] = merged;
+                }
+
+                existingMap.set(normalizedEntry.id, merged);
+                if (normalizedEntry.idOriginal) {
+                    mapByOriginal.set(normalizedEntry.idOriginal, merged);
+                }
+            } else {
+                window.mediaDB.push(normalizedEntry);
+                existingMap.set(normalizedEntry.id, normalizedEntry);
+                if (normalizedEntry.idOriginal) {
+                    mapByOriginal.set(normalizedEntry.idOriginal, normalizedEntry);
+                }
+            }
+        }
+
+        changed = true;
+    });
+
+    if (changed) {
+        const normalizedList = window.mediaDB
+            .map(normalizeEntry)
+            .filter(Boolean);
+
+        const visible = normalizedList.filter(video => video.categoria !== 'OCULTO');
+        const hidden = normalizedList.filter(video => video.categoria === 'OCULTO');
+
+        visible.sort((a, b) => {
+            const dateA = parseMediaDate(a.fecha || '01/01/1970');
+            const dateB = parseMediaDate(b.fecha || '01/01/1970');
+            return dateB - dateA;
+        });
+
+        const ordered = [...visible, ...hidden];
+        window.mediaDB = ordered.map(extractMediaRecord);
+
+        if (typeof window.refreshCreatorBadges === 'function') {
+            try {
+                window.refreshCreatorBadges();
+            } catch (err) {
+                console.warn('No se pudo refrescar badges de creadores:', err);
+            }
+        }
+    }
+
+    return changed;
+}
+
+function subscribeCollaboratorVideos(callback) {
+    const collaboratorsRef = dbRef(db, 'videos');
+    return onValue(collaboratorsRef, (snapshot) => {
+        const videos = [];
+        snapshot.forEach(childSnapshot => {
+            const videoId = childSnapshot.key;
+            const value = childSnapshot.val();
+            const normalized = normalizeCollaboratorVideo(videoId, value);
+            if (normalized) {
+                videos.push(normalized);
+            }
+        });
+
+        videos.sort((a, b) => parseMediaDate(b.fecha) - parseMediaDate(a.fecha));
+        callback(videos);
+    });
+}
+
+async function fetchCollaboratorVideosOnce() {
+    try {
+        const collaboratorsRef = dbRef(db, 'videos');
+        const snapshot = await get(collaboratorsRef);
+        const videos = [];
+        snapshot.forEach(childSnapshot => {
+            const normalized = normalizeCollaboratorVideo(childSnapshot.key, childSnapshot.val());
+            if (normalized) {
+                videos.push(normalized);
+            }
+        });
+        return videos.sort((a, b) => parseMediaDate(b.fecha) - parseMediaDate(a.fecha));
+    } catch (error) {
+        console.error('Error al obtener videos de colaboradores:', error);
+        return [];
+    }
+}
+
+async function sanitizePublicVideos() {
+    try {
+        const videosSnapshot = await get(dbRef(db, 'videos'));
+        const updates = {};
+
+        videosSnapshot.forEach(childSnapshot => {
+            const key = childSnapshot.key;
+            const value = childSnapshot.val();
+            const normalized = normalizeCollaboratorVideo(key, value);
+            if (normalized) {
+                updates[key] = extractMediaRecord(normalized);
+            }
+        });
+
+        await set(dbRef(db, 'videos'), updates);
+        console.log('Videos públicos sanitizados:', Object.keys(updates).length);
+        return { success: true, count: Object.keys(updates).length };
+    } catch (error) {
+        console.error('Error al sanitizar videos públicos:', error);
+        return { success: false, error: error.message };
+    }
+}
+
 // Exportar funciones para uso global
 window.logoutUser = logoutUser;
 window.getCurrentUser = getCurrentUser;
@@ -490,6 +886,10 @@ window.getPendingVideos = getPendingVideos;
 window.approveVideo = approveVideo;
 window.rejectVideo = rejectVideo;
 window.getVideoById = getVideoById;
+window.subscribeCollaboratorVideos = subscribeCollaboratorVideos;
+window.fetchCollaboratorVideosOnce = fetchCollaboratorVideosOnce;
+window.mergeCollaboratorVideosIntoMediaDB = mergeCollaboratorVideosIntoMediaDB;
+window.sanitizePublicVideos = sanitizePublicVideos;
 
 // Marcar Firebase como listo
 window.firebaseReady = true;

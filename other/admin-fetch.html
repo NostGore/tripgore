@@ -1123,55 +1123,73 @@
         }
 
         async function aprobarVideo(videoId) {
-            if (confirm('¿Aprobar este video?')) {
-                try {
-                    // Obtener el video
+            if (!confirm('¿Aprobar este video?')) {
+                return;
+            }
+
+            try {
+                if (typeof window.approveVideo === 'function' && typeof window.getVideoById === 'function') {
+                    const pendingResult = await window.getVideoById(videoId);
+                    if (!pendingResult.success || !pendingResult.video) {
+                        throw new Error(pendingResult.error || 'No se pudo obtener el video pendiente');
+                    }
+
+                    const approveResult = await window.approveVideo(videoId, pendingResult.video);
+
+                    if (!approveResult.success) {
+                        throw new Error(approveResult.error || 'No se pudo aprobar el video');
+                    }
+                } else {
                     const response = await fetch(`https://triplegore-default-rtdb.firebaseio.com/video-pending/${videoId}.json`);
                     const video = await response.json();
-                    
-                    // Mover a videos aprobados
+
                     await fetch(`https://triplegore-default-rtdb.firebaseio.com/videos/${videoId}.json`, {
                         method: 'PUT',
                         body: JSON.stringify(video)
                     });
-                    
-                    // Eliminar de pendientes
+
                     await fetch(`https://triplegore-default-rtdb.firebaseio.com/video-pending/${videoId}.json`, {
                         method: 'DELETE'
                     });
-                    
-                    alert('Video aprobado');
-                    cargarVideos();
-                } catch (error) {
-                    alert('Error: ' + error.message);
                 }
+
+                alert('Video aprobado');
+                cargarVideos();
+            } catch (error) {
+                alert('Error: ' + error.message);
             }
         }
 
         async function rechazarVideo(videoId) {
-            if (confirm('¿Estás seguro de que quieres rechazar este video?')) {
-                try {
-                    // Obtener el video
+            if (!confirm('¿Estás seguro de que quieres rechazar este video?')) {
+                return;
+            }
+
+            try {
+                if (typeof window.rejectVideo === 'function') {
+                    const result = await window.rejectVideo(videoId, 'Rechazado por administrador');
+                    if (!result.success) {
+                        throw new Error(result.error || 'No se pudo rechazar el video');
+                    }
+                } else {
                     const response = await fetch(`https://triplegore-default-rtdb.firebaseio.com/video-pending/${videoId}.json`);
                     const video = await response.json();
                     video.rejectionReason = 'Rechazado por administrador';
-                    
-                    // Mover a videos rechazados
+
                     await fetch(`https://triplegore-default-rtdb.firebaseio.com/video-rejected/${videoId}.json`, {
                         method: 'PUT',
                         body: JSON.stringify(video)
                     });
-                    
-                    // Eliminar de pendientes
+
                     await fetch(`https://triplegore-default-rtdb.firebaseio.com/video-pending/${videoId}.json`, {
                         method: 'DELETE'
                     });
-                    
-                    alert('Video rechazado');
-                    cargarVideos();
-                } catch (error) {
-                    alert('Error: ' + error.message);
                 }
+
+                alert('Video rechazado');
+                cargarVideos();
+            } catch (error) {
+                alert('Error: ' + error.message);
             }
         }
 
