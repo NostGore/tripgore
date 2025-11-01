@@ -1251,6 +1251,11 @@
             margin-top: 18px; /* Espacio entre botón "Responder" y el comentario respondido */
         }
 
+        /* Respuestas anidadas (respuestas a respuestas) - aumentar indentación */
+        .comment-row.reply .comment-row.reply {
+            margin-left: 20px; /* Indentación adicional para cada nivel */
+        }
+
         .comment-avatar {
             width: 84px;
             height: 84px;

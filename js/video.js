@@ -467,8 +467,70 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
-// Renderizar comentario individual (optimizado)
-function renderCommentElement(comment, replies) {
+// Renderizar respuesta individual (recursivo para soportar múltiples niveles)
+function renderReplyElement(reply, allRepliesMap) {
+    const replyRow = document.createElement('div');
+    replyRow.className = 'comment-row reply';
+    
+    const replyInitial = (reply.autor || '?').trim().charAt(0).toUpperCase();
+    const escapedReplyAutor = escapeHtml(reply.autor || '');
+    const escapedReplyFecha = escapeHtml(reply.fecha || '');
+    const escapedReplyTexto = escapeHtml(reply.texto || '');
+    const escapedReplyId = escapeHtml(reply.id || '');
+    
+    // Obtener respuestas a esta respuesta (si existen)
+    const nestedReplies = allRepliesMap.get(reply.id) || [];
+    
+    replyRow.innerHTML = `
+        <div class="comment-avatar" title="${escapedReplyAutor}"><span>${replyInitial}</span></div>
+        <div class="comment-main">
+            <div class="comment-meta">
+                <span class="comment-time">${escapedReplyFecha}</span>
+            </div>
+            <div class="comment-bubble">
+                <div class="comment-topline">
+                    <div class="comment-identity">
+                        <span class="comment-username" data-user-badge="${escapedReplyAutor}">${escapedReplyAutor}</span>
+                    </div>
+                    <button class="comment-number" title="#">#</button>
+                </div>
+                <div class="comment-text">${escapedReplyTexto}</div>
+                <div class="comment-actions">
+                    <button class="reply-btn" onclick="showReplyForm('${escapedReplyId}')">
+                        <i class="fa-solid fa-reply"></i> Responder
+                    </button>
+                </div>
+                <div class="reply-form" id="reply-form-${escapedReplyId}" style="display: none;">
+                    <textarea class="reply-input" placeholder="Escribe tu respuesta..."></textarea>
+                    <div>
+                        <button class="reply-submit-btn" onclick="submitReply('${escapedReplyId}')">
+                            <i class="fa-solid fa-reply"></i> Responder
+                        </button>
+                        <button class="reply-cancel-btn" onclick="hideReplyForm('${escapedReplyId}')">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // Renderizar respuestas anidadas de forma recursiva
+    if (nestedReplies && nestedReplies.length > 0) {
+        const repliesContainer = replyRow.querySelector('.comment-bubble');
+        const nestedFragment = document.createDocumentFragment();
+        
+        nestedReplies.forEach(nestedReply => {
+            const nestedReplyElement = renderReplyElement(nestedReply, allRepliesMap);
+            nestedFragment.appendChild(nestedReplyElement);
+        });
+        
+        repliesContainer.appendChild(nestedFragment);
+    }
+    
+    return replyRow;
+}
+
+// Renderizar comentario individual (optimizado con soporte para respuestas anidadas)
+function renderCommentElement(comment, replies, allRepliesMap) {
     const commentRow = document.createElement('div');
     commentRow.className = 'comment-row';
     
@@ -511,37 +573,14 @@ function renderCommentElement(comment, replies) {
         </div>
     `;
     
-    // Renderizar respuestas si existen
+    // Renderizar respuestas si existen (de forma recursiva)
     if (replies && replies.length > 0) {
         const repliesContainer = commentRow.querySelector('.comment-bubble');
         const repliesFragment = document.createDocumentFragment();
         
         replies.forEach(reply => {
-            const replyRow = document.createElement('div');
-            replyRow.className = 'comment-row reply';
-            const replyInitial = (reply.autor || '?').trim().charAt(0).toUpperCase();
-            const escapedReplyAutor = escapeHtml(reply.autor || '');
-            const escapedReplyFecha = escapeHtml(reply.fecha || '');
-            const escapedReplyTexto = escapeHtml(reply.texto || '');
-            
-            replyRow.innerHTML = `
-                <div class="comment-avatar" title="${escapedReplyAutor}"><span>${replyInitial}</span></div>
-                <div class="comment-main">
-                    <div class="comment-meta">
-                        <span class="comment-time">${escapedReplyFecha}</span>
-                    </div>
-                    <div class="comment-bubble">
-                        <div class="comment-topline">
-                            <div class="comment-identity">
-                                <span class="comment-username" data-user-badge="${escapedReplyAutor}">${escapedReplyAutor}</span>
-                            </div>
-                            <button class="comment-number" title="#">#</button>
-                        </div>
-                        <div class="comment-text">${escapedReplyTexto}</div>
-                    </div>
-                </div>
-            `;
-            repliesFragment.appendChild(replyRow);
+            const replyElement = renderReplyElement(reply, allRepliesMap);
+            repliesFragment.appendChild(replyElement);
         });
         
         repliesContainer.appendChild(repliesFragment);
@@ -574,22 +613,25 @@ function renderCommentsOptimized(comments, commentsList, startIndex = 0, batchSi
         commentsList.innerHTML = '';
     }
     
-    // Pre-computar respuestas para evitar múltiples filtrados
-    const repliesMap = new Map();
+    // Pre-computar TODAS las respuestas (incluyendo respuestas a respuestas) para evitar múltiples filtrados
+    // Este mapa contiene TODOS los comentarios con parentId, organizados por su parentId
+    const allRepliesMap = new Map();
     comments.forEach(comment => {
         if (comment.parentId) {
-            if (!repliesMap.has(comment.parentId)) {
-                repliesMap.set(comment.parentId, []);
+            if (!allRepliesMap.has(comment.parentId)) {
+                allRepliesMap.set(comment.parentId, []);
             }
-            repliesMap.get(comment.parentId).push(comment);
+            allRepliesMap.get(comment.parentId).push(comment);
         }
     });
     
     // Renderizar batch de comentarios
     for (let i = startIndex; i < endIndex; i++) {
         const comment = mainComments[i];
-        const replies = repliesMap.get(comment.id) || [];
-        const commentElement = renderCommentElement(comment, replies);
+        // Obtener solo las respuestas directas (primer nivel)
+        const replies = allRepliesMap.get(comment.id) || [];
+        // Pasar el mapa completo para permitir respuestas anidadas recursivas
+        const commentElement = renderCommentElement(comment, replies, allRepliesMap);
         fragment.appendChild(commentElement);
     }
     
