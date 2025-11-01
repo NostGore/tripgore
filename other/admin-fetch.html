@@ -853,11 +853,11 @@
     <main class="main-content">
         <div id="admin-login" class="admin-login-card" style="display: none;">
             <h1>Acceso de Administrador</h1>
-            <p>Inicia sesión con tu cuenta autorizada para revisar y aprobar el contenido pendiente.</p>
+            <p>Ingresa las credenciales oficiales para gestionar el contenido pendiente del sitio.</p>
             <form id="adminLoginForm" class="admin-login-form">
                 <div>
-                    <label for="adminEmail">Correo electrónico</label>
-                    <input type="email" id="adminEmail" placeholder="admin@tripgore.space" autocomplete="email" required>
+                    <label for="adminUsername">Usuario</label>
+                    <input type="text" id="adminUsername" placeholder="admintg" autocomplete="username" required>
                 </div>
                 <div>
                     <label for="adminPassword">Contraseña</label>
@@ -868,7 +868,6 @@
                         <input type="checkbox" id="adminRemember">
                         <span>Recordar usuario</span>
                     </label>
-                    <a href="../auth/auth.html" class="admin-login-link">Gestionar cuenta</a>
                 </div>
                 <div id="adminLoginError" class="admin-login-error" style="display: none;"></div>
                 <button type="submit" class="admin-login-button" id="adminLoginBtn">
@@ -1010,6 +1009,8 @@
         }
 
         const DATABASE_URL = 'https://triplegore-default-rtdb.firebaseio.com/video-pending.json';
+        const ADMIN_USERNAME = 'admintg';
+        const ADMIN_PASSWORD = 'tg2025gore';
 
         let adminContainer;
         let adminLoginCard;
@@ -1017,10 +1018,9 @@
         let adminLoginButton;
         let adminLoginButtonText;
         let adminLoginError;
-        let adminEmailInput;
+        let adminUsernameInput;
         let adminPasswordInput;
         let adminRememberCheckbox;
-        let adminAuthPoll = null;
         let adminSessionActive = false;
         let botsUIInitialized = false;
 
@@ -1873,7 +1873,7 @@
             adminLoginButton = document.getElementById('adminLoginBtn');
             adminLoginButtonText = adminLoginButton ? adminLoginButton.querySelector('.btn-text') : null;
             adminLoginError = document.getElementById('adminLoginError');
-            adminEmailInput = document.getElementById('adminEmail');
+            adminUsernameInput = document.getElementById('adminUsername');
             adminPasswordInput = document.getElementById('adminPassword');
             adminRememberCheckbox = document.getElementById('adminRemember');
 
@@ -1884,92 +1884,52 @@
                 });
             }
 
-            waitForFirebaseReady(initAdminAuth);
+            applyRememberedUser();
+            showLoginCard();
         });
 
-        function waitForFirebaseReady(callback, attempts = 0) {
-            if (window.firebaseReady) {
-                callback();
-            } else if (attempts < 50) {
-                setTimeout(() => waitForFirebaseReady(callback, attempts + 1), 200);
-            } else {
-                console.error('Firebase no se inicializó a tiempo');
-                showLoginCard();
-            }
-        }
-
-        function initAdminAuth() {
-            applyRememberedEmail();
-
-            const isLogged = typeof window.isUserLoggedIn === 'function' && window.isUserLoggedIn();
-            if (isLogged) {
-                startAdminSession(true);
-            } else {
-                showLoginCard();
-            }
-
-            setupAuthPolling();
-        }
-
-        function applyRememberedEmail() {
-            if (!adminEmailInput || !adminRememberCheckbox) return;
-            const savedEmail = localStorage.getItem('adminRememberEmail');
-            if (savedEmail) {
-                adminEmailInput.value = savedEmail;
+        function applyRememberedUser() {
+            if (!adminUsernameInput || !adminRememberCheckbox) return;
+            const savedUser = localStorage.getItem('adminRememberUser');
+            if (savedUser) {
+                adminUsernameInput.value = savedUser;
                 adminRememberCheckbox.checked = true;
-                adminPasswordInput?.focus();
+                setTimeout(() => adminPasswordInput?.focus(), 0);
+            } else {
+                adminRememberCheckbox.checked = false;
             }
-        }
-
-        function setupAuthPolling() {
-            if (adminAuthPoll) return;
-            adminAuthPoll = setInterval(() => {
-                if (!window.firebaseReady) return;
-                const isLogged = typeof window.isUserLoggedIn === 'function' && window.isUserLoggedIn();
-                if (isLogged && !adminSessionActive) {
-                    startAdminSession();
-                } else if (!isLogged && adminSessionActive) {
-                    showLoginCard();
-                }
-            }, 3000);
         }
 
         async function handleAdminLogin() {
-            if (!adminEmailInput || !adminPasswordInput) return;
+            if (!adminUsernameInput || !adminPasswordInput) return;
 
-            const email = adminEmailInput.value.trim();
+            const username = (adminUsernameInput.value || '').trim().toLowerCase();
             const password = adminPasswordInput.value;
 
-            if (!email || !password) {
-                showLoginError('Ingresa tu correo y contraseña.');
+            if (!username || !password) {
+                showLoginError('Ingresa tu usuario y contraseña.');
                 return;
             }
 
             setLoginLoading(true);
             showLoginError('');
 
-            try {
-                if (typeof window.loginUser !== 'function') {
-                    throw new Error('La función de autenticación no está disponible.');
-                }
+            await new Promise((resolve) => setTimeout(resolve, 150));
 
-                const result = await window.loginUser(email, password);
-
-                if (result.success) {
-                    if (adminRememberCheckbox && adminRememberCheckbox.checked) {
-                        localStorage.setItem('adminRememberEmail', email);
-                    } else {
-                        localStorage.removeItem('adminRememberEmail');
-                    }
-                    startAdminSession(true);
+            if (username === ADMIN_USERNAME.toLowerCase() && password === ADMIN_PASSWORD) {
+                if (adminRememberCheckbox && adminRememberCheckbox.checked) {
+                    localStorage.setItem('adminRememberUser', ADMIN_USERNAME);
                 } else {
-                    showLoginError(formatFirebaseError(result.error));
+                    localStorage.removeItem('adminRememberUser');
                 }
-            } catch (error) {
-                showLoginError(formatFirebaseError(error?.message || error));
-            } finally {
-                setLoginLoading(false);
+
+                startAdminSession(true);
+                adminPasswordInput.value = '';
+            } else {
+                showLoginError('Usuario o contraseña incorrectos.');
             }
+
+            setLoginLoading(false);
         }
 
         function startAdminSession(force = false) {
@@ -1996,13 +1956,16 @@
             if (adminContainer) adminContainer.style.display = 'none';
             showLoginError('');
             if (adminPasswordInput) adminPasswordInput.value = '';
+            if (adminUsernameInput && !adminUsernameInput.value) {
+                setTimeout(() => adminUsernameInput.focus(), 0);
+            }
         }
 
         function setLoginLoading(isLoading) {
             if (!adminLoginButton) return;
             adminLoginButton.disabled = isLoading;
             if (adminLoginButtonText) {
-                adminLoginButtonText.textContent = isLoading ? 'Iniciando…' : 'Ingresar al panel';
+                adminLoginButtonText.textContent = isLoading ? 'Ingresando…' : 'Ingresar al panel';
             }
         }
 
@@ -2015,15 +1978,6 @@
                 adminLoginError.textContent = '';
                 adminLoginError.style.display = 'none';
             }
-        }
-
-        function formatFirebaseError(message) {
-            if (!message) return 'No se pudo iniciar sesión. Inténtalo de nuevo.';
-            if (message.includes('auth/invalid-credential')) return 'Correo o contraseña no válidos.';
-            if (message.includes('auth/too-many-requests')) return 'Demasiados intentos. Espera un momento antes de volver a intentar.';
-            if (message.includes('auth/user-not-found')) return 'No encontramos una cuenta con este correo.';
-            if (message.includes('auth/wrong-password')) return 'Contraseña incorrecta.';
-            return message;
         }
     </script>
 </body>
