@@ -4,27 +4,70 @@ let currentPage = 1;
 let videosPerPage = 25; // 5 filas × 5 columnas = 25 videos por página
 let totalPages = 1;
 let allVideos = [];
-let collaboratorSyncInitialized = false;
+let firebaseVideosInitialized = false;
+let firebaseUnsubscribe = null;
 
-function mergeCollaboratorVideos(videos) {
-    if (typeof window.mergeCollaboratorVideosIntoMediaDB !== 'function') {
+function addVideosToMediaDB(videos) {
+    if (!Array.isArray(videos) || videos.length === 0) {
         return false;
     }
 
-    return window.mergeCollaboratorVideosIntoMediaDB(videos);
+    const idIndex = new Map(mediaDB.map((video, index) => [video.id, index]));
+    let changed = false;
+
+    videos.forEach(video => {
+        if (!video || !video.id) return;
+
+        let normalized = video;
+        if (typeof window.mapFirebaseVideoToMediaDB === 'function' && video.hasOwnProperty('status')) {
+            normalized = window.mapFirebaseVideoToMediaDB(video.idOriginal || video.id, video, 'approved');
+            normalized.id = normalized.id || video.id;
+        }
+
+        if (idIndex.has(normalized.id)) {
+            const idx = idIndex.get(normalized.id);
+            mediaDB[idx] = normalized;
+        } else {
+            mediaDB.push(normalized);
+            idIndex.set(normalized.id, mediaDB.length - 1);
+        }
+        changed = true;
+    });
+
+    if (changed) {
+        mediaDB.sort((a, b) => parseDate(b.fecha) - parseDate(a.fecha));
+    }
+
+    return changed;
 }
 
-function initializeCollaboratorVideosIntegration() {
-    if (collaboratorSyncInitialized) {
+function initializeFirebaseVideos() {
+    if (firebaseVideosInitialized) {
         return;
     }
 
-    collaboratorSyncInitialized = true;
+    if (typeof window.getApprovedVideosOnce !== 'function' ||
+        typeof window.subscribeApprovedVideos !== 'function') {
+        setTimeout(initializeFirebaseVideos, 200);
+        return;
+    }
 
-    const handleVideos = (videos) => {
-        const changed = mergeCollaboratorVideos(videos);
-        if (changed) {
-            console.log('✅ Videos de colaboradores sincronizados');
+    firebaseVideosInitialized = true;
+
+    window.getApprovedVideosOnce()
+        .then((videos) => {
+            if (addVideosToMediaDB(videos)) {
+                console.log('✅ Videos aprobados cargados (lote inicial)');
+                renderVideos();
+                renderRecommendedVideos();
+                renderHiddenVideos();
+            }
+        })
+        .catch((error) => console.error('Error al cargar videos aprobados:', error));
+
+    firebaseUnsubscribe = window.subscribeApprovedVideos((videos) => {
+        if (addVideosToMediaDB(videos)) {
+            console.log('🔄 Videos aprobados actualizados');
             renderVideos();
             renderRecommendedVideos();
             renderHiddenVideos();
@@ -38,17 +81,7 @@ function initializeCollaboratorVideosIntegration() {
                 window.refreshBadgeDecorations();
             }
         }
-    };
-
-    if (typeof window.fetchCollaboratorVideosOnce === 'function') {
-        window.fetchCollaboratorVideosOnce()
-            .then(handleVideos)
-            .catch((error) => console.error('Error al precargar videos de colaboradores:', error));
-    }
-
-    if (typeof window.subscribeCollaboratorVideos === 'function') {
-        window.subscribeCollaboratorVideos(handleVideos);
-    }
+    });
 }
 
 // Función para convertir fecha DD/MM/YY a objeto Date para ordenamiento
@@ -169,6 +202,9 @@ function renderVideos() {
     console.log('Iniciando renderizado de videos...');
     console.log('mediaDB disponible:', typeof mediaDB !== 'undefined');
     console.log('Número de videos:', mediaDB ? mediaDB.length : 'No definido');
+    if (Array.isArray(mediaDB)) {
+        console.log('Primeros videos (id, fecha):', mediaDB.slice(0, 5).map(v => ({ id: v.id, fecha: v.fecha })));
+    }
 
     const videosGrid = document.getElementById('videosGrid');
 
@@ -487,7 +523,7 @@ function closeVideoModal() {
 // Cargar videos cuando la página esté lista
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM cargado, verificando mediaDB...');
-    initializeCollaboratorVideosIntegration();
+    initializeFirebaseVideos();
     // Esperar un poco para asegurar que mediaDB.js se haya cargado
     setTimeout(() => {
         if (typeof mediaDB !== 'undefined') {
@@ -497,7 +533,7 @@ document.addEventListener('DOMContentLoaded', () => {
             renderHiddenVideos();
             if (typeof window.subscribeCollaboratorVideos === 'function' && !collaboratorSyncInitialized) {
                 // Garantizar que la suscripción siga activa tras la primera carga
-                initializeCollaboratorVideosIntegration();
+                initializeFirebaseVideos();
             }
         } else {
             console.error('mediaDB no se cargó correctamente');
@@ -509,7 +545,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     renderRecommendedVideos();
                     renderHiddenVideos();
                     if (typeof window.subscribeCollaboratorVideos === 'function' && !collaboratorSyncInitialized) {
-                        initializeCollaboratorVideosIntegration();
+                    initializeFirebaseVideos();
                     }
                 } else {
                     console.error('mediaDB sigue sin estar disponible');
@@ -687,6 +723,8 @@ function filterVideosByCategory(category) {
     console.log('📊 mediaDB disponible:', typeof mediaDB !== 'undefined');
     console.log('📊 Total videos en mediaDB:', mediaDB ? mediaDB.length : 'No definido');
     
+    const normalizedCategory = category ? category.toUpperCase() : 'TODOS';
+
     const videosGrid = document.getElementById('videosGrid');
     const paginationContainer = document.getElementById('paginationContainer');
     
@@ -736,14 +774,14 @@ function filterVideosByCategory(category) {
     
     // After fade out, filter and render
     setTimeout(() => {
-        if (category === 'TODOS') {
+        if (normalizedCategory === 'TODOS') {
             // Mostrar todos los videos (excluyendo OCULTO) mezclados por fecha
             const filteredVideos = mediaDB.filter(video => video.categoria !== 'OCULTO');
             allVideos = sortVideosByDate([...filteredVideos]);
             console.log(`✅ Mostrando TODOS los videos mezclados por fecha: ${allVideos.length} videos`);
         } else {
             // Filtrar videos por categoría específica (excluyendo OCULTO)
-            const filteredVideos = mediaDB.filter(video => video.categoria === category && video.categoria !== 'OCULTO');
+            const filteredVideos = mediaDB.filter(video => video.categoria === normalizedCategory && video.categoria !== 'OCULTO');
             allVideos = sortVideosByDate([...filteredVideos]);
             console.log(`✅ Mostrando videos de categoría "${category}": ${allVideos.length} videos`);
             

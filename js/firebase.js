@@ -137,6 +137,15 @@ const RESERVED_SOURCE_KEYS = new Set([
     'timestamp', 'lastsyncedat'
 ]);
 
+function extractAuthor(value) {
+    if (!value) return 'Colaborador';
+    const email = String(value).trim();
+    const atIndex = email.indexOf('@');
+    if (atIndex === -1) return email || 'Colaborador';
+    const username = email.slice(0, atIndex);
+    return username || email;
+}
+
 function createMediaEntry(source = {}, options = {}) {
     const {
         statusOverride,
@@ -151,11 +160,13 @@ function createMediaEntry(source = {}, options = {}) {
     const id = idOverride || createMediaId(title, originalId);
     const videoUrl = source.video || source.videoUrl || source.url || source.link || '';
     const cover = ensureCoverFromVideo(videoUrl, source.portada || source.thumbnail || source.cover || '');
-    const category = source.categoria || source.category || 'COLABORADORES';
-    const author = source.autor || source.author || source.submittedBy || 'Colaborador';
+    const rawCategory = source.categoria || source.category || 'COLABORADORES';
+    const category = String(rawCategory).trim().toUpperCase() || 'COLABORADORES';
+    const authorEmail = source.autor || source.author || source.submittedBy || 'Colaborador';
+    const author = extractAuthor(authorEmail);
     const status = statusOverride || source.status || 'pending';
     const submittedAt = source.submittedAt || new Date().toISOString();
-    const submittedBy = source.submittedBy || author;
+    const submittedBy = source.submittedBy || authorEmail;
     const approvedAt = approvedAtOverride !== undefined
         ? approvedAtOverride
         : source.approvedAt || null;
@@ -206,6 +217,11 @@ function extractMediaRecord(entry) {
         categoria: entry.categoria,
         fecha: entry.fecha
     };
+}
+
+function mapFirebaseVideoToMediaDB(videoId, data, statusOverride = 'approved') {
+    const normalized = normalizeVideoForStorage(videoId, data, { statusOverride });
+    return extractMediaRecord(normalized);
 }
 
 // Variable global para el usuario actual
@@ -814,61 +830,57 @@ function mergeCollaboratorVideosIntoMediaDB(videos) {
     return changed;
 }
 
-function subscribeCollaboratorVideos(callback) {
-    const collaboratorsRef = dbRef(db, 'videos');
-    return onValue(collaboratorsRef, (snapshot) => {
+async function getApprovedVideosOnce() {
+    try {
+        const videosRef = dbRef(db, 'videos');
+        const snapshot = await get(videosRef);
         const videos = [];
         snapshot.forEach(childSnapshot => {
-            const videoId = childSnapshot.key;
-            const value = childSnapshot.val();
-            const normalized = normalizeCollaboratorVideo(videoId, value);
-            if (normalized) {
-                videos.push(normalized);
+            const record = mapFirebaseVideoToMediaDB(childSnapshot.key, childSnapshot.val(), 'approved');
+            if (record) {
+                videos.push(record);
             }
         });
+        return videos.sort((a, b) => parseMediaDate(b.fecha) - parseMediaDate(a.fecha));
+    } catch (error) {
+        console.error('Error al obtener videos aprobados:', error);
+        return [];
+    }
+}
 
+function subscribeApprovedVideos(callback) {
+    const videosRef = dbRef(db, 'videos');
+    return onValue(videosRef, (snapshot) => {
+        const videos = [];
+        snapshot.forEach(childSnapshot => {
+            const record = mapFirebaseVideoToMediaDB(childSnapshot.key, childSnapshot.val(), 'approved');
+            if (record) {
+                videos.push(record);
+            }
+        });
         videos.sort((a, b) => parseMediaDate(b.fecha) - parseMediaDate(a.fecha));
         callback(videos);
     });
 }
 
-async function fetchCollaboratorVideosOnce() {
-    try {
-        const collaboratorsRef = dbRef(db, 'videos');
-        const snapshot = await get(collaboratorsRef);
-        const videos = [];
-        snapshot.forEach(childSnapshot => {
-            const normalized = normalizeCollaboratorVideo(childSnapshot.key, childSnapshot.val());
-            if (normalized) {
-                videos.push(normalized);
-            }
-        });
-        return videos.sort((a, b) => parseMediaDate(b.fecha) - parseMediaDate(a.fecha));
-    } catch (error) {
-        console.error('Error al obtener videos de colaboradores:', error);
-        return [];
-    }
-}
-
-async function sanitizePublicVideos() {
+async function sanitizeApprovedVideos() {
     try {
         const videosSnapshot = await get(dbRef(db, 'videos'));
         const updates = {};
 
         videosSnapshot.forEach(childSnapshot => {
-            const key = childSnapshot.key;
-            const value = childSnapshot.val();
-            const normalized = normalizeCollaboratorVideo(key, value);
-            if (normalized) {
-                updates[key] = extractMediaRecord(normalized);
+            const record = mapFirebaseVideoToMediaDB(childSnapshot.key, childSnapshot.val(), 'approved');
+            if (record) {
+                updates[childSnapshot.key] = record;
             }
         });
 
         await set(dbRef(db, 'videos'), updates);
-        console.log('Videos públicos sanitizados:', Object.keys(updates).length);
-        return { success: true, count: Object.keys(updates).length };
+        const total = Object.keys(updates).length;
+        console.log('Videos aprobados sanitizados:', total);
+        return { success: true, count: total };
     } catch (error) {
-        console.error('Error al sanitizar videos públicos:', error);
+        console.error('Error al sanitizar videos aprobados:', error);
         return { success: false, error: error.message };
     }
 }
@@ -886,10 +898,10 @@ window.getPendingVideos = getPendingVideos;
 window.approveVideo = approveVideo;
 window.rejectVideo = rejectVideo;
 window.getVideoById = getVideoById;
-window.subscribeCollaboratorVideos = subscribeCollaboratorVideos;
-window.fetchCollaboratorVideosOnce = fetchCollaboratorVideosOnce;
-window.mergeCollaboratorVideosIntoMediaDB = mergeCollaboratorVideosIntoMediaDB;
-window.sanitizePublicVideos = sanitizePublicVideos;
+window.getApprovedVideosOnce = getApprovedVideosOnce;
+window.subscribeApprovedVideos = subscribeApprovedVideos;
+window.mapFirebaseVideoToMediaDB = mapFirebaseVideoToMediaDB;
+window.sanitizeApprovedVideos = sanitizeApprovedVideos;
 
 // Marcar Firebase como listo
 window.firebaseReady = true;

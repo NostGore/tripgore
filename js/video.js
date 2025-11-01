@@ -8,6 +8,61 @@ let isPlaying = false;
 let collaboratorSubscriptionActive = false;
 let collaboratorInitialLoadPromise = null;
 
+function parseDate(dateString) {
+    if (!dateString) {
+        return new Date(0);
+    }
+
+    const parts = dateString.split('/');
+    if (parts.length === 3) {
+        const [dayStr, monthStr, yearStr] = parts;
+        const day = parseInt(dayStr, 10) || 1;
+        const month = (parseInt(monthStr, 10) || 1) - 1;
+        const year = yearStr.length === 2 ? 2000 + parseInt(yearStr, 10) : parseInt(yearStr, 10);
+        const parsed = new Date(year, month, day);
+        if (!Number.isNaN(parsed.getTime())) {
+            return parsed;
+        }
+    }
+
+    const fallback = new Date(dateString);
+    return Number.isNaN(fallback.getTime()) ? new Date(0) : fallback;
+}
+
+function addFirebaseVideosToMediaDB(videos) {
+    if (!Array.isArray(videos) || videos.length === 0) {
+        return false;
+    }
+
+    const idIndex = new Map(mediaDB.map((video, index) => [video.id, index]));
+    let changed = false;
+
+    videos.forEach(video => {
+        if (!video || !video.id) return;
+
+        let normalized = video;
+        if (typeof window.mapFirebaseVideoToMediaDB === 'function' && video.hasOwnProperty('status')) {
+            normalized = window.mapFirebaseVideoToMediaDB(video.idOriginal || video.id, video, 'approved');
+            normalized.id = normalized.id || video.id;
+        }
+
+        if (idIndex.has(normalized.id)) {
+            const idx = idIndex.get(normalized.id);
+            mediaDB[idx] = normalized;
+        } else {
+            mediaDB.push(normalized);
+            idIndex.set(normalized.id, mediaDB.length - 1);
+        }
+        changed = true;
+    });
+
+    if (changed) {
+        mediaDB.sort((a, b) => parseDate(b.fecha) - parseDate(a.fecha));
+    }
+
+    return changed;
+}
+
 // Reproductor por iframe: no se requiere lógica de play/pause manual
 
 // Función para toggle like
@@ -627,13 +682,11 @@ function ensureCollaboratorVideosLoaded() {
 
     collaboratorInitialLoadPromise = new Promise((resolve) => {
         const mergeVideos = (videos) => {
-            if (typeof window.mergeCollaboratorVideosIntoMediaDB === 'function') {
-                window.mergeCollaboratorVideosIntoMediaDB(videos);
-            }
+            addFirebaseVideosToMediaDB(videos);
         };
 
-        if (typeof window.fetchCollaboratorVideosOnce === 'function') {
-            window.fetchCollaboratorVideosOnce()
+        if (typeof window.getApprovedVideosOnce === 'function') {
+            window.getApprovedVideosOnce()
                 .then((videos) => {
                     mergeVideos(videos);
                     resolve();
@@ -646,13 +699,11 @@ function ensureCollaboratorVideosLoaded() {
             resolve();
         }
 
-        if (!collaboratorSubscriptionActive && typeof window.subscribeCollaboratorVideos === 'function') {
+        if (!collaboratorSubscriptionActive && typeof window.subscribeApprovedVideos === 'function') {
             collaboratorSubscriptionActive = true;
 
-            window.subscribeCollaboratorVideos((videos) => {
-                const changed = typeof window.mergeCollaboratorVideosIntoMediaDB === 'function'
-                    ? window.mergeCollaboratorVideosIntoMediaDB(videos)
-                    : false;
+            window.subscribeApprovedVideos((videos) => {
+                const changed = addFirebaseVideosToMediaDB(videos);
 
                 if (changed) {
                     if (typeof window.refreshLikeroBadges === 'function') {

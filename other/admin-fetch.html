@@ -17,81 +17,125 @@
         }
 
         .admin-login-card {
-            max-width: 420px;
-            margin: 60px auto;
-            padding: 38px 32px;
-            background: linear-gradient(145deg, rgba(26, 26, 26, 0.92) 0%, rgba(12, 12, 12, 0.95) 100%);
-            border: 2px solid rgba(255, 0, 0, 0.3);
-            border-radius: 18px;
-            box-shadow: 0 18px 36px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-            text-align: center;
+            max-width: 440px;
+            margin: 70px auto;
+            padding: 42px 38px;
+            background: linear-gradient(145deg, rgba(20, 20, 20, 0.95) 0%, rgba(8, 8, 8, 0.92) 100%);
+            border: 1px solid rgba(255, 42, 42, 0.35);
+            border-radius: 26px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(18px);
+            text-align: left;
         }
 
-        .admin-login-card h1 {
-            color: #fff;
-            font-size: 26px;
-            margin-bottom: 12px;
+        .admin-login-header {
             display: flex;
-            justify-content: center;
             align-items: center;
-            gap: 12px;
+            gap: 18px;
+            margin-bottom: 28px;
         }
 
-        .admin-login-card h1::before {
-            content: '\f023';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            color: #ff4d4d;
-            font-size: 22px;
+        .admin-login-badge {
+            width: 58px;
+            height: 58px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, rgba(255, 65, 65, 0.25) 0%, rgba(179, 0, 0, 0.45) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff5050;
+            font-size: 26px;
+            box-shadow: inset 0 0 0 1px rgba(255, 77, 77, 0.35);
         }
 
-        .admin-login-card p {
-            color: #ccc;
+        .admin-login-header h1 {
+            margin: 0;
+            color: #fff;
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .admin-login-header p {
+            margin: 6px 0 0 0;
+            color: #c7c7c7;
             font-size: 14px;
-            margin-bottom: 24px;
-            line-height: 1.5;
         }
 
         .admin-login-form {
             display: flex;
             flex-direction: column;
-            gap: 18px;
-            text-align: left;
+            gap: 20px;
         }
 
-        .admin-login-form label {
-            display: block;
+        .form-field label {
             color: #ddd;
             font-size: 13px;
-            margin-bottom: 6px;
-            font-weight: 600;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 8px;
         }
 
-        .admin-login-form input[type="email"],
-        .admin-login-form input[type="password"] {
-            width: 100%;
-            background: #101010;
-            border: 1px solid #444;
-            color: #f7f7f7;
-            padding: 12px;
-            border-radius: 10px;
-            font-size: 14px;
+        .form-input {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(17, 17, 17, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 0 14px;
             transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .admin-login-form input[type="email"]:focus,
-        .admin-login-form input[type="password"]:focus {
+        .form-input:focus-within {
+            border-color: rgba(255, 75, 75, 0.9);
+            box-shadow: 0 0 0 3px rgba(255, 75, 75, 0.15);
+        }
+
+        .form-input i {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 15px;
+        }
+
+        .form-input input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 15px;
+            padding: 16px 0;
+        }
+
+        .form-input input::placeholder {
+            color: rgba(255, 255, 255, 0.35);
+        }
+
+        .form-input input:focus {
             outline: none;
-            border-color: #ff4d4d;
-            box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.15);
+        }
+
+        .password-visibility {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.55);
+            cursor: pointer;
+            font-size: 16px;
+            padding: 6px;
+            transition: color 0.2s ease;
+        }
+
+        .password-visibility:hover {
+            color: #fff;
         }
 
         .admin-login-extra {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
+            margin-top: 4px;
         }
 
         .remember-me {
@@ -99,7 +143,7 @@
             align-items: center;
             gap: 8px;
             font-size: 13px;
-            color: #ccc;
+            color: #cfcfcf;
             cursor: pointer;
             user-select: none;
         }
@@ -110,23 +154,23 @@
             accent-color: #ff4d4d;
         }
 
-        .admin-login-link {
+        .forgot-password {
+            color: #ff7474;
             font-size: 13px;
-            color: #ff8080;
             text-decoration: none;
             transition: color 0.2s ease;
         }
 
-        .admin-login-link:hover {
-            color: #ff4d4d;
+        .forgot-password:hover {
+            color: #ffd6d6;
         }
 
         .admin-login-error {
             background: rgba(255, 77, 77, 0.12);
             border: 1px solid rgba(255, 77, 77, 0.4);
             color: #ffbaba;
-            border-radius: 10px;
-            padding: 10px 14px;
+            border-radius: 12px;
+            padding: 12px 16px;
             font-size: 13px;
         }
 
@@ -134,27 +178,29 @@
             background: linear-gradient(135deg, #ff1f1f 0%, #c30000 100%);
             color: #fff;
             border: none;
-            border-radius: 12px;
-            padding: 14px;
-            font-size: 15px;
+            border-radius: 14px;
+            padding: 15px;
+            font-size: 16px;
             font-weight: 700;
+            letter-spacing: 0.4px;
             cursor: pointer;
             transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
+            width: 100%;
         }
 
         .admin-login-button:disabled {
-            opacity: 0.6;
+            opacity: 0.45;
             cursor: not-allowed;
             box-shadow: none;
         }
 
         .admin-login-button:not(:disabled):hover {
-            transform: translateY(-1px);
-            box-shadow: 0 10px 24px rgba(255, 31, 31, 0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 16px 32px rgba(255, 31, 31, 0.3);
             filter: brightness(1.05);
         }
 
@@ -163,6 +209,25 @@
             font-family: 'Font Awesome 6 Free';
             font-weight: 900;
             margin-right: 8px;
+        }
+
+        .admin-login-footer {
+            margin-top: 26px;
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            color: #9d9d9d;
+            font-size: 13px;
+        }
+
+        .admin-login-footer a {
+            color: #ff6f6f;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .admin-login-footer a:hover {
+            text-decoration: underline;
         }
 
         /* Mejoras para móviles */
@@ -198,22 +263,22 @@
             }
 
             .admin-login-card {
-                margin: 30px auto;
-                padding: 28px 22px;
+                margin: 35px auto;
+                padding: 32px 24px;
             }
 
-            .admin-login-card h1 {
-                font-size: 22px;
+            .admin-login-header h1 {
+                font-size: 24px;
             }
 
-            .admin-login-card p {
+            .admin-login-header p {
                 font-size: 13px;
             }
 
             .admin-login-extra {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 10px;
+                gap: 12px;
             }
 
             .admin-header {
@@ -326,12 +391,24 @@
             }
 
             .admin-login-card {
-                margin: 20px auto;
-                padding: 24px 18px;
+                margin: 24px auto;
+                padding: 26px 20px;
             }
 
-            .admin-login-card h1 {
-                font-size: 20px;
+            .admin-login-header h1 {
+                font-size: 22px;
+            }
+
+            .admin-login-header p {
+                font-size: 12px;
+            }
+
+            .form-input {
+                padding: 0 10px;
+            }
+
+            .form-input input {
+                padding: 12px 0;
             }
 
             .admin-header {
@@ -851,29 +928,49 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <div id="admin-login" class="admin-login-card" style="display: none;">
-            <h1>Acceso de Administrador</h1>
-            <p>Ingresa las credenciales oficiales para gestionar el contenido pendiente del sitio.</p>
-            <form id="adminLoginForm" class="admin-login-form">
-                <div>
-                    <label for="adminUsername">Usuario</label>
-                    <input type="text" id="adminUsername" placeholder="admintg" autocomplete="username" required>
+        <div id="admin-login" class="admin-login-card" style="display:none;">
+            <div class="admin-login-header">
+                <div class="admin-login-badge">
+                    <i class="fa-solid fa-shield-halved"></i>
                 </div>
                 <div>
+                    <h1>Acceso de Administrador</h1>
+                    <p>Ingresa tus credenciales para gestionar el contenido pendiente del sitio.</p>
+                </div>
+            </div>
+            <form id="adminLoginForm" class="admin-login-form">
+                <div class="form-field">
+                    <label for="adminUsername">Usuario</label>
+                    <div class="form-input">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" id="adminUsername" placeholder="admintg" autocomplete="username" spellcheck="false" required>
+                    </div>
+                </div>
+                <div class="form-field">
                     <label for="adminPassword">Contraseña</label>
-                    <input type="password" id="adminPassword" placeholder="••••••••" autocomplete="current-password" required>
+                    <div class="form-input">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="adminPassword" placeholder="••••••••" autocomplete="current-password" required>
+                        <button type="button" class="password-visibility" id="togglePassword" aria-label="Mostrar u ocultar contraseña">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="admin-login-extra">
                     <label class="remember-me">
                         <input type="checkbox" id="adminRemember">
                         <span>Recordar usuario</span>
                     </label>
+                    <a href="#" id="adminForgotPassword" class="forgot-password">¿Olvidaste la contraseña?</a>
                 </div>
                 <div id="adminLoginError" class="admin-login-error" style="display: none;"></div>
                 <button type="submit" class="admin-login-button" id="adminLoginBtn">
                     <span class="btn-text">Ingresar al panel</span>
                 </button>
             </form>
+            <div class="admin-login-footer">
+                <span>¿Necesitas acceso?</span><a href="mailto:colabmc.net@gmail.com?subject=Solicitud%20de%20acceso%20panel">Contacta soporte</a>
+            </div>
         </div>
 
         <div class="admin-container" style="display: none;">
@@ -1021,6 +1118,8 @@
         let adminUsernameInput;
         let adminPasswordInput;
         let adminRememberCheckbox;
+let togglePasswordBtn;
+let adminForgotPasswordLink;
         let adminSessionActive = false;
         let botsUIInitialized = false;
 
@@ -1894,6 +1993,8 @@
             adminUsernameInput = document.getElementById('adminUsername');
             adminPasswordInput = document.getElementById('adminPassword');
             adminRememberCheckbox = document.getElementById('adminRemember');
+    togglePasswordBtn = document.getElementById('togglePassword');
+    adminForgotPasswordLink = document.getElementById('adminForgotPassword');
 
             if (adminLoginForm) {
                 adminLoginForm.addEventListener('submit', async (event) => {
@@ -1902,20 +2003,44 @@
                 });
             }
 
+    if (togglePasswordBtn && adminPasswordInput) {
+        togglePasswordBtn.addEventListener('click', () => {
+            const nextType = adminPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            adminPasswordInput.setAttribute('type', nextType);
+            const icon = togglePasswordBtn.querySelector('i');
+            if (icon) {
+                icon.className = nextType === 'password' ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash';
+            }
+        });
+    }
+
+    if (adminForgotPasswordLink) {
+        adminForgotPasswordLink.addEventListener('click', (event) => {
+            event.preventDefault();
+            alert('Contacta con soporte: colabmc.net@gmail.com');
+        });
+    }
+
             applyRememberedUser();
             showLoginCard();
         });
 
         function applyRememberedUser() {
-            if (!adminUsernameInput || !adminRememberCheckbox) return;
-            const savedUser = localStorage.getItem('adminRememberUser');
-            if (savedUser) {
-                adminUsernameInput.value = savedUser;
-                adminRememberCheckbox.checked = true;
-                setTimeout(() => adminPasswordInput?.focus(), 0);
-            } else {
-                adminRememberCheckbox.checked = false;
-            }
+    if (!adminUsernameInput || !adminRememberCheckbox) return;
+    const savedUser = localStorage.getItem('adminRememberUser');
+    const rememberFlag = localStorage.getItem('adminRememberFlag') === 'true';
+
+    if (rememberFlag && savedUser) {
+        adminUsernameInput.value = savedUser;
+    } else {
+        adminUsernameInput.value = '';
+    }
+
+    adminRememberCheckbox.checked = rememberFlag;
+
+    if (rememberFlag && adminPasswordInput) {
+        setTimeout(() => adminPasswordInput.focus(), 0);
+    }
         }
 
         async function handleAdminLogin() {
@@ -1935,11 +2060,14 @@
             await new Promise((resolve) => setTimeout(resolve, 150));
 
             if (username === ADMIN_USERNAME.toLowerCase() && password === ADMIN_PASSWORD) {
-                if (adminRememberCheckbox && adminRememberCheckbox.checked) {
-                    localStorage.setItem('adminRememberUser', ADMIN_USERNAME);
-                } else {
-                    localStorage.removeItem('adminRememberUser');
-                }
+        const rememberChecked = adminRememberCheckbox && adminRememberCheckbox.checked;
+        if (rememberChecked) {
+            localStorage.setItem('adminRememberUser', adminUsernameInput.value.trim());
+            localStorage.setItem('adminRememberFlag', 'true');
+        } else {
+            localStorage.removeItem('adminRememberUser');
+            localStorage.removeItem('adminRememberFlag');
+        }
 
                 startAdminSession(true);
                 adminPasswordInput.value = '';
@@ -1956,6 +2084,7 @@
 
             if (adminLoginCard) adminLoginCard.style.display = 'none';
             if (adminContainer) adminContainer.style.display = 'block';
+    document.body.style.background = '';
 
             const adminPanel = document.getElementById('admin-panel');
             if (adminPanel) adminPanel.style.display = 'block';
@@ -1977,6 +2106,7 @@
             if (adminUsernameInput && !adminUsernameInput.value) {
                 setTimeout(() => adminUsernameInput.focus(), 0);
             }
+    document.body.style.background = 'linear-gradient(135deg, #050505 0%, #101010 50%, #181818 100%)';
         }
 
         function setLoginLoading(isLoading) {
