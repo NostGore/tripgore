@@ -637,9 +637,6 @@
     <!-- Incluir la base de datos de videos -->
     <script src="database/mediaDB.js"></script>
     
-    <!-- Incluir la base de datos de roles -->
-    <script src="database/rolesDB.js"></script>
-    
     <!-- Incluir el archivo header.js -->
     <script src="js/header.js"></script>
 
@@ -734,15 +731,12 @@
             userProfile = user;
             const username = user.email.split('@')[0];
             
-            // Obtener insignias del usuario
-            const userBadges = getUserBadgesHTML ? getUserBadgesHTML(username) : '';
-            
             // Actualizar header del dashboard
             document.getElementById('dashboardHeader').innerHTML = `
                 <div class="profile-avatar">
                     ${username.charAt(0).toUpperCase()}
                 </div>
-                <h1 class="profile-username">${userBadges}${username}</h1>
+                <h1 class="profile-username">${username}</h1>
                 <p class="profile-email">${user.email}</p>
                 <div class="dashboard-stats">
                     <div class="stat-card">

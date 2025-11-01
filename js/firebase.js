@@ -49,25 +49,6 @@ function updateHeaderForLoggedUser(user) {
     const email = user.email;
     const username = email.split('@')[0];
     
-    // Función para actualizar insignias cuando estén listas
-    function updateUserBadges() {
-        if (typeof getUserBadgesHTML !== 'undefined') {
-            getUserBadgesHTML(username).then(badges => {
-                // Solo actualizar si hay insignias
-                if (badges && badges.trim() !== '') {
-                    const userEmailElements = document.querySelectorAll('.user-email');
-                    userEmailElements.forEach(element => {
-                        if (element.textContent.includes(username)) {
-                            element.innerHTML = badges + username;
-                        }
-                    });
-                }
-            }).catch(error => {
-                console.log('No se pudieron cargar las insignias:', error);
-            });
-        }
-    }
-
     // Mostrar enlaces al perfil
     const profileLink = document.getElementById('profileLink');
     const mobileProfileLink = document.getElementById('mobileProfileLink');
@@ -97,9 +78,6 @@ function updateHeaderForLoggedUser(user) {
                 </button>
             </div>
         `;
-        
-        // Actualizar insignias después de crear el HTML
-        updateUserBadges();
     }
 
     // Actualizar perfil móvil
@@ -120,9 +98,6 @@ function updateHeaderForLoggedUser(user) {
                 </button>
             </div>
         `;
-        
-        // Actualizar insignias después de crear el HTML
-        updateUserBadges();
     }
 }
 

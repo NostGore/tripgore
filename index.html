@@ -292,9 +292,6 @@
     <!-- Incluir la base de datos de anuncios -->
     <script src="database/adsDB.js"></script>
 
-    <!-- Incluir la base de datos de roles -->
-    <script src="database/rolesDB.js"></script>
-
     <!-- Incluir el script de anuncios emergentes -->
     <script src="js/popupAds.js"></script>
 
@@ -442,7 +439,7 @@
         }
 
         // Renderizar colaboradores
-        async function renderColaboradores() {
+        function renderColaboradores() {
             const grid = document.getElementById('colaboradoresGrid');
             
             // Mostrar estado de carga
@@ -456,24 +453,13 @@
             let html = '';
             
             for (const colaborador of colaboradoresData) {
-                // Obtener insignias del colaborador
-                let colaboradorBadges = '';
-                if (typeof getUserBadgesHTML !== 'undefined') {
-                    try {
-                        colaboradorBadges = await getUserBadgesHTML(colaborador.name);
-                    } catch (error) {
-                        console.log('Error obteniendo insignias para colaborador', colaborador.name, ':', error);
-                        colaboradorBadges = '';
-                    }
-                }
-                
                 html += `
                     <div class="colaborador-card" onclick="showColaboradorVideos('${colaborador.id}')">
                         <div class="colaborador-avatar">
                             ${colaborador.avatar}
                         </div>
                         <div class="colaborador-info">
-                            <h3 class="colaborador-name">${colaboradorBadges}${colaborador.name}</h3>
+                            <h3 class="colaborador-name">${colaborador.name}</h3>
                             <div class="colaborador-stats">
                                 <div class="stat-item">
                                     <span class="stat-number">${colaborador.videosCount}</span>
@@ -498,7 +484,7 @@
         }
 
         // Mostrar videos de un colaborador
-        async function showColaboradorVideos(colaboradorId) {
+        function showColaboradorVideos(colaboradorId) {
             const colaborador = colaboradoresData.find(c => c.id === colaboradorId);
             if (!colaborador) return;
 
@@ -510,18 +496,7 @@
             // Mostrar videos del colaborador
             document.getElementById('colaboradorVideos').style.display = 'block';
             
-            // Obtener insignias del colaborador para el título
-            let colaboradorBadges = '';
-            if (typeof getUserBadgesHTML !== 'undefined') {
-                try {
-                    colaboradorBadges = await getUserBadgesHTML(colaborador.name);
-                } catch (error) {
-                    console.log('Error obteniendo insignias para colaborador en título', colaborador.name, ':', error);
-                    colaboradorBadges = '';
-                }
-            }
-            
-            document.getElementById('colaboradorName').innerHTML = `Videos de ${colaboradorBadges}${colaborador.name}`;
+            document.getElementById('colaboradorName').innerHTML = `Videos de ${colaborador.name}`;
 
             // Renderizar videos
             renderColaboradorVideos(colaborador.videos);

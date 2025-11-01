@@ -16,6 +16,155 @@
             min-height: calc(100vh - 80px);
         }
 
+        .admin-login-card {
+            max-width: 420px;
+            margin: 60px auto;
+            padding: 38px 32px;
+            background: linear-gradient(145deg, rgba(26, 26, 26, 0.92) 0%, rgba(12, 12, 12, 0.95) 100%);
+            border: 2px solid rgba(255, 0, 0, 0.3);
+            border-radius: 18px;
+            box-shadow: 0 18px 36px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .admin-login-card h1 {
+            color: #fff;
+            font-size: 26px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-login-card h1::before {
+            content: '\f023';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: #ff4d4d;
+            font-size: 22px;
+        }
+
+        .admin-login-card p {
+            color: #ccc;
+            font-size: 14px;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .admin-login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            text-align: left;
+        }
+
+        .admin-login-form label {
+            display: block;
+            color: #ddd;
+            font-size: 13px;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .admin-login-form input[type="email"],
+        .admin-login-form input[type="password"] {
+            width: 100%;
+            background: #101010;
+            border: 1px solid #444;
+            color: #f7f7f7;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .admin-login-form input[type="email"]:focus,
+        .admin-login-form input[type="password"]:focus {
+            outline: none;
+            border-color: #ff4d4d;
+            box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.15);
+        }
+
+        .admin-login-extra {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .remember-me {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #ccc;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .remember-me input {
+            width: 16px;
+            height: 16px;
+            accent-color: #ff4d4d;
+        }
+
+        .admin-login-link {
+            font-size: 13px;
+            color: #ff8080;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .admin-login-link:hover {
+            color: #ff4d4d;
+        }
+
+        .admin-login-error {
+            background: rgba(255, 77, 77, 0.12);
+            border: 1px solid rgba(255, 77, 77, 0.4);
+            color: #ffbaba;
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 13px;
+        }
+
+        .admin-login-button {
+            background: linear-gradient(135deg, #ff1f1f 0%, #c30000 100%);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 14px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .admin-login-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .admin-login-button:not(:disabled):hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 24px rgba(255, 31, 31, 0.35);
+            filter: brightness(1.05);
+        }
+
+        .admin-login-button .btn-text::before {
+            content: '\f084';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            margin-right: 8px;
+        }
+
         /* Mejoras para móviles */
         * {
             -webkit-tap-highlight-color: transparent;
@@ -46,6 +195,25 @@
             .admin-container {
                 margin: 15px auto;
                 padding: 0 10px;
+            }
+
+            .admin-login-card {
+                margin: 30px auto;
+                padding: 28px 22px;
+            }
+
+            .admin-login-card h1 {
+                font-size: 22px;
+            }
+
+            .admin-login-card p {
+                font-size: 13px;
+            }
+
+            .admin-login-extra {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
             }
 
             .admin-header {
@@ -155,6 +323,15 @@
             .admin-container {
                 margin: 10px auto;
                 padding: 0 8px;
+            }
+
+            .admin-login-card {
+                margin: 20px auto;
+                padding: 24px 18px;
+            }
+
+            .admin-login-card h1 {
+                font-size: 20px;
             }
 
             .admin-header {
@@ -674,6 +851,32 @@
 
     <!-- Main Content -->
     <main class="main-content">
+        <div id="admin-login" class="admin-login-card" style="display: none;">
+            <h1>Acceso de Administrador</h1>
+            <p>Inicia sesión con tu cuenta autorizada para revisar y aprobar el contenido pendiente.</p>
+            <form id="adminLoginForm" class="admin-login-form">
+                <div>
+                    <label for="adminEmail">Correo electrónico</label>
+                    <input type="email" id="adminEmail" placeholder="admin@tripgore.space" autocomplete="email" required>
+                </div>
+                <div>
+                    <label for="adminPassword">Contraseña</label>
+                    <input type="password" id="adminPassword" placeholder="••••••••" autocomplete="current-password" required>
+                </div>
+                <div class="admin-login-extra">
+                    <label class="remember-me">
+                        <input type="checkbox" id="adminRemember">
+                        <span>Recordar usuario</span>
+                    </label>
+                    <a href="../auth/auth.html" class="admin-login-link">Gestionar cuenta</a>
+                </div>
+                <div id="adminLoginError" class="admin-login-error" style="display: none;"></div>
+                <button type="submit" class="admin-login-button" id="adminLoginBtn">
+                    <span class="btn-text">Ingresar al panel</span>
+                </button>
+            </form>
+        </div>
+
         <div class="admin-container" style="display: none;">
             <a href="#" onclick="goToHome(); return false;" class="back-btn">
                 <i class="fa-solid fa-arrow-left"></i>
@@ -808,7 +1011,22 @@
 
         const DATABASE_URL = 'https://triplegore-default-rtdb.firebaseio.com/video-pending.json';
 
+        let adminContainer;
+        let adminLoginCard;
+        let adminLoginForm;
+        let adminLoginButton;
+        let adminLoginButtonText;
+        let adminLoginError;
+        let adminEmailInput;
+        let adminPasswordInput;
+        let adminRememberCheckbox;
+        let adminAuthPoll = null;
+        let adminSessionActive = false;
+        let botsUIInitialized = false;
+
         async function cargarVideos() {
+            const loadingAuth = document.getElementById('loading-auth');
+            if (loadingAuth) loadingAuth.style.display = 'block';
             try {
                 console.log('Cargando videos con Fetch...');
                 const response = await fetch(DATABASE_URL);
@@ -824,6 +1042,8 @@
             } catch (error) {
                 console.error('Error:', error);
                 document.getElementById('videos').innerHTML = '<p>Error al cargar videos: ' + error.message + '</p>';
+            } finally {
+                if (loadingAuth) loadingAuth.style.display = 'none';
             }
         }
 
@@ -1646,208 +1866,164 @@
             }
         }
 
-        // Verificar autenticación y cargar contenido
-        document.addEventListener('DOMContentLoaded', function() {
-            const correctPassword = "tgdev258";
-            // Usamos un pequeño retraso para asegurar que la página se renderice antes del prompt
-            setTimeout(() => {
-                const enteredPassword = prompt("Por favor, ingresa la contraseña de administrador:", "");
+        document.addEventListener('DOMContentLoaded', () => {
+            adminContainer = document.querySelector('.admin-container');
+            adminLoginCard = document.getElementById('admin-login');
+            adminLoginForm = document.getElementById('adminLoginForm');
+            adminLoginButton = document.getElementById('adminLoginBtn');
+            adminLoginButtonText = adminLoginButton ? adminLoginButton.querySelector('.btn-text') : null;
+            adminLoginError = document.getElementById('adminLoginError');
+            adminEmailInput = document.getElementById('adminEmail');
+            adminPasswordInput = document.getElementById('adminPassword');
+            adminRememberCheckbox = document.getElementById('adminRemember');
 
-                const adminContainer = document.querySelector('.admin-container');
-                const mainContent = document.querySelector('.main-content');
+            if (adminLoginForm) {
+                adminLoginForm.addEventListener('submit', async (event) => {
+                    event.preventDefault();
+                    await handleAdminLogin();
+                });
+            }
 
-                if (enteredPassword === correctPassword) {
-                    // Contraseña correcta, mostrar el panel y proceder con la verificación de login
-                    adminContainer.style.display = 'block';
-                    checkAuthenticationByHeader();
-                } else {
-                    // Contraseña incorrecta, mostrar mensaje de acceso denegado
-                    mainContent.innerHTML = `
-                        <div class="not-logged-in-message" style="margin-top: 50px;">
-                            <div class="message-icon">
-                                <i class="fa-solid fa-ban"></i>
-                            </div>
-                            <h2>Acceso Denegado</h2>
-                            <p>La contraseña ingresada es incorrecta. No tienes permiso para ver esta página.</p>
-                            <div class="auth-buttons">
-                                <a href="#" onclick="goToHome(); return false;" class="btn-home">
-                                    <i class="fa-solid fa-home"></i>
-                                    Volver al Inicio
-                                </a>
-                            </div>
-                        </div>
-                    `;
-                }
-            }, 100);
+            waitForFirebaseReady(initAdminAuth);
         });
 
-        // Función para verificar autenticación basándose en el header
-        function checkAuthenticationByHeader() {
-            console.log('Verificando autenticación por header...');
-            
-            // Buscar elementos del header que indiquen que el usuario está logueado
-            const userEmail = document.querySelector('.user-email');
-            const mobileUserEmail = document.querySelector('.mobile-user-profile .user-email');
-            const logoutBtn = document.querySelector('.logout-btn');
-            const mobileLogoutBtn = document.querySelector('.mobile-user-profile .logout-btn');
-            
-            console.log('Elementos encontrados:', {
-                userEmail: userEmail ? userEmail.textContent : 'No encontrado',
-                mobileUserEmail: mobileUserEmail ? mobileUserEmail.textContent : 'No encontrado',
-                logoutBtn: logoutBtn ? 'Encontrado' : 'No encontrado',
-                mobileLogoutBtn: mobileLogoutBtn ? 'Encontrado' : 'No encontrado'
-            });
-            
-            // Verificar si hay indicadores de usuario logueado
-            const isLoggedIn = (
-                (userEmail && userEmail.textContent && userEmail.textContent !== 'No logueado') ||
-                (mobileUserEmail && mobileUserEmail.textContent && mobileUserEmail.textContent !== 'No logueado') ||
-                logoutBtn ||
-                mobileLogoutBtn
-            );
-            
-            console.log('Usuario logueado detectado:', isLoggedIn);
-            
-            const loadingAuth = document.getElementById('loading-auth');
-            const adminPanel = document.getElementById('admin-panel');
-            
-            // Ocultar loading
-            if (loadingAuth) {
-                loadingAuth.style.display = 'none';
-            }
-            
-            if (isLoggedIn) {
-                // Usuario logueado, mostrar panel y cargar videos
-                console.log('Usuario autenticado detectado por header, mostrando panel...');
-                if (adminPanel) {
-                    adminPanel.style.display = 'block';
-                }
-                // Inicializar Bots UI cuando el panel esté visible
-                initBotsUI();
-                cargarVideos();
-                return true; // Indica que se completó la verificación
+        function waitForFirebaseReady(callback, attempts = 0) {
+            if (window.firebaseReady) {
+                callback();
+            } else if (attempts < 50) {
+                setTimeout(() => waitForFirebaseReady(callback, attempts + 1), 200);
             } else {
-                // Usuario no logueado, mostrar mensaje
-                console.log('Usuario no autenticado detectado por header');
-                showNotLoggedInMessage();
-                return false; // Indica que necesita seguir verificando
+                console.error('Firebase no se inicializó a tiempo');
+                showLoginCard();
             }
         }
 
-        // Función de respaldo para verificar autenticación
-        function checkAuthenticationFallback() {
-            console.log('Usando verificación de respaldo...');
-            
-            // Intentar usar Firebase Auth directamente
-            if (typeof auth !== 'undefined' && auth.currentUser) {
-                console.log('Usuario encontrado via auth.currentUser:', auth.currentUser.email);
-                const loadingAuth = document.getElementById('loading-auth');
-                const adminPanel = document.getElementById('admin-panel');
-                
-                if (loadingAuth) {
-                    loadingAuth.style.display = 'none';
-                }
-                if (adminPanel) {
-                    adminPanel.style.display = 'block';
-                }
-                cargarVideos();
+        function initAdminAuth() {
+            applyRememberedEmail();
+
+            const isLogged = typeof window.isUserLoggedIn === 'function' && window.isUserLoggedIn();
+            if (isLogged) {
+                startAdminSession(true);
             } else {
-                console.log('No se encontró usuario autenticado');
-                showNotLoggedInMessage();
+                showLoginCard();
+            }
+
+            setupAuthPolling();
+        }
+
+        function applyRememberedEmail() {
+            if (!adminEmailInput || !adminRememberCheckbox) return;
+            const savedEmail = localStorage.getItem('adminRememberEmail');
+            if (savedEmail) {
+                adminEmailInput.value = savedEmail;
+                adminRememberCheckbox.checked = true;
+                adminPasswordInput?.focus();
             }
         }
 
-        // Función para verificar autenticación
-        function checkAuthentication() {
-            console.log('Verificando autenticación...');
-            
-            // Verificar si las funciones de Firebase están disponibles
-            if (typeof getCurrentUser !== 'function') {
-                console.error('getCurrentUser no está disponible');
-                showNotLoggedInMessage();
+        function setupAuthPolling() {
+            if (adminAuthPoll) return;
+            adminAuthPoll = setInterval(() => {
+                if (!window.firebaseReady) return;
+                const isLogged = typeof window.isUserLoggedIn === 'function' && window.isUserLoggedIn();
+                if (isLogged && !adminSessionActive) {
+                    startAdminSession();
+                } else if (!isLogged && adminSessionActive) {
+                    showLoginCard();
+                }
+            }, 3000);
+        }
+
+        async function handleAdminLogin() {
+            if (!adminEmailInput || !adminPasswordInput) return;
+
+            const email = adminEmailInput.value.trim();
+            const password = adminPasswordInput.value;
+
+            if (!email || !password) {
+                showLoginError('Ingresa tu correo y contraseña.');
                 return;
             }
-            
-            const currentUser = getCurrentUser();
-            const loadingAuth = document.getElementById('loading-auth');
-            const adminPanel = document.getElementById('admin-panel');
-            
-            console.log('Usuario actual:', currentUser);
-            
-            // Ocultar loading
-            if (loadingAuth) {
-                loadingAuth.style.display = 'none';
-            }
-            
-            if (!currentUser) {
-                // Usuario no logueado, mostrar mensaje y redirigir
-                console.log('Usuario no autenticado, mostrando mensaje de acceso restringido');
-                showNotLoggedInMessage();
-            } else {
-                // Usuario logueado, mostrar panel y cargar videos
-                console.log('Usuario autenticado:', currentUser.email);
-                if (adminPanel) {
-                    adminPanel.style.display = 'block';
+
+            setLoginLoading(true);
+            showLoginError('');
+
+            try {
+                if (typeof window.loginUser !== 'function') {
+                    throw new Error('La función de autenticación no está disponible.');
                 }
-                cargarVideos();
+
+                const result = await window.loginUser(email, password);
+
+                if (result.success) {
+                    if (adminRememberCheckbox && adminRememberCheckbox.checked) {
+                        localStorage.setItem('adminRememberEmail', email);
+                    } else {
+                        localStorage.removeItem('adminRememberEmail');
+                    }
+                    startAdminSession(true);
+                } else {
+                    showLoginError(formatFirebaseError(result.error));
+                }
+            } catch (error) {
+                showLoginError(formatFirebaseError(error?.message || error));
+            } finally {
+                setLoginLoading(false);
             }
         }
 
-        // Función para mostrar mensaje de no logueado
-        function showNotLoggedInMessage() {
-            const adminContent = document.querySelector('.admin-content');
-            adminContent.innerHTML = `
-                <div class="not-logged-in-message">
-                    <div class="message-icon">
-                        <i class="fa-solid fa-lock"></i>
-                    </div>
-                    <h2>Acceso Restringido</h2>
-                    <p>Necesitas iniciar sesión para acceder al panel de administración.</p>
-                    <div class="auth-buttons">
-                        <a href="#" onclick="goToAuth(); return false;" class="btn btn-login">
-                            <i class="fa-solid fa-sign-in-alt"></i>
-                            Iniciar Sesión
-                        </a>
-                        <a href="#" onclick="retryAuthentication(); return false;" class="btn btn-retry">
-                            <i class="fa-solid fa-refresh"></i>
-                            Reintentar
-                        </a>
-                        <a href="#" onclick="goToHome(); return false;" class="btn btn-home">
-                            <i class="fa-solid fa-home"></i>
-                            Volver al Inicio
-                        </a>
-                    </div>
-                </div>
-            `;
+        function startAdminSession(force = false) {
+            if (adminSessionActive && !force) return;
+            adminSessionActive = true;
+
+            if (adminLoginCard) adminLoginCard.style.display = 'none';
+            if (adminContainer) adminContainer.style.display = 'block';
+
+            const adminPanel = document.getElementById('admin-panel');
+            if (adminPanel) adminPanel.style.display = 'block';
+
+            if (!botsUIInitialized) {
+                initBotsUI();
+                botsUIInitialized = true;
+            }
+
+            cargarVideos();
         }
 
-        // Función para reintentar autenticación
-        function retryAuthentication() {
-            console.log('Reintentando autenticación...');
-            const adminContent = document.querySelector('.admin-content');
-            adminContent.innerHTML = `
-                <div class="loading-auth">
-                    <div class="loading-spinner"></div>
-                    <p>Reintentando verificación...</p>
-                </div>
-            `;
-            
-            // Esperar un momento y verificar nuevamente usando el header
-            setTimeout(() => {
-                checkAuthenticationByHeader();
-            }, 1000);
+        function showLoginCard() {
+            adminSessionActive = false;
+            if (adminLoginCard) adminLoginCard.style.display = 'block';
+            if (adminContainer) adminContainer.style.display = 'none';
+            showLoginError('');
+            if (adminPasswordInput) adminPasswordInput.value = '';
         }
 
-        // Función para ir a la página de autenticación
-        function goToAuth() {
-            const currentPath = window.location.pathname;
-            const tripgoreIndex = currentPath.indexOf('/tripgore');
-            if (tripgoreIndex !== -1) {
-                const basePath = currentPath.substring(0, tripgoreIndex + '/tripgore'.length);
-                window.location.href = basePath + '/auth/auth.html';
+        function setLoginLoading(isLoading) {
+            if (!adminLoginButton) return;
+            adminLoginButton.disabled = isLoading;
+            if (adminLoginButtonText) {
+                adminLoginButtonText.textContent = isLoading ? 'Iniciando…' : 'Ingresar al panel';
+            }
+        }
+
+        function showLoginError(message) {
+            if (!adminLoginError) return;
+            if (message) {
+                adminLoginError.textContent = message;
+                adminLoginError.style.display = 'block';
             } else {
-                window.location.href = './auth/auth.html';
+                adminLoginError.textContent = '';
+                adminLoginError.style.display = 'none';
             }
+        }
+
+        function formatFirebaseError(message) {
+            if (!message) return 'No se pudo iniciar sesión. Inténtalo de nuevo.';
+            if (message.includes('auth/invalid-credential')) return 'Correo o contraseña no válidos.';
+            if (message.includes('auth/too-many-requests')) return 'Demasiados intentos. Espera un momento antes de volver a intentar.';
+            if (message.includes('auth/user-not-found')) return 'No encontramos una cuenta con este correo.';
+            if (message.includes('auth/wrong-password')) return 'Contraseña incorrecta.';
+            return message;
         }
     </script>
 </body>

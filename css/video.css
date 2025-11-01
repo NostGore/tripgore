@@ -1330,15 +1330,6 @@
         .comment-identity { display: flex; align-items: center; gap: 8px; }
         .comment-username { color: #ffffff; font-weight: 700; }
 
-        .comment-role-badge {
-            font-size: 11px;
-            color: #e5e5e5;
-            background: #101010;
-            border: 1px solid #3a0b0b;
-            border-radius: 3px;
-            padding: 2px 6px;
-        }
-
         .comment-number {
             background: transparent;
             border: none;

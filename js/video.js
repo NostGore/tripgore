@@ -407,52 +407,30 @@ function loadComments() {
     // Load comments from Firebase
     window.videoFunctions.getComments(currentVideoId, (comments) => {
         if (!comments || comments.length === 0) {
-        commentsList.innerHTML = `
-                    <div class="no-comments">
-                        <i class="fa-solid fa-comment-slash"></i>
-                        <p>No hay comentarios aún. ¡Sé el primero en comentar!</p>
-                    </div>
-                `;
-        return;
-    }
+            commentsList.innerHTML = `
+                <div class="no-comments">
+                    <i class="fa-solid fa-comment-slash"></i>
+                    <p>No hay comentarios aún. ¡Sé el primero en comentar!</p>
+                </div>
+            `;
+            return;
+        }
 
         // Filter main comments (not replies)
         const mainComments = comments.filter(comment => !comment.parentId);
         
-        // Función para renderizar comentarios con insignias
-        async function renderCommentsWithBadges() {
+        // Función para renderizar comentarios
+        function renderCommentsWithBadges() {
             let commentsHTML = '';
             
             for (const comment of mainComments) {
                 // Get replies for this comment
                 const replies = comments.filter(reply => reply.parentId === comment.id);
-                
-                // Obtener insignias del autor del comentario (asíncrono)
-                let authorBadges = '';
-                if (typeof getUserBadgesHTML !== 'undefined') {
-                    try {
-                        authorBadges = await getUserBadgesHTML(comment.autor);
-                    } catch (error) {
-                        console.log('Error obteniendo insignias para', comment.autor, ':', error);
-                        authorBadges = '';
-                    }
-                }
             
-                // Procesar respuestas de forma asíncrona
+                // Procesar respuestas
                 let repliesHTML = '';
                 for (const reply of replies) {
-                    let replyBadges = '';
-                    if (typeof getUserBadgesHTML !== 'undefined') {
-                        try {
-                            replyBadges = await getUserBadgesHTML(reply.autor);
-                        } catch (error) {
-                            console.log('Error obteniendo insignias para reply', reply.autor, ':', error);
-                            replyBadges = '';
-                        }
-                    }
                     const replyInitial = (reply.autor || '?').trim().charAt(0).toUpperCase();
-                    const replyRole = (typeof window.getUserPrimaryRole === 'function') ? (window.getUserPrimaryRole(reply.autor) || '') : '';
-                    const replyRoleBadgeHTML = replyRole ? `<span class=\"comment-role-badge\">${replyRole}</span>` : '';
 
                     repliesHTML += `
                         <div class="comment-row reply">
@@ -463,10 +441,10 @@ function loadComments() {
                                 </div>
                                 <div class="comment-bubble">
                                     <div class="comment-topline">
-                                        <div class=\"comment-identity\">
-                                            <span class=\"comment-username\">${replyBadges}${reply.autor}</span>
-                                            ${replyRoleBadgeHTML}
+                                        <div class="comment-identity">
+                                            <span class="comment-username">${reply.autor}</span>
                                         </div>
+                                        <button class="comment-number" title="#">#</button>
                                     </div>
                                     <div class="comment-text">${reply.texto}</div>
                                 </div>
@@ -476,8 +454,6 @@ function loadComments() {
                 }
                 
                 const initial = (comment.autor || '?').trim().charAt(0).toUpperCase();
-                const role = (typeof window.getUserPrimaryRole === 'function') ? (window.getUserPrimaryRole(comment.autor) || '') : '';
-                const roleBadgeHTML = role ? `<span class=\"comment-role-badge\">${role}</span>` : '';
 
                 commentsHTML += `
                     <div class="comment-row">
@@ -489,9 +465,8 @@ function loadComments() {
                             </div>
                             <div class="comment-bubble">
                                 <div class="comment-topline">
-                                    <div class=\"comment-identity\">
-                                        <span class=\"comment-username\">${authorBadges}${comment.autor}</span>
-                                        ${roleBadgeHTML}
+                                        <div class="comment-identity">
+                                            <span class="comment-username">${comment.autor}</span>
                                     </div>
                                     <button class="comment-number" title="#">#</button>
                                 </div>
@@ -520,70 +495,8 @@ function loadComments() {
             commentsList.innerHTML = commentsHTML;
         }
         
-        // Llamar a la función asíncrona
         renderCommentsWithBadges();
     });
-}
-
-function buildCommentTree(comments) {
-    const map = {};
-    const roots = [];
-    comments.forEach(c => { map[c.id] = { ...c, children: [] }; });
-    comments.forEach(c => {
-        if (c.parentId) {
-            if (map[c.parentId]) map[c.parentId].children.push(map[c.id]);
-            else roots.push(map[c.id]);
-        } else {
-            roots.push(map[c.id]);
-        }
-    });
-    return roots;
-}
-
-async function renderCommentTree(nodes, level = 0) {
-    const results = [];
-    
-    for (const node of nodes) {
-        let nodeBadges = '';
-        if (typeof getUserBadgesHTML !== 'undefined') {
-            try {
-                nodeBadges = await getUserBadgesHTML(node.author);
-            } catch (error) {
-                console.log('Error obteniendo insignias para', node.author, ':', error);
-                nodeBadges = '';
-            }
-        }
-        
-        const childrenHTML = node.children && node.children.length ? await renderCommentTree(node.children, level + 1) : '';
-        
-        results.push(`
-            <div class="comment-item" style="margin-left:${level * 16}px;">
-                <div class="comment-header">
-                    <span class="comment-author">${nodeBadges}${node.author}</span>
-                    <span class="comment-date">${node.date}</span>
-                </div>
-                <div class="comment-text">${node.text}</div>
-                <div style="margin-top:8px;">
-                    <button class="reply-btn" onclick="showReplyForm(${node.id})">
-                        <i class="fa-solid fa-reply"></i>
-                        Responder
-                    </button>
-                </div>
-                <div id="reply-form-${node.id}" style="display:none; margin-top:10px;">
-                    <div class="comment-input-group">
-                        <textarea class="comment-input" id="reply-input-${node.id}" placeholder="Escribe tu respuesta..." rows="2"></textarea>
-                        <button class="reply-submit-btn" onclick="submitReply(${node.id})">
-                            <i class="fa-solid fa-reply"></i>
-                            Responder
-                        </button>
-                    </div>
-                </div>
-                ${childrenHTML}
-            </div>
-        `);
-    }
-    
-    return results.join('');
 }
 
 // Mostrar formulario de respuesta
