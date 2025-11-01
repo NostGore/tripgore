@@ -185,6 +185,12 @@ function updateLikeButtons() {
 // Cargar datos del video por ID
 function loadVideoById(videoId) {
     if (typeof mediaDB === 'undefined') return;
+    
+    // Limpiar comentarios del video anterior si estamos cambiando de video
+    if (currentVideoId && currentVideoId !== videoId) {
+        cleanupComments();
+    }
+    
     // Buscar video por ID (incluyendo videos OCULTOS)
     const video = mediaDB.find(v => v.id === videoId);
     if (!video) {
@@ -446,118 +452,258 @@ function getComments() {
     }
 }
 
-// Cargar comentarios desde Firebase
+// Variables para optimización de comentarios
+let commentsDebounceTimer = null;
+let commentsUnsubscribe = null;
+let commentsInitialRender = true;
+let renderedCommentsCount = 0;
+const COMMENTS_PER_BATCH = 15; // Cargar comentarios en lotes
+const COMMENTS_DEBOUNCE_MS = 300; // Debounce para evitar renders constantes
+
+// Función helper para escapar HTML y prevenir XSS
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// Renderizar comentario individual (optimizado)
+function renderCommentElement(comment, replies) {
+    const commentRow = document.createElement('div');
+    commentRow.className = 'comment-row';
+    
+    const initial = (comment.autor || '?').trim().charAt(0).toUpperCase();
+    const escapedAutor = escapeHtml(comment.autor || '');
+    const escapedFecha = escapeHtml(comment.fecha || '');
+    const escapedTexto = escapeHtml(comment.texto || '');
+    const escapedId = escapeHtml(comment.id || '');
+    
+    // Crear estructura del comentario
+    commentRow.innerHTML = `
+        <div class="comment-avatar" title="${escapedAutor}"><span>${initial}</span></div>
+        <div class="comment-main">
+            <div class="comment-meta">
+                <span class="comment-time">${escapedFecha}</span>
+            </div>
+            <div class="comment-bubble">
+                <div class="comment-topline">
+                    <div class="comment-identity">
+                        <span class="comment-username" data-user-badge="${escapedAutor}">${escapedAutor}</span>
+                    </div>
+                    <button class="comment-number" title="#">#</button>
+                </div>
+                <div class="comment-text">${escapedTexto}</div>
+                <div class="comment-actions">
+                    <button class="reply-btn" onclick="showReplyForm('${escapedId}')">
+                        <i class="fa-solid fa-reply"></i> Responder
+                    </button>
+                </div>
+                <div class="reply-form" id="reply-form-${escapedId}" style="display: none;">
+                    <textarea class="reply-input" placeholder="Escribe tu respuesta..."></textarea>
+                    <div>
+                        <button class="reply-submit-btn" onclick="submitReply('${escapedId}')">
+                            <i class="fa-solid fa-reply"></i> Responder
+                        </button>
+                        <button class="reply-cancel-btn" onclick="hideReplyForm('${escapedId}')">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // Renderizar respuestas si existen
+    if (replies && replies.length > 0) {
+        const repliesContainer = commentRow.querySelector('.comment-bubble');
+        const repliesFragment = document.createDocumentFragment();
+        
+        replies.forEach(reply => {
+            const replyRow = document.createElement('div');
+            replyRow.className = 'comment-row reply';
+            const replyInitial = (reply.autor || '?').trim().charAt(0).toUpperCase();
+            const escapedReplyAutor = escapeHtml(reply.autor || '');
+            const escapedReplyFecha = escapeHtml(reply.fecha || '');
+            const escapedReplyTexto = escapeHtml(reply.texto || '');
+            
+            replyRow.innerHTML = `
+                <div class="comment-avatar" title="${escapedReplyAutor}"><span>${replyInitial}</span></div>
+                <div class="comment-main">
+                    <div class="comment-meta">
+                        <span class="comment-time">${escapedReplyFecha}</span>
+                    </div>
+                    <div class="comment-bubble">
+                        <div class="comment-topline">
+                            <div class="comment-identity">
+                                <span class="comment-username" data-user-badge="${escapedReplyAutor}">${escapedReplyAutor}</span>
+                            </div>
+                            <button class="comment-number" title="#">#</button>
+                        </div>
+                        <div class="comment-text">${escapedReplyTexto}</div>
+                    </div>
+                </div>
+            `;
+            repliesFragment.appendChild(replyRow);
+        });
+        
+        repliesContainer.appendChild(repliesFragment);
+    }
+    
+    return commentRow;
+}
+
+// Renderizar comentarios de forma optimizada con paginación
+function renderCommentsOptimized(comments, commentsList, startIndex = 0, batchSize = COMMENTS_PER_BATCH) {
+    // Filter main comments (not replies)
+    const mainComments = comments.filter(comment => !comment.parentId);
+    
+    if (mainComments.length === 0) {
+        commentsList.innerHTML = `
+            <div class="no-comments">
+                <i class="fa-solid fa-comment-slash"></i>
+                <p>No hay comentarios aún. ¡Sé el primero en comentar!</p>
+            </div>
+        `;
+        return;
+    }
+    
+    // Usar DocumentFragment para renderizado eficiente
+    const fragment = document.createDocumentFragment();
+    const endIndex = Math.min(startIndex + batchSize, mainComments.length);
+    
+    // Limpiar solo si es el primer render
+    if (startIndex === 0) {
+        commentsList.innerHTML = '';
+    }
+    
+    // Pre-computar respuestas para evitar múltiples filtrados
+    const repliesMap = new Map();
+    comments.forEach(comment => {
+        if (comment.parentId) {
+            if (!repliesMap.has(comment.parentId)) {
+                repliesMap.set(comment.parentId, []);
+            }
+            repliesMap.get(comment.parentId).push(comment);
+        }
+    });
+    
+    // Renderizar batch de comentarios
+    for (let i = startIndex; i < endIndex; i++) {
+        const comment = mainComments[i];
+        const replies = repliesMap.get(comment.id) || [];
+        const commentElement = renderCommentElement(comment, replies);
+        fragment.appendChild(commentElement);
+    }
+    
+    commentsList.appendChild(fragment);
+    renderedCommentsCount = endIndex;
+    
+    // Decorar badges solo para los elementos recién renderizados (debatido para mejor rendimiento)
+    if (window.decorateElementsWithBadges) {
+        // Usar requestAnimationFrame para evitar bloquear el render
+        requestAnimationFrame(() => {
+            // Decorar solo los nuevos elementos, no todos los comentarios
+            const allCommentRows = commentsList.querySelectorAll('.comment-row');
+            const newCommentRows = Array.from(allCommentRows).slice(startIndex);
+            
+            // Crear un contenedor temporal solo con los nuevos elementos
+            if (newCommentRows.length > 0) {
+                // Decorar solo los nuevos elementos usando la función global optimizada
+                window.decorateElementsWithBadges('data-user-badge', {});
+            }
+        });
+    }
+    
+    // Si hay más comentarios, añadir botón "Cargar más" o usar Intersection Observer
+    if (endIndex < mainComments.length) {
+        // Eliminar botón anterior si existe
+        const existingLoadMore = commentsList.querySelector('.load-more-comments');
+        if (existingLoadMore) {
+            existingLoadMore.remove();
+        }
+        
+        const loadMoreBtn = document.createElement('div');
+        loadMoreBtn.className = 'load-more-comments';
+        loadMoreBtn.innerHTML = `
+            <button class="load-more-btn" onclick="loadMoreComments()">
+                <i class="fa-solid fa-chevron-down"></i>
+                Cargar más comentarios (${mainComments.length - endIndex} restantes)
+            </button>
+        `;
+        commentsList.appendChild(loadMoreBtn);
+    }
+}
+
+// Función para cargar más comentarios
+let allCommentsCache = [];
+let allMainCommentsCache = [];
+
+function loadMoreComments() {
+    if (!currentVideoId || !window.videoFunctions) return;
+    
+    const commentsList = document.getElementById('commentsList');
+    if (!commentsList) return;
+    
+    renderCommentsOptimized(allCommentsCache, commentsList, renderedCommentsCount, COMMENTS_PER_BATCH);
+}
+
+// Cargar comentarios desde Firebase con debouncing y optimizaciones
 function loadComments() {
     if (!currentVideoId || !window.videoFunctions) return;
 
     const commentsList = document.getElementById('commentsList');
     if (!commentsList) return;
 
-    // Mostrar estado de carga
-    commentsList.innerHTML = `
-        <div class="no-comments">
-            <i class="fa-solid fa-circle-notch fa-spin"></i>
-            <p>Cargando comentarios...</p>
-        </div>
-    `;
+    // Limpiar listener anterior si existe
+    if (commentsUnsubscribe && typeof commentsUnsubscribe === 'function') {
+        commentsUnsubscribe();
+    }
 
-    // Load comments from Firebase
-    window.videoFunctions.getComments(currentVideoId, (comments) => {
-        if (!comments || comments.length === 0) {
-            commentsList.innerHTML = `
-                <div class="no-comments">
-                    <i class="fa-solid fa-comment-slash"></i>
-                    <p>No hay comentarios aún. ¡Sé el primero en comentar!</p>
-                </div>
-            `;
-            return;
-        }
+    // Mostrar estado de carga solo en el primer render
+    if (commentsInitialRender) {
+        commentsList.innerHTML = `
+            <div class="no-comments">
+                <i class="fa-solid fa-circle-notch fa-spin"></i>
+                <p>Cargando comentarios...</p>
+            </div>
+        `;
+        commentsInitialRender = false;
+    }
 
-        // Filter main comments (not replies)
-        const mainComments = comments.filter(comment => !comment.parentId);
-        
-        // Función para renderizar comentarios
-        function renderCommentsWithBadges() {
-            let commentsHTML = '';
-            
-            for (const comment of mainComments) {
-                // Get replies for this comment
-                const replies = comments.filter(reply => reply.parentId === comment.id);
-            
-                // Procesar respuestas
-                let repliesHTML = '';
-                for (const reply of replies) {
-                    const replyInitial = (reply.autor || '?').trim().charAt(0).toUpperCase();
-
-                    repliesHTML += `
-                        <div class="comment-row reply">
-                            <div class="comment-avatar" title="${reply.autor}"><span>${replyInitial}</span></div>
-                            <div class="comment-main">
-                                <div class="comment-meta">
-                                    <span class="comment-time">${reply.fecha}</span>
-                                </div>
-                                <div class="comment-bubble">
-                                    <div class="comment-topline">
-                                <div class="comment-identity">
-                                    <span class="comment-username" data-user-badge="${reply.autor}">${reply.autor}</span>
-                                        </div>
-                                        <button class="comment-number" title="#">#</button>
-                                    </div>
-                                    <div class="comment-text">${reply.texto}</div>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                }
-                
-                const initial = (comment.autor || '?').trim().charAt(0).toUpperCase();
-
-                commentsHTML += `
-                    <div class="comment-row">
-                        <div class="comment-avatar" title="${comment.autor}"><span>${initial}</span></div>
-                        <div class="comment-main">
-                            <div class="comment-meta">
-                                <span class="comment-time">${comment.fecha}</span>
-                                <button class="comment-share" onclick="shareCurrentVideo()" title="Compartir"><i class="fa-solid fa-share-nodes"></i></button>
-                            </div>
-                            <div class="comment-bubble">
-                                <div class="comment-topline">
-                                <div class="comment-identity">
-                                    <span class="comment-username" data-user-badge="${comment.autor}">${comment.autor}</span>
-                                    </div>
-                                    <button class="comment-number" title="#">#</button>
-                                </div>
-                                <div class="comment-text">${comment.texto}</div>
-                                <div class="comment-actions">
-                                    <button class="reply-btn" onclick="showReplyForm('${comment.id}')">
-                                        <i class="fa-solid fa-reply"></i> Responder
-                                    </button>
-                                </div>
-                                <div class="reply-form" id="reply-form-${comment.id}" style="display: none;">
-                                    <textarea class="reply-input" placeholder="Escribe tu respuesta..."></textarea>
-                                    <div>
-                                        <button class="reply-submit-btn" onclick="submitReply('${comment.id}')">
-                                            <i class="fa-solid fa-reply"></i> Responder
-                                        </button>
-                                        <button class="reply-cancel-btn" onclick="hideReplyForm('${comment.id}')">Cancelar</button>
-                                    </div>
-                                </div>
-                                ${repliesHTML}
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
-            
-            commentsList.innerHTML = commentsHTML;
-
-            if (window.decorateElementsWithBadges) {
-                window.decorateElementsWithBadges();
-            }
+    // Función de renderizado con debouncing
+    const debouncedRender = (comments) => {
+        // Cancelar timer anterior
+        if (commentsDebounceTimer) {
+            clearTimeout(commentsDebounceTimer);
         }
         
-        renderCommentsWithBadges();
-    });
+        // Guardar en cache
+        allCommentsCache = comments;
+        
+        // Debounce para evitar renders constantes
+        commentsDebounceTimer = setTimeout(() => {
+            renderedCommentsCount = 0;
+            renderCommentsOptimized(comments, commentsList, 0, COMMENTS_PER_BATCH);
+            commentsDebounceTimer = null;
+        }, COMMENTS_DEBOUNCE_MS);
+    };
+
+    // Load comments from Firebase con listener optimizado
+    commentsUnsubscribe = window.videoFunctions.getComments(currentVideoId, debouncedRender);
+}
+
+// Limpiar recursos al cambiar de video
+function cleanupComments() {
+    if (commentsUnsubscribe && typeof commentsUnsubscribe === 'function') {
+        commentsUnsubscribe();
+        commentsUnsubscribe = null;
+    }
+    if (commentsDebounceTimer) {
+        clearTimeout(commentsDebounceTimer);
+        commentsDebounceTimer = null;
+    }
+    allCommentsCache = [];
+    allMainCommentsCache = [];
+    renderedCommentsCount = 0;
+    commentsInitialRender = true;
 }
 
 // Mostrar formulario de respuesta

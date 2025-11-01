@@ -518,6 +518,7 @@
             font-size: 13px;
             color: #888;
             font-weight: 400;
+            display: none; /* Ocultar fecha de comentarios */
         }
 
         .comment-text {
@@ -642,6 +643,7 @@
 
         .reply-comment .comment-date {
             font-size: 12px;
+            display: none; /* Ocultar fecha de respuestas */
         }
 
         .no-comments {
@@ -789,7 +791,7 @@
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
-                background-attachment: fixed;
+                /* background-attachment: fixed; - REMOVIDO: Causa problemas graves de rendimiento en móviles */
                 border: none;
                 border-top: 3px solid #ff0000;
                 border-bottom: 3px solid #ff0000;
@@ -903,6 +905,7 @@
                 padding: 4px 8px;
                 border-radius: 8px;
                 white-space: nowrap;
+                display: none; /* Ocultar fecha en móviles */
             }
 
             .comment-text {
@@ -1200,6 +1203,7 @@
             padding: 4px 10px;
             border-radius: 999px;
             border: 1px solid rgba(255, 255, 255, 0.06);
+            display: none; /* Ocultar fecha de comentarios */
         }
 
         .comment-text {
@@ -1244,6 +1248,7 @@
         .comment-row.reply {
             grid-template-columns: 70px 1fr;
             margin-left: 20px;
+            margin-top: 18px; /* Espacio entre botón "Responder" y el comentario respondido */
         }
 
         .comment-avatar {
@@ -1267,28 +1272,16 @@
         .comment-main { display: flex; flex-direction: column; gap: 8px; }
 
         .comment-meta {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
-            padding: 6px 10px;
-            border: 1px solid #3a0b0b;
-            background: #0f0f0f;
-            color: #bfbfbf;
-            border-radius: 4px;
+            display: none; /* Oculto ya que no contiene elementos visibles */
         }
 
-        .comment-time { font-size: 12px; color: #a7a7a7; }
-
-        .comment-share {
-            background: transparent;
-            border: none;
-            color: #c5c5c5;
-            cursor: pointer;
-            padding: 4px 6px;
+        .comment-time { 
+            font-size: 12px; 
+            color: #a7a7a7; 
+            display: none; /* Ocultar fecha y hora de comentarios */
         }
 
-        .comment-share:hover { color: #ffffff; }
+        /* Botón de compartir eliminado - ya no se usa */
 
         .comment-bubble {
             position: relative;
@@ -1336,4 +1329,77 @@
             color: #888;
             font-weight: 700;
             cursor: default;
+        }
+
+        /* Botón "Cargar más comentarios" */
+        .load-more-comments {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .load-more-btn {
+            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(255, 0, 0, 0.3);
+        }
+
+        .load-more-btn:hover {
+            background: linear-gradient(135deg, #e60000 0%, #b30000 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 0, 0, 0.4);
+        }
+
+        .load-more-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Optimizaciones de rendimiento CSS para comentarios */
+        .comments-list {
+            contain: layout style paint;
+            will-change: scroll-position;
+        }
+
+        .comment-row {
+            contain: layout style paint;
+            transform: translateZ(0); /* Aceleración GPU */
+            backface-visibility: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .comment-bubble {
+            contain: layout style paint;
+            transform: translateZ(0); /* Aceleración GPU */
+        }
+
+        .comment-avatar {
+            contain: layout style paint;
+            transform: translateZ(0);
+        }
+
+        /* Reducir animaciones en móviles para mejor rendimiento */
+        @media (max-width: 768px) {
+            .comment-row {
+                will-change: auto;
+            }
+            
+            /* Desactivar animaciones costosas en móviles */
+            .comment-item {
+                animation: none !important;
+            }
+            
+            .load-more-btn {
+                width: 100%;
+                padding: 14px;
+                font-size: 15px;
+            }
         }
