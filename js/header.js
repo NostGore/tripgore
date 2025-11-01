@@ -360,24 +360,53 @@ function setupMobileEvents() {
 
 // Variable global para almacenar la base de datos
 let globalMediaDB = null;
+let mediaDBPromise = null;
 
-// Función para cargar la base de datos desde el archivo JSON
+// Función para cargar la base de datos desde el archivo
 async function loadMediaDB() {
-    try {
-        const response = await fetch('database/mediaDB.js');
-        const scriptContent = await response.text();
-        
-        // Extraer el contenido de mediaDB del script
-        const match = scriptContent.match(/const mediaDB = (\[[\s\S]*?\]);/);
-        if (match) {
-            globalMediaDB = JSON.parse(match[1]);
-            console.log('✅ Base de datos cargada:', globalMediaDB.length, 'videos');
-        } else {
-            console.error('❌ No se pudo extraer mediaDB del archivo');
-        }
-    } catch (error) {
-        console.error('❌ Error al cargar la base de datos:', error);
+    if (typeof mediaDB !== 'undefined') {
+        globalMediaDB = mediaDB;
+        return globalMediaDB;
     }
+
+    if (globalMediaDB) {
+        return globalMediaDB;
+    }
+
+    if (!mediaDBPromise) {
+        mediaDBPromise = (async () => {
+            try {
+                const response = await fetch('database/mediaDB.js');
+                if (!response.ok) {
+                    throw new Error(`Estado HTTP ${response.status}`);
+                }
+
+                const scriptContent = await response.text();
+                const extractor = new Function(`${scriptContent}; return typeof mediaDB !== 'undefined' ? mediaDB : null;`);
+                const result = extractor();
+
+                if (Array.isArray(result)) {
+                    globalMediaDB = result;
+                    if (typeof window !== 'undefined' && typeof window.mediaDB === 'undefined') {
+                        window.mediaDB = result;
+                    }
+                    console.log('✅ Base de datos cargada:', globalMediaDB.length, 'videos');
+                    return globalMediaDB;
+                }
+
+                throw new Error('mediaDB no encontrado en el archivo');
+            } catch (error) {
+                console.error('❌ Error al cargar la base de datos:', error);
+                return null;
+            } finally {
+                if (!globalMediaDB) {
+                    mediaDBPromise = null;
+                }
+            }
+        })();
+    }
+
+    return mediaDBPromise;
 }
 
 // Función para obtener la base de datos (compatible con index.html)
@@ -434,21 +463,41 @@ function clearSearchResults() {
 // Función para buscar videos con sugerencias en tiempo real
 function searchVideos(query) {
     const searchResults = document.getElementById('searchResults');
+    const trimmedQuery = query ? query.trim() : '';
     const mediaDB = getMediaDB();
 
     // Verificar que mediaDB esté disponible
     if (!mediaDB) {
-        searchResults.innerHTML = `
-            <div class="no-results">
-                <i class="fa-solid fa-exclamation-triangle"></i>
-                <p>Base de datos no disponible</p>
-            </div>
-        `;
+        if (searchResults) {
+            searchResults.style.display = 'block';
+            searchResults.innerHTML = `
+                <div class="no-results">
+                    <i class="fa-solid fa-circle-notch fa-spin"></i>
+                    <p>Cargando base de datos...</p>
+                </div>
+            `;
+        }
+
+        loadMediaDB().then((loadedDB) => {
+            const currentInput = document.getElementById('searchInput');
+            const currentQuery = currentInput ? currentInput.value.trim() : '';
+
+            if (loadedDB && trimmedQuery && trimmedQuery === currentQuery) {
+                searchVideos(trimmedQuery);
+            } else if (!loadedDB && searchResults) {
+                searchResults.innerHTML = `
+                    <div class="no-results">
+                        <i class="fa-solid fa-exclamation-triangle"></i>
+                        <p>No se pudo cargar la base de datos</p>
+                    </div>
+                `;
+            }
+        });
         return;
     }
 
     // Si no hay query, ocultar resultados
-    if (!query || query.trim().length === 0) {
+    if (!trimmedQuery) {
         searchResults.style.display = 'none';
         return;
     }
@@ -459,9 +508,9 @@ function searchVideos(query) {
     // Filtrar videos que coincidan con la búsqueda (máximo 6 resultados para mejor UX)
     const filteredVideos = mediaDB.filter(video =>
         video.categoria !== 'OCULTO' && (
-            video.titulo.toLowerCase().includes(query.toLowerCase()) ||
-            video.categoria.toLowerCase().includes(query.toLowerCase()) ||
-            video.autor.toLowerCase().includes(query.toLowerCase())
+            video.titulo.toLowerCase().includes(trimmedQuery.toLowerCase()) ||
+            video.categoria.toLowerCase().includes(trimmedQuery.toLowerCase()) ||
+            video.autor.toLowerCase().includes(trimmedQuery.toLowerCase())
         )
     ).slice(0, 6);
 
@@ -469,7 +518,7 @@ function searchVideos(query) {
         searchResults.innerHTML = `
             <div class="no-results">
                 <i class="fa-solid fa-search"></i>
-                <p>No se encontraron resultados para "${query}"</p>
+                <p>No se encontraron resultados para "${trimmedQuery}"</p>
             </div>
         `;
         return;
@@ -482,7 +531,7 @@ function searchVideos(query) {
                 <img src="${video.portada}" alt="${video.titulo}">
             </div>
             <div class="suggestion-info">
-                <h3 class="suggestion-title">${highlightSearchTerm(video.titulo, query)}</h3>
+                <h3 class="suggestion-title">${highlightSearchTerm(video.titulo, trimmedQuery)}</h3>
                 <div class="suggestion-meta">
                     <span class="suggestion-author">${video.autor}</span>
                     <span class="suggestion-date">${video.fecha}</span>
@@ -498,6 +547,7 @@ function searchVideos(query) {
 // Función para búsqueda móvil con sugerencias
 function searchVideosMobile(query) {
     const mobileSearchResults = document.getElementById('mobileSearchResults');
+    const trimmedQuery = query ? query.trim() : '';
     const mediaDB = getMediaDB();
 
     // Si no existe el contenedor, crearlo
@@ -514,17 +564,34 @@ function searchVideosMobile(query) {
 
     // Verificar que mediaDB esté disponible
     if (!mediaDB) {
+        mobileSearchResults.style.display = 'block';
         mobileSearchResults.innerHTML = `
             <div class="no-results">
-                <i class="fa-solid fa-exclamation-triangle"></i>
-                <p>Base de datos no disponible</p>
+                <i class="fa-solid fa-circle-notch fa-spin"></i>
+                <p>Cargando base de datos...</p>
             </div>
         `;
+
+        loadMediaDB().then((loadedDB) => {
+            const currentInput = document.getElementById('mobileSearchInput');
+            const currentQuery = currentInput ? currentInput.value.trim() : '';
+
+            if (loadedDB && trimmedQuery && trimmedQuery === currentQuery) {
+                searchVideosMobile(trimmedQuery);
+            } else if (!loadedDB) {
+                mobileSearchResults.innerHTML = `
+                    <div class="no-results">
+                        <i class="fa-solid fa-exclamation-triangle"></i>
+                        <p>No se pudo cargar la base de datos</p>
+                    </div>
+                `;
+            }
+        });
         return;
     }
 
     // Si no hay query, ocultar resultados
-    if (!query || query.trim().length === 0) {
+    if (!trimmedQuery) {
         mobileSearchResults.style.display = 'none';
         return;
     }
@@ -535,9 +602,9 @@ function searchVideosMobile(query) {
     // Filtrar videos que coincidan con la búsqueda (máximo 5 resultados para móvil)
     const filteredVideos = mediaDB.filter(video =>
         video.categoria !== 'OCULTO' && (
-            video.titulo.toLowerCase().includes(query.toLowerCase()) ||
-            video.categoria.toLowerCase().includes(query.toLowerCase()) ||
-            video.autor.toLowerCase().includes(query.toLowerCase())
+            video.titulo.toLowerCase().includes(trimmedQuery.toLowerCase()) ||
+            video.categoria.toLowerCase().includes(trimmedQuery.toLowerCase()) ||
+            video.autor.toLowerCase().includes(trimmedQuery.toLowerCase())
         )
     ).slice(0, 5);
 
@@ -558,7 +625,7 @@ function searchVideosMobile(query) {
                 <img src="${video.portada}" alt="${video.titulo}">
             </div>
             <div class="mobile-suggestion-info">
-                <h3 class="mobile-suggestion-title">${highlightSearchTerm(video.titulo, query)}</h3>
+                <h3 class="mobile-suggestion-title">${highlightSearchTerm(video.titulo, trimmedQuery)}</h3>
                 <div class="mobile-suggestion-meta">
                     <span class="mobile-suggestion-category">${video.categoria}</span>
                 </div>
@@ -702,21 +769,35 @@ function normalizeText(text) {
 // Función para buscar videos para el modal con palabras clave
 function searchVideosForModal(query) {
     const modalResults = document.getElementById('searchModalResults');
+    const trimmedQuery = query ? query.trim() : '';
     const mediaDB = getMediaDB();
 
     // Verificar que mediaDB esté disponible
     if (!mediaDB) {
         modalResults.innerHTML = `
             <div class="no-modal-results">
-                <i class="fa-solid fa-exclamation-triangle"></i>
-                <p>Base de datos no disponible</p>
+                <i class="fa-solid fa-circle-notch fa-spin"></i>
+                <p>Cargando base de datos...</p>
             </div>
         `;
+
+        loadMediaDB().then((loadedDB) => {
+            if (loadedDB && trimmedQuery) {
+                searchVideosForModal(trimmedQuery);
+            } else if (!loadedDB) {
+                modalResults.innerHTML = `
+                    <div class="no-modal-results">
+                        <i class="fa-solid fa-exclamation-triangle"></i>
+                        <p>No se pudo cargar la base de datos</p>
+                    </div>
+                `;
+            }
+        });
         return;
     }
 
     // Normalizar query y dividir en palabras clave
-    const normalizedQuery = normalizeText(query);
+    const normalizedQuery = normalizeText(trimmedQuery);
     const keywords = normalizedQuery.split(/\s+/).filter(word => word.length > 2);
 
     // Filtrar videos
@@ -746,7 +827,7 @@ function searchVideosForModal(query) {
         modalResults.innerHTML = `
             <div class="no-modal-results">
                 <i class="fa-solid fa-search"></i>
-                <p>No se encontraron videos para "${query}"</p>
+                <p>No se encontraron videos para "${trimmedQuery}"</p>
                 <small>Intenta con otras palabras clave</small>
             </div>
         `;
@@ -770,7 +851,7 @@ function searchVideosForModal(query) {
     // Generar HTML de resultados
     const resultsHTML = `
         <div class="modal-results-header">
-            <h4>Se encontraron ${sortedVideos.length} resultado(s) para "${query}"</h4>
+            <h4>Se encontraron ${sortedVideos.length} resultado(s) para "${trimmedQuery}"</h4>
         </div>
         <div class="modal-results-grid">
             ${sortedVideos.map(video => `
@@ -779,7 +860,7 @@ function searchVideosForModal(query) {
                         <img src="${video.portada}" alt="${video.titulo}">
                     </div>
                     <div class="modal-result-info">
-                        <h3 class="modal-result-title">${highlightSearchTermModal(video.titulo, query, keywords)}</h3>
+                        <h3 class="modal-result-title">${highlightSearchTermModal(video.titulo, trimmedQuery, keywords)}</h3>
                         <div class="modal-result-meta">
                             <span class="modal-result-author">${video.autor}</span>
                             <span class="modal-result-date">${video.fecha}</span>
