@@ -292,7 +292,7 @@
     <!-- Incluir la base de datos de anuncios -->
     <script src="database/adsDB.js"></script>
 
-    <!-- Incluir roles de usuarios -->
+    <!-- Incluir sistema de roles -->
     <script src="js/roles.js"></script>
 
     <!-- Incluir el script de anuncios emergentes -->
@@ -462,7 +462,7 @@
                             ${colaborador.avatar}
                         </div>
                         <div class="colaborador-info">
-                            <h3 class="colaborador-name" data-user-badge="${colaborador.name}">${colaborador.name}</h3>
+                            <h3 class="colaborador-name" data-user-roles="${colaborador.name}">${colaborador.name}</h3>
                             <div class="colaborador-stats">
                                 <div class="stat-item">
                                     <span class="stat-number">${colaborador.videosCount}</span>
@@ -485,9 +485,18 @@
 
             grid.innerHTML = html;
 
-            if (window.decorateElementsWithBadges) {
-                window.decorateElementsWithBadges();
-            }
+            // Decorar roles de usuarios
+            const applyRoles = async () => {
+                if (typeof window.decorateUserRoles === 'function') {
+                    await window.decorateUserRoles('data-user-roles');
+                } else {
+                    // Reintentar si roles.js aún no está cargado
+                    setTimeout(applyRoles, 300);
+                }
+            };
+            
+            // Esperar a que el DOM esté actualizado
+            setTimeout(applyRoles, 100);
         }
 
         // Mostrar videos de un colaborador
@@ -509,13 +518,8 @@
                 colaboradorNameEl.appendChild(document.createTextNode('Videos de '));
 
                 const badgeSpan = document.createElement('span');
-                badgeSpan.setAttribute('data-user-badge', colaborador.name);
                 badgeSpan.textContent = colaborador.name;
                 colaboradorNameEl.appendChild(badgeSpan);
-
-                if (window.decorateElementsWithBadges) {
-                    window.decorateElementsWithBadges();
-                }
             }
 
             // Renderizar videos

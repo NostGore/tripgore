@@ -1078,6 +1078,9 @@
 
     <!-- Incluir Firebase primero -->
     <script type="module" src="../js/firebase.js"></script>
+    
+    <!-- Incluir sistema de puntos para agregar puntos al aprobar videos -->
+    <script type="module" src="../js/puntos.js"></script>
 
     <!-- Incluir el archivo header.js después -->
     <script src="../js/header.js"></script>
@@ -1250,6 +1253,27 @@ let adminForgotPasswordLink;
                     await fetch(`https://triplegore-default-rtdb.firebaseio.com/video-pending/${videoId}.json`, {
                         method: 'DELETE'
                     });
+                    
+                    // Agregar 5 puntos al usuario que subió el video
+                    try {
+                        const authorEmail = video.submittedBy || video.autor || '';
+                        let username = '';
+                        
+                        if (authorEmail && authorEmail.includes('@')) {
+                            username = authorEmail.split('@')[0];
+                        } else if (authorEmail) {
+                            username = authorEmail;
+                        }
+                        
+                        if (username && typeof window.addPointsToUser === 'function') {
+                            const pointsResult = await window.addPointsToUser(username, 5);
+                            if (pointsResult.success) {
+                                console.log(`✅ Se agregaron 5 puntos a ${username} por aprobar su video`);
+                            }
+                        }
+                    } catch (pointsError) {
+                        console.error('Error al agregar puntos al aprobar video:', pointsError);
+                    }
                 }
 
                 alert('Video aprobado');

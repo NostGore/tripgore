@@ -634,12 +634,15 @@
     <!-- Incluir Firebase -->
     <script type="module" src="js/firebase.js"></script>
     
+    <!-- Incluir sistema de puntos -->
+    <script type="module" src="js/puntos.js"></script>
+    
     <!-- Incluir la base de datos de videos -->
     <script src="database/mediaDB.js"></script>
 
-    <!-- Incluir roles de usuarios -->
+    <!-- Incluir sistema de roles -->
     <script src="js/roles.js"></script>
-    
+
     <!-- Incluir el archivo header.js -->
     <script src="js/header.js"></script>
 
@@ -739,7 +742,7 @@
                 <div class="profile-avatar">
                     ${username.charAt(0).toUpperCase()}
                 </div>
-                <h1 class="profile-username" data-user-badge="${username}">${username}</h1>
+                <h1 class="profile-username" data-user-roles="${username}">${username}</h1>
                 <p class="profile-email">${user.email}</p>
                 <div class="dashboard-stats">
                     <div class="stat-card">
@@ -758,18 +761,30 @@
                         <span class="stat-number" id="myVideosStatsCount">0</span>
                         <span class="stat-label">Mis Videos</span>
                     </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="pointsCount">0</span>
+                        <span class="stat-label">Puntos</span>
+                    </div>
                 </div>
             `;
 
-            if (window.decorateElementsWithBadges) {
-                window.decorateElementsWithBadges();
-            }
 
             // Cargar datos del usuario
             loadUserLikes();
             loadUserDislikes();
             loadUserComments();
             loadMyVideos();
+            loadUserPoints();
+            
+            // Decorar roles del usuario en el header
+            const applyRolesToProfile = async () => {
+                if (typeof window.decorateUserRoles === 'function') {
+                    await window.decorateUserRoles('data-user-roles');
+                } else {
+                    setTimeout(applyRolesToProfile, 300);
+                }
+            };
+            setTimeout(applyRolesToProfile, 200);
         }
 
         // Función para cargar videos con like
@@ -918,7 +933,7 @@
                                     <span class="video-date">${video.fecha}</span>
                                 </div>
                                 <div class="video-author">
-                                    <i class="fa-solid fa-user"></i> <span data-user-badge="${video.autor}">${video.autor}</span>
+                                    <i class="fa-solid fa-user"></i> <span>${video.autor}</span>
                                 </div>
                             </div>
                         </div>
@@ -933,9 +948,6 @@
                 document.getElementById('likesCount').textContent = likedVideos.length;
                 document.getElementById('likedCount').textContent = `${likedVideos.length} video${likedVideos.length !== 1 ? 's' : ''}`;
 
-                if (window.decorateElementsWithBadges) {
-                    window.decorateElementsWithBadges();
-                }
             }, 1000);
         }
 
@@ -979,7 +991,7 @@
                                     <span class="video-date">${video.fecha}</span>
                                 </div>
                                 <div class="video-author">
-                                    <i class="fa-solid fa-user"></i> <span data-user-badge="${video.autor}">${video.autor}</span>
+                                    <i class="fa-solid fa-user"></i> <span>${video.autor}</span>
                                 </div>
                             </div>
                         </div>
@@ -994,9 +1006,6 @@
                 document.getElementById('dislikesCount').textContent = dislikedVideos.length;
                 document.getElementById('dislikedCount').textContent = `${dislikedVideos.length} video${dislikedVideos.length !== 1 ? 's' : ''}`;
 
-                if (window.decorateElementsWithBadges) {
-                    window.decorateElementsWithBadges();
-                }
             }, 1000);
         }
 
@@ -1191,6 +1200,34 @@
             }
         }
 
+        // Función para cargar puntos del usuario
+        async function loadUserPoints() {
+            if (!userProfile) {
+                setTimeout(loadUserPoints, 100);
+                return;
+            }
+
+            const username = userProfile.email.split('@')[0];
+            
+            // Esperar a que puntos.js esté cargado
+            if (typeof window.getUserPoints === 'function') {
+                try {
+                    const result = await window.getUserPoints(username);
+                    if (result.success) {
+                        const pointsElement = document.getElementById('pointsCount');
+                        if (pointsElement) {
+                            pointsElement.textContent = result.puntos || 0;
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error al cargar puntos:', error);
+                }
+            } else {
+                // Reintentar después de un momento
+                setTimeout(loadUserPoints, 500);
+            }
+        }
+
         // Función para mostrar los videos del usuario
         function displayMyVideos(videos) {
             const container = document.getElementById('myVideosContainer');
@@ -1224,7 +1261,7 @@
                                 <span class="video-date">${video.approvedAt ? new Date(video.approvedAt).toLocaleDateString('es-ES') : video.fecha}</span>
                             </div>
                             <div class="video-author">
-                                <i class="fa-solid fa-user"></i> <span data-user-badge="${video.autor || 'Usuario'}">${video.autor || 'Usuario'}</span>
+                                <i class="fa-solid fa-user"></i> <span>${video.autor || 'Usuario'}</span>
                             </div>
                             <div style="margin-top: 8px; font-size: 12px; color: #ff0000;">
                                 <i class="fa-solid fa-check-circle"></i> ${video.status === 'approved' ? 'Aprobado' : 'Pendiente'}
@@ -1243,10 +1280,6 @@
             // Actualizar contadores
             document.getElementById('myVideosStatsCount').textContent = videos.length;
             document.getElementById('myVideosCount').textContent = `${videos.length} video${videos.length !== 1 ? 's' : ''}`;
-
-            if (window.decorateElementsWithBadges) {
-                window.decorateElementsWithBadges();
-            }
         }
 
         // Función para abrir video (reutilizada del index.html)

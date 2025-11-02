@@ -642,6 +642,36 @@ async function approveVideo(videoId, videoData) {
         await set(publicRef, extractMediaRecord(normalizedVideo));
         await remove(pendingRef);
         
+        // Agregar 5 puntos al usuario que subió el video
+        try {
+            // Obtener el nombre de usuario del video
+            const authorEmail = sourceData.submittedBy || sourceData.autor || normalizedVideo.autor || '';
+            let username = '';
+            
+            // Extraer nombre de usuario del email
+            if (authorEmail && authorEmail.includes('@')) {
+                username = authorEmail.split('@')[0];
+            } else if (authorEmail) {
+                // Si ya es un nombre de usuario sin @, usarlo directamente
+                username = authorEmail;
+            }
+            
+            // Si tenemos un nombre de usuario válido, agregar los puntos
+            if (username && typeof window.addPointsToUser === 'function') {
+                const pointsResult = await window.addPointsToUser(username, 5);
+                if (pointsResult.success) {
+                    console.log(`✅ Se agregaron 5 puntos a ${username} por aprobar su video`);
+                } else {
+                    console.warn(`⚠️ No se pudieron agregar puntos a ${username}:`, pointsResult.error);
+                }
+            } else if (username) {
+                console.warn(`⚠️ Función addPointsToUser no disponible para agregar puntos a ${username}`);
+            }
+        } catch (pointsError) {
+            // No fallar la aprobación del video si hay error al agregar puntos
+            console.error('Error al agregar puntos al aprobar video:', pointsError);
+        }
+        
         console.log('Video aprobado exitosamente:', videoId);
         return { success: true };
     } catch (error) {
@@ -818,13 +848,6 @@ function mergeCollaboratorVideosIntoMediaDB(videos) {
         const ordered = [...visible, ...hidden];
         window.mediaDB = ordered.map(extractMediaRecord);
 
-        if (typeof window.refreshCreatorBadges === 'function') {
-            try {
-                window.refreshCreatorBadges();
-            } catch (err) {
-                console.warn('No se pudo refrescar badges de creadores:', err);
-            }
-        }
     }
 
     return changed;
@@ -903,6 +926,10 @@ window.subscribeApprovedVideos = subscribeApprovedVideos;
 window.mapFirebaseVideoToMediaDB = mapFirebaseVideoToMediaDB;
 window.sanitizeApprovedVideos = sanitizeApprovedVideos;
 
+// Exportar la base de datos para uso global
+window.db = db;
+
 // Marcar Firebase como listo
 window.firebaseReady = true;
+window.firebaseInitTime = Date.now();
 console.log('Firebase functions exported to window');

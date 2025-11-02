@@ -27,7 +27,7 @@ function loadHeader() {
                 <a href="#" onclick="openSupportEmail(); return false;" style="font-weight: bold;">SOPORTE</a>
                 <a href="https://t.me/perritogoree" style="font-weight: bold;">Telegram</a>
                 <a href="https://discord.gg/pS7qvjP4S5" style="font-weight: bold;">Discord</a>
-                <a href="index.html?page=colaboradores" style="font-weight: bold;">Colaboradores</a>
+                <a href="../colaboradores.html" style="font-weight: bold;">Colaboradores</a>
                 <a href="other/aris.html" style="font-weight: bold;">ARIS CODE</a>
                 <a href="#" style="font-weight: bold;">ZONA HOT 🔥</a>
             </div>
@@ -125,7 +125,7 @@ function loadHeader() {
                     <i class="fa-brands fa-discord"></i>
                     Discord
                 </a>
-                <a href="index.html?page=colaboradores">
+                <a href="../colaboradores.html">
                     <i class="fa-solid fa-users"></i>
                     Colaboradores
                 </a>

@@ -76,22 +76,40 @@ async function toggleLike() {
     if (!currentVideoId) return;
 
     try {
-    if (isLiked) {
+        // Guardar el estado anterior
+        const wasLiked = isLiked;
+        const wasDisliked = isDisliked;
+
+        if (isLiked) {
             // Remove like
             const result = await window.videoFunctions.removeLike(currentVideoId);
             if (result.success) {
-        isLiked = false;
+                isLiked = false;
                 updateLikeButtons();
+                // Quitar punto por quitar like
+                if (typeof window.removePointsForLike === 'function') {
+                    await window.removePointsForLike();
+                }
             } else {
                 alert('Error al quitar like: ' + result.error);
             }
-    } else {
+        } else {
             // Add like
             const result = await window.videoFunctions.addLike(currentVideoId, true);
             if (result.success) {
-        isLiked = true;
-            isDisliked = false;
+                isLiked = true;
+                isDisliked = false;
                 updateLikeButtons();
+                
+                // Manejar puntos: solo dar/quitar puntos cuando realmente cambia el estado
+                // Si había dislike y ahora hay like: mantener el punto (no hacer nada, ya tenías 1 punto)
+                if (!wasDisliked && !wasLiked) {
+                    // No tenía nada, ahora tiene like: agregar punto
+                    if (typeof window.addPointsForLike === 'function') {
+                        await window.addPointsForLike();
+                    }
+                }
+                // Si tenía dislike y ahora tiene like: mantener el punto (ya tenía 1, sigue teniendo 1)
             } else {
                 alert('Error al dar like: ' + result.error);
             }
@@ -113,22 +131,40 @@ async function toggleDislike() {
     if (!currentVideoId) return;
 
     try {
-    if (isDisliked) {
+        // Guardar el estado anterior
+        const wasLiked = isLiked;
+        const wasDisliked = isDisliked;
+
+        if (isDisliked) {
             // Remove dislike
             const result = await window.videoFunctions.removeLike(currentVideoId);
             if (result.success) {
-        isDisliked = false;
+                isDisliked = false;
                 updateLikeButtons();
+                // Quitar punto por quitar dislike
+                if (typeof window.removePointsForDislike === 'function') {
+                    await window.removePointsForDislike();
+                }
             } else {
                 alert('Error al quitar dislike: ' + result.error);
             }
-    } else {
+        } else {
             // Add dislike
             const result = await window.videoFunctions.addLike(currentVideoId, false);
             if (result.success) {
-        isDisliked = true;
-            isLiked = false;
+                isDisliked = true;
+                isLiked = false;
                 updateLikeButtons();
+                
+                // Manejar puntos: solo dar/quitar puntos cuando realmente cambia el estado
+                // Si había like y ahora hay dislike: mantener el punto (no hacer nada, ya tenías 1 punto)
+                if (!wasLiked && !wasDisliked) {
+                    // No tenía nada, ahora tiene dislike: agregar punto
+                    if (typeof window.addPointsForDislike === 'function') {
+                        await window.addPointsForDislike();
+                    }
+                }
+                // Si tenía like y ahora tiene dislike: mantener el punto (ya tenía 1, sigue teniendo 1)
             } else {
                 alert('Error al dar dislike: ' + result.error);
             }
@@ -427,6 +463,10 @@ async function addComment(parentId = null) {
         if (result.success) {
             commentInput.value = '';
             console.log('✅ Comentario enviado exitosamente');
+            // Agregar punto por comentar
+            if (typeof window.addPointsForComment === 'function') {
+                await window.addPointsForComment();
+            }
             // Los comentarios se actualizarán automáticamente por el listener
         } else {
             alert('Error al enviar comentario: ' + result.error);
@@ -490,7 +530,7 @@ function renderReplyElement(reply, allRepliesMap) {
             <div class="comment-bubble">
                 <div class="comment-topline">
                     <div class="comment-identity">
-                        <span class="comment-username" data-user-badge="${escapedReplyAutor}">${escapedReplyAutor}</span>
+                        <span class="comment-username" data-user-roles="${escapedReplyAutor}">${escapedReplyAutor}</span>
                     </div>
                     <button class="comment-number" title="#">#</button>
                 </div>
@@ -550,7 +590,7 @@ function renderCommentElement(comment, replies, allRepliesMap) {
             <div class="comment-bubble">
                 <div class="comment-topline">
                     <div class="comment-identity">
-                        <span class="comment-username" data-user-badge="${escapedAutor}">${escapedAutor}</span>
+                        <span class="comment-username" data-user-roles="${escapedAutor}">${escapedAutor}</span>
                     </div>
                     <button class="comment-number" title="#">#</button>
                 </div>
@@ -638,21 +678,20 @@ function renderCommentsOptimized(comments, commentsList, startIndex = 0, batchSi
     commentsList.appendChild(fragment);
     renderedCommentsCount = endIndex;
     
-    // Decorar badges solo para los elementos recién renderizados (debatido para mejor rendimiento)
-    if (window.decorateElementsWithBadges) {
-        // Usar requestAnimationFrame para evitar bloquear el render
-        requestAnimationFrame(() => {
-            // Decorar solo los nuevos elementos, no todos los comentarios
-            const allCommentRows = commentsList.querySelectorAll('.comment-row');
-            const newCommentRows = Array.from(allCommentRows).slice(startIndex);
-            
-            // Crear un contenedor temporal solo con los nuevos elementos
-            if (newCommentRows.length > 0) {
-                // Decorar solo los nuevos elementos usando la función global optimizada
-                window.decorateElementsWithBadges('data-user-badge', {});
-            }
-        });
-    }
+    // Decorar roles de usuarios en los comentarios (incluyendo maniaco basado en puntos)
+    const applyRolesToComments = async () => {
+        if (typeof window.decorateUserRoles === 'function') {
+            await window.decorateUserRoles('data-user-roles');
+        }
+        // Aplicar badges de moderador y maniaco específicamente
+        if (typeof window.applyModeratorBadgesInComments === 'function') {
+            await window.applyModeratorBadgesInComments();
+        }
+        if (typeof window.decorateUserRoles === 'undefined') {
+            setTimeout(applyRolesToComments, 200);
+        }
+    };
+    setTimeout(applyRolesToComments, 150);
     
     // Si hay más comentarios, añadir botón "Cargar más" o usar Intersection Observer
     if (endIndex < mainComments.length) {
@@ -813,6 +852,10 @@ async function submitReply(parentId) {
         if (result.success) {
             input.value = '';
             console.log('✅ Respuesta enviada exitosamente');
+            // Agregar punto por comentar (respuesta también cuenta como comentario)
+            if (typeof window.addPointsForComment === 'function') {
+                await window.addPointsForComment();
+            }
             // Ocultar el formulario
             hideReplyForm(parentId);
             // Los comentarios se actualizarán automáticamente por el listener
@@ -894,12 +937,6 @@ function ensureCollaboratorVideosLoaded() {
                 const changed = addFirebaseVideosToMediaDB(videos);
 
                 if (changed) {
-                    if (typeof window.refreshLikeroBadges === 'function') {
-                        window.refreshLikeroBadges();
-                    }
-                    if (typeof window.refreshComentorBadges === 'function') {
-                        window.refreshComentorBadges();
-                    }
 
                     const updatedVideo = currentVideoId && typeof mediaDB !== 'undefined'
                         ? mediaDB.find(v => v.id === currentVideoId)

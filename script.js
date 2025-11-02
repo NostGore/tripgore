@@ -71,15 +71,6 @@ function initializeFirebaseVideos() {
             renderVideos();
             renderRecommendedVideos();
             renderHiddenVideos();
-            if (typeof window.refreshLikeroBadges === 'function') {
-                window.refreshLikeroBadges();
-            }
-            if (typeof window.refreshComentorBadges === 'function') {
-                window.refreshComentorBadges();
-            }
-            if (typeof window.refreshBadgeDecorations === 'function') {
-                window.refreshBadgeDecorations();
-            }
         }
     });
 }
@@ -302,7 +293,7 @@ function renderCurrentPage() {
                                 <i class="fa-solid fa-calendar"></i>
                                 <span>${video.fecha}</span>
                             </span>
-                            <span class="author-info"><i class="fa-solid fa-user"></i> <span data-user-badge="${video.autor}">${video.autor}</span></span>
+                            <span class="author-info"><i class="fa-solid fa-user"></i> <span>${video.autor}</span></span>
                         </div>
                     </div>
                 `;
@@ -320,9 +311,6 @@ function renderCurrentPage() {
     // Agregar efectos hover después de renderizar
     addHoverEffects();
 
-    if (window.decorateElementsWithBadges) {
-        window.decorateElementsWithBadges();
-    }
 }
 
 // Función para crear botones de paginación
