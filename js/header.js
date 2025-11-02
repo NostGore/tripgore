@@ -5,7 +5,7 @@ function loadHeader() {
     <header class="header">
         <div class="header-top">
             <div class="logo">
-                <img src="img/tripgore-logo.png" alt="Logo TRIPGORE">
+                <img src="../img/tripgore-logo.png" alt="Logo TRIPGORE">
             </div>
 
             <!-- Menú hamburguesa para móviles -->
@@ -23,13 +23,20 @@ function loadHeader() {
 
             <!-- Navegación desktop -->
             <div class="nav-links">
-                <a href="../index.html" style="font-weight: bold;">INICIO</a>
-                <a href="#" onclick="openSupportEmail(); return false;" style="font-weight: bold;">SOPORTE</a>
-                <a href="https://t.me/perritogoree" style="font-weight: bold;">Telegram</a>
-                <a href="https://discord.gg/pS7qvjP4S5" style="font-weight: bold;">Discord</a>
-                <a href="../colaboradores.html" style="font-weight: bold;">Colaboradores</a>
-                <a href="other/aris.html" style="font-weight: bold;">ARIS CODE</a>
-                <a href="#" style="font-weight: bold;">ZONA HOT 🔥</a>
+                <!-- Primera fila -->
+                <div class="nav-links-row nav-links-row-1">
+                    <a href="../index.html" style="font-weight: bold;">INICIO</a>
+                    <a href="../colaboradores.html" style="font-weight: bold;">Colaboradores</a>
+                    <a href="../infoRoles.html" style="font-weight: bold;">Roles</a>
+                    <a href="../other/aris.html" style="font-weight: bold;">ARIS CODE</a>
+                </div>
+                <!-- Segunda fila -->
+                <div class="nav-links-row nav-links-row-2">
+                    <a href="#" onclick="openSupportEmail(); return false;" style="font-weight: bold;">SOPORTE</a>
+                    <a href="https://t.me/perritogoree" style="font-weight: bold;">Telegram</a>
+                    <a href="https://discord.gg/pS7qvjP4S5" style="font-weight: bold;">Discord</a>
+                    <a href="#" style="font-weight: bold;">ZONA HOT 🔥</a>
+                </div>
             </div>
 
             <!-- Acciones de usuario desktop -->
@@ -75,7 +82,7 @@ function loadHeader() {
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-header">
             <div class="logo">
-                <img src="img/tripgore-logo.png" alt="Logo TRIPGORE">
+                <img src="../img/tripgore-logo.png" alt="Logo TRIPGORE">
             </div>
         </div>
 
@@ -129,7 +136,11 @@ function loadHeader() {
                     <i class="fa-solid fa-users"></i>
                     Colaboradores
                 </a>
-                <a href="other/aris.html">
+                <a href="../infoRoles.html">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    Roles
+                </a>
+                <a href="../other/aris.html">
                     <i class="fa-solid fa-star"></i>
                     ARIS CODE
                 </a>
@@ -254,7 +265,7 @@ function syncAuthUI() {
 						<i class="fa-solid fa-user-circle user-icon"></i>
 						<span class="user-email">${username}</span>
 					</div>
-					<a href="perfil.html" class="logout-btn" style="text-decoration: none; margin-right: 10px;">
+					<a href="../perfil.html" class="logout-btn" style="text-decoration: none; margin-right: 10px;">
 						<i class="fa-solid fa-user"></i>
 						Perfil
 					</a>
@@ -273,7 +284,7 @@ function syncAuthUI() {
 						<i class="fa-solid fa-user-circle user-icon"></i>
 						<span class="user-email">${username}</span>
 					</div>
-					<a href="perfil.html" class="logout-btn" style="text-decoration: none; margin-right: 10px;">
+					<a href="../perfil.html" class="logout-btn" style="text-decoration: none; margin-right: 10px;">
 						<i class="fa-solid fa-user"></i>
 						Perfil
 					</a>
@@ -376,7 +387,7 @@ async function loadMediaDB() {
     if (!mediaDBPromise) {
         mediaDBPromise = (async () => {
             try {
-                const response = await fetch('database/mediaDB.js');
+                const response = await fetch('../database/mediaDB.js');
                 if (!response.ok) {
                     throw new Error(`Estado HTTP ${response.status}`);
                 }

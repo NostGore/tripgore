@@ -31,7 +31,7 @@ const ROLES = {
         name: 'Perturbado',
         img: 'img/perturbado.png',
         width: 100,
-        height: 30,
+        height: 25,
         puntos: 50
     },
     inestable: {
@@ -39,7 +39,7 @@ const ROLES = {
         name: 'Inestable',
         img: 'img/inestable.png',
         width: 100,
-        height: 30,
+        height: 25,
         puntos: 100
     },
     psicopata: {
@@ -47,7 +47,7 @@ const ROLES = {
         name: 'Psicópata',
         img: 'img/psicopta.png',
         width: 100,
-        height: 30,
+        height: 25,
         puntos: 200
     },
     sadico: {
@@ -55,7 +55,7 @@ const ROLES = {
         name: 'Sádico',
         img: 'img/sadico.png',
         width: 100,
-        height: 30,
+        height: 25,
         puntos: 300
     },
     lunatico: {
@@ -63,7 +63,7 @@ const ROLES = {
         name: 'Lunático',
         img: 'img/lunatico.png',
         width: 100,
-        height: 30,
+        height: 25,
         puntos: 400
     },
     macabro: {
@@ -71,7 +71,7 @@ const ROLES = {
         name: 'Macabro',
         img: 'img/macabro.png',
         width: 100,
-        height: 30,
+        height: 25,
         puntos: 500
     },
     maniaco: {
@@ -79,7 +79,7 @@ const ROLES = {
         name: 'Maniaco',
         img: 'img/maniaco.png',
         width: 100,
-        height: 30,
+        height: 25,
         puntos: 600
     },
     desquiciado: {
@@ -87,7 +87,7 @@ const ROLES = {
         name: 'Desquiciado',
         img: 'img/desquiciado.png',
         width: 100,
-        height: 30,
+        height: 25,
         puntos: 700
     },
     caotico: {
@@ -95,7 +95,7 @@ const ROLES = {
         name: 'Caótico',
         img: 'img/caotico.png',
         width: 100,
-        height: 30,
+        height: 25,
         puntos: 800
     },
     abismal: {
@@ -103,7 +103,7 @@ const ROLES = {
         name: 'Abismal',
         img: 'img/abismal.png',
         width: 100,
-        height: 30,
+        height: 25,
         puntos: 900
     },
     demoniaco: {
@@ -111,7 +111,7 @@ const ROLES = {
         name: 'Demoniaco',
         img: 'img/demoniaco.png',
         width: 100,
-        height: 30,
+        height: 25,
         puntos: 1000
     }
 };
@@ -121,6 +121,46 @@ function isModerator(username) {
     if (!username) return false;
     const normalizedUsername = username.trim().toLowerCase();
     return MODERATORS.some(mod => mod.trim().toLowerCase() === normalizedUsername);
+}
+
+// Función para verificar si un usuario es colaborador (tiene videos subidos)
+async function isCollaborator(username) {
+    if (!username) return false;
+    
+    // Buscar en mediaDB
+    if (typeof mediaDB !== 'undefined' && Array.isArray(mediaDB)) {
+        const hasVideosInMediaDB = mediaDB.some(video => {
+            if (video.autor === 'TripGore') return false;
+            const videoAuthor = video.autor || '';
+            if (videoAuthor.includes('@')) {
+                return videoAuthor.split('@')[0].toLowerCase() === username.toLowerCase();
+            }
+            return videoAuthor.toLowerCase() === username.toLowerCase();
+        });
+        if (hasVideosInMediaDB) return true;
+    }
+    
+    // Buscar en Firebase
+    if (typeof window.getApprovedVideosOnce === 'function') {
+        try {
+            const firebaseVideos = await window.getApprovedVideosOnce();
+            if (Array.isArray(firebaseVideos)) {
+                const hasVideosInFirebase = firebaseVideos.some(video => {
+                    if (!video.autor) return false;
+                    const videoAuthor = video.autor || '';
+                    if (videoAuthor.includes('@')) {
+                        return videoAuthor.split('@')[0].toLowerCase() === username.toLowerCase();
+                    }
+                    return videoAuthor.toLowerCase() === username.toLowerCase();
+                });
+                if (hasVideosInFirebase) return true;
+            }
+        } catch (error) {
+            console.error('Error al verificar colaborador en Firebase:', error);
+        }
+    }
+    
+    return false;
 }
 
 // Función para obtener el rol más alto que un usuario ha alcanzado basado en sus puntos
@@ -180,14 +220,26 @@ function injectStyles() {
             display: block;
             border-radius: 3px;
         }
+        .role-badge-points {
+            display: block;
+            margin-left: 0;
+            margin-bottom: 4px;
+            margin-top: 0;
+        }
+        .role-badge-points img {
+            width: auto;
+            height: auto;
+            max-width: 100px;
+            max-height: 30px;
+        }
     `;
     document.head.appendChild(style);
 }
 
 // Crear badge de rol
-function createRoleBadge(role) {
+function createRoleBadge(role, isPointsBased = false) {
     const span = document.createElement('span');
-    span.className = 'role-badge';
+    span.className = isPointsBased ? 'role-badge role-badge-points' : 'role-badge';
     span.title = role.name;
     
     const img = document.createElement('img');
@@ -246,7 +298,8 @@ function applyColaboratorBadges() {
 
 // Aplicar badges de moderador y maniaco en comentarios de videos
 async function applyModeratorBadgesInComments() {
-    const commentUsernames = document.querySelectorAll('.comment-username');
+    // Aplicar a comentarios principales y respuestas
+    const commentUsernames = document.querySelectorAll('.comment-username, .reply-author');
     
     for (const nameElement of commentUsernames) {
         // Obtener el nombre del usuario desde el atributo data-user-roles
@@ -266,7 +319,7 @@ async function applyModeratorBadgesInComments() {
         
         // Verificar si es moderador (tiene prioridad sobre todos los roles)
         if (isModerator(userNameClean)) {
-            // Limpiar todos los badges de roles por puntos si es moderador
+            // Limpiar todos los badges de roles por puntos y colaborador si es moderador
             const existingBadges = nameElement.querySelectorAll('.role-badge');
             existingBadges.forEach(badge => {
                 const imgAlt = badge.querySelector('img')?.alt;
@@ -286,16 +339,39 @@ async function applyModeratorBadgesInComments() {
             // Si no es moderador, verificar y mostrar el rol más alto por puntos
             const highestRole = await getHighestRoleByPoints(userNameClean);
             if (highestRole) {
-                // Limpiar badges anteriores de roles por puntos
+                // Limpiar badges anteriores de roles por puntos y colaborador
                 const existingBadges = nameElement.querySelectorAll('.role-badge');
                 existingBadges.forEach(badge => {
                     badge.remove();
                 });
                 
-                // Agregar el badge del rol más alto
-                const badge = createRoleBadge(highestRole);
-                nameElement.appendChild(badge);
+                // Agregar el badge del rol más alto ARRIBA del nombre
+                const badge = createRoleBadge(highestRole, true);
+                // Insertar al principio del elemento
+                if (nameElement.firstChild) {
+                    nameElement.insertBefore(badge, nameElement.firstChild);
+                } else {
+                    nameElement.appendChild(badge);
+                }
                 console.log(`🎭 Badge de ${highestRole.name} agregado en comentario a:`, userNameClean);
+            } else {
+                // Si no tiene rol por puntos, verificar si es colaborador
+                const isCollab = await isCollaborator(userNameClean);
+                if (isCollab) {
+                    const hasColaboratorBadge = Array.from(nameElement.querySelectorAll('.role-badge'))
+                        .some(badge => badge.querySelector('img[alt="Colaborador"]'));
+                    if (!hasColaboratorBadge) {
+                        // Limpiar badges anteriores
+                        const existingBadges = nameElement.querySelectorAll('.role-badge');
+                        existingBadges.forEach(badge => {
+                            badge.remove();
+                        });
+                        
+                        const badge = createRoleBadge(ROLES.colaborator);
+                        nameElement.appendChild(badge);
+                        console.log('✅ Badge de Colaborador agregado en comentario a:', userNameClean);
+                    }
+                }
             }
         }
     }

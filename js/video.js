@@ -508,46 +508,43 @@ function escapeHtml(text) {
 }
 
 // Renderizar respuesta individual (recursivo para soportar múltiples niveles)
-function renderReplyElement(reply, allRepliesMap) {
-    const replyRow = document.createElement('div');
-    replyRow.className = 'comment-row reply';
+function renderReplyElement(reply, allRepliesMap, allComments, parentAuthor) {
+    const replyDiv = document.createElement('div');
+    replyDiv.className = 'comment-reply';
     
-    const replyInitial = (reply.autor || '?').trim().charAt(0).toUpperCase();
     const escapedReplyAutor = escapeHtml(reply.autor || '');
     const escapedReplyFecha = escapeHtml(reply.fecha || '');
     const escapedReplyTexto = escapeHtml(reply.texto || '');
     const escapedReplyId = escapeHtml(reply.id || '');
+    const escapedParentAuthor = escapeHtml(parentAuthor || '');
     
     // Obtener respuestas a esta respuesta (si existen)
     const nestedReplies = allRepliesMap.get(reply.id) || [];
     
-    replyRow.innerHTML = `
-        <div class="comment-avatar" title="${escapedReplyAutor}"><span>${replyInitial}</span></div>
-        <div class="comment-main">
-            <div class="comment-meta">
-                <span class="comment-time">${escapedReplyFecha}</span>
+    replyDiv.innerHTML = `
+        <div class="reply-divider"></div>
+        <div class="reply-header">
+            <span class="reply-to-info">
+                <span class="reply-author" data-user-roles="${escapedReplyAutor}">${escapedReplyAutor}</span>
+                <span class="reply-separator"></span>
+                <span class="reply-arrow">▸</span>
+                <span class="reply-parent-author">${escapedParentAuthor}</span>
+            </span>
+        </div>
+        <div class="reply-content">
+            <div class="reply-text">${escapedReplyTexto}</div>
+            <div class="reply-actions">
+                <button class="reply-btn" onclick="showReplyForm('${escapedReplyId}')">
+                    <i class="fa-solid fa-reply"></i> Responder
+                </button>
             </div>
-            <div class="comment-bubble">
-                <div class="comment-topline">
-                    <div class="comment-identity">
-                        <span class="comment-username" data-user-roles="${escapedReplyAutor}">${escapedReplyAutor}</span>
-                    </div>
-                    <button class="comment-number" title="#">#</button>
-                </div>
-                <div class="comment-text">${escapedReplyTexto}</div>
-                <div class="comment-actions">
-                    <button class="reply-btn" onclick="showReplyForm('${escapedReplyId}')">
+            <div class="reply-form" id="reply-form-${escapedReplyId}" style="display: none;">
+                <textarea class="reply-input" placeholder="Escribe tu respuesta..."></textarea>
+                <div>
+                    <button class="reply-submit-btn" onclick="submitReply('${escapedReplyId}')">
                         <i class="fa-solid fa-reply"></i> Responder
                     </button>
-                </div>
-                <div class="reply-form" id="reply-form-${escapedReplyId}" style="display: none;">
-                    <textarea class="reply-input" placeholder="Escribe tu respuesta..."></textarea>
-                    <div>
-                        <button class="reply-submit-btn" onclick="submitReply('${escapedReplyId}')">
-                            <i class="fa-solid fa-reply"></i> Responder
-                        </button>
-                        <button class="reply-cancel-btn" onclick="hideReplyForm('${escapedReplyId}')">Cancelar</button>
-                    </div>
+                    <button class="reply-cancel-btn" onclick="hideReplyForm('${escapedReplyId}')">Cancelar</button>
                 </div>
             </div>
         </div>
@@ -555,26 +552,25 @@ function renderReplyElement(reply, allRepliesMap) {
     
     // Renderizar respuestas anidadas de forma recursiva
     if (nestedReplies && nestedReplies.length > 0) {
-        const repliesContainer = replyRow.querySelector('.comment-bubble');
-        const nestedFragment = document.createDocumentFragment();
+        const nestedContainer = document.createElement('div');
+        nestedContainer.className = 'nested-replies';
         
         nestedReplies.forEach(nestedReply => {
-            const nestedReplyElement = renderReplyElement(nestedReply, allRepliesMap);
-            nestedFragment.appendChild(nestedReplyElement);
+            const nestedReplyElement = renderReplyElement(nestedReply, allRepliesMap, allComments, reply.autor);
+            nestedContainer.appendChild(nestedReplyElement);
         });
         
-        repliesContainer.appendChild(nestedFragment);
+        replyDiv.appendChild(nestedContainer);
     }
     
-    return replyRow;
+    return replyDiv;
 }
 
 // Renderizar comentario individual (optimizado con soporte para respuestas anidadas)
-function renderCommentElement(comment, replies, allRepliesMap) {
+function renderCommentElement(comment, replies, allRepliesMap, allComments) {
     const commentRow = document.createElement('div');
     commentRow.className = 'comment-row';
     
-    const initial = (comment.autor || '?').trim().charAt(0).toUpperCase();
     const escapedAutor = escapeHtml(comment.autor || '');
     const escapedFecha = escapeHtml(comment.fecha || '');
     const escapedTexto = escapeHtml(comment.texto || '');
@@ -582,7 +578,6 @@ function renderCommentElement(comment, replies, allRepliesMap) {
     
     // Crear estructura del comentario
     commentRow.innerHTML = `
-        <div class="comment-avatar" title="${escapedAutor}"><span>${initial}</span></div>
         <div class="comment-main">
             <div class="comment-meta">
                 <span class="comment-time">${escapedFecha}</span>
@@ -609,17 +604,18 @@ function renderCommentElement(comment, replies, allRepliesMap) {
                         <button class="reply-cancel-btn" onclick="hideReplyForm('${escapedId}')">Cancelar</button>
                     </div>
                 </div>
+                <div class="replies-container"></div>
             </div>
         </div>
     `;
     
     // Renderizar respuestas si existen (de forma recursiva)
     if (replies && replies.length > 0) {
-        const repliesContainer = commentRow.querySelector('.comment-bubble');
+        const repliesContainer = commentRow.querySelector('.replies-container');
         const repliesFragment = document.createDocumentFragment();
         
         replies.forEach(reply => {
-            const replyElement = renderReplyElement(reply, allRepliesMap);
+            const replyElement = renderReplyElement(reply, allRepliesMap, allComments, comment.autor);
             repliesFragment.appendChild(replyElement);
         });
         
@@ -670,8 +666,8 @@ function renderCommentsOptimized(comments, commentsList, startIndex = 0, batchSi
         const comment = mainComments[i];
         // Obtener solo las respuestas directas (primer nivel)
         const replies = allRepliesMap.get(comment.id) || [];
-        // Pasar el mapa completo para permitir respuestas anidadas recursivas
-        const commentElement = renderCommentElement(comment, replies, allRepliesMap);
+        // Pasar el mapa completo y todos los comentarios para permitir respuestas anidadas recursivas
+        const commentElement = renderCommentElement(comment, replies, allRepliesMap, comments);
         fragment.appendChild(commentElement);
     }
     
@@ -683,7 +679,7 @@ function renderCommentsOptimized(comments, commentsList, startIndex = 0, batchSi
         if (typeof window.decorateUserRoles === 'function') {
             await window.decorateUserRoles('data-user-roles');
         }
-        // Aplicar badges de moderador y maniaco específicamente
+        // Aplicar badges de moderador y maniaco específicamente (incluye comentarios y respuestas)
         if (typeof window.applyModeratorBadgesInComments === 'function') {
             await window.applyModeratorBadgesInComments();
         }

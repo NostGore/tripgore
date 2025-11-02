@@ -562,9 +562,16 @@
 
         .nav-links {
             display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: flex-end;
+        }
+
+        .nav-links-row {
+            display: flex;
             gap: 20px;
-            flex-wrap: wrap;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .header-top .nav-links {
@@ -1652,6 +1659,12 @@
                 gap: 10px;
                 justify-content: flex-start;
                 /* En móviles, vuelve a la izquierda para mejor legibilidad */
+            }
+            
+            .nav-links-row {
+                flex-direction: column;
+                width: 100%;
+                gap: 10px;
             }
 
             .promo-links {
