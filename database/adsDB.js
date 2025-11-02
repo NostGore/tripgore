@@ -10,9 +10,9 @@
  */
 const popupAds = [
     {
-        id: "subir-video",
-        imagen: "https://files.catbox.moe/cgy2f7.jpg", // Imagen de ejemplo
-        direccion: "other/subir.html"
+        id: "roles-act",
+        imagen: "https://files.catbox.moe/w22w42.jpeg", // Imagen de ejemplo
+        direccion: "infoRoles.html"
     }
     // Puedes agregar más anuncios aquí en el futuro
     // { id: "popup_ad_2", imagen: "path/to/image2.png", direccion: "otra/pagina.html" }

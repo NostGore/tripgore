@@ -1,8 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Verificar si el usuario ha pedido no volver a ver los anuncios
-    if (localStorage.getItem('hidePopupAds') === 'true') {
-        console.log('Anuncios emergentes ocultos por preferencia del usuario.');
-        return;
+    // Función para obtener la lista de anuncios ocultados desde localStorage
+    function getHiddenPopupAds() {
+        const stored = localStorage.getItem('hiddenPopupAds');
+        return stored ? JSON.parse(stored) : [];
+    }
+
+    // Función para agregar un anuncio a la lista de ocultados
+    function addHiddenPopupAd(adId) {
+        const hiddenAds = getHiddenPopupAds();
+        if (!hiddenAds.includes(adId)) {
+            hiddenAds.push(adId);
+            localStorage.setItem('hiddenPopupAds', JSON.stringify(hiddenAds));
+            console.log(`Anuncio "${adId}" agregado a la lista de ocultados.`);
+        }
     }
 
     // Verificar si la base de datos de anuncios emergentes existe
@@ -10,6 +20,18 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('No hay anuncios emergentes para mostrar.');
         return;
     }
+
+    // Filtrar anuncios que el usuario ya ha decidido ocultar
+    const hiddenAds = getHiddenPopupAds();
+    const adsToShow = popupAds.filter(ad => !hiddenAds.includes(ad.id));
+
+    // Si no hay anuncios para mostrar, salir
+    if (adsToShow.length === 0) {
+        console.log('Todos los anuncios emergentes han sido ocultados por el usuario.');
+        return;
+    }
+
+    console.log(`${adsToShow.length} de ${popupAds.length} anuncios se mostrarán.`);
 
     const overlay = document.getElementById('popup-ads-overlay');
     const container = document.getElementById('popup-ads-container');
@@ -43,7 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function showAds() {
         container.innerHTML = ''; // Limpiar contenedor
 
-        popupAds.forEach(ad => {
+        // Mostrar solo los anuncios que el usuario aún no ha ocultado
+        adsToShow.forEach(ad => {
             const adCard = document.createElement('div');
             adCard.className = 'popup-ad-card';
             adCard.id = `ad-card-${ad.id}`;
@@ -64,16 +87,21 @@ document.addEventListener('DOMContentLoaded', () => {
             container.appendChild(adCard);
         });
 
-        // Mostrar el overlay
-        overlay.style.display = 'flex';
-        document.body.style.overflow = 'hidden'; // Bloquear scroll del fondo
+        // Mostrar el overlay solo si hay anuncios para mostrar
+        if (adsToShow.length > 0) {
+            overlay.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Bloquear scroll del fondo
+        }
     }
 
     // Eventos para los botones de control
     closeAllBtn.addEventListener('click', closeAllAds);
 
     dontShowAgainBtn.addEventListener('click', () => {
-        localStorage.setItem('hidePopupAds', 'true');
+        // Agregar todos los anuncios mostrados a la lista de ocultados
+        adsToShow.forEach(ad => {
+            addHiddenPopupAd(ad.id);
+        });
         closeAllAds();
     });
 
