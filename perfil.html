@@ -217,6 +217,31 @@
         }
 
         /* Estilos para interacciones */
+        #myContentInteractions {
+            max-height: 600px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding-right: 10px;
+        }
+
+        #myContentInteractions::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #myContentInteractions::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+        }
+
+        #myContentInteractions::-webkit-scrollbar-thumb {
+            background: #ff0000;
+            border-radius: 4px;
+        }
+
+        #myContentInteractions::-webkit-scrollbar-thumb:hover {
+            background: #cc0000;
+        }
+
         .interactions-list {
             display: flex;
             flex-direction: column;
@@ -580,6 +605,11 @@
             color: #999;
         }
 
+        #myContentInteractions .loading-state {
+            max-height: none;
+            padding: 40px;
+        }
+
         .loading-state i {
             font-size: 56px;
             background: linear-gradient(135deg, #ff0000 0%, #ff3333 100%);
@@ -662,6 +692,10 @@
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
                 gap: 15px;
             }
+
+            #myContentInteractions {
+                max-height: 550px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -675,6 +709,10 @@
 
             .dashboard-container {
                 padding: 15px 10px;
+            }
+
+            #myContentInteractions {
+                max-height: 500px;
             }
         }
     </style>
@@ -857,13 +895,17 @@
         window.db = db;
         window.dbRef = dbRef;
         window.onValue = onValue;
+        window.authReady = false;
+        window.authChecked = false;
 
         // Escuchar cambios en el estado de autenticación
         onAuthStateChanged(auth, (user) => {
             console.log('Estado de autenticación cambió:', user);
+            window.authReady = true;
             
             if (user) {
                 console.log('Usuario autenticado:', user.email);
+                window.authChecked = true;
                 // Llamar a la función global para cargar el perfil
                 if (typeof loadUserProfile === 'function') {
                     loadUserProfile(user);
@@ -876,8 +918,24 @@
                     }, 1000);
                 }
             } else {
-                console.log('Usuario no autenticado, redirigiendo...');
-                window.location.href = 'auth/auth.html';
+                // Esperar un momento para asegurarse de que Firebase Auth esté completamente inicializado
+                // antes de redirigir (evita redirecciones prematuras)
+                if (!window.authChecked) {
+                    window.authChecked = true;
+                    setTimeout(() => {
+                        // Verificar una vez más antes de redirigir
+                        const currentUser = auth.currentUser;
+                        if (!currentUser) {
+                            console.log('Usuario no autenticado, redirigiendo...');
+                            window.location.href = 'auth/auth.html';
+                        } else {
+                            console.log('Usuario encontrado en verificación final:', currentUser.email);
+                            if (typeof loadUserProfile === 'function') {
+                                loadUserProfile(currentUser);
+                            }
+                        }
+                    }, 2000);
+                }
             }
         });
     </script>
@@ -888,32 +946,6 @@
         let userLikes = [];
         let userDislikes = [];
         let userComments = [];
-
-        // Función para verificar autenticación
-        function checkAuthentication() {
-            // Esperar a que Firebase esté completamente cargado
-            if (typeof getCurrentUser === 'undefined' || !window.firebaseReady) {
-                console.log('Esperando a que Firebase se cargue...');
-                setTimeout(checkAuthentication, 500);
-                return;
-            }
-
-            // Esperar un poco más para asegurar que onAuthStateChanged haya ejecutado
-            setTimeout(() => {
-                const currentUser = getCurrentUser();
-                console.log('Usuario actual:', currentUser);
-                
-                if (!currentUser) {
-                    console.log('Usuario no autenticado, redirigiendo al login...');
-                    // Usuario no autenticado, redirigir al login
-                    window.location.href = 'auth/auth.html';
-                    return;
-                }
-
-                console.log('Usuario autenticado, cargando perfil...');
-                loadUserProfile(currentUser);
-            }, 1000);
-        }
 
         // Función para cargar el perfil del usuario
         function loadUserProfile(user) {
@@ -1318,7 +1350,7 @@
                 return;
             }
 
-            if (typeof videoFunctions === 'undefined') {
+            if (typeof dbRef === 'undefined' || typeof onValue === 'undefined') {
                 setTimeout(loadMyContentInteractions, 100);
                 return;
             }
@@ -1327,7 +1359,6 @@
             const username = userEmail.split('@')[0];
             const container = document.getElementById('myContentInteractions');
             
-            // Estado de carga
             container.innerHTML = `
                 <div class="loading-state">
                     <i class="fa-solid fa-spinner"></i>
@@ -1335,278 +1366,214 @@
                 </div>
             `;
 
-            const myVideos = [];
-            const videosProcessed = new Set();
+            // Paso 1: Obtener todos los IDs de videos del usuario
+            const myVideoIds = new Set();
+            const myVideosInfo = {}; // videoId -> { titulo }
 
-            // Función para obtener ID único del video
-            function getVideoId(video, firebaseKey) {
-                return video.idOriginal || video.id || video.codigo || firebaseKey;
-            }
-
-            // Función para agregar video evitando duplicados
-            function addVideo(video, firebaseKey = null) {
-                const videoId = getVideoId(video, firebaseKey);
-                if (videoId && !videosProcessed.has(videoId)) {
-                    videosProcessed.add(videoId);
-                    myVideos.push({
-                        id: videoId,
-                        firebaseKey: firebaseKey,
-                        titulo: video.titulo || video.title || 'Sin título',
-                        ...video
-                    });
-                }
-            }
-
-            // Cargar videos desde Firebase
-            let firebaseVideosLoaded = false;
-            function loadFirebaseVideos() {
-                if (typeof dbRef === 'undefined' || typeof onValue === 'undefined') {
-                    firebaseVideosLoaded = true;
-                    tryProcessAllVideos();
-                    return;
-                }
-
-                const videosRef = dbRef(db, 'videos');
-                onValue(videosRef, (snapshot) => {
-                    snapshot.forEach((childSnapshot) => {
-                        const video = childSnapshot.val();
-                        if (video.submittedBy === userEmail) {
-                            addVideo(video, childSnapshot.key);
-                        }
-                    });
-                    firebaseVideosLoaded = true;
-                    tryProcessAllVideos();
-                }, { onlyOnce: true });
-            }
-
-            // Cargar videos desde mediaDB
-            let mediaDBVideosLoaded = false;
-            function loadMediaDBVideos() {
-                if (typeof mediaDB === 'undefined') {
-                    // Intentar de nuevo después de un tiempo
-                    setTimeout(() => {
-                        if (typeof mediaDB !== 'undefined') {
-                            loadMediaDBVideos();
-                        } else {
-                            mediaDBVideosLoaded = true;
-                            tryProcessAllVideos();
-                        }
-                    }, 500);
-                    return;
-                }
-
-                mediaDB.forEach(video => {
-                    if (video.autor === username && video.categoria !== 'OCULTO') {
-                        addVideo(video);
-                    }
-                });
-                mediaDBVideosLoaded = true;
-                tryProcessAllVideos();
-            }
-
-            // Procesar todos los videos cuando ambos orígenes estén cargados
-            function tryProcessAllVideos() {
-                if (!firebaseVideosLoaded || !mediaDBVideosLoaded) {
-                    return;
-                }
-
-                if (myVideos.length === 0) {
-                    container.innerHTML = `
-                        <div class="no-interactions">
-                            <i class="fa-solid fa-video-slash"></i>
-                            <p>No has publicado videos aún</p>
-                        </div>
-                    `;
-                    return;
-                }
-
-                processVideoInteractions();
-            }
-
-            // Procesar interacciones de todos los videos
-            function processVideoInteractions() {
-                const interactionsData = [];
-                
-                // Calcular total de peticiones: likes + comentarios (pueden ser múltiples IDs)
-                let totalRequests = 0;
-                myVideos.forEach(video => {
-                    totalRequests++; // 1 por likes/dislikes
-                    const commentIds = [video.id];
-                    if (video.firebaseKey && video.firebaseKey !== video.id) {
-                        commentIds.push(video.firebaseKey);
-                    }
-                    totalRequests += commentIds.length; // N peticiones de comentarios
-                });
-
-                let completedRequests = 0;
-
-                function checkCompletion() {
-                    completedRequests++;
-                    if (completedRequests >= totalRequests) {
-                        renderInteractions(interactionsData);
-                    }
-                }
-
-                // Procesar cada video
-                myVideos.forEach(video => {
-                    const videoId = video.id;
-                    const videoTitle = video.titulo;
+            // Obtener videos de Firebase
+            const videosRef = dbRef(db, 'videos');
+            onValue(videosRef, (snapshot) => {
+                snapshot.forEach((childSnapshot) => {
+                    const video = childSnapshot.val();
+                    const isMyVideo = video.submittedBy === userEmail || video.autor === username;
                     
-                    // IDs a probar para comentarios (puede haber variaciones)
-                    const commentIds = [videoId];
-                    if (video.firebaseKey && video.firebaseKey !== videoId) {
-                        commentIds.push(video.firebaseKey);
-                    }
-
-                    // Obtener comentarios - cada ID cuenta como una petición
-                    commentIds.forEach(commentId => {
-                        videoFunctions.getComments(commentId, (comments) => {
-                            if (Array.isArray(comments)) {
-                                comments.forEach(comment => {
-                                    // Solo incluir comentarios de otros usuarios
-                                    if (comment.autor && comment.texto && comment.autor !== username) {
-                                        interactionsData.push({
-                                            videoId: videoId,
-                                            videoTitle: videoTitle,
-                                            type: 'comment',
-                                            username: comment.autor,
-                                            content: comment.texto,
-                                            timestamp: comment.timestamp || Date.now()
-                                        });
-                                    }
-                                });
-                            }
-                            checkCompletion();
+                    if (isMyVideo) {
+                        // Obtener todos los posibles IDs
+                        const ids = [
+                            video.id,
+                            video.idOriginal,
+                            childSnapshot.key,
+                            video.codigo
+                        ].filter(id => id && typeof id === 'string');
+                        
+                        const titulo = video.titulo || video.title || 'Sin título';
+                        
+                        ids.forEach(id => {
+                            myVideoIds.add(id);
+                            myVideosInfo[id] = { titulo };
                         });
-                    });
-
-                    // Obtener likes/dislikes - cuenta como 1 petición
-                    videoFunctions.getLikes(videoId, (likesData) => {
-                        if (likesData) {
-                            // Procesar likes
-                            if (Array.isArray(likesData.likes)) {
-                                likesData.likes.forEach(like => {
-                                    if (like.userId && like.userId !== userProfile.uid) {
-                                        interactionsData.push({
-                                            videoId: videoId,
-                                            videoTitle: videoTitle,
-                                            type: 'like',
-                                            username: like.username || 'Usuario',
-                                            content: '',
-                                            timestamp: like.timestamp || Date.now()
-                                        });
-                                    }
-                                });
-                            }
-
-                            // Procesar dislikes
-                            if (Array.isArray(likesData.dislikes)) {
-                                likesData.dislikes.forEach(dislike => {
-                                    if (dislike.userId && dislike.userId !== userProfile.uid) {
-                                        interactionsData.push({
-                                            videoId: videoId,
-                                            videoTitle: videoTitle,
-                                            type: 'dislike',
-                                            username: dislike.username || 'Usuario',
-                                            content: '',
-                                            timestamp: dislike.timestamp || Date.now()
-                                        });
-                                    }
-                                });
-                            }
-                        }
-                        checkCompletion();
-                    });
+                    }
                 });
 
-                // Timeout de seguridad
-                setTimeout(() => {
-                    if (completedRequests < totalRequests || interactionsData.length > 0) {
-                        renderInteractions(interactionsData);
-                    }
-                }, 8000);
-            }
-
-            // Renderizar interacciones
-            function renderInteractions(interactionsData) {
-                if (!interactionsData || interactionsData.length === 0) {
-                    container.innerHTML = `
-                        <div class="no-interactions">
-                            <i class="fa-solid fa-comment-slash"></i>
-                            <p>No hay interacciones en tus videos aún</p>
-                        </div>
-                    `;
-                    return;
+                // Obtener videos de mediaDB
+                if (typeof mediaDB !== 'undefined') {
+                    mediaDB.forEach(video => {
+                        if (video.autor === username && video.categoria !== 'OCULTO') {
+                            const ids = [video.id, video.codigo].filter(id => id);
+                            const titulo = video.titulo || video.title || 'Sin título';
+                            
+                            ids.forEach(id => {
+                                myVideoIds.add(id);
+                                if (!myVideosInfo[id]) {
+                                    myVideosInfo[id] = { titulo };
+                                }
+                            });
+                        }
+                    });
                 }
 
-                // Agrupar por video
-                const groupedByVideo = {};
-                interactionsData.forEach(interaction => {
-                    if (!groupedByVideo[interaction.videoId]) {
-                        groupedByVideo[interaction.videoId] = {
-                            title: interaction.videoTitle,
-                            interactions: []
-                        };
-                    }
-                    groupedByVideo[interaction.videoId].interactions.push(interaction);
-                });
-
-                // Ordenar cada grupo por timestamp (más reciente primero)
-                Object.keys(groupedByVideo).forEach(videoId => {
-                    groupedByVideo[videoId].interactions.sort((a, b) => b.timestamp - a.timestamp);
-                });
-
-                // Generar HTML
-                let html = '<div class="interactions-list">';
-                
-                Object.keys(groupedByVideo).forEach(videoId => {
-                    const group = groupedByVideo[videoId];
-                    html += `<div class="interaction-group">`;
-                    html += `<div class="interaction-video-title">${group.title}</div>`;
-                    
-                    group.interactions.forEach(interaction => {
-                        if (interaction.type === 'comment') {
-                            html += `
-                                <div class="interaction-item">
-                                    <span class="interaction-username">${escapeHtml(interaction.username)}</span> ha comentado 
-                                    <div class="interaction-comment">${escapeHtml(interaction.content)}</div>
-                                </div>
-                            `;
-                        } else if (interaction.type === 'like') {
-                            html += `
-                                <div class="interaction-item">
-                                    <span class="interaction-username">${escapeHtml(interaction.username)}</span> le ha gustado <span class="interaction-type">${escapeHtml(group.title)}</span>
-                                </div>
-                            `;
-                        } else if (interaction.type === 'dislike') {
-                            html += `
-                                <div class="interaction-item">
-                                    <span class="interaction-username">${escapeHtml(interaction.username)}</span> no le ha gustado <span class="interaction-type">${escapeHtml(group.title)}</span>
-                                </div>
-                            `;
-                        }
-                    });
-                    
-                    html += `</div>`;
-                });
-                
-                html += '</div>';
-                container.innerHTML = html;
-            }
-
-            // Función auxiliar para escapar HTML
-            function escapeHtml(text) {
-                const div = document.createElement('div');
-                div.textContent = text;
-                return div.innerHTML;
-            }
-
-            // Iniciar carga
-            loadFirebaseVideos();
-            loadMediaDBVideos();
+                // Paso 2: Cargar comentarios y likes de esos videos
+                loadInteractionsForMyVideos(myVideoIds, myVideosInfo);
+            }, { onlyOnce: true });
         }
 
-        // Función para cargar videos del usuario
+        // Función para cargar interacciones de los videos del usuario
+        function loadInteractionsForMyVideos(myVideoIds, myVideosInfo) {
+            const allInteractions = [];
+            let commentsLoaded = false;
+            let likesLoaded = false;
+
+            function checkAndRender() {
+                if (commentsLoaded && likesLoaded) {
+                    renderInteractions(allInteractions);
+                }
+            }
+
+            // Cargar comentarios
+            const commentsRef = dbRef(db, 'comments');
+            onValue(commentsRef, (snapshot) => {
+                snapshot.forEach((videoIdSnapshot) => {
+                    const videoId = videoIdSnapshot.key;
+                    
+                    // Verificar si este video pertenece al usuario
+                    if (!myVideoIds.has(videoId)) return;
+                    
+                    const videoInfo = myVideosInfo[videoId] || { titulo: 'Sin título' };
+
+                    // Procesar cada comentario
+                    videoIdSnapshot.forEach((commentSnapshot) => {
+                        const comment = commentSnapshot.val();
+                        if (comment && typeof comment === 'object' && comment.autor && comment.texto) {
+                            // INCLUIR TODOS los comentarios, incluso los del propio usuario
+                            allInteractions.push({
+                                videoId: videoId,
+                                videoTitle: videoInfo.titulo,
+                                type: 'comment',
+                                username: comment.autor,
+                                content: comment.texto,
+                                timestamp: comment.timestamp || Date.now()
+                            });
+                        }
+                    });
+                });
+
+                commentsLoaded = true;
+                checkAndRender();
+            }, { onlyOnce: true });
+
+            // Cargar likes/dislikes
+            const likesRef = dbRef(db, 'likes');
+            onValue(likesRef, (snapshot) => {
+                snapshot.forEach((videoIdSnapshot) => {
+                    const videoId = videoIdSnapshot.key;
+                    
+                    // Verificar si este video pertenece al usuario
+                    if (!myVideoIds.has(videoId)) return;
+                    
+                    const videoInfo = myVideosInfo[videoId] || { titulo: 'Sin título' };
+
+                    // Procesar likes/dislikes
+                    videoIdSnapshot.forEach((likeSnapshot) => {
+                        const likeData = likeSnapshot.val();
+                        
+                        // Ignorar contadores numéricos de bots
+                        if (likeData && typeof likeData === 'object' && likeData.type) {
+                            // INCLUIR TODOS los likes/dislikes, incluso los del propio usuario
+                            allInteractions.push({
+                                videoId: videoId,
+                                videoTitle: videoInfo.titulo,
+                                type: likeData.type, // 'like' o 'dislike'
+                                username: likeData.username || 'Usuario',
+                                content: '',
+                                timestamp: likeData.timestamp || Date.now()
+                            });
+                        }
+                    });
+                });
+
+                likesLoaded = true;
+                checkAndRender();
+            }, { onlyOnce: true });
+        }
+
+        // Renderizar interacciones
+        function renderInteractions(interactionsData) {
+            const container = document.getElementById('myContentInteractions');
+            
+            if (!interactionsData || interactionsData.length === 0) {
+                container.innerHTML = `
+                    <div class="no-interactions">
+                        <i class="fa-solid fa-comment-slash"></i>
+                        <p>No hay interacciones en tus videos aún</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Agrupar por video
+            const groupedByVideo = {};
+            interactionsData.forEach(interaction => {
+                if (!groupedByVideo[interaction.videoId]) {
+                    groupedByVideo[interaction.videoId] = {
+                        title: interaction.videoTitle,
+                        interactions: []
+                    };
+                }
+                groupedByVideo[interaction.videoId].interactions.push(interaction);
+            });
+
+            // Ordenar cada grupo por timestamp (más reciente primero)
+            Object.keys(groupedByVideo).forEach(videoId => {
+                groupedByVideo[videoId].interactions.sort((a, b) => b.timestamp - a.timestamp);
+            });
+
+            // Generar HTML
+            let html = '<div class="interactions-list">';
+            
+            Object.keys(groupedByVideo).forEach(videoId => {
+                const group = groupedByVideo[videoId];
+                html += `<div class="interaction-group">`;
+                html += `<div class="interaction-video-title">${escapeHtml(group.title)}</div>`;
+                
+                group.interactions.forEach(interaction => {
+                    if (interaction.type === 'comment') {
+                        html += `
+                            <div class="interaction-item">
+                                <span class="interaction-username">${escapeHtml(interaction.username)}</span> ha comentado 
+                                <div class="interaction-comment">${escapeHtml(interaction.content)}</div>
+                            </div>
+                        `;
+                    } else if (interaction.type === 'like') {
+                        html += `
+                            <div class="interaction-item">
+                                <span class="interaction-username">${escapeHtml(interaction.username)}</span> le ha gustado <span class="interaction-type">${escapeHtml(group.title)}</span>
+                            </div>
+                        `;
+                    } else if (interaction.type === 'dislike') {
+                        html += `
+                            <div class="interaction-item">
+                                <span class="interaction-username">${escapeHtml(interaction.username)}</span> no le ha gustado <span class="interaction-type">${escapeHtml(group.title)}</span>
+                            </div>
+                        `;
+                    }
+                });
+                
+                html += `</div>`;
+            });
+            
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        // Función auxiliar para escapar HTML
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Función para cargar videos del usuario y contar
         function loadMyVideos() {
             if (!userProfile) {
                 setTimeout(loadMyVideos, 100);
@@ -1614,73 +1581,133 @@
             }
 
             const userEmail = userProfile.email;
-            let myVideos = [];
+            const username = userEmail.split('@')[0];
+            let videoCount = 0;
 
-            // Obtener videos de Firebase
+            // Contar videos de Firebase
             if (typeof dbRef !== 'undefined' && typeof onValue !== 'undefined') {
                 const videosRef = dbRef(db, 'videos');
                 onValue(videosRef, (snapshot) => {
-                    myVideos = [];
+                    videoCount = 0;
                     snapshot.forEach((childSnapshot) => {
                         const video = childSnapshot.val();
-                        if (video.submittedBy === userEmail) {
-                            myVideos.push({
-                                id: childSnapshot.key,
-                                ...video
-                            });
+                        // Contar por email (submittedBy) o por username (autor)
+                        if (video.submittedBy === userEmail || video.autor === username) {
+                            videoCount++;
                         }
                     });
 
-                    // Ordenar por fecha de aprobación (más recientes primero)
-                    myVideos.sort((a, b) => {
-                        const dateA = new Date(a.approvedAt || a.submittedAt);
-                        const dateB = new Date(b.approvedAt || b.submittedAt);
-                        return dateB - dateA;
-                    });
+                    // Contar videos de mediaDB
+                    if (typeof mediaDB !== 'undefined') {
+                        mediaDB.forEach(video => {
+                            if (video.autor === username && video.categoria !== 'OCULTO') {
+                                videoCount++;
+                            }
+                        });
+                    }
 
-                    renderMyVideos();
-                });
+                    // Actualizar contador en el dashboard
+                    const countElement = document.getElementById('myVideosStatsCount');
+                    if (countElement) {
+                        countElement.textContent = videoCount;
+                    }
+                    
+                    const modalCountElement = document.getElementById('myVideosCount');
+                    if (modalCountElement) {
+                        modalCountElement.textContent = `${videoCount} video${videoCount !== 1 ? 's' : ''}`;
+                    }
+
+                    // Renderizar videos en el modal
+                    renderMyVideos(userEmail, username, videoCount);
+                }, { onlyOnce: true });
             } else {
-                // Fallback: buscar en mediaDB si Firebase no está disponible
+                // Fallback: contar solo en mediaDB
                 if (typeof mediaDB !== 'undefined') {
-                    myVideos = mediaDB.filter(video => 
-                        video.autor === userEmail.split('@')[0] && video.categoria !== 'OCULTO'
-                    );
+                    mediaDB.forEach(video => {
+                        if (video.autor === username && video.categoria !== 'OCULTO') {
+                            videoCount++;
+                        }
+                    });
                 }
-                renderMyVideos();
+                
+                const countElement = document.getElementById('myVideosStatsCount');
+                if (countElement) {
+                    countElement.textContent = videoCount;
+                }
+                
+                renderMyVideos(userEmail, username);
             }
         }
 
         // Función para renderizar videos del usuario
-        function renderMyVideos() {
+        function renderMyVideos(userEmail, username, count) {
             const container = document.getElementById('myVideosContainer');
-            const userEmail = userProfile ? userProfile.email : '';
-            let myVideos = [];
+            if (!container) return;
+
+            if (!userEmail && userProfile) {
+                userEmail = userProfile.email;
+            }
+            if (!username && userEmail) {
+                username = userEmail.split('@')[0];
+            }
+
+            const myVideos = [];
 
             // Obtener videos del usuario desde Firebase
             if (typeof dbRef !== 'undefined' && typeof onValue !== 'undefined') {
                 const videosRef = dbRef(db, 'videos');
                 onValue(videosRef, (snapshot) => {
-                    myVideos = [];
                     snapshot.forEach((childSnapshot) => {
                         const video = childSnapshot.val();
-                        if (video.submittedBy === userEmail) {
+                        // Incluir videos por email (submittedBy) o por username (autor)
+                        if (video.submittedBy === userEmail || video.autor === username) {
                             myVideos.push({
-                                id: childSnapshot.key,
-                                ...video
+                                id: video.idOriginal || video.id || childSnapshot.key,
+                                titulo: video.titulo || video.title || 'Sin título',
+                                portada: video.portada || video.thumbnail || '',
+                                categoria: video.categoria || video.category || 'Sin categoría',
+                                fecha: video.fecha || video.date || '',
+                                autor: video.autor || username,
+                                status: video.status || 'pending'
                             });
                         }
                     });
 
+                    // Agregar videos de mediaDB
+                    if (typeof mediaDB !== 'undefined') {
+                        mediaDB.forEach(video => {
+                            if (video.autor === username && video.categoria !== 'OCULTO') {
+                                myVideos.push({
+                                    id: video.id || video.codigo,
+                                    titulo: video.titulo || video.title || 'Sin título',
+                                    portada: video.portada || '',
+                                    categoria: video.categoria || 'Sin categoría',
+                                    fecha: video.fecha || '',
+                                    autor: video.autor || username,
+                                    status: 'approved'
+                                });
+                            }
+                        });
+                    }
+
                     displayMyVideos(myVideos);
-                });
+                }, { onlyOnce: true });
             } else {
-                // Fallback: buscar en mediaDB
+                // Fallback: buscar solo en mediaDB
                 if (typeof mediaDB !== 'undefined') {
-                    const username = userEmail.split('@')[0];
-                    myVideos = mediaDB.filter(video => 
-                        video.autor === username && video.categoria !== 'OCULTO'
-                    );
+                    mediaDB.forEach(video => {
+                        if (video.autor === username && video.categoria !== 'OCULTO') {
+                            myVideos.push({
+                                id: video.id || video.codigo,
+                                titulo: video.titulo || video.title || 'Sin título',
+                                portada: video.portada || '',
+                                categoria: video.categoria || 'Sin categoría',
+                                fecha: video.fecha || '',
+                                autor: video.autor || username,
+                                status: 'approved'
+                            });
+                        }
+                    });
                 }
                 displayMyVideos(myVideos);
             }
@@ -1782,48 +1809,11 @@
             window.location.href = `video.html?id=${videoId}`;
         }
 
-        // Función alternativa para verificar autenticación usando el estado de Firebase
-        function waitForAuthState() {
-            if (typeof getCurrentUser === 'undefined' || !window.firebaseReady) {
-                console.log('Esperando a que Firebase se cargue...');
-                setTimeout(waitForAuthState, 500);
-                return;
-            }
-
-            // Usar el estado de autenticación directamente
-            const currentUser = getCurrentUser();
-            console.log('Estado de autenticación:', currentUser);
-            
-            if (currentUser) {
-                console.log('Usuario autenticado encontrado:', currentUser.email);
-                loadUserProfile(currentUser);
-            } else {
-                console.log('No hay usuario autenticado');
-                // Esperar un poco más por si el estado aún se está actualizando
-                setTimeout(() => {
-                    const user = getCurrentUser();
-                    if (!user) {
-                        console.log('Redirigiendo al login...');
-                        window.location.href = 'auth/auth.html';
-                    } else {
-                        console.log('Usuario encontrado en segundo intento:', user.email);
-                        loadUserProfile(user);
-                    }
-                }, 2000);
-            }
-        }
-
         // Hacer las funciones disponibles globalmente
         window.loadUserProfile = loadUserProfile;
         window.openModal = openModal;
         window.closeModal = closeModal;
         window.openVideo = openVideo;
-
-        // Inicializar cuando el DOM esté listo
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM cargado, iniciando verificación de autenticación...');
-            waitForAuthState();
-        });
     </script>
 </body>
 
