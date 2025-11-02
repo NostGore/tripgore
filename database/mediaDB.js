@@ -3071,6 +3071,114 @@ const mediaDB = [
     fecha: "31/10/2025"
   },
   {
+    id: "acustate-en-tre-grave-y-muere",
+    titulo: "ACUÉSTATE EN TRE GRAVE Y MUERE",
+    portada: "https://xxx.livegore.com//rb-include/videos/2227833219.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2227833219.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "solado-mata-a-una-mujer-en-ves-de-a-su-enemigo",
+    titulo: "Solado mata a una mujer en ves de a su enemigo",
+    portada: "https://xxx.livegore.com//rb-include/videos/4607363254.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4607363254.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "apualado-durante-una-pelea-de-borrachos-por-una-chica",
+    titulo: "Apuñalado durante una pelea de borrachos por una chica",
+    portada: "https://xxx.livegore.com//rb-include/videos/8308986732.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8308986732.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "asesinato-en-la-favela",
+    titulo: "Asesinato en la favela",
+    portada: "https://res.cloudinary.com/dlypbv6rh/video/upload/v1762061218/326769-fbde10a503ee3113fba2d78260aae0ea_h1ww7n.jpg",
+    video: "https://res.cloudinary.com/dlypbv6rh/video/upload/v1762061218/326769-fbde10a503ee3113fba2d78260aae0ea_h1ww7n.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "un-bandido-recibi-un-disparo-en-la-cabeza",
+    titulo: "Un bandido recibió un disparo en la cabeza",
+    portada: "https://xxx.livegore.com//rb-include/videos/4708112860.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4708112860.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "mujer-de-65-aos-usurero-es-vctima-de-sicarios",
+    titulo: "MUJER DE 65 AÑOS, USURERO, ES VÍCTIMA DE SICARIOS",
+    portada: "https://xxx.livegore.com//rb-include/videos/7443538303.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7443538303.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "un-hombre-asesinado-a-tiros-en-brasil",
+    titulo: "Un hombre asesinado a tiros en Brasil",
+    portada: "https://xxx.livegore.com//rb-include/videos/2827971191.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2827971191.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "rival-recibe-un-corte-en-la-garganta-con-machete",
+    titulo: "Rival recibe un corte en la garganta con machete",
+    portada: "https://theync.com/media/thumbs/6/9/0/4/4/217768569044d61c20ea.mp4/217768569044d61c20ea.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/0/4/4/69044efb4e5c4.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "tiroteo-fatal-del-rapero-de-chicago-thf-bayzoo",
+    titulo: "Tiroteo fatal del rapero de Chicago THF Bayzoo",
+    portada: "https://theync.com/media/thumbs/6/9/0/3/4/21776856903427ae6b0e.mp4/21776856903427ae6b0e.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/0/3/4/6903435353146.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "crimen-de-guerra-ejecucin-masiva-de-civiles-en-sudn",
+    titulo: "CRIMEN DE GUERRA: Ejecución masiva de civiles en Sudán",
+    portada: "https://theync.com/media/thumbs/6/8/f/f/8/217768568ff817001659.mp4/217768568ff817001659.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/8/f/f/8/68ff81ebd3c93.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "10-ucranianos-desnudos-ejecutados",
+    titulo: "10 ucranianos desnudos ejecutados",
+    portada: "https://theync.com/media/thumbs/6/9/0/4/3/188383669043648bb389.mp4/188383669043648bb389.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/0/4/3/690436d793ab9.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "44-pandilleros-asesinados-por-la-polica-en-brasil",
+    titulo: "44 pandilleros asesinados por la policía en Brasil",
+    portada: "https://theync.com/media/thumbs/6/9/0/2/0/217768569020ea7ead0f.mp4/217768569020ea7ead0f.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/0/2/0/69020f5b76adc.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "2/11/2025"
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -4781,6 +4889,123 @@ const mediaDB = [
     fecha: "29/05/25",
   },
   {
+    id: "jvenes-skinheads-rusos-golpean-a-antifa-scumbags",
+    titulo: "Jóvenes Skinheads rusos golpean a Antifa Scumbags",
+    portada: "https://xxx.livegore.com//rb-include/videos/9333444889.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9333444889.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "hombre-atacado-por-monos",
+    titulo: "HOMBRE ATACADO POR MONOS",
+    portada: "https://xxx.livegore.com//rb-include/videos/5280436542.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5280436542.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "dos-soldadores-murieron-tras-una-explosin",
+    titulo: "Dos soldadores murieron tras una explosión",
+    portada: "https://xxx.livegore.com//rb-include/videos/2089181104.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2089181104.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "amigo-tu-mano-est-muerta",
+    titulo: "¡AMIGO, TU MANO ESTÁ MUERTA!",
+    portada: "https://xxx.livegore.com//rb-include/videos/4815122080.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4815122080.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "nunca-te-metas-con-bestias-de-ecuador",
+    titulo: "Nunca te metas con bestias de Ecuador",
+    portada: "https://xxx.livegore.com//rb-include/videos/9526712680.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9526712680.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "salvajemente-castigado-por-robar-drogas",
+    titulo: "Salvajemente castigado por robar drogas",
+    portada: "https://xxx.livegore.com//rb-include/videos/9293799428.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9293799428.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "ms-ucranianos-muertos",
+    titulo: "Más ucranianos muertos",
+    portada: "https://xxx.livegore.com//rb-include/videos/6175641445.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6175641445.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "la-favela-de-ro-asalta-cadveres",
+    titulo: "La favela de Río asalta CADÁVERES",
+    portada: "https://xxx.livegore.com//rb-include/videos/9672441082.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9672441082.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "hombre-desnudo-baleado-por-la-polica",
+    titulo: "Hombre desnudo baleado por la policía",
+    portada: "https://xxx.livegore.com//rb-include/videos/485313395.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/485313395.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "cara-de-hombre-muerto-devorada-por-un-perro",
+    titulo: "Cara de hombre muerto devorada por un perro",
+    portada: "https://xxx.livegore.com//rb-include/videos/7050451561.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7050451561.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "hombre-encontrado-ejecutado-con-potentes-disparos",
+    titulo: "Hombre encontrado ejecutado con potentes disparos",
+    portada: "https://xxx.livegore.com//rb-include/videos/9731611469.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9731611469.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "ro-de-janeiro-combate-cuerpo-a-cuerpo",
+    titulo: "Río de Janeiro : ¡¡combate cuerpo a cuerpo",
+    portada: "https://theync.com/media/thumbs/6/9/0/3/c/6891686903ce96894e9.mp4/6891686903ce96894e9.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/0/3/c/6903cf3f4ac0a.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "mujer-con-los-ojos-vendados-es-asesinada",
+    titulo: "Mujer con los ojos vendados es asesinada",
+    portada: "https://theync.com/media/thumbs/6/9/0/0/7/217768569006f500b654.mp4/217768569006f500b654.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/0/0/7/6900700aa9f89.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
     id: "ocho-muertos-en-accidente-de-trfico",
     titulo: "Ocho muertos en accidente de tráfico",
     portada: "https://xxx.livegore.com//rb-include/videos/756444595.jpg",
@@ -4851,6 +5076,78 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "ACCIDENTES",
     fecha: "31/10/2025"
+  },
+  {
+    id: "recogiendo-los-cadveres",
+    titulo: "RECOGIENDO LOS CADÁVERES",
+    portada: "https://xxx.livegore.com//rb-include/videos/3972641034.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3972641034.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "un-idiota-y-su-caballo",
+    titulo: "UN IDIOTA Y SU CABALLO",
+    portada: "https://xxx.livegore.com//rb-include/videos/2930342555.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2930342555.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "parece-que-nunca-volver-a-caminar",
+    titulo: "Parece que nunca volverá a caminar",
+    portada: "https://xxx.livegore.com//rb-include/videos/5432831137.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5432831137.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "pareja-de-florida-gravemente-herida-por-un-conductor-que-se-dio-a-la-fuga",
+    titulo: "Pareja de Florida gravemente herida por un conductor que se dio a la fuga",
+    portada: "https://xxx.livegore.com//rb-include/videos/4503867225.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4503867225.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "el-amor-est-en-el-aire-opps-en-el-asfalto",
+    titulo: "¡EL AMOR ESTÁ EN EL AIRE! OPPS, ¡EN EL ASFALTO!",
+    portada: "https://xxx.livegore.com//rb-include/videos/8969935476.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8969935476.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "muere-atropellado-por-un-tren",
+    titulo: "MUERE ATROPELLADO POR UN TREN",
+    portada: "https://xxx.livegore.com//rb-include/videos/3174981456.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3174981456.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "recogiendo-los-pedazos",
+    titulo: "RECOGIENDO LOS PEDAZOS",
+    portada: "https://xxx.livegore.com//rb-include/videos/5581780434.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5581780434.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "linda-nia-gravemente-herida-en-accidente-de-trfico",
+    titulo: "Linda niña gravemente herida en accidente de tráfico",
+    portada: "https://theync.com/media/thumbs/6/9/0/1/b/21776856901b9ef1250a.mp4/21776856901b9ef1250a.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/0/1/b/6901bb378c140.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "2/11/2025"
   },
   {
     id: "le-corta-sus-partes",
@@ -7912,6 +8209,15 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "AUTOLESIONES",
     fecha: "31/10/2025"
+  },
+  {
+    id: "recluso-con-sobredosis-de-cosas-carcelarias-baratas",
+    titulo: "Recluso con sobredosis de cosas carcelarias baratas",
+    portada: "https://theync.com/media/thumbs/6/9/0/3/1/217768569031ef50ab2f.mp4/217768569031ef50ab2f.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/0/3/1/69031fef8bb19.mp4",
+    autor: "TripGore",
+    categoria: "AUTOLESIONES",
+    fecha: "2/11/2025"
   },
   {
     id: "9127-4482-3901-ae82f1a7c4d3", //ocultos
