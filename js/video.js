@@ -196,6 +196,121 @@ function getQueryParam(param) {
     return urlParams.get(param);
 }
 
+// Función para actualizar meta tags dinámicamente para SEO
+function updateVideoMetaTags(video) {
+    if (!video) return;
+    
+    const baseUrl = 'https://tripgore.space';
+    const videoUrl = `${baseUrl}/video.html?id=${encodeURIComponent(video.id)}`;
+    const videoTitle = video.titulo || 'Video Gore';
+    const videoDescription = `Mira ${videoTitle} en TripGore. ${video.categoria ? `Categoría: ${video.categoria}.` : ''} ${video.autor ? `Publicado por: ${video.autor}.` : ''}`;
+    const videoImage = video.portada || `${baseUrl}/img/tripgore-logo.png`;
+    
+    // Actualizar o crear meta tags básicos
+    updateMetaTag('description', videoDescription);
+    updateMetaTag('keywords', `${videoTitle}, ${video.categoria || ''}, gore, tripgore, videos gore, casos impactantes`.replace(/,\s*,/g, ',').replace(/^,\s*/, ''));
+    
+    // Actualizar canonical
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (!canonicalLink) {
+        canonicalLink = document.createElement('link');
+        canonicalLink.setAttribute('rel', 'canonical');
+        document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.setAttribute('href', videoUrl);
+    
+    // Actualizar Open Graph tags
+    updateOGTag('og:title', videoTitle);
+    updateOGTag('og:description', videoDescription);
+    updateOGTag('og:url', videoUrl);
+    updateOGTag('og:image', videoImage);
+    updateOGTag('og:type', 'video.other');
+    
+    // Actualizar Twitter Card tags
+    updateTwitterTag('twitter:title', videoTitle);
+    updateTwitterTag('twitter:description', videoDescription);
+    updateTwitterTag('twitter:image', videoImage);
+    
+    // Agregar video schema.org structured data
+    updateVideoSchema(video, videoUrl);
+}
+
+function updateMetaTag(name, content) {
+    let meta = document.querySelector(`meta[name="${name}"]`);
+    if (!meta) {
+        meta = document.createElement('meta');
+        meta.setAttribute('name', name);
+        document.head.appendChild(meta);
+    }
+    meta.setAttribute('content', content);
+}
+
+function updateOGTag(property, content) {
+    let meta = document.querySelector(`meta[property="${property}"]`);
+    if (!meta) {
+        meta = document.createElement('meta');
+        meta.setAttribute('property', property);
+        document.head.appendChild(meta);
+    }
+    meta.setAttribute('content', content);
+}
+
+function updateTwitterTag(name, content) {
+    let meta = document.querySelector(`meta[name="${name}"]`);
+    if (!meta) {
+        meta = document.createElement('meta');
+        meta.setAttribute('name', name);
+        document.head.appendChild(meta);
+    }
+    meta.setAttribute('content', content);
+}
+
+function updateVideoSchema(video, videoUrl) {
+    // Remover schema anterior si existe
+    const oldSchema = document.querySelector('script[type="application/ld+json"][data-video-schema]');
+    if (oldSchema) {
+        oldSchema.remove();
+    }
+    
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": video.titulo,
+        "description": `Mira ${video.titulo} en TripGore${video.categoria ? `. Categoría: ${video.categoria}` : ''}`,
+        "thumbnailUrl": video.portada || "https://tripgore.space/img/tripgore-logo.png",
+        "uploadDate": video.fecha ? formatDateForSchema(video.fecha) : new Date().toISOString(),
+        "contentUrl": video.video || "",
+        "embedUrl": videoUrl,
+        "publisher": {
+            "@type": "Organization",
+            "name": "TripGore",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://tripgore.space/img/tripgore-logo.png"
+            }
+        }
+    };
+    
+    const schemaScript = document.createElement('script');
+    schemaScript.setAttribute('type', 'application/ld+json');
+    schemaScript.setAttribute('data-video-schema', 'true');
+    schemaScript.textContent = JSON.stringify(schema);
+    document.head.appendChild(schemaScript);
+}
+
+function formatDateForSchema(dateStr) {
+    if (!dateStr) return new Date().toISOString();
+    const parts = dateStr.split('/');
+    if (parts.length === 3) {
+        const day = parts[0].padStart(2, '0');
+        const month = parts[1].padStart(2, '0');
+        let year = parts[2];
+        if (year.length === 2) year = '20' + year;
+        return `${year}-${month}-${day}T00:00:00+00:00`;
+    }
+    return new Date().toISOString();
+}
+
 // Función para actualizar botones de like/dislike
 function updateLikeButtons() {
     const likeBtn = document.getElementById('likeBtn');
@@ -238,6 +353,10 @@ function loadVideoById(videoId) {
     document.getElementById('videoTitle').textContent = video.titulo;
     // Actualizar título de la pestaña
     document.title = `${video.titulo} - TRIPGORE`;
+    
+    // Actualizar meta tags dinámicamente para SEO
+    updateVideoMetaTags(video);
+    
     // Meta: fecha y autor
     document.getElementById('videoMeta').innerHTML = `<strong>Publicado el ${video.fecha} por:</strong> ${video.autor}`;
     // Establecer iframe con la URL del video

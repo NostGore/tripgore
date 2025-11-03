@@ -6,5 +6,7 @@ Allow: /
 Disallow: /other/admin-fetch/
 Disallow: /other/admin-fetch.html
 
-# Sitemap
+# Sitemaps
+Sitemap: https://tripgore.space/sitemap-index.xml
 Sitemap: https://tripgore.space/sitemap.xml
+Sitemap: https://tripgore.space/sitemap-videos.xml
