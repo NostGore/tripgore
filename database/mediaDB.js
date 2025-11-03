@@ -5150,6 +5150,141 @@ const mediaDB = [
     fecha: "2/11/2025"
   },
   {
+    id: "conductor-de-camion-mata-a-dos-hombres-mientras-daba-marcha-atras-con-su-camion",
+    titulo: "Conductor de camión mata a dos hombres mientras daba marcha atrás con su camión",
+    portada: "https://xxx.livegore.com//rb-include/videos/1711200866.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1711200866.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "3/11/2025"
+  },
+  {
+    id: "hombre-se-resbala-tragicamente-y-se-desliza-debajo-del-tren",
+    titulo: "Hombre se resbala trágicamente y se desliza debajo del tren",
+    portada: "https://xxx.livegore.com//rb-include/videos/2213149741.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2213149741.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "3/11/2025"
+  },
+  {
+    id: "mujer-atropellada-en-la-acera-y-conductor-huye",
+    titulo: "Mujer atropellada en la acera y conductor huye",
+    portada: "https://xxx.livegore.com//rb-include/videos/8479997864.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8479997864.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "3/11/2025"
+  },
+  {
+    id: "chica-motociclista-gravemente-herida-en-accidente-de-trafico",
+    titulo: "Chica motociclista gravemente herida en accidente de tráfico",
+    portada: "https://xxx.livegore.com//rb-include/videos/3287465721.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3287465721.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "3/11/2025"
+  },
+  {
+    id: "el-todavia-esta-orbitando-la-tierra",
+    titulo: "Él todavía está orbitando la Tierra",
+    portada: "https://xxx.livegore.com//rb-include/videos/611083004.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/611083004.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "3/11/2025"
+  },
+  {
+    id: "el-ultimo-deslizamiento-del-hombre-que-le-quito-la-vida",
+    titulo: "El último deslizamiento del hombre que le quitó la vida",
+    portada: "https://xxx.livegore.com//rb-include/videos/8092898768.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8092898768.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "3/11/2025"
+  },
+  {
+    id: "una-guia-sobre-como-no-criar-ninos",
+    titulo: "UNA GUÍA SOBRE CÓMO NO CRIAR NIÑOS",
+    portada: "https://xxx.livegore.com//rb-include/videos/4697751845.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4697751845.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "3/11/2025"
+  },
+  {
+    id: "mujer-asesinada-por-adelantamiento-ilegal",
+    titulo: "Mujer asesinada por adelantamiento ilegal",
+    portada: "https://xxx.livegore.com//rb-include/videos/5252495594.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5252495594.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "3/11/2025"
+  },
+  {
+    id: "como-romperse-la-pierna-cuando-eres-tonto",
+    titulo: "Cómo romperse la pierna cuando eres tonto",
+    portada: "https://xxx.livegore.com//rb-include/videos/7179974415.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7179974415.mp4",
+    autor: "TripGore",
+    categoria: "",
+    fecha: "3/11/2025"
+  },
+  {
+    id: "soldado-muere-en-accidente-de-motocicleta",
+    titulo: "SOLDADO MUERE EN ACCIDENTE DE MOTOCICLETA",
+    portada: "https://xxx.livegore.com//rb-include/videos/1628573182.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1628573182.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "3/11/2025"
+  },
+  {
+    id: "los-indios-y-los-trenes-son-mejores-amigos",
+    titulo: "Los indios y los trenes son mejores amigos",
+    portada: "https://xxx.livegore.com//rb-include/videos/743025522.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/743025522.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "3/11/2025"
+  },
+  {
+    id: "mientras-en-africa",
+    titulo: "MIENTRAS EN ÁFRICA",
+    portada: "https://xxx.livegore.com//rb-include/videos/7380131003.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7380131003.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "3/11/2025"
+  },
+  {
+    id: "mustafa-decidio-jugar-con-fuego",
+    titulo: "MUSTAFA DECIDIO JUGAR CON FUEGO",
+    portada: "https://xxx.livegore.com//rb-include/videos/7362354588.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7362354588.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "3/11/2025"
+  },
+  {
+    id: "hombre-haitiano-empalado-por-barras-de-hierro",
+    titulo: "Hombre haitiano empalado por barras de hierro",
+    portada: "https://xxx.livegore.com//rb-include/videos/5611360026.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5611360026.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "3/11/2025"
+  },
+  {
+    id: "la-cara-de-un-hombre-destrozada-tras-un-accidente-de-moto",
+    titulo: "La cara de un hombre destrozada tras un accidente de moto",
+    portada: "https://xxx.livegore.com//rb-include/videos/3138598855.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3138598855.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "3/11/2025"
+  },
+  {
     id: "le-corta-sus-partes",
     titulo: "Le corta sus partes",
     portada: "https://files.catbox.moe/mefoa3.png",
