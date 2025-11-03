@@ -208,7 +208,7 @@ function updateVideoMetaTags(video) {
     
     // Actualizar o crear meta tags básicos
     updateMetaTag('description', videoDescription);
-    updateMetaTag('keywords', `${videoTitle}, ${video.categoria || ''}, gore, tripgore, videos gore, casos impactantes`.replace(/,\s*,/g, ',').replace(/^,\s*/, ''));
+    updateMetaTag('keywords', `${videoTitle}, ${video.categoria || ''}, gore, tripgore, tripgore.space, forogore, foro gore, livegore, live gore, videos gore, gore videos, kaotic, forogore los zetas, casos impactantes, tripgore space`.replace(/,\s*,/g, ',').replace(/^,\s*/, ''));
     
     // Actualizar canonical
     let canonicalLink = document.querySelector('link[rel="canonical"]');
