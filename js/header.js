@@ -25,7 +25,7 @@ function loadHeader() {
             <div class="nav-links">
                 <!-- Primera fila -->
                 <div class="nav-links-row nav-links-row-1">
-                    <a href="../index.html" style="font-weight: bold;">INICIO</a>
+                    <a href="../" style="font-weight: bold;">INICIO</a>
                     <a href="../colaboradores.html" style="font-weight: bold;">Colaboradores</a>
                     <a href="../infoRoles.html" style="font-weight: bold;">Roles</a>
                     <a href="../other/aris.html" style="font-weight: bold;">ARIS CODE</a>
@@ -116,7 +116,7 @@ function loadHeader() {
                 <i class="fa-solid fa-home"></i> Navegación
             </div>
             <div class="mobile-nav-links">
-                <a href="../index.html">
+                <a href="../">
                     <i class="fa-brands fa-telegram"></i>
                     INICIO
                 </a>
@@ -930,13 +930,13 @@ function showRemoveAdsModal() {
 // Función para ir al inicio
 function goToHome() {
     // Redirigir directamente a la URL completa del sitio
-    window.location.href = 'https://tripgore.space/index.html';
+    window.location.href = 'https://tripgore.space/';
 }
 
 // Función para ir a una página específica con parámetros
 function goToPage(page) {
     // Redirigir directamente a la URL completa del sitio con parámetros
-    window.location.href = 'https://tripgore.space/index.html?page=' + page;
+    window.location.href = 'https://tripgore.space/?page=' + page;
 }
 
 // Función para abrir el cliente de correo con soporte

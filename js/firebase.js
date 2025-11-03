@@ -391,8 +391,8 @@ async function loginUser(email, password) {
 
 // Función para redirigir después del login exitoso
 function redirectAfterLogin() {
-    // Redirigir específicamente a tripgore/index.html
-    window.location.href = '../index.html';
+    // Redirigir específicamente a la página principal
+    window.location.href = '../';
 }
 
 // ------------------- Video Functions (basado en tripgore/function-scripts/firebase.js) -------------------
