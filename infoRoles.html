@@ -19,16 +19,14 @@
     <link rel="stylesheet" href="css/colaboradores.css">
 
     <meta property="og:title" content="Información de Roles | TripGore">
-    <meta property="og:description"
-        content="Conoce todos los roles disponibles en TripGore y cómo conseguirlos.">
+    <meta property="og:description" content="Conoce todos los roles disponibles en TripGore y cómo conseguirlos.">
     <meta property="og:url" content="https://tripgore.space/infoRoles.html">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://tripgore.space/img/tripgore-logo.png">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Información de Roles | TripGore">
-    <meta name="twitter:description"
-        content="Conoce todos los roles disponibles en TripGore y cómo conseguirlos.">
+    <meta name="twitter:description" content="Conoce todos los roles disponibles en TripGore y cómo conseguirlos.">
     <meta name="twitter:image" content="https://tripgore.space/img/tripgore-logo.png">
 
     <meta name="theme-color" content="#0a0a0d">
@@ -219,6 +217,10 @@
             }
         }
     </style>
+
+    <script type='text/javascript'
+        src='//pl27981063.effectivegatecpm.com/20/7f/e9/207fe9e990d76c3be21e1645d4451b4b.js'></script>
+
 </head>
 
 <body>
@@ -253,21 +255,26 @@
                     <h3><i class="fa-solid fa-star"></i> ¿Cómo obtener Puntos?</h3>
                     <p>Puedes ganar puntos realizando diferentes acciones en la plataforma:</p>
                     <ul class="points-actions" style="margin-top: 10px;">
-                        <li><i class="fa-solid fa-comment"></i> <strong>+1 punto</strong> por cada comentario que hagas</li>
+                        <li><i class="fa-solid fa-comment"></i> <strong>+1 punto</strong> por cada comentario que hagas
+                        </li>
                         <li><i class="fa-solid fa-thumbs-up"></i> <strong>+1 punto</strong> por dar like a un video</li>
-                        <li><i class="fa-solid fa-thumbs-down"></i> <strong>+1 punto</strong> por dar dislike a un video</li>
-                        <li><i class="fa-solid fa-video"></i> <strong>+5 puntos</strong> cuando tu video sea aprobado por un administrador</li>
+                        <li><i class="fa-solid fa-thumbs-down"></i> <strong>+1 punto</strong> por dar dislike a un video
+                        </li>
+                        <li><i class="fa-solid fa-video"></i> <strong>+5 puntos</strong> cuando tu video sea aprobado
+                            por un administrador</li>
                     </ul>
                     <p style="margin-top: 15px; color: #aaa; font-size: 12px;">
-                        <i class="fa-solid fa-exclamation-triangle"></i> Si quitas un like o dislike, perderás el punto correspondiente.
+                        <i class="fa-solid fa-exclamation-triangle"></i> Si quitas un like o dislike, perderás el punto
+                        correspondiente.
                     </p>
                 </div>
 
                 <!-- Roles por Puntos -->
                 <div class="info-section">
                     <h3><i class="fa-solid fa-trophy"></i> Roles por Puntos</h3>
-                    <p>Estos roles se obtienen automáticamente cuando alcanzas la cantidad de puntos requerida. Solo se muestra el rol más alto que hayas alcanzado.</p>
-                    
+                    <p>Estos roles se obtienen automáticamente cuando alcanzas la cantidad de puntos requerida. Solo se
+                        muestra el rol más alto que hayas alcanzado.</p>
+
                     <div class="roles-grid" id="rolesGrid">
                         <!-- Los roles se cargarán dinámicamente aquí -->
                     </div>
@@ -276,7 +283,7 @@
                 <!-- Roles Especiales -->
                 <div class="info-section">
                     <h3><i class="fa-solid fa-crown"></i> Roles Especiales</h3>
-                    
+
                     <div class="role-card">
                         <span class="role-rank">ESPECIAL</span>
                         <img src="img/colab.png" alt="Colaborador" class="role-badge-display">
@@ -284,7 +291,7 @@
                         <div class="how-to-get-section">
                             <h4><i class="fa-solid fa-question-circle"></i> ¿Cómo obtenerlo?</h4>
                             <p style="color: #ccc; font-size: 13px;">
-                                Se otorga automáticamente a todos los usuarios que suben videos en TripGore. 
+                                Se otorga automáticamente a todos los usuarios que suben videos en TripGore.
                                 Este rol se muestra en la página de colaboradores.
                             </p>
                         </div>
@@ -297,7 +304,7 @@
                         <div class="how-to-get-section">
                             <h4><i class="fa-solid fa-question-circle"></i> ¿Cómo obtenerlo?</h4>
                             <p style="color: #ccc; font-size: 13px;">
-                                Este rol se asigna manualmente por los administradores. Los moderadores tienen 
+                                Este rol se asigna manualmente por los administradores. Los moderadores tienen
                                 prioridad sobre otros roles y pueden ayudar a mantener el orden en la comunidad.
                             </p>
                         </div>
@@ -346,7 +353,7 @@
         // Función para renderizar los roles
         function renderRoles() {
             const grid = document.getElementById('rolesGrid');
-            
+
             if (typeof ROLES === 'undefined') {
                 grid.innerHTML = '<p style="color: #ccc;">Cargando roles...</p>';
                 setTimeout(renderRoles, 500);

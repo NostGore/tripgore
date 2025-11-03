@@ -135,6 +135,45 @@
             font-size: 18px;
             cursor: pointer;
         }
+
+        /* Estilos para el banner de anuncio horizontal */
+        .horizontal-ad-banner {
+            width: 100%;
+            min-height: 90px;
+            max-height: 250px;
+            background: #0a0a0d;
+            border-bottom: 2px solid #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        .horizontal-ad-banner iframe,
+        .horizontal-ad-banner script,
+        .horizontal-ad-banner div {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 768px) {
+            .horizontal-ad-banner {
+                min-height: 50px;
+                max-height: 100px;
+                padding: 5px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .horizontal-ad-banner {
+                min-height: 50px;
+                max-height: 90px;
+                padding: 3px;
+            }
+        }
     </style>
 
 </head>
@@ -142,6 +181,23 @@
 <body>
     <!-- Header Container - Se carga dinámicamente desde header.js -->
     <div id="header-container"></div>
+
+    <!-- Banner de Anuncio Horizontal -->
+    <div class="horizontal-ad-banner" id="horizontalAdBanner">
+
+        <script type="text/javascript">
+            atOptions = {
+                'key': '4ff7674ee0efefc410bbaf78b165b983',
+                'format': 'iframe',
+                'height': 60,
+                'width': 468,
+                'params': {}
+            };
+        </script>
+        <script type="text/javascript"
+            src="//www.highperformanceformat.com/4ff7674ee0efefc410bbaf78b165b983/invoke.js"></script>
+
+    </div>
 
     <!-- Main Content -->
     <main class="main-content">
@@ -227,6 +283,15 @@
 
         <!-- Contenido Oculto Section -->
         <section class="content-section">
+            <!-- Banner de Anuncio Horizontal arriba de Contenido Oculto -->
+            <div class="horizontal-ad-banner" id="horizontalAdBannerAboveHidden">
+
+                <script async="async" data-cfasync="false"
+                    src="//pl27981072.effectivegatecpm.com/7f1a939d1c154871b983db80cd0548b0/invoke.js"></script>
+                <div id="container-7f1a939d1c154871b983db80cd0548b0"></div>
+
+            </div>
+
             <div class="section-header">
                 <h2 class="section-title">CONTENIDO OCULTO</h2>
                 <div class="warning-badge">⚠️ 18+</div>

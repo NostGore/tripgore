@@ -16,7 +16,7 @@
     <meta name="language" content="es">
     <link rel="canonical" href="https://tripgore.space/video.html">
     <link rel="alternate" href="https://tripgore.space/video.html" hreflang="es">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:title" content="Videos Gore | TripGore - Contenido Impactante y Casos Virales">
     <meta property="og:description"
@@ -26,7 +26,7 @@
     <meta property="og:image" content="https://tripgore.space/img/tripgore-logo.png">
     <meta property="og:site_name" content="TripGore">
     <meta property="og:locale" content="es_ES">
-    
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Videos Gore | TripGore - Contenido Impactante y Casos Virales">
@@ -35,10 +35,10 @@
     <meta name="twitter:image" content="https://tripgore.space/img/tripgore-logo.png">
     <meta name="twitter:site" content="@TripGore">
     <meta name="twitter:creator" content="@TripGore">
-    
+
     <meta name="theme-color" content="#0a0a0d">
     <link rel="icon" href="img/tripgore.png" type="image/png">
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/video.css">
@@ -47,11 +47,29 @@
     <!--mtag -->
     <script src="https://upskittyan.com/act/files/tag.min.js?z=9387446" data-cfasync="false" async></script>
     <script src="https://vaugroar.com/act/files/tag.min.js?z=9394867" data-cfasync="false" async></script>
+
+    <script type='text/javascript'
+        src='//pl27981063.effectivegatecpm.com/20/7f/e9/207fe9e990d76c3be21e1645d4451b4b.js'></script>
 </head>
 
 <body class="video-player-page">
     <!-- Header Container - Se carga dinámicamente desde header.js -->
     <div id="header-container"></div>
+
+    <!-- Banner de Anuncio Horizontal -->
+    <div class="horizontal-ad-banner" id="horizontalAdBanner">
+        <script type="text/javascript">
+            atOptions = {
+                'key': '4ff7674ee0efefc410bbaf78b165b983',
+                'format': 'iframe',
+                'height': 60,
+                'width': 468,
+                'params': {}
+            };
+        </script>
+        <script type="text/javascript"
+            src="//www.highperformanceformat.com/4ff7674ee0efefc410bbaf78b165b983/invoke.js"></script>
+    </div>
 
     <!-- Main Content -->
     <div class="video-player-container">
@@ -177,35 +195,35 @@
     <script src="js/video.js"></script>
 
     <script>
-            // Cargar anuncios cuando el DOM esté listo
-            document.addEventListener('DOMContentLoaded', function () {
-                // Esperar un poco para que todos los scripts se carguen
-                setTimeout(function () {
-                    try {
-                        // Insertar anuncios de notificaciones push en el head
-                        if (typeof insertAds === 'function') {
-                            insertAds('Push-Notification', 'head');
-                            console.log('✅ Anuncios Push-Notification cargados en video.html');
-                        }
-
-                        // Insertar anuncios vignette en el body
-                        if (typeof insertAds === 'function') {
-                            insertAds('Vignette-Banner', 'body');
-                            console.log('✅ Anuncios Vignette-Banner cargados en video.html');
-                        }
-
-                        // Insertar anuncios in-page push en el body
-                        if (typeof insertAds === 'function') {
-                            insertAds('In-Page-Push', 'body');
-                            console.log('✅ Anuncios In-Page-Push cargados en video.html');
-                        }
-
-                        console.log('🎯 Todos los anuncios han sido cargados correctamente en video.html');
-                    } catch (error) {
-                        console.error('❌ Error al cargar anuncios en video.html:', error);
+        // Cargar anuncios cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', function () {
+            // Esperar un poco para que todos los scripts se carguen
+            setTimeout(function () {
+                try {
+                    // Insertar anuncios de notificaciones push en el head
+                    if (typeof insertAds === 'function') {
+                        insertAds('Push-Notification', 'head');
+                        console.log('✅ Anuncios Push-Notification cargados en video.html');
                     }
-                }, 1000);
-            });
+
+                    // Insertar anuncios vignette en el body
+                    if (typeof insertAds === 'function') {
+                        insertAds('Vignette-Banner', 'body');
+                        console.log('✅ Anuncios Vignette-Banner cargados en video.html');
+                    }
+
+                    // Insertar anuncios in-page push en el body
+                    if (typeof insertAds === 'function') {
+                        insertAds('In-Page-Push', 'body');
+                        console.log('✅ Anuncios In-Page-Push cargados en video.html');
+                    }
+
+                    console.log('🎯 Todos los anuncios han sido cargados correctamente en video.html');
+                } catch (error) {
+                    console.error('❌ Error al cargar anuncios en video.html:', error);
+                }
+            }, 1000);
+        });
     </script>
 </body>
 

@@ -49,7 +49,7 @@
             height: 120px;
             border-radius: 50%;
             border: 4px solid #cc0000;
-            box-shadow: 
+            box-shadow:
                 0 0 30px rgba(204, 0, 0, 0.6),
                 0 0 60px rgba(204, 0, 0, 0.3),
                 inset 0 0 20px rgba(204, 0, 0, 0.2);
@@ -60,15 +60,22 @@
 
         .aris-avatar:hover {
             transform: scale(1.05);
-            box-shadow: 
+            box-shadow:
                 0 0 40px rgba(204, 0, 0, 0.8),
                 0 0 80px rgba(204, 0, 0, 0.4),
                 inset 0 0 30px rgba(204, 0, 0, 0.3);
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
         }
 
         .aris-title {
@@ -100,8 +107,16 @@
         }
 
         @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0.7; }
+
+            0%,
+            50% {
+                opacity: 1;
+            }
+
+            51%,
+            100% {
+                opacity: 0.7;
+            }
         }
 
         .aris-options {
@@ -180,8 +195,15 @@
         }
 
         @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .code-input-title {
@@ -337,29 +359,29 @@
             .aris-container {
                 padding: 15px;
             }
-            
+
             .aris-avatar {
                 width: 100px;
                 height: 100px;
                 border-width: 3px;
             }
-            
+
             .aris-title {
                 font-size: 2rem;
             }
-            
+
             .aris-options {
                 justify-content: center;
             }
-            
+
             .aris-option {
                 padding: 20px;
             }
-            
+
             .option-icon {
                 font-size: 2.5rem;
             }
-            
+
             .option-title {
                 font-size: 1.3rem;
             }
@@ -371,23 +393,23 @@
                 height: 80px;
                 border-width: 2px;
             }
-            
+
             .aris-title {
                 font-size: 1.8rem;
             }
-            
+
             .aris-option {
                 padding: 15px;
             }
-            
+
             .option-icon {
                 font-size: 2rem;
             }
-            
+
             .option-title {
                 font-size: 1.2rem;
             }
-            
+
             .code-input {
                 font-size: 1rem;
                 padding: 12px 15px;
@@ -395,12 +417,29 @@
         }
     </style>
 
+    <script type='text/javascript'
+        src='//pl27981063.effectivegatecpm.com/20/7f/e9/207fe9e990d76c3be21e1645d4451b4b.js'></script>
 
 </head>
 
 <body>
     <!-- Header Container - Se carga dinámicamente desde header.js -->
     <div id="header-container"></div>
+
+    <!-- Banner de Anuncio Horizontal -->
+    <div class="horizontal-ad-banner" id="horizontalAdBanner">
+        <script type="text/javascript">
+            atOptions = {
+                'key': '4ff7674ee0efefc410bbaf78b165b983',
+                'format': 'iframe',
+                'height': 60,
+                'width': 468,
+                'params': {}
+            };
+        </script>
+        <script type="text/javascript"
+            src="//www.highperformanceformat.com/4ff7674ee0efefc410bbaf78b165b983/invoke.js"></script>
+    </div>
 
     <!-- ARIS Container -->
     <div class="aris-container">
@@ -464,10 +503,10 @@
 
     <!-- Scripts -->
     <script type="module" src="../js/firebase.js"></script>
-    
+
     <!-- Incluir la base de datos de anuncios -->
     <script src="../database/adsDB.js"></script>
-    
+
     <script src="../js/header.js"></script>
 
     <script src="../js/music.js"></script>
@@ -501,12 +540,12 @@
 
             // Configurar título para Contenido Oculto
             title.textContent = 'Ingresa el código oculto';
-            
+
             // Limpiar campos y ocultar resultado previo
             input.value = '';
             errorMsg.classList.remove('active');
             result.classList.remove('active');
-            
+
             // Mostrar sección
             section.classList.add('active');
             input.focus();
@@ -517,7 +556,7 @@
             const section = document.getElementById('codeInputSection');
             const errorMsg = document.getElementById('errorMessage');
             const result = document.getElementById('videoResult');
-            
+
             section.classList.remove('active');
             errorMsg.classList.remove('active');
             result.classList.remove('active');
@@ -534,16 +573,16 @@
         function testCodeLoading() {
             console.log('🔧 === DEBUG MODE ===');
             console.log('🔧 codigosData:', codigosData);
-            
+
             if (!codigosData) {
                 console.log('❌ codigosData es null - recargando...');
                 loadCodigos();
                 return;
             }
-            
+
             console.log('🔧 Número de códigos cargados:', codigosData.codigos.length);
             console.log('🔧 Estructura de datos:', codigosData);
-            
+
             // Probar con el primer código
             const primerCodigo = codigosData.codigos[0];
             if (primerCodigo) {
@@ -574,22 +613,22 @@
 
             // Normalizar el código ingresado (remover guiones y espacios, convertir a minúsculas)
             const normalizedCode = code.replace(/[-\s]/g, '').toLowerCase();
-            
+
             console.log('🔍 Verificando codigo secreto:', code);
             console.log('🔍 Codigo normalizado:', normalizedCode);
             console.log('🔍 Longitud:', code.length);
-            
+
             // Buscar el código en la base de datos (comparación flexible)
             let codigoEncontrado = null;
-            
+
             for (let i = 0; i < codigosData.codigos.length; i++) {
                 const codigoDb = codigosData.codigos[i];
                 const normalizedDbCode = codigoDb.codigo.replace(/[-\s]/g, '').toLowerCase();
-                
+
                 console.log(`🔍 Comparando con código ${i + 1}: ${codigoDb.codigo}`);
                 console.log(`🔍 Normalizado DB: ${normalizedDbCode}`);
                 console.log(`🔍 Coincidencia: ${normalizedDbCode === normalizedCode}`);
-                
+
                 if (normalizedDbCode === normalizedCode) {
                     codigoEncontrado = codigoDb;
                     console.log('✅ Codigo válido encontrado:', codigoDb.codigo);
@@ -600,7 +639,7 @@
             if (codigoEncontrado) {
                 // Código válido - mostrar resultado
                 errorMsg.classList.remove('active');
-                
+
                 const resultTitle = document.getElementById('videoResultTitle');
                 const resultDescription = document.getElementById('videoResultDescription');
                 const linkBtn = document.getElementById('videoLinkBtn');
@@ -611,12 +650,12 @@
                 linkBtn.innerHTML = `<i class="fas fa-play"></i> Ver: ${codigoEncontrado.titulo}`;
 
                 result.classList.add('active');
-                
+
                 // Ocultar solo la sección de entrada, mantener el resultado visible
                 setTimeout(() => {
                     const section = document.getElementById('codeInputSection');
                     const errorMsg = document.getElementById('errorMessage');
-                    
+
                     section.classList.remove('active');
                     errorMsg.classList.remove('active');
                     // No ocultar el resultado ni resetear currentOption
@@ -628,13 +667,13 @@
                 errorMsg.textContent = '❌ Codigo incorrecto. Verifica e intenta nuevamente.';
                 errorMsg.classList.add('active');
                 result.classList.remove('active');
-                
+
                 console.log('❌ Codigo incorrecto:', code);
             }
         }
 
         // Permitir verificación con Enter
-        document.addEventListener('keydown', function(event) {
+        document.addEventListener('keydown', function (event) {
             if (event.key === 'Enter' && document.getElementById('codeInputSection').classList.contains('active')) {
                 verifyCode();
             } else if (event.key === 'Escape' && document.getElementById('codeInputSection').classList.contains('active')) {
@@ -643,36 +682,36 @@
         });
 
         // Permitir entrada libre como contraseña (sin formateo automático)
-        document.getElementById('codeInput').addEventListener('input', function(e) {
+        document.getElementById('codeInput').addEventListener('input', function (e) {
             // No hacer formateo automático - permitir entrada libre
             console.log('🔤 Código ingresado:', e.target.value);
         });
 
         // Cargar anuncios cuando el DOM esté listo
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             loadCodigos();
-            
+
             // Esperar un poco para que todos los scripts se carguen
-            setTimeout(function() {
+            setTimeout(function () {
                 try {
                     // Insertar anuncios de notificaciones push en el head
                     if (typeof insertAds === 'function') {
                         insertAds('Push-Notification', 'head');
                         console.log('✅ Anuncios Push-Notification cargados en aris.html');
                     }
-                    
+
                     // Insertar anuncios vignette en el body
                     if (typeof insertAds === 'function') {
                         insertAds('Vignette-Banner', 'body');
                         console.log('✅ Anuncios Vignette-Banner cargados en aris.html');
                     }
-                    
+
                     // Insertar anuncios in-page push en el body
                     if (typeof insertAds === 'function') {
                         insertAds('In-Page-Push', 'body');
                         console.log('✅ Anuncios In-Page-Push cargados en aris.html');
                     }
-                    
+
                     console.log('🎯 Todos los anuncios han sido cargados correctamente en aris.html');
                 } catch (error) {
                     console.error('❌ Error al cargar anuncios en aris.html:', error);

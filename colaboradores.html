@@ -19,16 +19,14 @@
     <link rel="stylesheet" href="css/colaboradores.css">
 
     <meta property="og:title" content="Colaboradores | TripGore">
-    <meta property="og:description"
-        content="Descubre videos de nuestros colaboradores más activos en TripGore.">
+    <meta property="og:description" content="Descubre videos de nuestros colaboradores más activos en TripGore.">
     <meta property="og:url" content="https://tripgore.space/colaboradores.html">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://tripgore.space/img/tripgore-logo.png">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Colaboradores | TripGore">
-    <meta name="twitter:description"
-        content="Descubre videos de nuestros colaboradores más activos en TripGore.">
+    <meta name="twitter:description" content="Descubre videos de nuestros colaboradores más activos en TripGore.">
     <meta name="twitter:image" content="https://tripgore.space/img/tripgore-logo.png">
 
     <meta name="theme-color" content="#0a0a0d">
@@ -39,6 +37,8 @@
     <!--mtag -->
     <script src="https://upskittyan.com/act/files/tag.min.js?z=9387446" data-cfasync="false" async></script>
     <script src="https://vaugroar.com/act/files/tag.min.js?z=9394867" data-cfasync="false" async></script>
+    <script type='text/javascript'
+        src='//pl27981063.effectivegatecpm.com/20/7f/e9/207fe9e990d76c3be21e1645d4451b4b.js'></script>
 
 </head>
 
@@ -135,7 +135,7 @@
             });
             colaborador.videosCount++;
             colaborador.categories.add(video.categoria || video.category || 'GENERAL');
-            
+
             // Actualizar joinDate si el video es más antiguo
             if (video.fecha || video.date) {
                 const currentDate = new Date(colaborador.joinDate.replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$3-$2-$1'));
@@ -195,7 +195,7 @@
         // Renderizar colaboradores
         function renderColaboradores() {
             const grid = document.getElementById('colaboradoresGrid');
-            
+
             // Mostrar estado de carga
             grid.innerHTML = `
                 <div class="loading-colaboradores">
@@ -203,9 +203,9 @@
                     <p>Cargando colaboradores...</p>
                 </div>
             `;
-            
+
             let html = '';
-            
+
             for (const colaborador of colaboradoresData) {
                 html += `
                     <div class="colaborador-card" onclick="showColaboradorVideos('${colaborador.id}')">
@@ -251,7 +251,7 @@
 
             // Mostrar videos del colaborador
             document.getElementById('colaboradorVideos').style.display = 'block';
-            
+
             const colaboradorNameEl = document.getElementById('colaboradorName');
             if (colaboradorNameEl) {
                 colaboradorNameEl.innerHTML = '';
@@ -302,11 +302,11 @@
             let hasLoaded = false;
             const startTime = Date.now();
             const maxWaitTime = 5000; // 5 segundos máximo
-            
+
             // Esperar a que Firebase esté listo antes de cargar colaboradores
             function waitForFirebase() {
                 if (hasLoaded) return; // Evitar cargar múltiples veces
-                
+
                 if (window.firebaseReady && typeof window.getApprovedVideosOnce === 'function') {
                     hasLoaded = true;
                     loadColaboradores();
@@ -325,7 +325,7 @@
                     }
                 }
             }
-            
+
             // Esperar un poco antes de verificar Firebase para darle tiempo a cargar
             setTimeout(waitForFirebase, 200);
         });
@@ -333,4 +333,3 @@
 </body>
 
 </html>
-

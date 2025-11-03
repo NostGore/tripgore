@@ -647,6 +647,45 @@
             color: white;
         }
 
+        /* Estilos para el banner de anuncio horizontal */
+        .horizontal-ad-banner {
+            width: 100%;
+            min-height: 90px;
+            max-height: 250px;
+            background: #0a0a0d;
+            border-bottom: 2px solid #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        .horizontal-ad-banner iframe,
+        .horizontal-ad-banner script,
+        .horizontal-ad-banner div {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 768px) {
+            .horizontal-ad-banner {
+                min-height: 50px;
+                max-height: 100px;
+                padding: 5px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .horizontal-ad-banner {
+                min-height: 50px;
+                max-height: 90px;
+                padding: 3px;
+            }
+        }
+
         /* Main Content */
         .main-content {
             max-width: 1200px;
