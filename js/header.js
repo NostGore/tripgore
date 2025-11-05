@@ -1,6 +1,20 @@
 // Función para cargar el encabezado dinámicamente
 function loadHeader() {
     const headerHTML = `
+    <style>
+        @keyframes zoomPulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.08);
+            }
+        }
+        .new-badge-animated {
+            animation: zoomPulse 2s ease-in-out infinite;
+            display: inline-block;
+        }
+    </style>
     <!-- Header -->
     <header class="header">
         <div class="header-top">
@@ -35,7 +49,7 @@ function loadHeader() {
                     <a href="#" onclick="openSupportEmail(); return false;" style="font-weight: bold;">SOPORTE</a>
                     <a href="https://t.me/perritogoree" style="font-weight: bold;">Telegram</a>
                     <a href="https://discord.gg/pS7qvjP4S5" style="font-weight: bold;">Discord</a>
-                    <a href="#" style="font-weight: bold;">ZONA HOT 🔥</a>
+                    <a href="https://latamsx.site" class="new-badge-animated" style="font-weight: bold; position: relative;">ZONA HOT 🔥 <span style="background: #ff0000; color: #fff; font-size: 0.7em; padding: 2px 6px; border-radius: 3px; margin-left: 5px; font-weight: bold;">NEW</span></a>
                 </div>
             </div>
 
@@ -144,9 +158,9 @@ function loadHeader() {
                     <i class="fa-solid fa-star"></i>
                     ARIS CODE
                 </a>
-                <a href="#">
+                <a href="https://latamsx.site" class="new-badge-animated" style="position: relative;">
                     <i class="fa-solid fa-fire"></i>
-                    ZONA HOT 🔥
+                    ZONA HOT 🔥 <span style="background: #ff0000; color: #fff; font-size: 0.7em; padding: 2px 6px; border-radius: 3px; margin-left: 5px; font-weight: bold;">NEW</span>
                 </a>
             </div>
 
