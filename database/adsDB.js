@@ -174,9 +174,13 @@ const adsDB = {
                                      target.closest('.nav-link') ||
                                      target.closest('.header-link');
                         
-                        // Si es header, menú, botón o enlace, no abrir direct link
-                        if (isHeader || isMenu || isButton || isLink) {
-                            console.log('🚫 Clic en header/menú/botón/enlace - Direct link bloqueado');
+                        const isGifContainer = target.closest('#gif-container') ||
+                                              target.id === 'gif-container' ||
+                                              (target.tagName === 'IMG' && target.closest('#gif-container'));
+                        
+                        // Si es header, menú, botón, enlace o contenedor del GIF, no abrir direct link
+                        if (isHeader || isMenu || isButton || isLink || isGifContainer) {
+                            console.log('🚫 Clic en header/menú/botón/enlace/GIF - Direct link bloqueado');
                             console.log('📍 Elemento:', target.tagName, target.className);
                             return;
                         }

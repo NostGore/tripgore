@@ -686,6 +686,50 @@
             }
         }
 
+        /* Estilos para el contenedor de script */
+        .script-container {
+            width: 100%;
+            max-height: 100px;
+            overflow: hidden;
+            background: #0a0a0d;
+            border-bottom: 2px solid #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        .script-container .container {
+            width: 100%;
+            max-width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .script-container .container div {
+            max-width: 100%;
+            max-height: 200px;
+            overflow: hidden;
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 768px) {
+            .script-container {
+                max-height: 80px;
+                padding: 3px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .script-container {
+                max-height: 60px;
+                padding: 2px;
+            }
+        }
+
         /* Main Content */
         .main-content {
             max-width: 1200px;
