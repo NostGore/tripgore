@@ -3179,6 +3179,78 @@ const mediaDB = [
     fecha: "2/11/2025"
   },
   {
+    id: "cortar-una-grieta-en-china",
+    titulo: "Cortar una grieta en China",
+    portada: "https://xxx.livegore.com//rb-include/videos/9075370999.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9075370999.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "loco-prende-fuego-al-hospital",
+    titulo: "Loco prende fuego al hospital",
+    portada: "https://xxx.livegore.com//rb-include/videos/665593571.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/665593571.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "el-hombre-come-la-oreja-canibalismo",
+    titulo: "El hombre come la oreja. Canibalismo.",
+    portada: "https://xxx.livegore.com//rb-include/videos/6893927571.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6893927571.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "hombre-sin-rostro-asesinado",
+    titulo: "Hombre sin rostro asesinado",
+    portada: "https://xxx.livegore.com//rb-include/videos/1742078112.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1742078112.mp4",
+    autor: "normnando256",
+    categoria: "ASESINATOS",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "asesinado-a-pualadas-por-maricones-chechenos",
+    titulo: "Asesinado a puñaladas por maricones chechenos",
+    portada: "https://xxx.livegore.com//rb-include/videos/3801210359.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3801210359.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "un-hombre-apuala-a-su-exnovia-y-luego-se-corta-la-garganta",
+    titulo: "Un hombre apuñala a su exnovia y luego se corta la garganta",
+    portada: "https://xxx.livegore.com//rb-include/videos/5116302170.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5116302170.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "chica-siendo-apualada",
+    titulo: "Chica siendo apuñalada",
+    portada: "https://xxx.livegore.com//rb-include/videos/408269893.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/408269893.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "encargado-de-la-farmacia-es-apualado-en-el-pecho",
+    titulo: "ENCARGADO DE LA FARMACIA ES APUÑALADO EN EL PECHO",
+    portada: "https://xxx.livegore.com//rb-include/videos/2083561900.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2083561900.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "2/11/2025"
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -8076,6 +8148,15 @@ const mediaDB = [
     fecha: "31/10/2025"
   },
   {
+    id: "hombre-enloquecido-se-dispara",
+    titulo: "Hombre enloquecido se dispara",
+    portada: "https://xxx.livegore.com//rb-include/videos/232034162.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/232034162.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "2/11/2025"
+  },
+  {
     id: "se-apunala-en-live",
     titulo: "SE APUÑALA EN LIVE", //C-AUTOLESIONES
     portada: "https://files.catbox.moe/a5ey0v.png",
@@ -8350,6 +8431,15 @@ const mediaDB = [
     titulo: "Recluso con sobredosis de cosas carcelarias baratas",
     portada: "https://theync.com/media/thumbs/6/9/0/3/1/217768569031ef50ab2f.mp4/217768569031ef50ab2f.mp4-9.jpg",
     video: "https://theync.com/media/videos/6/9/0/3/1/69031fef8bb19.mp4",
+    autor: "TripGore",
+    categoria: "AUTOLESIONES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "hombre-obligado-a-comerse-sus-propios-odos",
+    titulo: "Hombre obligado a comerse sus propios oídos.",
+    portada: "https://xxx.livegore.com//rb-include/videos/3891098327.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3891098327.mp4",
     autor: "TripGore",
     categoria: "AUTOLESIONES",
     fecha: "2/11/2025"
