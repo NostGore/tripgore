@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../responsive/responsive.css">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
         /* Estilos específicos para la página de subida */
@@ -284,8 +284,8 @@
             color: #ff0000;
         }
 
-        /* Estilos para el botón de subida de Supabase */
-        .supabase-upload-btn {
+        /* Estilos para el botón de subida de Cloudinary */
+        .cloudinary-btn {
             background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
             color: white;
             border: none;
@@ -303,34 +303,14 @@
             justify-content: center;
         }
 
-        .supabase-upload-btn:hover {
+        .cloudinary-btn:hover {
             background: linear-gradient(135deg, #2980b9 0%, #1f618d 100%);
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
         }
 
-        .supabase-upload-btn:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .supabase-upload-btn i {
+        .cloudinary-btn i {
             font-size: 18px;
-        }
-
-        .file-input-wrapper {
-            position: relative;
-            width: 100%;
-        }
-
-        .file-input-wrapper input[type="file"] {
-            position: absolute;
-            opacity: 0;
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
         }
 
 
@@ -610,20 +590,12 @@
                     </div>
                 </div>
 
-                <!-- Botón de subida con Supabase -->
+                <!-- Botón de subida con Cloudinary -->
                 <div class="form-group">
-                    <div class="file-input-wrapper">
-                        <button type="button" id="supabaseUploadBtn" class="supabase-upload-btn">
-                            <i class="fa-solid fa-upload"></i>
-                            <span id="uploadBtnText">Cargar Video</span>
-                            <div class="loading-spinner" id="uploadSpinner" style="display: none;"></div>
-                        </button>
-                        <input type="file" id="videoFileInput" accept="video/*" style="display: none;">
-                    </div>
-                    <div class="form-help" id="fileInfo" style="display: none;">
-                        <i class="fa-solid fa-info-circle"></i>
-                        <span id="fileName"></span>
-                    </div>
+                    <button type="button" id="cloudinaryPicker" class="cloudinary-btn">
+                        <i class="fa-solid fa-upload"></i>
+                        Cargar Video
+                    </button>
                 </div>
 
 
@@ -843,9 +815,6 @@
             
             // Obtener datos del formulario
             const formData = new FormData(this);
-            const videoLinkInput = document.getElementById('videoLink');
-            const thumbnailUrl = videoLinkInput?.dataset.thumbnailUrl || null;
-            
             const videoData = {
                 title: formData.get('videoTitle').trim(),
                 link: formData.get('videoLink').trim(),
@@ -854,11 +823,6 @@
                 submittedAt: new Date().toISOString(),
                 submittedBy: getCurrentUser() ? getCurrentUser().email : 'anonymous'
             };
-            
-            // Agregar thumbnail si existe
-            if (thumbnailUrl) {
-                videoData.thumbnail = thumbnailUrl;
-            }
             
             // Validaciones
             if (!videoData.title) {
@@ -894,18 +858,9 @@
                     this.reset();
 
                     const videoLinkInput = document.getElementById('videoLink');
-                    const fileInput = document.getElementById('videoFileInput');
-                    const fileInfo = document.getElementById('fileInfo');
                     if (videoLinkInput) {
                         videoLinkInput.style.borderColor = '#e0e0e0';
-                        delete videoLinkInput.dataset.supabaseFileName;
-                        delete videoLinkInput.dataset.thumbnailUrl;
-                    }
-                    if (fileInput) {
-                        fileInput.value = '';
-                    }
-                    if (fileInfo) {
-                        fileInfo.style.display = 'none';
+                        delete videoLinkInput.dataset.cloudinaryPublicId;
                     }
                 } else {
                     showNotification('Error al subir el video. Por favor intenta nuevamente.', 'error');
@@ -945,265 +900,69 @@
             }
         });
 
-        // ===== SUPABASE INTEGRATION =====
+        // ===== CLOUDINARY INTEGRATION =====
 
-        // Inicializar Supabase
-        const SUPABASE_URL = "https://uzmkkxnshxvdujlkvlqc.supabase.co";
-        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV6bWtreG5zaHh2ZHVqbGt2bHFjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI0NTU0NzQsImV4cCI6MjA3ODAzMTQ3NH0.L1D5zV7_i8VbnI0_LrCRaH5YVOfrrh6AUX25xxbajUY";
+        let cloudinaryWidget = null;
+        let cloudinaryButtonInitialized = false;
 
-        let supabaseClient = null;
-
-        function initSupabase() {
-            if (typeof window.supabase !== 'undefined') {
-                supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-                setupSupabaseUpload();
-            } else {
-                setTimeout(initSupabase, 100);
-            }
-        }
-
-        function setupSupabaseUpload() {
-            const uploadBtn = document.getElementById('supabaseUploadBtn');
-            const fileInput = document.getElementById('videoFileInput');
-            const uploadBtnText = document.getElementById('uploadBtnText');
-            const uploadSpinner = document.getElementById('uploadSpinner');
-            const fileInfo = document.getElementById('fileInfo');
-            const fileName = document.getElementById('fileName');
-
-            if (!uploadBtn || !fileInput) return;
-
-            // Al hacer clic en el botón, abrir el selector de archivos
-            uploadBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                if (!uploadBtn.disabled) {
-                    fileInput.click();
-                }
-            });
-
-            // Cuando se selecciona un archivo, subirlo automáticamente
-            fileInput.addEventListener('change', async function(e) {
-                const file = e.target.files[0];
-                if (!file) return;
-
-                // Validar tamaño del archivo (100MB máximo)
-                const maxSize = 104857600; // 100MB en bytes
-                if (file.size > maxSize) {
-                    showNotification('El archivo es demasiado grande. El tamaño máximo es 100MB.', 'error');
-                    fileInput.value = '';
-                    return;
-                }
-
-                // Validar tipo de archivo
-                if (!file.type.startsWith('video/')) {
-                    showNotification('Por favor selecciona un archivo de video válido.', 'error');
-                    fileInput.value = '';
-                    return;
-                }
-
-                // Mostrar información del archivo
-                fileName.textContent = `Archivo seleccionado: ${file.name} (${(file.size / 1048576).toFixed(2)} MB)`;
-                fileInfo.style.display = 'flex';
-
-                // Deshabilitar botón y mostrar spinner
-                uploadBtn.disabled = true;
-                uploadBtnText.textContent = 'Subiendo...';
-                uploadSpinner.style.display = 'block';
-
-                try {
-                    // Subir archivo a Supabase
-                    const fileNameWithTimestamp = `${Date.now()}_${file.name}`;
-                    
-                    const { data, error } = await supabaseClient.storage
-                        .from("mediadb")
-                        .upload(fileNameWithTimestamp, file, {
-                            cacheControl: "3600",
-                            upsert: false
-                        });
-
+        function initCloudinaryWidget() {
+            if (typeof cloudinary !== 'undefined') {
+                cloudinaryWidget = cloudinary.createUploadWidget({
+                    cloudName: 'dlypbv6rh',
+                    uploadPreset: 'ml_default',
+                    folder: 'media',
+                    resourceType: 'video',
+                    multiple: false,
+                    maxFileSize: 104857600
+                }, (error, result) => {
                     if (error) {
                         console.error('Error al subir:', error);
                         showNotification(`Error al subir el video: ${error.message || 'Error desconocido'}`, 'error');
-                        uploadBtn.disabled = false;
-                        uploadBtnText.textContent = 'Cargar Video';
-                        uploadSpinner.style.display = 'none';
-                        fileInput.value = '';
-                        fileInfo.style.display = 'none';
                         return;
                     }
 
-                    // Obtener URL pública
-                    const { data: publicURLData } = supabaseClient.storage
-                        .from("mediadb")
-                        .getPublicUrl(fileNameWithTimestamp);
-
-                    if (publicURLData && publicURLData.publicUrl) {
-                        // Generar thumbnail y luego manejar el éxito
-                        uploadBtnText.textContent = 'Generando miniatura...';
-                        const thumbnailUrl = await generateAndUploadThumbnail(publicURLData.publicUrl, fileNameWithTimestamp);
-                        handleSupabaseUploadSuccess(publicURLData.publicUrl, fileNameWithTimestamp, thumbnailUrl);
-                    } else {
-                        showNotification('Error al obtener la URL pública del video.', 'error');
-                        uploadBtn.disabled = false;
-                        uploadBtnText.textContent = 'Cargar Video';
-                        uploadSpinner.style.display = 'none';
+                    if (result && result.event === 'success' && result.info) {
+                        console.log('Upload completed:', result);
+                        handleCloudinaryUploadSuccess(result.info);
                     }
-                } catch (error) {
-                    console.error('Error inesperado:', error);
-                    showNotification('Error inesperado al subir el video. Por favor intenta nuevamente.', 'error');
-                    uploadBtn.disabled = false;
-                    uploadBtnText.textContent = 'Cargar Video';
-                    uploadSpinner.style.display = 'none';
-                    fileInput.value = '';
-                    fileInfo.style.display = 'none';
-                }
-            });
-        }
+                });
 
-        // Función para generar thumbnail desde el video
-        async function generateAndUploadThumbnail(videoUrl, videoFileName) {
-            return new Promise((resolve) => {
-                try {
-                    // Crear elemento video temporal
-                    const video = document.createElement('video');
-                    video.crossOrigin = 'anonymous';
-                    video.muted = true; // Necesario para algunos navegadores
-                    video.playsInline = true;
-                    video.preload = 'metadata';
-                    
-                    let frameCaptured = false;
-                    
-                    // Función para capturar el frame
-                    const captureFrame = async () => {
-                        if (frameCaptured) return;
-                        frameCaptured = true;
-                        
-                        try {
-                            // Crear canvas para capturar el frame
-                            const canvas = document.createElement('canvas');
-                            const ctx = canvas.getContext('2d');
-                            
-                            // Establecer dimensiones del canvas (mantener proporción)
-                            canvas.width = video.videoWidth;
-                            canvas.height = video.videoHeight;
-                            
-                            // Dibujar el frame en el canvas
-                            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-                            
-                            // Convertir canvas a blob
-                            canvas.toBlob(async (blob) => {
-                                if (!blob) {
-                                    console.error('Error al generar blob del thumbnail');
-                                    resolve(null);
-                                    return;
-                                }
-                                
-                                try {
-                                    // Generar nombre del thumbnail
-                                    const thumbnailFileName = videoFileName.replace(/\.[^/.]+$/, '') + '_thumb.jpg';
-                                    
-                                    // Subir thumbnail a Supabase
-                                    const { data, error } = await supabaseClient.storage
-                                        .from("mediadb")
-                                        .upload(thumbnailFileName, blob, {
-                                            cacheControl: "3600",
-                                            upsert: false,
-                                            contentType: 'image/jpeg'
-                                        });
-                                    
-                                    if (error) {
-                                        console.error('Error al subir thumbnail:', error);
-                                        resolve(null);
-                                        return;
-                                    }
-                                    
-                                    // Obtener URL pública del thumbnail
-                                    const { data: thumbnailURLData } = supabaseClient.storage
-                                        .from("mediadb")
-                                        .getPublicUrl(thumbnailFileName);
-                                    
-                                    if (thumbnailURLData && thumbnailURLData.publicUrl) {
-                                        resolve(thumbnailURLData.publicUrl);
-                                    } else {
-                                        resolve(null);
-                                    }
-                                } catch (error) {
-                                    console.error('Error al subir thumbnail:', error);
-                                    resolve(null);
-                                }
-                            }, 'image/jpeg', 0.8); // Calidad 80%
-                            
-                        } catch (error) {
-                            console.error('Error al generar thumbnail:', error);
-                            resolve(null);
-                        }
-                    };
-                    
-                    // Cuando los metadatos estén cargados, intentar capturar
-                    video.addEventListener('loadedmetadata', () => {
-                        // Intentar capturar en el segundo 1, o al inicio si el video es muy corto
-                        const captureTime = Math.min(1, video.duration * 0.1);
-                        video.currentTime = captureTime;
-                    });
-                    
-                    // Cuando el video haya saltado al tiempo deseado, capturar el frame
-                    video.addEventListener('seeked', captureFrame);
-                    
-                    // Si el video ya está listo, capturar inmediatamente
-                    video.addEventListener('loadeddata', () => {
-                        if (video.readyState >= 2) {
-                            const captureTime = Math.min(1, video.duration * 0.1);
-                            video.currentTime = captureTime;
-                        }
-                    });
-                    
-                    video.addEventListener('error', (e) => {
-                        console.error('Error al cargar video para thumbnail:', e);
-                        resolve(null);
-                    });
-                    
-                    // Establecer la fuente y cargar
-                    video.src = videoUrl;
-                    video.load();
-                    
-                } catch (error) {
-                    console.error('Error al crear elemento video:', error);
-                    resolve(null);
-                }
-            });
-        }
-
-        function handleSupabaseUploadSuccess(publicUrl, fileName, thumbnailUrl) {
-            const videoLinkInput = document.getElementById('videoLink');
-            const uploadBtn = document.getElementById('supabaseUploadBtn');
-            const uploadBtnText = document.getElementById('uploadBtnText');
-            const uploadSpinner = document.getElementById('uploadSpinner');
-
-            if (publicUrl) {
-                videoLinkInput.value = publicUrl;
-                videoLinkInput.style.borderColor = '#27ae60';
-                videoLinkInput.dataset.supabaseFileName = fileName || '';
-                
-                // Guardar URL del thumbnail si se generó
-                if (thumbnailUrl) {
-                    videoLinkInput.dataset.thumbnailUrl = thumbnailUrl;
-                    console.log('Thumbnail generado:', thumbnailUrl);
-                } else {
-                    console.warn('No se pudo generar el thumbnail');
-                }
-                
-                showNotification('Video subido exitosamente' + (thumbnailUrl ? ' con miniatura' : ''), 'success');
+                setupCloudinaryButton();
             } else {
-                showNotification('La respuesta de Supabase no contiene un enlace válido.', 'error');
+                setTimeout(initCloudinaryWidget, 100);
             }
+        }
 
-            // Restaurar botón
-            uploadBtn.disabled = false;
-            uploadBtnText.textContent = 'Cargar Video';
-            uploadSpinner.style.display = 'none';
+        function setupCloudinaryButton() {
+            if (cloudinaryButtonInitialized) return;
+
+            const uploadButton = document.getElementById('cloudinaryPicker');
+            if (!uploadButton) return;
+
+            uploadButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (cloudinaryWidget) {
+                    cloudinaryWidget.open();
+                }
+            });
+
+            cloudinaryButtonInitialized = true;
+        }
+
+        function handleCloudinaryUploadSuccess(info) {
+            const videoLinkInput = document.getElementById('videoLink');
+
+            if (info.secure_url) {
+                videoLinkInput.value = info.secure_url;
+                videoLinkInput.style.borderColor = '#27ae60';
+                videoLinkInput.dataset.cloudinaryPublicId = info.public_id || '';
+            } else {
+                showNotification('La respuesta de Cloudinary no contiene un enlace válido.', 'error');
+            }
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            initSupabase();
+            initCloudinaryWidget();
         });
 
 
