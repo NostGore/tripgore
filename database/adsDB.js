@@ -19,50 +19,6 @@ const popupAds = [
 ];
 
 const adsDB = {
-    // Anuncios de notificaciones push
-    "Push-Notification": [
-        {
-            id: "push_1",
-            name: "Vaugroar Push",
-            script: '<script src="https://vaugroar.com/act/files/tag.min.js?z=9394867" data-cfasync="false" async></script>',
-            active: true,
-            priority: 1,
-            description: "Notificación push principal"
-        },
-        {
-            id: "push_2",
-            name: "Upskittyan Push",
-            script: '<script src="https://upskittyan.com/act/files/tag.min.js?z=9387446" data-cfasync="false" async></script>',
-            active: true,
-            priority: 2,
-            description: "Notificación push secundaria"
-        }
-    ],
-
-    // Anuncios de banner vignette
-    "Vignette-Banner": [
-        {
-            id: "vignette_1",
-            name: "Gizokraijaw Vignette",
-            script: '<script>(function(s){s.dataset.zone=\'9394873\',s.src=\'https://gizokraijaw.net/vignette.min.js\'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement(\'script\')))</script>',
-            active: true,
-            priority: 1,
-            description: "Banner vignette principal"
-        }
-    ],
-
-    // Anuncios in-page push
-    "In-Page-Push": [
-        {
-            id: "inpage_1",
-            name: "Forfrogadiertor In-Page",
-            script: '<script>(function(s){s.dataset.zone=\'9394869\',s.src=\'https://forfrogadiertor.com/tag.min.js\'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement(\'script\')))</script>',
-            active: true,
-            priority: 1,
-            description: "In-page push principal"
-        }
-    ],
-
     // Anuncios de banner tradicional
     "Banner": [
         // Aquí puedes agregar banners tradicionales en el futuro
