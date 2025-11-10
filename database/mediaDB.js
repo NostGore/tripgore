@@ -3251,6 +3251,114 @@ const mediaDB = [
     fecha: "2/11/2025"
   },
   {
+    id: "ladrn-es-atado-a-un-rbol-y-quemado-vivo",
+    titulo: "Ladrón es atado a un árbol y quemado vivo",
+    portada: "https://xxx.livegore.com//rb-include/videos/9194124871.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9194124871.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "el-violador-brasileo-fue-ejecutado",
+    titulo: "El violador brasileño fue ejecutado",
+    portada: "https://xxx.livegore.com//rb-include/videos/3009108626.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3009108626.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "para-limpiarte-la-nariz",
+    titulo: "Para limpiarte la nariz",
+    portada: "https://xxx.livegore.com//rb-include/videos/5621220585.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5621220585.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "mediosmatar-un-turco-mata-a-su-ex-esposa",
+    titulo: "MediosMatar Un turco mata a su ex esposa",
+    portada: "https://xxx.livegore.com//rb-include/videos/2046847310.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2046847310.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "criminal-asesinado-por-un-polica",
+    titulo: "Criminal asesinado por un policía",
+    portada: "https://xxx.livegore.com//rb-include/videos/2425956646.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2425956646.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "violador-tratado-con-repost",
+    titulo: "Violador tratado con *repost*",
+    portada: "https://xxx.livegore.com//rb-include/videos/6067880466.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6067880466.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "cortando-toda-la-piel-de-la-cabeza",
+    titulo: "Cortando toda la piel de la cabeza",
+    portada: "https://xxx.livegore.com//rb-include/videos/4282290027.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4282290027.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "mujer-ejecutada-frente-a-sus-hijos-en-brasil",
+    titulo: "Mujer ejecutada frente a sus hijos en BRASIL",
+    portada: "https://xxx.livegore.com//rb-include/videos/7012402750.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7012402750.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "cabeza-de-hombre-destruida-con-una-ametralladora",
+    titulo: "Cabeza de hombre destruida con una ametralladora",
+    portada: "https://xxx.livegore.com//rb-include/videos/6517425952.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6517425952.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "disparos-masivos-a-la-cabeza",
+    titulo: "Disparos masivos a la cabeza",
+    portada: "https://xxx.livegore.com//rb-include/videos/5207130252.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5207130252.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "un-chino-atac-brutalmente-a-una-mujer-con-un-cuchillo",
+    titulo: "Un chino atacó brutalmente a una mujer con un cuchillo",
+    portada: "https://xxx.livegore.com//rb-include/videos/8467359854.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/8467359854.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "recopilacin-de-clsicos",
+    titulo: "Recopilación de clásicos",
+    portada: "https://xxx.livegore.com//rb-include/videos/1400218913.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1400218913.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "9/11/2025"
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -5078,6 +5186,105 @@ const mediaDB = [
     fecha: "2/11/2025"
   },
   {
+    id: "mujer-trans-muere-tras-ser-apualada-y-arrojada-desde-un-coche",
+    titulo: "Mujer trans muere tras ser apuñalada y arrojada desde un coche",
+    portada: "https://xxx.livegore.com//rb-include/videos/9587907562.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9587907562.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "hombre-incinerado-instantneamente-por-un-golpe-de-iluminacin",
+    titulo: "Hombre incinerado instantáneamente por un golpe de iluminación",
+    portada: "https://xxx.livegore.com//rb-include/videos/9314076714.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9314076714.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "galones-de-sangre",
+    titulo: "GALONES DE SANGRE",
+    portada: "https://xxx.livegore.com//rb-include/videos/6110238810.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6110238810.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "la-razn-por-la-que-las-cosas-le-fueron-mal",
+    titulo: "La razón por la que las cosas le fueron mal",
+    portada: "https://xxx.livegore.com//rb-include/videos/2566880858.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2566880858.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "cuerpos-amontonados-en-el-hospital-de-dhaka-medical-college",
+    titulo: "Cuerpos amontonados en el hospital de Dhaka Medical College",
+    portada: "https://xxx.livegore.com//rb-include/videos/4521074793.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4521074793.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "la-polica-bengal-derriba-a-los-manifestantes-pase-lo-que-pase",
+    titulo: "La policía bengalí derriba a los manifestantes pase lo que pase",
+    portada: "https://xxx.livegore.com//rb-include/videos/6848127627.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6848127627.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "permaneci-de-pie-desafiante-con-los-brazos-extendidos-y-desarmado",
+    titulo: "Permaneció de pie desafiante, con los brazos extendidos y desarmado",
+    portada: "https://xxx.livegore.com//rb-include/videos/9915864989.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9915864989.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "la-solucin-para-kensington",
+    titulo: "La solución para Kensington",
+    portada: "https://xxx.livegore.com//rb-include/videos/3572108116.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3572108116.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "joder-borracho-muerte-brutal",
+    titulo: "Joder borracho Muerte brutal",
+    portada: "https://xxx.livegore.com//rb-include/videos/7814277573.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7814277573.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "masacre-mientras-se-juega-al-billar",
+    titulo: "Masacre mientras se juega al billar",
+    portada: "https://xxx.livegore.com//rb-include/videos/1323224399.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1323224399.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "los-futuros-miembros-de-una-pandilla-de-nios",
+    titulo: "Los futuros miembros de una pandilla de niños",
+    portada: "https://xxx.livegore.com//rb-include/videos/6304232454.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6304232454.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/11/2025"
+  },
+  {
     id: "ocho-muertos-en-accidente-de-trfico",
     titulo: "Ocho muertos en accidente de tráfico",
     portada: "https://xxx.livegore.com//rb-include/videos/756444595.jpg",
@@ -5355,6 +5562,33 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "ACCIDENTES",
     fecha: "3/11/2025"
+  },
+  {
+    id: "atropello-en-filipinas",
+    titulo: "Atropello en Filipinas",
+    portada: "https://xxx.livegore.com//rb-include/videos/3923636907.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3923636907.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "familia-muere-en-accidente-de-trnsito-fatal-brasil",
+    titulo: "Familia muere en accidente de tránsito fatal Brasil",
+    portada: "https://xxx.livegore.com//rb-include/videos/6254375907.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6254375907.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "no-hubo-perros-heridos-durante-la-grabacin",
+    titulo: "No hubo perros heridos durante la grabación",
+    portada: "https://xxx.livegore.com//rb-include/videos/1023447406.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1023447406.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "9/11/2025"
   },
   {
     id: "le-corta-sus-partes",
@@ -8445,6 +8679,15 @@ const mediaDB = [
     fecha: "2/11/2025"
   },
   {
+    id: "aborto-con-un-martillo",
+    titulo: "Aborto con un martillo",
+    portada: "https://xxx.livegore.com//rb-include/videos/708579560.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/708579560.mp4",
+    autor: "TripGore",
+    categoria: "AUTOLESIONES",
+    fecha: "9/11/2025"
+  },
+  {
     id: "9127-4482-3901-ae82f1a7c4d3", //ocultos
     titulo: "Snuff R73",
     portada: "https://files.catbox.moe/2ljma5.png",
@@ -8515,5 +8758,23 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "OCULTO",
     fecha: "12/10/2025",
+  },
+  {
+    id: "cf6294c3-896f-48f7-9d84", //ocultos
+    titulo: "El niño de la vici",
+    portada: "https://files.catbox.moe/2ljma5.png",
+    video: "https://xxx.livegore.com//rb-include/videos/101532186.mp4",
+    autor: "TripGore",
+    categoria: "OCULTO",
+    fecha: "09/11/2025",
+  },
+  {
+    id: "3f559635-72d0-43c4-89e7-fe8ec5027691", //ocultos
+    titulo: "El niño de la vici 2",
+    portada: "https://files.catbox.moe/2ljma5.png",
+    video: "https://xxx.livegore.com//rb-include/videos/4507673513.mp4",
+    autor: "TripGore",
+    categoria: "OCULTO",
+    fecha: "09/11/2025",
   },
 ];
