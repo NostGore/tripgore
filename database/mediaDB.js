@@ -3396,7 +3396,7 @@ const mediaDB = [
   },
   {
     id: "csg-real-live",
-    titulo: "CSG Real Live",
+    titulo: "CSGO Real Live",
     portada: "https://files.catbox.moe/9jngh7.png",
     video: "https://files.catbox.moe/y5zkaz.mp4",
     autor: "TripGore",
