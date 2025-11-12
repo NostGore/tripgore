@@ -3359,6 +3359,60 @@ const mediaDB = [
     fecha: "9/11/2025"
   },
   {
+    id: "scale-el-ojo",
+    titulo: "Sácale el ojo",
+    portada: "https://files.catbox.moe/fj8z4d.png",
+    video: "https://files.catbox.moe/vhe6lj.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "12/11/2025"
+  },
+  {
+    id: "no-lo-dejaron-con-vida",
+    titulo: "No lo dejaron con vida",
+    portada: "https://files.catbox.moe/mhhqai.png",
+    video: "https://files.catbox.moe/nk8fsb.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "12/11/2025"
+  },
+  {
+    id: "atropello-a-todos",
+    titulo: "Atropello a todos",
+    portada: "https://files.catbox.moe/nnzkgd.png",
+    video: "https://files.catbox.moe/5ustw8.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "12/11/2025"
+  },
+  {
+    id: "de-rodillas",
+    titulo: "De rodillas",
+    portada: "https://files.catbox.moe/kebxmt.png",
+    video: "https://files.catbox.moe/jnv5cf.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "12/11/2025"
+  },
+  {
+    id: "csg-real-live",
+    titulo: "CSG Real Live",
+    portada: "https://files.catbox.moe/9jngh7.png",
+    video: "https://files.catbox.moe/y5zkaz.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "12/11/2025"
+  },
+  {
+    id: "asesinato-brutal",
+    titulo: "Asesinato brutal",
+    portada: "https://files.catbox.moe/iqsayx.png",
+    video: "https://files.catbox.moe/goxh0v.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "12/11/2025"
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -5589,6 +5643,15 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "ACCIDENTES",
     fecha: "9/11/2025"
+  },
+  {
+    id: "accidente-fatal",
+    titulo: "Accidente fatal",
+    portada: "https://files.catbox.moe/iqsayx.png",
+    video: "https://files.catbox.moe/2ze5ot.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "12/11/2025"
   },
   {
     id: "le-corta-sus-partes",
@@ -7831,6 +7894,51 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "INCIDENTES",
     fecha: "31/10/2025"
+  },
+  {
+    id: "el-sin-cabeza",
+    titulo: "El sin cabeza",
+    portada: "https://files.catbox.moe/5z11w6.png",
+    video: "https://files.catbox.moe/iaj5z3.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "12/11/2025"
+  },
+  {
+    id: "le-atravezo-la-cara",
+    titulo: "Le atravezo la cara",
+    portada: "https://files.catbox.moe/6ptraa.png",
+    video: "https://files.catbox.moe/qfw1im.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "12/11/2025"
+  },
+  {
+    id: "wtf-y-su-rostro",
+    titulo: "Wtf y su rostro?",
+    portada: "https://files.catbox.moe/6btju2.png",
+    video: "https://files.catbox.moe/tes5wx.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "12/11/2025"
+  },
+  {
+    id: "se-le-salio-la-mano",
+    titulo: "Se le salio la mano",
+    portada: "https://files.catbox.moe/yv9z40.png",
+    video: "https://files.catbox.moe/mrq69z.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "12/11/2025"
+  },
+  {
+    id: "rostro-con-agujero",
+    titulo: "Rostro con agujero",
+    portada: "https://files.catbox.moe/xwm0v7.png",
+    video: "https://files.catbox.moe/j4qmrx.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "12/11/2025"
   },
   {
     id: "1444",
