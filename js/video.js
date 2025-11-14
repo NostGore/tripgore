@@ -359,9 +359,23 @@ function loadVideoById(videoId) {
     
     // Meta: fecha y autor
     document.getElementById('videoMeta').innerHTML = `<strong>Publicado el ${video.fecha} por:</strong> ${video.autor}`;
-    // Establecer iframe con la URL del video
     const iframe = document.getElementById('videoIframe');
-    iframe.src = video.video;
+    const overlay = document.getElementById('introOverlay');
+    const intro = document.getElementById('introVideo');
+    if (iframe) {
+        iframe.src = '';
+    }
+    if (overlay && intro && iframe) {
+        overlay.style.display = 'flex';
+        try { intro.pause(); } catch (e) {}
+        try { intro.currentTime = 0; } catch (e) {}
+        intro.onended = function () {
+            overlay.style.display = 'none';
+            iframe.src = video.video;
+        };
+    } else if (iframe) {
+        iframe.src = video.video;
+    }
 
     // Mostrar categoría actual
     const catEl = document.getElementById('currentCategory');

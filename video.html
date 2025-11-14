@@ -90,6 +90,12 @@
                     <iframe id="videoIframe" class="video-iframe"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen></iframe>
+                    <div id="introOverlay" style="position:absolute;inset:0;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;z-index:10;">
+                        <div style="max-width:900px;width:90%;display:flex;flex-direction:column;gap:12px;align-items:center;">
+                            <video id="introVideo" src="https://files.catbox.moe/z6096d.mp4" playsinline controls style="width:100%;max-height:70vh;border-radius:8px;background:#000;"></video>
+                            <div style="color:#fff;font-weight:600;">TRIPGORE - HORROR WEB</div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="video-controls">
