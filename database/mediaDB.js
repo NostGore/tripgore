@@ -3413,6 +3413,96 @@ const mediaDB = [
     fecha: "12/11/2025"
   },
   {
+    id: "barbacoa-estilo-mexicano",
+    titulo: "Barbacoa estilo mexicano",
+    portada: "https://theync.com/media/thumbs/6/9/1/6/c/159693369169fd173f0e.mp4/159693369169fd173f0e.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/6/c/6916ced9ecac7.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "tres-hombres-acusados-de-robos-torturados-y-quemados",
+    titulo: "Tres hombres acusados de robos torturados y quemados",
+    portada: "https://theync.com/media/thumbs/6/9/1/4/3/21776856914369b07ccf.mp4/21776856914369b07ccf.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/1/4/3/691437039cf8d.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "tiempo-sangriento-compilacin",
+    titulo: "Tiempo sangriento (compilación)",
+    portada: "https://theync.com/media/thumbs/6/9/1/2/7/168636869125f7361487.mp4/168636869125f7361487.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/9/1/2/7/691278c4179a2.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "chica-es-apualada-por-un-compaero-de-clase-en-brasil",
+    titulo: "Chica es apuñalada por un compañero de clase en Brasil",
+    portada: "https://theync.com/media/thumbs/6/9/1/6/d/21776856916dbfba298c.mp4/21776856916dbfba298c.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/1/6/d/6916dcd33866e.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "sicko-armado-con-un-cuchillo-asesinado-a-tiros-por-un-oficial",
+    titulo: "Sicko armado con un cuchillo asesinado a tiros por un oficial",
+    portada: "https://theync.com/media/thumbs/6/9/1/6/4/2177685691649f064cb0.mp4/2177685691649f064cb0.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/1/6/4/69164a9386153.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "sospechoso-de-asesinato-ataca-a-la-polica-con-un-cuchillo",
+    titulo: "Sospechoso de asesinato ataca a la policía con un cuchillo",
+    portada: "https://theync.com/media/thumbs/6/9/1/6/d/21776856916da0fe6970.mp4/21776856916da0fe6970.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/1/6/d/6916daf3d7df3.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "el-dolor",
+    titulo: "EL DOLOR",
+    portada: "https://theync.com/media/thumbs/6/9/1/5/e/5524336915e37138883.mp4/5524336915e37138883.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/9/1/5/e/6915e463833e7.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "alguien-le-clav-un-cuchillo-en-el-ojo",
+    titulo: "Alguien le clavó un cuchillo en el ojo",
+    portada: "https://theync.com/media/thumbs/6/9/1/5/e/11704826915e0e1be1fa.mp4/11704826915e0e1be1fa.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/9/1/5/e/6915e157b323e.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "menos-100-ucranianos",
+    titulo: "Menos 100 ucranianos",
+    portada: "https://theync.com/media/thumbs/6/9/1/6/9/1883836691698879740d.mp4/1883836691698879740d.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/1/6/9/691698dbd7ba1.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "hombre-quemado-vivo-por-el-cartel",
+    titulo: "Hombre quemado vivo por el cartel",
+    portada: "https://theync.com/media/thumbs/6/9/0/f/a/2177685690fa5772a1ad.mp4/2177685690fa5772a1ad.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/0/f/a/690fa66c28f6d.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "14/11/2025"
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -5339,6 +5429,60 @@ const mediaDB = [
     fecha: "9/11/2025"
   },
   {
+    id: "dos-adolescentes-crueles-patean-en-la-cara-a-una-mujer-de-27-aos-tras-una-disputa",
+    titulo: "Dos adolescentes crueles patean en la cara a una mujer de 27 años tras una disputa",
+    portada: "https://theync.com/media/thumbs/6/9/1/6/0/2177685691601e6e4cce.mp4/2177685691601e6e4cce.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/1/6/0/691602a005f3a.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "un-tipo-le-explota-los-sesos-en-un-campo-de-tiro",
+    titulo: "Un tipo le explota los sesos en un campo de tiro",
+    portada: "https://theync.com/media/thumbs/6/9/1/4/e/17983546914d7531897a.mp4/17983546914d7531897a.mp4-2.jpg",
+    video: "https://theync.com/media/videos/6/9/1/4/e/6914eb7c3a49d.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "ahora-bailas-diez-minutos-despus-mueres",
+    titulo: "Ahora bailas, diez minutos después mueres",
+    portada: "https://theync.com/media/thumbs/6/9/1/5/0/217768569150284a67e3.mp4/217768569150284a67e3.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/1/5/0/69150327ca48f.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "anciana-humillada-por-robar",
+    titulo: "Anciana humillada por robar",
+    portada: "https://theync.com/media/thumbs/6/9/1/6/d/21776856916d2297adc3.mp4/21776856916d2297adc3.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/1/6/d/6916d337decb5.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "hombre-con-espada-golpeado-por-un-range-rover",
+    titulo: "Hombre con espada golpeado por un Range Rover",
+    portada: "https://theync.com/media/thumbs/6/9/1/6/4/21776856916444ced507.mp4/21776856916444ced507.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/1/6/4/6916453015a31.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "exterminar-el-untermensch-ruso",
+    titulo: "Exterminar el Untermensch ruso",
+    portada: "https://theync.com/media/thumbs/6/9/1/6/d/18597986916da919ca70.mp4/18597986916da919ca70.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/1/6/d/6916de77c9e7d.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
     id: "ocho-muertos-en-accidente-de-trfico",
     titulo: "Ocho muertos en accidente de tráfico",
     portada: "https://xxx.livegore.com//rb-include/videos/756444595.jpg",
@@ -5652,6 +5796,69 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "ACCIDENTES",
     fecha: "12/11/2025"
+  },
+  {
+    id: "accidente-de-trabajo-2-heridos-al-explotar",
+    titulo: "ACCIDENTE DE TRABAJO: 2 HERIDOS AL EXPLOTAR",
+    portada: "https://theync.com/media/thumbs/6/9/1/6/5/55243369164fabe1abf.mp4/55243369164fabe1abf.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/9/1/6/5/6916506fc847e.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "destino-final-peatn-atropellado-por-un-coche",
+    titulo: "Destino final: Peatón atropellado por un coche",
+    portada: "https://theync.com/media/thumbs/6/9/1/4/f/18588686914eedf8ca07.mp4/18588686914eedf8ca07.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/9/1/4/f/6914f1578d7b2.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "trucker-filma-una-muerte-instantnea-de-un-motociclista",
+    titulo: "Trucker filma una muerte instantánea de un motociclista",
+    portada: "https://theync.com/media/thumbs/6/9/1/6/d/21776856916d33e23121.mp4/21776856916d33e23121.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/1/6/d/6916d67f7a3f0.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "trabajadores-teniendo-un-mal-da",
+    titulo: "Trabajadores teniendo un mal día...",
+    portada: "https://theync.com/media/thumbs/6/9/1/5/d/11704826915dec36dca2.mp4/11704826915dec36dca2.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/9/1/5/d/6915df78dab07.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "trabajador-aplastado-hasta-la-muerte-por-camin",
+    titulo: "Trabajador aplastado hasta la muerte por camión",
+    portada: "https://theync.com/media/thumbs/6/9/1/6/5/2177685691656be71fe8.mp4/2177685691656be71fe8.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/1/6/5/6916573b88095.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "la-joven-no-tuvo-ninguna-posibilidad-contra-el-autobs",
+    titulo: "La joven no tuvo ninguna posibilidad contra el autobús",
+    portada: "https://theync.com/media/thumbs/6/9/1/5/d/11704826915db67a8dd3.mp4/11704826915db67a8dd3.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/9/1/5/d/6915dbb80f540.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "pareja-es-aplastada-por-un-camin-volcado",
+    titulo: "Pareja es aplastada por un camión volcado",
+    portada: "https://theync.com/media/thumbs/6/9/1/6/3/17983546915ffe28e092.mp4/17983546915ffe28e092.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/9/1/6/3/69163fcbc531a.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "14/11/2025"
   },
   {
     id: "le-corta-sus-partes",
@@ -8499,6 +8706,24 @@ const mediaDB = [
     fecha: "2/11/2025"
   },
   {
+    id: "un-tipo-entra-en-la-tienda-y-procede-a-cortarse-la-garganta",
+    titulo: "UN TIPO ENTRA EN LA TIENDA Y PROCEDE A CORTARSE LA GARGANTA",
+    portada: "https://theync.com/media/thumbs/6/9/1/6/1/117048269161501345b0.mp4/117048269161501345b0.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/9/1/6/1/6916155fad936.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "hombre-electrocutado-en-un-tren",
+    titulo: "HOMBRE ELECTROCUTADO EN UN TREN",
+    portada: "https://theync.com/media/thumbs/6/9/1/5/d/5524336915d0078f66b.mp4/5524336915d0078f66b.mp4-3.jpg",
+    video: "https://theync.com/media/videos/6/9/1/5/d/6915d0efafdaa.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "14/11/2025"
+  },
+  {
     id: "se-apunala-en-live",
     titulo: "SE APUÑALA EN LIVE", //C-AUTOLESIONES
     portada: "https://files.catbox.moe/a5ey0v.png",
@@ -8794,6 +9019,15 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "AUTOLESIONES",
     fecha: "9/11/2025"
+  },
+  {
+    id: "hombre-salta-de-un-coche-de-polica",
+    titulo: "Hombre salta de un coche de policía",
+    portada: "https://theync.com/media/thumbs/6/9/1/5/f/21776856915fcbf313a9.mp4/21776856915fcbf313a9.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/1/5/f/6915fd775fff2.mp4",
+    autor: "TripGore",
+    categoria: "AUTOLESIONES",
+    fecha: "14/11/2025"
   },
   {
     id: "9127-4482-3901-ae82f1a7c4d3", //ocultos
