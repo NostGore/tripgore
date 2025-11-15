@@ -3503,6 +3503,69 @@ const mediaDB = [
     fecha: "14/11/2025"
   },
   {
+    id: "robber-killed-new-tourist-attraction-in-the-city",
+    titulo: "Ladrón asesinado: nueva atracción turística en la ciudad",
+    portada: "https://theync.com/media/thumbs/6/9/1/4/5/18588686914513384827.mp4/18588686914513384827.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/4/5/691451f7d5dd9.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "motorcyclist-executed-by-sicario",
+    titulo: "Motociclista ejecutado por sicario",
+    portada: "https://theync.com/media/thumbs/6/9/1/4/d/6891686914dd070cba9.mp4/6891686914dd070cba9.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/4/d/6914dda798fe7.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "motorcycle-thief-was-burned-by-the-mob",
+    titulo: "Ladrón de motocicletas fue quemado por la mafia",
+    portada: "https://theync.com/media/thumbs/6/9/1/5/7/77036969157a5ded77c.mp4/77036969157a5ded77c.mp4-5b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/5/7/69157b64e195c.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "dont-stick-your-head-out",
+    titulo: "No saques la cabeza.",
+    portada: "https://theync.com/media/thumbs/6/9/1/6/9/1883836691697358f455.mp4/1883836691697358f455.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/6/9/69169773bf82e.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "man-gets-fatally-stabbed-during-drunk-dispute",
+    titulo: "Un hombre es apuñalado fatalmente durante una disputa en estado de ebriedad",
+    portada: "https://theync.com/media/thumbs/6/9/1/3/3/21776856913374e79d60.mp4/21776856913374e79d60.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/3/3/6913387bbc243.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "moment-when-protester-getting-shot-in-the-head-by-police-sniper",
+    titulo: "Momento en el que un francotirador de la policía dispara a un manifestante en la cabeza",
+    portada: "https://theync.com/media/thumbs/6/9/1/2/d/21776856912d4297237c.mp4/21776856912d4297237c.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/2/d/6912d5571f342.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "hit-and-run-driver-takes-out-two-girls-on-moped",
+    titulo: "Un conductor que se da a la fuga se lleva a dos niñas en un ciclomotor",
+    portada: "https://theync.com/media/thumbs/6/9/1/1/a/217768569119e7d16817.mp4/217768569119e7d16817.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/1/a/6911a0ab6c46d.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "14/11/2025"
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -5204,285 +5267,6 @@ const mediaDB = [
     fecha: "28/10/2025"
   },
   {
-    id: "come-la-banqueta",
-    titulo: "Come la banqueta", //C-INCIDENTES
-    portada: "https://files.catbox.moe/q7pgoy.png",
-    video: "https://files.catbox.moe/hkxzb0.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "29/05/25",
-  },
-  {
-    id: "jvenes-skinheads-rusos-golpean-a-antifa-scumbags",
-    titulo: "Jóvenes Skinheads rusos golpean a Antifa Scumbags",
-    portada: "https://xxx.livegore.com//rb-include/videos/9333444889.jpg",
-    video: "https://xxx.livegore.com//rb-include/videos/9333444889.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "2/11/2025"
-  },
-  {
-    id: "hombre-atacado-por-monos",
-    titulo: "HOMBRE ATACADO POR MONOS",
-    portada: "https://xxx.livegore.com//rb-include/videos/5280436542.jpg",
-    video: "https://xxx.livegore.com//rb-include/videos/5280436542.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "2/11/2025"
-  },
-  {
-    id: "dos-soldadores-murieron-tras-una-explosin",
-    titulo: "Dos soldadores murieron tras una explosión",
-    portada: "https://xxx.livegore.com//rb-include/videos/2089181104.jpg",
-    video: "https://xxx.livegore.com//rb-include/videos/2089181104.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "2/11/2025"
-  },
-  {
-    id: "amigo-tu-mano-est-muerta",
-    titulo: "¡AMIGO, TU MANO ESTÁ MUERTA!",
-    portada: "https://xxx.livegore.com//rb-include/videos/4815122080.jpg",
-    video: "https://xxx.livegore.com//rb-include/videos/4815122080.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "2/11/2025"
-  },
-  {
-    id: "nunca-te-metas-con-bestias-de-ecuador",
-    titulo: "Nunca te metas con bestias de Ecuador",
-    portada: "https://xxx.livegore.com//rb-include/videos/9526712680.jpg",
-    video: "https://xxx.livegore.com//rb-include/videos/9526712680.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "2/11/2025"
-  },
-  {
-    id: "salvajemente-castigado-por-robar-drogas",
-    titulo: "Salvajemente castigado por robar drogas",
-    portada: "https://xxx.livegore.com//rb-include/videos/9293799428.jpg",
-    video: "https://xxx.livegore.com//rb-include/videos/9293799428.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "2/11/2025"
-  },
-  {
-    id: "ms-ucranianos-muertos",
-    titulo: "Más ucranianos muertos",
-    portada: "https://xxx.livegore.com//rb-include/videos/6175641445.jpg",
-    video: "https://xxx.livegore.com//rb-include/videos/6175641445.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "2/11/2025"
-  },
-  {
-    id: "la-favela-de-ro-asalta-cadveres",
-    titulo: "La favela de Río asalta CADÁVERES",
-    portada: "https://xxx.livegore.com//rb-include/videos/9672441082.jpg",
-    video: "https://xxx.livegore.com//rb-include/videos/9672441082.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "2/11/2025"
-  },
-  {
-    id: "hombre-desnudo-baleado-por-la-polica",
-    titulo: "Hombre desnudo baleado por la policía",
-    portada: "https://xxx.livegore.com//rb-include/videos/485313395.jpg",
-    video: "https://xxx.livegore.com//rb-include/videos/485313395.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "2/11/2025"
-  },
-  {
-    id: "cara-de-hombre-muerto-devorada-por-un-perro",
-    titulo: "Cara de hombre muerto devorada por un perro",
-    portada: "https://xxx.livegore.com//rb-include/videos/7050451561.jpg",
-    video: "https://xxx.livegore.com//rb-include/videos/7050451561.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "2/11/2025"
-  },
-  {
-    id: "hombre-encontrado-ejecutado-con-potentes-disparos",
-    titulo: "Hombre encontrado ejecutado con potentes disparos",
-    portada: "https://xxx.livegore.com//rb-include/videos/9731611469.jpg",
-    video: "https://xxx.livegore.com//rb-include/videos/9731611469.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "2/11/2025"
-  },
-  {
-    id: "ro-de-janeiro-combate-cuerpo-a-cuerpo",
-    titulo: "Río de Janeiro : ¡¡combate cuerpo a cuerpo",
-    portada: "https://theync.com/media/thumbs/6/9/0/3/c/6891686903ce96894e9.mp4/6891686903ce96894e9.mp4-9.jpg",
-    video: "https://theync.com/media/videos/6/9/0/3/c/6903cf3f4ac0a.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "2/11/2025"
-  },
-  {
-    id: "mujer-con-los-ojos-vendados-es-asesinada",
-    titulo: "Mujer con los ojos vendados es asesinada",
-    portada: "https://theync.com/media/thumbs/6/9/0/0/7/217768569006f500b654.mp4/217768569006f500b654.mp4-9.jpg",
-    video: "https://theync.com/media/videos/6/9/0/0/7/6900700aa9f89.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "2/11/2025"
-  },
-  {
-    id: "mujer-trans-muere-tras-ser-apualada-y-arrojada-desde-un-coche",
-    titulo: "Mujer trans muere tras ser apuñalada y arrojada desde un coche",
-    portada: "https://xxx.livegore.com//rb-include/videos/9587907562.jpg",
-    video: "https://xxx.livegore.com//rb-include/videos/9587907562.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "9/11/2025"
-  },
-  {
-    id: "hombre-incinerado-instantneamente-por-un-golpe-de-iluminacin",
-    titulo: "Hombre incinerado instantáneamente por un golpe de iluminación",
-    portada: "https://xxx.livegore.com//rb-include/videos/9314076714.jpg",
-    video: "https://xxx.livegore.com//rb-include/videos/9314076714.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "9/11/2025"
-  },
-  {
-    id: "galones-de-sangre",
-    titulo: "GALONES DE SANGRE",
-    portada: "https://xxx.livegore.com//rb-include/videos/6110238810.jpg",
-    video: "https://xxx.livegore.com//rb-include/videos/6110238810.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "9/11/2025"
-  },
-  {
-    id: "la-razn-por-la-que-las-cosas-le-fueron-mal",
-    titulo: "La razón por la que las cosas le fueron mal",
-    portada: "https://xxx.livegore.com//rb-include/videos/2566880858.jpg",
-    video: "https://xxx.livegore.com//rb-include/videos/2566880858.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "9/11/2025"
-  },
-  {
-    id: "cuerpos-amontonados-en-el-hospital-de-dhaka-medical-college",
-    titulo: "Cuerpos amontonados en el hospital de Dhaka Medical College",
-    portada: "https://xxx.livegore.com//rb-include/videos/4521074793.jpg",
-    video: "https://xxx.livegore.com//rb-include/videos/4521074793.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "9/11/2025"
-  },
-  {
-    id: "la-polica-bengal-derriba-a-los-manifestantes-pase-lo-que-pase",
-    titulo: "La policía bengalí derriba a los manifestantes pase lo que pase",
-    portada: "https://xxx.livegore.com//rb-include/videos/6848127627.jpg",
-    video: "https://xxx.livegore.com//rb-include/videos/6848127627.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "9/11/2025"
-  },
-  {
-    id: "permaneci-de-pie-desafiante-con-los-brazos-extendidos-y-desarmado",
-    titulo: "Permaneció de pie desafiante, con los brazos extendidos y desarmado",
-    portada: "https://xxx.livegore.com//rb-include/videos/9915864989.jpg",
-    video: "https://xxx.livegore.com//rb-include/videos/9915864989.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "9/11/2025"
-  },
-  {
-    id: "la-solucin-para-kensington",
-    titulo: "La solución para Kensington",
-    portada: "https://xxx.livegore.com//rb-include/videos/3572108116.jpg",
-    video: "https://xxx.livegore.com//rb-include/videos/3572108116.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "9/11/2025"
-  },
-  {
-    id: "joder-borracho-muerte-brutal",
-    titulo: "Joder borracho Muerte brutal",
-    portada: "https://xxx.livegore.com//rb-include/videos/7814277573.jpg",
-    video: "https://xxx.livegore.com//rb-include/videos/7814277573.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "9/11/2025"
-  },
-  {
-    id: "masacre-mientras-se-juega-al-billar",
-    titulo: "Masacre mientras se juega al billar",
-    portada: "https://xxx.livegore.com//rb-include/videos/1323224399.jpg",
-    video: "https://xxx.livegore.com//rb-include/videos/1323224399.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "9/11/2025"
-  },
-  {
-    id: "los-futuros-miembros-de-una-pandilla-de-nios",
-    titulo: "Los futuros miembros de una pandilla de niños",
-    portada: "https://xxx.livegore.com//rb-include/videos/6304232454.jpg",
-    video: "https://xxx.livegore.com//rb-include/videos/6304232454.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "9/11/2025"
-  },
-  {
-    id: "dos-adolescentes-crueles-patean-en-la-cara-a-una-mujer-de-27-aos-tras-una-disputa",
-    titulo: "Dos adolescentes crueles patean en la cara a una mujer de 27 años tras una disputa",
-    portada: "https://theync.com/media/thumbs/6/9/1/6/0/2177685691601e6e4cce.mp4/2177685691601e6e4cce.mp4-9.jpg",
-    video: "https://theync.com/media/videos/6/9/1/6/0/691602a005f3a.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "14/11/2025"
-  },
-  {
-    id: "un-tipo-le-explota-los-sesos-en-un-campo-de-tiro",
-    titulo: "Un tipo le explota los sesos en un campo de tiro",
-    portada: "https://theync.com/media/thumbs/6/9/1/4/e/17983546914d7531897a.mp4/17983546914d7531897a.mp4-2.jpg",
-    video: "https://theync.com/media/videos/6/9/1/4/e/6914eb7c3a49d.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "14/11/2025"
-  },
-  {
-    id: "ahora-bailas-diez-minutos-despus-mueres",
-    titulo: "Ahora bailas, diez minutos después mueres",
-    portada: "https://theync.com/media/thumbs/6/9/1/5/0/217768569150284a67e3.mp4/217768569150284a67e3.mp4-9.jpg",
-    video: "https://theync.com/media/videos/6/9/1/5/0/69150327ca48f.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "14/11/2025"
-  },
-  {
-    id: "anciana-humillada-por-robar",
-    titulo: "Anciana humillada por robar",
-    portada: "https://theync.com/media/thumbs/6/9/1/6/d/21776856916d2297adc3.mp4/21776856916d2297adc3.mp4-9.jpg",
-    video: "https://theync.com/media/videos/6/9/1/6/d/6916d337decb5.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "14/11/2025"
-  },
-  {
-    id: "hombre-con-espada-golpeado-por-un-range-rover",
-    titulo: "Hombre con espada golpeado por un Range Rover",
-    portada: "https://theync.com/media/thumbs/6/9/1/6/4/21776856916444ced507.mp4/21776856916444ced507.mp4-9.jpg",
-    video: "https://theync.com/media/videos/6/9/1/6/4/6916453015a31.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "14/11/2025"
-  },
-  {
-    id: "exterminar-el-untermensch-ruso",
-    titulo: "Exterminar el Untermensch ruso",
-    portada: "https://theync.com/media/thumbs/6/9/1/6/d/18597986916da919ca70.mp4/18597986916da919ca70.mp4-9.jpg",
-    video: "https://theync.com/media/videos/6/9/1/6/d/6916de77c9e7d.mp4",
-    autor: "TripGore",
-    categoria: "INCIDENTES",
-    fecha: "14/11/2025"
-  },
-  {
     id: "ocho-muertos-en-accidente-de-trfico",
     titulo: "Ocho muertos en accidente de tráfico",
     portada: "https://xxx.livegore.com//rb-include/videos/756444595.jpg",
@@ -5858,6 +5642,600 @@ const mediaDB = [
     video: "https://theync.com/media/videos/6/9/1/6/3/69163fcbc531a.mp4",
     autor: "TripGore",
     categoria: "ACCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "23yo-girl-falls-from-an-overpass-and-gets-finished-off-by-speeding-car",
+    titulo: "Chica de 23 años se cae de un paso elevado y es rematada por un auto a toda velocidad",
+    portada: "https://theync.com/media/thumbs/6/9/1/5/7/217768569157e8747ce9.mp4/217768569157e8747ce9.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/5/7/69157fd8077a2.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "man-being-crushed-in-work-accident",
+    titulo: "HOMBRE APLASTADO EN ACCIDENTE DE TRABAJO",
+    portada: "https://theync.com/media/thumbs/6/9/1/3/4/552433691346fcb0314.mp4/552433691346fcb0314.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/3/4/6913482f8d828.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "woman-films-instant-death-of-motorcyclist",
+    titulo: "Mujer filma muerte instantánea de motociclista",
+    portada: "https://theync.com/media/thumbs/6/9/1/4/3/217768569143019f12f3.mp4/217768569143019f12f3.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/4/3/6914328fd2257.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "homeless-suffers-after-being-ran-over-by-bus-in-brazil",
+    titulo: "Una persona sin hogar sufre tras ser atropellada por un autobús en Brasil",
+    portada: "https://theync.com/media/thumbs/6/9/1/4/2/217768569142bd224465.mp4/217768569142bd224465.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/4/2/69142cb32ba3b.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "biker-goes-up-in-flames-in-california",
+    titulo: "Un motociclista se incendia en California",
+    portada: "https://theync.com/media/thumbs/6/9/1/2/d/21776856912d063911e1.mp4/21776856912d063911e1.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/2/d/6912d11f4caa1.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "snack-vendor-crushed-by-truck",
+    titulo: "Vendedor de snacks aplastado por camión",
+    portada: "https://theync.com/media/thumbs/6/9/1/2/2/18588686912220bcb9f2.mp4/18588686912220bcb9f2.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/2/2/691225176b71c.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "motorcyclist-on-high-speed-killed-by-the-pole",
+    titulo: "Motociclista que circulaba a alta velocidad muere atropellado por un poste",
+    portada: "https://theync.com/media/thumbs/6/9/1/1/c/21776856911c29487190.mp4/21776856911c29487190.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/1/c/6911c31f2572b.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "come-la-banqueta",
+    titulo: "Come la banqueta", //C-INCIDENTES
+    portada: "https://files.catbox.moe/q7pgoy.png",
+    video: "https://files.catbox.moe/hkxzb0.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "29/05/25",
+  },
+  {
+    id: "jvenes-skinheads-rusos-golpean-a-antifa-scumbags",
+    titulo: "Jóvenes Skinheads rusos golpean a Antifa Scumbags",
+    portada: "https://xxx.livegore.com//rb-include/videos/9333444889.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9333444889.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "hombre-atacado-por-monos",
+    titulo: "HOMBRE ATACADO POR MONOS",
+    portada: "https://xxx.livegore.com//rb-include/videos/5280436542.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5280436542.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "dos-soldadores-murieron-tras-una-explosin",
+    titulo: "Dos soldadores murieron tras una explosión",
+    portada: "https://xxx.livegore.com//rb-include/videos/2089181104.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2089181104.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "amigo-tu-mano-est-muerta",
+    titulo: "¡AMIGO, TU MANO ESTÁ MUERTA!",
+    portada: "https://xxx.livegore.com//rb-include/videos/4815122080.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4815122080.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "nunca-te-metas-con-bestias-de-ecuador",
+    titulo: "Nunca te metas con bestias de Ecuador",
+    portada: "https://xxx.livegore.com//rb-include/videos/9526712680.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9526712680.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "salvajemente-castigado-por-robar-drogas",
+    titulo: "Salvajemente castigado por robar drogas",
+    portada: "https://xxx.livegore.com//rb-include/videos/9293799428.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9293799428.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "ms-ucranianos-muertos",
+    titulo: "Más ucranianos muertos",
+    portada: "https://xxx.livegore.com//rb-include/videos/6175641445.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6175641445.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "la-favela-de-ro-asalta-cadveres",
+    titulo: "La favela de Río asalta CADÁVERES",
+    portada: "https://xxx.livegore.com//rb-include/videos/9672441082.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9672441082.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "hombre-desnudo-baleado-por-la-polica",
+    titulo: "Hombre desnudo baleado por la policía",
+    portada: "https://xxx.livegore.com//rb-include/videos/485313395.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/485313395.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "cara-de-hombre-muerto-devorada-por-un-perro",
+    titulo: "Cara de hombre muerto devorada por un perro",
+    portada: "https://xxx.livegore.com//rb-include/videos/7050451561.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7050451561.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "hombre-encontrado-ejecutado-con-potentes-disparos",
+    titulo: "Hombre encontrado ejecutado con potentes disparos",
+    portada: "https://xxx.livegore.com//rb-include/videos/9731611469.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9731611469.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "ro-de-janeiro-combate-cuerpo-a-cuerpo",
+    titulo: "Río de Janeiro : ¡¡combate cuerpo a cuerpo",
+    portada: "https://theync.com/media/thumbs/6/9/0/3/c/6891686903ce96894e9.mp4/6891686903ce96894e9.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/0/3/c/6903cf3f4ac0a.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "mujer-con-los-ojos-vendados-es-asesinada",
+    titulo: "Mujer con los ojos vendados es asesinada",
+    portada: "https://theync.com/media/thumbs/6/9/0/0/7/217768569006f500b654.mp4/217768569006f500b654.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/0/0/7/6900700aa9f89.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "2/11/2025"
+  },
+  {
+    id: "mujer-trans-muere-tras-ser-apualada-y-arrojada-desde-un-coche",
+    titulo: "Mujer trans muere tras ser apuñalada y arrojada desde un coche",
+    portada: "https://xxx.livegore.com//rb-include/videos/9587907562.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9587907562.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "hombre-incinerado-instantneamente-por-un-golpe-de-iluminacin",
+    titulo: "Hombre incinerado instantáneamente por un golpe de iluminación",
+    portada: "https://xxx.livegore.com//rb-include/videos/9314076714.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9314076714.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "galones-de-sangre",
+    titulo: "GALONES DE SANGRE",
+    portada: "https://xxx.livegore.com//rb-include/videos/6110238810.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6110238810.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "la-razn-por-la-que-las-cosas-le-fueron-mal",
+    titulo: "La razón por la que las cosas le fueron mal",
+    portada: "https://xxx.livegore.com//rb-include/videos/2566880858.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2566880858.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "cuerpos-amontonados-en-el-hospital-de-dhaka-medical-college",
+    titulo: "Cuerpos amontonados en el hospital de Dhaka Medical College",
+    portada: "https://xxx.livegore.com//rb-include/videos/4521074793.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/4521074793.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "la-polica-bengal-derriba-a-los-manifestantes-pase-lo-que-pase",
+    titulo: "La policía bengalí derriba a los manifestantes pase lo que pase",
+    portada: "https://xxx.livegore.com//rb-include/videos/6848127627.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6848127627.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "permaneci-de-pie-desafiante-con-los-brazos-extendidos-y-desarmado",
+    titulo: "Permaneció de pie desafiante, con los brazos extendidos y desarmado",
+    portada: "https://xxx.livegore.com//rb-include/videos/9915864989.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9915864989.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "la-solucin-para-kensington",
+    titulo: "La solución para Kensington",
+    portada: "https://xxx.livegore.com//rb-include/videos/3572108116.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3572108116.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "joder-borracho-muerte-brutal",
+    titulo: "Joder borracho Muerte brutal",
+    portada: "https://xxx.livegore.com//rb-include/videos/7814277573.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/7814277573.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "masacre-mientras-se-juega-al-billar",
+    titulo: "Masacre mientras se juega al billar",
+    portada: "https://xxx.livegore.com//rb-include/videos/1323224399.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1323224399.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "los-futuros-miembros-de-una-pandilla-de-nios",
+    titulo: "Los futuros miembros de una pandilla de niños",
+    portada: "https://xxx.livegore.com//rb-include/videos/6304232454.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6304232454.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "9/11/2025"
+  },
+  {
+    id: "dos-adolescentes-crueles-patean-en-la-cara-a-una-mujer-de-27-aos-tras-una-disputa",
+    titulo: "Dos adolescentes crueles patean en la cara a una mujer de 27 años tras una disputa",
+    portada: "https://theync.com/media/thumbs/6/9/1/6/0/2177685691601e6e4cce.mp4/2177685691601e6e4cce.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/1/6/0/691602a005f3a.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "un-tipo-le-explota-los-sesos-en-un-campo-de-tiro",
+    titulo: "Un tipo le explota los sesos en un campo de tiro",
+    portada: "https://theync.com/media/thumbs/6/9/1/4/e/17983546914d7531897a.mp4/17983546914d7531897a.mp4-2.jpg",
+    video: "https://theync.com/media/videos/6/9/1/4/e/6914eb7c3a49d.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "ahora-bailas-diez-minutos-despus-mueres",
+    titulo: "Ahora bailas, diez minutos después mueres",
+    portada: "https://theync.com/media/thumbs/6/9/1/5/0/217768569150284a67e3.mp4/217768569150284a67e3.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/1/5/0/69150327ca48f.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "anciana-humillada-por-robar",
+    titulo: "Anciana humillada por robar",
+    portada: "https://theync.com/media/thumbs/6/9/1/6/d/21776856916d2297adc3.mp4/21776856916d2297adc3.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/1/6/d/6916d337decb5.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "hombre-con-espada-golpeado-por-un-range-rover",
+    titulo: "Hombre con espada golpeado por un Range Rover",
+    portada: "https://theync.com/media/thumbs/6/9/1/6/4/21776856916444ced507.mp4/21776856916444ced507.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/1/6/4/6916453015a31.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "exterminar-el-untermensch-ruso",
+    titulo: "Exterminar el Untermensch ruso",
+    portada: "https://theync.com/media/thumbs/6/9/1/6/d/18597986916da919ca70.mp4/18597986916da919ca70.mp4-9.jpg",
+    video: "https://theync.com/media/videos/6/9/1/6/d/6916de77c9e7d.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "man-plants-a-bomb-at-subway-station-in-china",
+    titulo: "Un hombre coloca una bomba en una estación de metro en China",
+    portada: "https://theync.com/media/thumbs/6/9/1/6/d/21776856916dae87f5ee.mp4/21776856916dae87f5ee.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/6/d/6916dc1f54167.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "man-slashed-in-face-with-machete",
+    titulo: "Hombre acuchillado en la cara con machete",
+    portada: "https://theync.com/media/thumbs/6/9/1/4/4/185886869144993a4591.mp4/185886869144993a4591.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/4/4/69144c57ca090.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "chinese-girls-have-no-mercy",
+    titulo: "¡¡¡LAS CHICAS CHINAS NO TIENEN PIEDAD!!!!",
+    portada: "https://theync.com/media/thumbs/6/9/1/4/d/6891686914dd87a3359.mp4/6891686914dd87a3359.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/4/d/6914de1fc6116.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "last-ride-for-motorcyclist",
+    titulo: "Último viaje para motociclista...",
+    portada: "https://theync.com/media/thumbs/6/9/1/4/e/17983546914dda772711.mp4/17983546914dda772711.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/4/e/6914eba2b44d7.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "russian-basketball-players-skull-was-cracked",
+    titulo: "Le rompieron el cráneo a un jugador de baloncesto ruso",
+    portada: "https://theync.com/media/thumbs/6/9/1/4/c/13121946914c75500a16.mp4/13121946914c75500a16.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/4/c/6914c79f79d80.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "riot-police-beating-youth-involved-in-protests-in-tanzania",
+    titulo: "Policía antidisturbios golpea a jóvenes involucrados en protestas en Tanzania",
+    portada: "https://theync.com/media/thumbs/6/9/1/5/8/217768569158376c6509.mp4/217768569158376c6509.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/5/8/691584101f965.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "bunker-blowout-has-brainless-pootin-ist-in-toilet-posture",
+    titulo: "Bunker Blowout tiene a un pootinista sin cerebro en la postura del baño",
+    portada: "https://theync.com/media/thumbs/6/9/1/6/c/18597986916c9e868d1e.mov/18597986916c9e868d1e.mov-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/6/c/6916ca8bc333d.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "a-person-attempted-to-steal-the-security-guards-weapon",
+    titulo: "Una persona intentó robar el arma del guardia de seguridad",
+    portada: "https://theync.com/media/thumbs/6/9/1/4/2/1462358691423d2eea1b.mp4/1462358691423d2eea1b.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/4/2/69142b4665275.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "mongol-vs-armenians-in-russia",
+    titulo: "Mongoles contra armenios en Rusia",
+    portada: "https://theync.com/media/thumbs/6/9/1/4/2/13838216913b5d5d66ed.mp4/13838216913b5d5d66ed.mp4-1b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/4/2/69142b101d0c0.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "i-dont-think-they-survived",
+    titulo: "No creo que hayan sobrevivido",
+    portada: "https://theync.com/media/thumbs/6/9/1/4/0/188383669140a4dd3b9a.mp4/188383669140a4dd3b9a.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/4/0/69140ab76e15c.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "wild-assassination-attempt-in-israel",
+    titulo: "Salvaje intento de asesinato en Israel",
+    portada: "https://theync.com/media/thumbs/6/9/1/3/b/21776856913b3ae34175.mp4/21776856913b3ae34175.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/3/b/6913b47784cd9.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "egyptian-thief-fall-to-his-death",
+    titulo: "Ladrón egipcio cae y muere",
+    portada: "https://theync.com/media/thumbs/6/9/1/3/a/6891686913a69954c45.mp4/6891686913a69954c45.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/3/a/6913a80bd1649.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "bakery-owner-and-employer-gets-hard-beating-for-not-paying-extortion-m",
+    titulo: "Dueño de panadería y empleador reciben dura paliza por no pagar extorsión",
+    portada: "https://theync.com/media/thumbs/6/9/1/3/9/6891686913991358537.mp4/6891686913991358537.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/3/9/69139b636b818.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "angry-security-guard-beat-the-shit-out-of-his-female-coworker",
+    titulo: "Un guardia de seguridad enojado le dio una paliza a su compañera de trabajo",
+    portada: "https://theync.com/media/thumbs/6/9/1/3/9/689168691395d127b29.mp4/689168691395d127b29.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/3/9/6913981b58293.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "a-man-defended-his-wife-from-a-sexual-abusing-was-savagely-beaten",
+    titulo: "Un hombre que defendió a su esposa de un abuso sexual fue salvajemente golpeado",
+    portada: "https://theync.com/media/thumbs/6/9/1/3/8/6891686913805d2af2c.mp4/6891686913805d2af2c.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/3/8/69138ebb5a12f.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "mass-brawl-with-shovels-and-sticks",
+    titulo: "Pelea masiva con palas y palos",
+    portada: "https://theync.com/media/thumbs/6/9/1/3/6/1858868691362cc6b252.mp4/1858868691362cc6b252.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/3/6/691365f35235e.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "captured-boko-haram-fighters-butchered-by-the-nigerian-army",
+    titulo: "Combatientes de Boko Haram capturados y masacrados por el EJÉRCITO NIGERIANO",
+    portada: "https://theync.com/media/thumbs/6/9/1/3/4/689168691343400baf6.mp4/689168691343400baf6.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/3/4/691343f74e67e.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "never-bring-a-rock-to-a-gun-fight",
+    titulo: "Nunca lleves una piedra a un tiroteo",
+    portada: "https://theync.com/media/thumbs/6/9/1/3/1/1858868691312dfd995c.mp4/1858868691312dfd995c.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/3/1/691317abbb01d.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "man-armed-with-rock-shot-to-death-by-utah-officers",
+    titulo: "Hombre armado con ROCA asesinado a tiros por agentes de Utah",
+    portada: "https://theync.com/media/thumbs/6/9/1/2/6/21776856912693896de7.mp4/21776856912693896de7.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/2/6/69126a003b108.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "man-having-a-seizure-as-ice-arrests-his-wife",
+    titulo: "Hombre sufre convulsiones mientras ICE arresta a su esposa",
+    portada: "https://theync.com/media/thumbs/6/9/1/2/3/2177685691239ce7ab95.mp4/2177685691239ce7ab95.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/2/3/69123b1fa6ef7.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "suicide-attempt-or-just-a-moron-pathetic-either-way",
+    titulo: "¿Intento de suicidio o simplemente un idiota? ",
+    portada: "https://theync.com/media/thumbs/6/9/1/2/1/55243369121a77084a9.mp4/55243369121a77084a9.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/2/1/69121b03c6cf0.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "several-dead-after-car-blast-in-indias-capital-more-footage",
+    titulo: "Varios muertos tras explosión de coche en la capital de la India",
+    portada: "https://theync.com/media/thumbs/6/9/1/2/1/185886869120a06763dd.mp4/185886869120a06763dd.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/2/1/6912168f45a15.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "road-rage-man-being-run-over",
+    titulo: "FURIA EN LA CARRETERA: HOMBRE ATROPELLADO",
+    portada: "https://theync.com/media/thumbs/6/9/1/1/f/5524336911fb3bceff5.mp4/5524336911fb3bceff5.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/1/f/6911fc1348274.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "driver-jailed-for-killing-pedestrian-during-road-rage-incident",
+    titulo: "Conductor encarcelado por matar a un peatón durante un incidente de furia en la carretera",
+    portada: "https://theync.com/media/thumbs/6/9/1/1/f/21776856911f2ed0e683.mp4/21776856911f2ed0e683.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/1/f/6911f36787dac.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "race-is-over-for-him",
+    titulo: "La carrera ha terminado para él",
+    portada: "https://theync.com/media/thumbs/6/9/1/1/e/21776856911ee52cb683.mp4/21776856911ee52cb683.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/1/e/6911efef24c53.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "dude-punched-and-kicked-in-the-face-for-talking-shit-online",
+    titulo: "Un tipo recibió puñetazos y patadas en la cara por hablar mierda en línea",
+    portada: "https://theync.com/media/thumbs/6/9/1/1/c/21776856911bf182ddd4.mp4/21776856911bf182ddd4.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/1/c/6911c13f6d323.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "woman-attacked-by-white-pitbulls-in-brazil",
+    titulo: "Mujer atacada por pitbulls blancos en Brasil",
+    portada: "https://theync.com/media/thumbs/6/9/1/1/a/21776856911a58031daa.mp4/21776856911a58031daa.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/1/a/6911a6ffd28ee.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "illegal-street-race-turns-deadly",
+    titulo: "La carrera callejera ilegal se vuelve mortal",
+    portada: "https://theync.com/media/thumbs/6/9/1/1/9/217768569119b3f7af50.mp4/217768569119b3f7af50.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/1/9/69119ceba907c.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
     fecha: "14/11/2025"
   },
   {
@@ -8719,6 +9097,15 @@ const mediaDB = [
     titulo: "HOMBRE ELECTROCUTADO EN UN TREN",
     portada: "https://theync.com/media/thumbs/6/9/1/5/d/5524336915d0078f66b.mp4/5524336915d0078f66b.mp4-3.jpg",
     video: "https://theync.com/media/videos/6/9/1/5/d/6915d0efafdaa.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "14/11/2025"
+  },
+  {
+    id: "ukrainian-commits-suicide",
+    titulo: "El ucraniano se suicida.",
+    portada: "https://theync.com/media/thumbs/6/9/1/4/0/1883836691408ab5e130.mp4/1883836691408ab5e130.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/4/0/6914091420ab2.mp4",
     autor: "TripGore",
     categoria: "SUICIDIOS",
     fecha: "14/11/2025"
