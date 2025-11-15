@@ -5708,6 +5708,15 @@ const mediaDB = [
     fecha: "14/11/2025"
   },
   {
+    id: "he-fell-into-a-brick-making-machine",
+    titulo: "CAYÓ EN UNA MÁQUINA PARA FABRICAR LADRILLOS",
+    portada: "https://theync.com/media/thumbs/6/9/1/7/5/55243369175aaea2e72.mp4/55243369175aaea2e72.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/7/5/69175b9fb1130.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "15/11/2025"
+  },
+  {
     id: "come-la-banqueta",
     titulo: "Come la banqueta", //C-INCIDENTES
     portada: "https://files.catbox.moe/q7pgoy.png",
@@ -8524,6 +8533,87 @@ const mediaDB = [
     autor: "TripGore",
     categoria: "INCIDENTES",
     fecha: "12/11/2025"
+  },
+  {
+    id: "pakistani-police-officer-executed-by-local-taliban-cell",
+    titulo: "Oficial de policía paquistaní ejecutado por una célula talibán local",
+    portada: "https://theync.com/media/thumbs/6/9/1/7/b/21776856917b8a7aa6e1.mp4/21776856917b8a7aa6e1.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/7/b/6917b99bd1dad.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "15/11/2025"
+  },
+  {
+    id: "brazilian-drug-dealer-executed-by-sicario",
+    titulo: "Narcotraficante brasileño ejecutado por sicario",
+    portada: "https://theync.com/media/thumbs/6/8/b/b/a/68916868bba824d758c.mp4/68916868bba824d758c.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/8/b/b/a/68bba8dc8a8cf.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "15/11/2025"
+  },
+  {
+    id: "woman-records-domestic-violence-on-hidden-cam-as-an-evidence",
+    titulo: "Mujer registra violencia doméstica en cámara oculta como prueba",
+    portada: "https://theync.com/media/thumbs/6/8/b/7/2/217768568b71f180cb1a.mp4/217768568b71f180cb1a.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/8/b/7/2/68b7229563672.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "15/11/2025"
+  },
+  {
+    id: "terrifying-machete-attack-during-carnival-in-indonesia",
+    titulo: "Aterrador ataque con machete durante el carnaval en Indonesia",
+    portada: "https://theync.com/media/thumbs/6/8/b/6/e/217768568b6e963c1923.mp4/217768568b6e963c1923.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/8/b/6/e/68b6ea5335d63.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "15/11/2025"
+  },
+  {
+    id: "she-brought-company-to-the-shop",
+    titulo: "Ella trajo compañía a la tienda.",
+    portada: "https://theync.com/media/thumbs/6/8/b/7/4/214435468b743c6171f3.mp4/214435468b743c6171f3.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/8/b/7/4/68b7448f8fcc9.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "15/11/2025"
+  },
+  {
+    id: "man-escapes-from-a-tiger-but",
+    titulo: "Hombre escapa de un tigre, pero....",
+    portada: "https://theync.com/media/thumbs/6/8/b/7/2/146235868b70fc5dfa2d.mp4/146235868b70fc5dfa2d.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/8/b/7/2/68b724736efd3.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "15/11/2025"
+  },
+  {
+    id: "armed-with-fake-gun-man-caught-robbing-locals-regrets-it-now",
+    titulo: "Armado con una pistola falsa, un hombre fue sorprendido robando a los lugareños y ahora se arrepiente",
+    portada: "https://theync.com/media/thumbs/6/8/b/7/4/217768568b74bfa3cb17.mp4/217768568b74bfa3cb17.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/8/b/7/4/68b74def5412a.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "15/11/2025"
+  },
+  {
+    id: "couple-killed-in-fiery-motorcycle-accident",
+    titulo: "Pareja Muere En Un Intenso Accidente De Motocicleta",
+    portada: "https://theync.com/media/thumbs/6/8/b/8/0/217768568b7ff7403cc4.mp4/217768568b7ff7403cc4.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/8/b/8/0/68b800c31cf0d.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "15/11/2025"
+  },
+  {
+    id: "thief-flogged-with-wire-after-trying-to-steal-from-property",
+    titulo: "Ladrón azotado con alambre después de intentar robar en una propiedad",
+    portada: "https://theync.com/media/thumbs/6/8/b/5/5/217768568b557e1e7523.mp4/217768568b557e1e7523.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/8/b/5/5/68b559c8c6cf2.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "15/11/2025"
   },
   {
     id: "1444",
