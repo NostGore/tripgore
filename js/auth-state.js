@@ -3,6 +3,7 @@
 import { app } from './firebase.js';
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
+import { uservips } from '../database/uservips.js';
 
 const auth = getAuth(app);
 const database = getDatabase(app);
@@ -54,6 +55,10 @@ function updateAuthUI() {
         const userData = await getUserData(user.email);
         const username = userData.username || user.displayName || user.email.split('@')[0];
         const points = userData.puntos;
+
+        const emailKey = user.email.split('@')[0];
+        const isVip = Array.isArray(uservips) && uservips.some(entry => entry && entry.username === emailKey && entry.rol === 'vip');
+        const usernameClass = isVip ? 'user-name rgb-username' : 'user-name';
         
         // Esperar a que el script de roles esté cargado
         await new Promise(resolve => {
@@ -71,7 +76,7 @@ function updateAuthUI() {
         loginBox.innerHTML = `
           <p class="login-text">Bienvenido/a</p>
           ${roleBadgeHTML ? `<div style="text-align: center; margin: 0.5rem 0;">${roleBadgeHTML}</div>` : ''}
-          <p class="user-name">${username}</p>
+          <p class="${usernameClass}">${username}</p>
           <p class="user-points">Puntos: <span class="points-value">${points}</span></p>
           <button class="profile-btn" id="profile-btn">Ver Perfil</button>
           <button class="logout-btn" id="logout-btn">Cerrar sesión</button>

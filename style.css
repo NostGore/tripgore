@@ -80,6 +80,28 @@ body {
   text-align: center;
 }
 
+.rgb-username {
+  display: inline-block;
+  background: linear-gradient(90deg, #ff0000, #00ff00, #0000ff, #ff0000);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rgb-username-gradient 3s linear infinite;
+}
+
+@keyframes rgb-username-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .user-points {
   font-size: 0.95rem;
   color: #666;

@@ -2,6 +2,7 @@ import { getDatabase, ref, get, set, push, onValue } from "https://www.gstatic.c
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 import { app } from './firebase.js';
 import { mediaDB } from '../database/mediaDB.js';
+import { uservips } from '../database/uservips.js';
 
 // Cargar el script de roles
 const rolesScript = document.createElement('script');
@@ -458,13 +459,18 @@ async function crearElementoComentario(comment, isReply = false, level = 0, pare
     roleBadge = getRoleBadgeHTML(role);
   }
 
+  const rawAuthor = comment.autor || '';
+  const normalizedAuthor = rawAuthor.includes('@') ? rawAuthor.split('@')[0] : rawAuthor;
+  const isVip = Array.isArray(uservips) && uservips.some(entry => entry && entry.username === normalizedAuthor && entry.rol === 'vip');
+  const authorClass = isVip ? 'comment-author rgb-username' : 'comment-author';
+
   commentDiv.innerHTML = `
     <img src="https://files.catbox.moe/4c4g7d.jpg" alt="Avatar" class="comment-avatar">
     <div class="comment-content">
       <div class="comment-header">
         <span class="comment-author-info">
           ${roleBadge}
-          <span class="comment-author">${authorDisplay}</span>
+          <span class="${authorClass}">${authorDisplay}</span>
           ${replyArrow ? replyArrow : '<span class="comment-separator">▸</span>'}
           <span class="comment-points">
             <svg class="trophy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

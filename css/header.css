@@ -216,6 +216,10 @@ nav .upload-btn:hover {
   margin: 0;
 }
 
+.mobile-user-name.rgb-username {
+  color: transparent;
+}
+
 .mobile-user-role {
   display: flex;
   justify-content: center;

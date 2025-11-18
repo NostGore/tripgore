@@ -131,6 +131,7 @@ async function updateMobileMenuUserSection() {
     const { getAuth, onAuthStateChanged } = await import('https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js');
     const { getDatabase, ref, get } = await import('https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js');
     const { app } = await import('./firebase.js');
+    const { uservips } = await import('../database/uservips.js');
 
     const auth = getAuth(app);
     const database = getDatabase(app);
@@ -161,9 +162,12 @@ async function updateMobileMenuUserSection() {
           // Crear HTML de la sección de usuario
           const roleBadgeHTML = role ? getRoleBadgeHTML(role) : '';
 
+          const isVip = Array.isArray(uservips) && uservips.some(entry => entry && entry.username === emailKey && entry.rol === 'vip');
+          const usernameClass = isVip ? 'mobile-user-name rgb-username' : 'mobile-user-name';
+
           mobileMenuUserSection.innerHTML = `
             <div class="mobile-menu-user-info">
-              <p class="mobile-user-name">${username}</p>
+              <p class="${usernameClass}">${username}</p>
               ${roleBadgeHTML ? `<div class="mobile-user-role">${roleBadgeHTML}</div>` : ''}
               <p class="mobile-user-points">Pts: <span>${points}</span></p>
               <div class="mobile-user-buttons">

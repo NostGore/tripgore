@@ -746,6 +746,10 @@
   color: #d00000;
 }
 
+.comment-author.rgb-username {
+  color: transparent;
+}
+
 .comment-separator {
   font-size: 0.85rem;
   color: #999;
