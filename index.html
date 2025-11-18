@@ -2,755 +2,107 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TripGore | Noticias Gore, Casos Impactantes y Comunidad</title>
-    <meta name="description"
-        content="TripGore: noticias gore y casos impactantes de todo el mundo. Encuentra videos de 'No te duermas Morena', 'Quiero Agua', TripGore Space y más contenido extremo en español.">
-    <meta name="keywords"
-        content="gore, tripgore, tripgore.space, forogore, foro gore, livegore, live gore, videos gore, gore videos, kaotic, forogore los zetas, tripgore space, quiero agua, quiero agua tripgore, no te duermas morena, gore extremo, gore space, impactantes, noticias gore, quiero agua gore, gore español">
-    <meta name="robots" content="index, follow">
-    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-    <meta name="author" content="TripGore Media">
-    <meta name="publisher" content="TripGore Media">
-    <meta name="language" content="es">
-    <link rel="canonical" href="https://tripgore.space/">
-    <link rel="alternate" href="https://tripgore.space/" hreflang="es">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="responsive/responsive.css">
-    <link rel="stylesheet" href="css/colaboradores.css">
-
-    <meta property="og:title" content="TripGore | Noticias Gore, Casos Impactantes y Comunidad">
-    <meta property="og:description"
-        content="Explora TripGore: noticias, videos gore, 'No te duermas Morena', 'Quiero Agua' y la comunidad TripGore Space.">
-    <meta property="og:url" content="https://tripgore.space/">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="../img/tripgorex.png">
-    <meta property="og:site_name" content="TripGore">
-    <meta property="og:locale" content="es_ES">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="TripGore | Noticias Gore, Casos Impactantes y Comunidad">
-    <meta name="twitter:description"
-        content="TripGore: la comunidad latina de noticias gore y casos virales. Encuentra 'Quiero Agua' y más.">
-    <meta name="twitter:image" content="../img/tripgorex.png">
-    <meta name="twitter:site" content="@TripGore">
-    <meta name="twitter:creator" content="@TripGore">
-
-    <meta name="theme-color" content="#0a0a0d">
-
-    <!-- Favicon (icono del navegador) -->
-    <link rel="icon" href="img/tripgorex.png" type="image/png">
-
-    <!--mtag -->
-    <script src="https://upskittyan.com/act/files/tag.min.js?z=9387446" data-cfasync="false" async></script>
-    <script src="https://vaugroar.com/act/files/tag.min.js?z=9394867" data-cfasync="false" async></script>
-
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "name": "TripGore",
-            "alternateName": [
-                "No te duermas Morena",
-                "Quiero Agua",
-                "TripGore Space",
-                "Quiero Agua TripGore"
-            ],
-            "url": "https://tripgore.space/",
-            "potentialAction": {
-                "@type": "SearchAction",
-                "target": "https://tripgore.space/video.html?search={search_term_string}",
-                "query-input": "required name=search_term_string"
-            }
-        }
-    </script>
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "name": "TripGore Media",
-            "url": "https://tripgore.space/",
-            "logo": "https://tripgore.space/img/tripgore-logo.png",
-            "sameAs": [
-                "https://twitter.com/tripgore",
-                "https://www.facebook.com/tripgore",
-                "https://www.instagram.com/tripgore"
-            ],
-            "description": "TripGore es una comunidad latina dedicada a noticias, videos gore y casos virales de impacto mundial."
-        }
-    </script>
-
-    <style>
-        /* Estilos para los anuncios emergentes */
-        .popup-ads-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 10001;
-            padding: 20px;
-        }
-
-        .popup-ad-card {
-            position: relative;
-            max-width: 500px;
-            width: 100%;
-            background: #1a1a1a;
-            border: 2px solid #ff0000;
-            border-radius: 10px;
-            box-shadow: 0 5px 25px rgba(255, 0, 0, 0.3);
-            margin-bottom: 20px;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .popup-ad-card a {
-            display: block;
-        }
-
-        .popup-ad-card img {
-            width: 100%;
-            border-radius: 8px 8px 0 0;
-            display: block;
-        }
-
-        .popup-ad-close-btn {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            border: 1px solid white;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        /* Estilos para el banner de anuncio horizontal */
-        .horizontal-ad-banner {
-            width: 100%;
-            min-height: 90px;
-            max-height: 250px;
-            background: #0a0a0d;
-            border-bottom: 2px solid #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-            margin: 0 auto;
-            box-sizing: border-box;
-        }
-
-        .horizontal-ad-banner iframe,
-        .horizontal-ad-banner script,
-        .horizontal-ad-banner div {
-            max-width: 100%;
-            margin: 0 auto;
-        }
-
-        /* Responsive para móviles */
-        @media (max-width: 768px) {
-            .horizontal-ad-banner {
-                min-height: 50px;
-                max-height: 100px;
-                padding: 5px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .horizontal-ad-banner {
-                min-height: 50px;
-                max-height: 90px;
-                padding: 3px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TripGore</title>
+  <link rel="icon" type="image/png" href="img/tripgorex.png">
+  <meta name="description"
+    content="TripGore - Los casos más impactantes de todo internet. Videos de accidentes, incidentes y más.">
+  <meta name="keywords" content="TripGore, videos impactantes, accidentes, incidentes, casos extremos">
+  <link rel="canonical" href="https://tripgore.space">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/video-card.css">
+  <script src="js/header.js"></script>
+  <script src="js/footer.js"></script>
+  <script type="module" src="js/auth-state.js"></script>
+  <script type="module" src="js/search.js"></script>
 
 </head>
 
 <body>
-    <!-- ads -->
-    <script>(function(s){s.dataset.zone='9394873',s.src='https://gizokraijaw.net/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-    <script>(function(s){s.dataset.zone='9394869',s.src='https://forfrogadiertor.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-    <script src="https://3nbf4.com/act/files/tag.min.js?z=9394868" data-cfasync="false" async></script>
-    <script src="https://3nbf4.com/act/files/tag.min.js?z=9387447" data-cfasync="false" async></script>
 
-    <!-- Header Container - Se carga dinámicamente desde header.js -->
-    <div id="header-container"></div>
+  <header></header>
 
-    <!-- Contenedor para GIF -->
-    <div class="script-container" id="script-container" style="order: 4;">
-        <div class="container" style="text-align: center; margin: 20px 0; padding: 1px;">
-            <a href="https://latamsx.site" target="_blank" rel="noopener noreferrer" style="display: inline-block;">
-                <img src="https://files.catbox/hwqn2g.gif" alt="GIF" style="max-width: 700px; max-height: 100px; height: auto; object-fit: contain;">
-            </a>
+
+  <section id="casos" class="videos-section">
+    <div class="container">
+      <div class="main-content">
+        <div class="videos-container">
+          <h2>Todo de TripGore</h2>
+          <div class="videos-grid" id="videos-grid">
+            <!-- Los videos se cargarán dinámicamente desde mediaDB.js -->
+          </div>
+
+          <div class="pagination" id="pagination">
+            <span class="page-info">Page 1 of 834</span>
+            <a href="#" class="page-link">1</a>
+            <a href="#" class="page-link">2</a>
+            <a href="#" class="page-link">3</a>
+            <a href="#" class="page-link">4</a>
+            <a href="#" class="page-link">5</a>
+            <span class="page-dots">...</span>
+            <a href="#" class="page-link">10</a>
+            <a href="#" class="page-link">20</a>
+            <a href="#" class="page-link">30</a>
+            <span class="page-dots">...</span>
+            <a href="#" class="page-link">»</a>
+            <a href="#" class="page-link">Last »</a>
+          </div>
+
+          <div class="famous-section">
+            <div class="container">
+              <h2>Mas famosos</h2>
+              <div class="videos-grid" id="famous-videos-grid">
+                <!-- Los videos se cargarán dinámicamente desde mediaDB.js -->
+              </div>
+            </div>
+          </div>
+
         </div>
+
+        <aside class="colaboradores-section">
+          <div class="login-box">
+            <p class="login-text">Aún no has iniciado sesión</p>
+            <p class="login-links">
+              <a href="auth/login.html">Iniciar sesión</a> o <a href="auth/register.html">Registrarse</a>
+            </p>
+          </div>
+          <div class="search-box">
+            <input type="text" class="search-input" placeholder="Buscar videos...">
+          </div>
+          <div class="circular-image">
+            <img src="https://files.catbox.moe/4c4g7d.jpg" alt="Imagen circular">
+          </div>
+          <h2>Colaboradores</h2>
+          <div class="colaboradores-list">
+            <!-- Los videos de colaboradores se cargarán dinámicamente desde mediaDB.js y Firebase -->
+          </div>
+        </aside>
+      </div>
     </div>
+  </section>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Sección de Colaboradores (solo visible con ?page=colaboradores) -->
-        <section class="content-section" id="colaboradoresSection" style="display: none;">
-            <div class="section-header">
-                <h2 class="section-title">COLABORADORES</h2>
-                <p class="section-subtitle">Descubre videos de nuestros colaboradores más activos</p>
-            </div>
-
-            <!-- Lista de Colaboradores -->
-            <div class="colaboradores-container">
-                <div class="colaboradores-grid" id="colaboradoresGrid">
-                    <!-- Los colaboradores se cargarán dinámicamente aquí -->
-                </div>
-            </div>
-
-            <!-- Videos del Colaborador Seleccionado -->
-            <div class="colaborador-videos" id="colaboradorVideos" style="display: none;">
-                <div class="colaborador-header">
-                    <h3 id="colaboradorName">Videos de [Nombre]</h3>
-                    <button class="back-to-colaboradores" onclick="showColaboradores()">
-                        <i class="fa-solid fa-arrow-left"></i>
-                        Volver a Colaboradores
-                    </button>
-                </div>
-                <div class="colaborador-videos-grid" id="colaboradorVideosGrid">
-                    <!-- Los videos del colaborador se cargarán aquí -->
-                </div>
-            </div>
-        </section>
-        <!-- Best of the Week Section -->
-        <section class="content-section">
-            <div class="section-header">
-                <h2 class="section-title">RECOMENDADOS</h2>
-
-            </div>
-            <div class="carousel-container">
-                <button class="carousel-nav prev">‹</button>
-                <div class="carousel" id="recommendedCarousel">
-                    <!-- Los videos recomendados se cargarán dinámicamente aquí -->
-                </div>
-                <button class="carousel-nav next">›</button>
-            </div>
-        </section>
-
-        <!-- Info Banner -->
-        <div class="info-banner">
-            <span class="warning-icon">⚠️</span>
-            <span class="banner-text">Esta es una pagina de noticias, no incentivamos a recrear los casos que veas
-                aquí.</span>
-        </div>
-
-        <!-- Secondary Navigation -->
-        <div class="secondary-nav">
-            <div class="secondary-nav-links">
-                <a href="#" class="active">TODOS</a>
-                <a href="#">ASESINATOS</a>
-                <a href="#">ACCIDENTES</a>
-                <a href="#">INCIDENTES</a>
-                <a href="#" class="yellow">SUICIDIOS</a>
-                <a href="#" class="blue">AUTOLESIONES</a>
-            </div>
-            <div class="upload-buttons">
-                <button class="upload-btn" onclick="window.location.href='other/subir.html'">Subir vídeo</button>
-            </div>
-        </div>
-
-        <!-- Main Publications Section -->
-        <section class="content-section">
-            <div class="section-header">
-                <h2 class="section-title">TODOS LOS VIDEOS</h2>
-            </div>
-            <div class="content-grid" id="videosGrid">
-                <!-- Los videos se cargarán dinámicamente aquí -->
-            </div>
-
-            <!-- Contenedor de paginación -->
-            <div class="pagination-container" id="paginationContainer">
-                <!-- Los botones de paginación se generarán dinámicamente -->
-            </div>
-        </section>
-
-        <!-- Contenido Oculto Section -->
-        <section class="content-section">
-            <!-- Banner de Anuncio Horizontal arriba de Contenido Oculto -->
-            <div class="horizontal-ad-banner" id="horizontalAdBannerAboveHidden">
-
-            </div>
-
-            <div class="section-header">
-                <h2 class="section-title">CONTENIDO OCULTO</h2>
-                <div class="warning-badge">⚠️ 18+</div>
-            </div>
-            <div class="hidden-content-grid" id="hiddenContentGrid">
-                <!-- Los videos ocultos se cargarán dinámicamente aquí -->
-            </div>
-        </section>
-
-    </main>
-
-
-    <!-- Modal de Video -->
-    <div class="video-modal" id="videoModal">
-        <div class="video-modal-content">
-            <div class="video-modal-header">
-                <h3 class="video-modal-title" id="videoModalTitle">Video</h3>
-                <button class="video-modal-close" onclick="closeVideoModal()">&times;</button>
-            </div>
-            <div class="video-modal-body">
-                <div class="video-modal-player">
-                    <iframe id="videoModalIframe" class="video-modal-iframe"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen></iframe>
-                </div>
-                <div class="video-modal-info">
-                    <div class="video-modal-meta" id="videoModalMeta"></div>
-                    <div class="video-modal-actions">
-                        <button class="video-action-btn" onclick="shareVideoFromModal()">
-                            <i class="fa-solid fa-share"></i>
-                            Compartir
-                        </button>
-                        <button class="video-action-btn" onclick="openVideoInNewTab()">
-                            <i class="fa-solid fa-external-link-alt"></i>
-                            Abrir en nueva pestaña
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <section class="all-colaboradores-section">
+    <div class="container">
+      <h2>Todos los Colaboradores</h2>
+      <div class="colaboradores-stats-grid" id="colaboradores-stats-grid">
+        <!-- Los colaboradores se cargarán dinámicamente -->
+      </div>
     </div>
+  </section>
 
-    <!-- Contenedor para Anuncios Emergentes -->
-    <div id="popup-ads-overlay" class="popup-ads-overlay" style="display: none;">
-        <div id="popup-ads-container">
-            <!-- Los anuncios se inyectarán aquí -->
-        </div>
-        <div class="popup-ads-controls" style="margin-top: 20px; display: flex; gap: 15px;">
-            <button id="closeAllAdsBtn" class="upload-btn" style="background: #555;">Cerrar todo</button>
-            <button id="dontShowAgainBtn" class="upload-btn" style="background: #8B0000;">No volver a mostrar</button>
-        </div>
-    </div>
+  <footer></footer>
 
-    <!-- Scroll to Top Button -->
-    <button class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+  <script type="module" src="script.js"></script>
+  <script type="module" src="js/ads.js"></script>
+  <script src="js/assistant.js"></script>
 
-    <!-- Incluir Firebase primero -->
-    <script type="module" src="js/firebase.js"></script>
-
-    <!-- Incluir la base de datos de videos -->
-    <script src="database/mediaDB.js"></script>
-
-    <!-- Incluir la base de datos de anuncios -->
-    <script src="database/adsDB.js"></script>
-
-    <!-- Incluir sistema de roles -->
-    <script src="js/roles.js"></script>
-
-    <!-- Incluir el script de anuncios emergentes -->
-    <script src="js/popupAds.js"></script>
-
-    <!-- Incluir el archivo header.js después -->
-    <script src="js/header.js"></script>
-
-    <script src="js/music.js"></script>
-
-    <script src="script.js"></script>
-
-    <script>
-        // Cargar anuncios cuando el DOM esté listo
-        document.addEventListener('DOMContentLoaded', function () {
-            // Esperar un poco para que todos los scripts se carguen
-            setTimeout(function () {
-                try {
-                    // Insertar anuncios de notificaciones push en el head
-                    if (typeof insertAds === 'function') {
-                        insertAds('Push-Notification', 'head');
-                        console.log('✅ Anuncios Push-Notification cargados');
-                    }
-
-                    // Insertar anuncios vignette en el body
-                    if (typeof insertAds === 'function') {
-                        insertAds('Vignette-Banner', 'body');
-                        console.log('✅ Anuncios Vignette-Banner cargados');
-                    }
-
-                    // Insertar anuncios in-page push en el body
-                    if (typeof insertAds === 'function') {
-                        insertAds('In-Page-Push', 'body');
-                        console.log('✅ Anuncios In-Page-Push cargados');
-                    }
-
-                    // Insertar script de clic global en el body
-                    if (typeof insertAds === 'function') {
-                        insertAds('Global-Click', 'body');
-                        console.log('✅ Script de clic global cargado');
-                    }
-
-                    console.log('🎯 Todos los anuncios han sido cargados correctamente');
-                } catch (error) {
-                    console.error('❌ Error al cargar anuncios:', error);
-                }
-            }, 1000);
-        });
-    </script>
-
-    <script>
-        // Funcionalidad de Colaboradores
-        let colaboradoresData = [];
-        let currentColaborador = null;
-
-        // Función para obtener colaboradores desde mediaDB.js
-        function getColaboradoresFromDB() {
-            if (typeof mediaDB === 'undefined') {
-                console.error('mediaDB no está disponible');
-                return [];
-            }
-
-            // Crear un mapa para agrupar videos por autor
-            const colaboradoresMap = new Map();
-
-            mediaDB.forEach(video => {
-                // Excluir videos de TripGore
-                if (video.autor === 'TripGore') return;
-
-                const autor = video.autor;
-
-                if (!colaboradoresMap.has(autor)) {
-                    colaboradoresMap.set(autor, {
-                        id: autor.toLowerCase().replace(/[^a-z0-9]/g, ''),
-                        name: autor,
-                        avatar: autor.charAt(0).toUpperCase(),
-                        videos: [],
-                        videosCount: 0,
-                        totalViews: Math.floor(Math.random() * 50000) + 5000, // Simulado
-                        joinDate: video.fecha,
-                        categories: new Set(),
-                        description: ''
-                    });
-                }
-
-                const colaborador = colaboradoresMap.get(autor);
-                colaborador.videos.push({
-                    id: video.id,
-                    title: video.titulo,
-                    category: video.categoria,
-                    date: video.fecha,
-                    link: video.video,
-                    portada: video.portada
-                });
-                colaborador.videosCount++;
-                colaborador.categories.add(video.categoria);
-            });
-
-            // Generar descripciones y convertir a array
-            const colaboradores = Array.from(colaboradoresMap.values()).map(colaborador => {
-                const categoriesArray = Array.from(colaborador.categories);
-                const mainCategory = categoriesArray[0];
-                colaborador.description = `Colaborador activo especializado en contenido de ${mainCategory.toLowerCase()}. Ha subido ${colaborador.videosCount} videos en ${categoriesArray.length} categoría${categoriesArray.length > 1 ? 's' : ''}.`;
-                delete colaborador.categories; // Limpiar datos temporales
-                return colaborador;
-            });
-
-            // Ordenar por cantidad de videos
-            return colaboradores.sort((a, b) => b.videosCount - a.videosCount);
-        }
-
-        // Verificar si estamos en la página de colaboradores
-        function checkColaboradoresPage() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const page = urlParams.get('page');
-
-            if (page === 'colaboradores') {
-                showColaboradoresSection();
-                loadColaboradores();
-            } else {
-                hideColaboradoresSection();
-            }
-        }
-
-        // Mostrar sección de colaboradores
-        function showColaboradoresSection() {
-            document.getElementById('colaboradoresSection').style.display = 'block';
-            // Ocultar otras secciones
-            document.querySelectorAll('.content-section:not(#colaboradoresSection)').forEach(section => {
-                section.style.display = 'none';
-            });
-        }
-
-        // Ocultar sección de colaboradores
-        function hideColaboradoresSection() {
-            document.getElementById('colaboradoresSection').style.display = 'none';
-            // Mostrar otras secciones
-            document.querySelectorAll('.content-section:not(#colaboradoresSection)').forEach(section => {
-                section.style.display = 'block';
-            });
-        }
-
-        // Cargar colaboradores
-        function loadColaboradores() {
-            colaboradoresData = getColaboradoresFromDB();
-            renderColaboradores();
-        }
-
-        // Renderizar colaboradores
-        function renderColaboradores() {
-            const grid = document.getElementById('colaboradoresGrid');
-
-            // Mostrar estado de carga
-            grid.innerHTML = `
-                <div class="loading-colaboradores">
-                    <i class="fa-solid fa-circle-notch fa-spin"></i>
-                    <p>Cargando colaboradores...</p>
-                </div>
-            `;
-
-            let html = '';
-
-            for (const colaborador of colaboradoresData) {
-                html += `
-                    <div class="colaborador-card" onclick="showColaboradorVideos('${colaborador.id}')">
-                        <div class="colaborador-avatar">
-                            ${colaborador.avatar}
-                        </div>
-                        <div class="colaborador-info">
-                            <h3 class="colaborador-name" data-user-roles="${colaborador.name}">${colaborador.name}</h3>
-                            <div class="colaborador-stats">
-                                <div class="stat-item">
-                                    <span class="stat-number">${colaborador.videosCount}</span>
-                                    <span class="stat-label">Videos</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-number">${colaborador.totalViews.toLocaleString()}</span>
-                                    <span class="stat-label">Views</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-number">${new Date(colaborador.joinDate).getFullYear()}</span>
-                                    <span class="stat-label">Miembro</span>
-                                </div>
-                            </div>
-                            <p class="colaborador-description">${colaborador.description}</p>
-                        </div>
-                    </div>
-                `;
-            }
-
-            grid.innerHTML = html;
-
-            // Decorar roles de usuarios
-            const applyRoles = async () => {
-                if (typeof window.decorateUserRoles === 'function') {
-                    await window.decorateUserRoles('data-user-roles');
-                } else {
-                    // Reintentar si roles.js aún no está cargado
-                    setTimeout(applyRoles, 300);
-                }
-            };
-
-            // Esperar a que el DOM esté actualizado
-            setTimeout(applyRoles, 100);
-        }
-
-        // Mostrar videos de un colaborador
-        function showColaboradorVideos(colaboradorId) {
-            const colaborador = colaboradoresData.find(c => c.id === colaboradorId);
-            if (!colaborador) return;
-
-            currentColaborador = colaborador;
-
-            // Ocultar lista de colaboradores
-            document.querySelector('.colaboradores-container').style.display = 'none';
-
-            // Mostrar videos del colaborador
-            document.getElementById('colaboradorVideos').style.display = 'block';
-
-            const colaboradorNameEl = document.getElementById('colaboradorName');
-            if (colaboradorNameEl) {
-                colaboradorNameEl.innerHTML = '';
-                colaboradorNameEl.appendChild(document.createTextNode('Videos de '));
-
-                const badgeSpan = document.createElement('span');
-                badgeSpan.textContent = colaborador.name;
-                colaboradorNameEl.appendChild(badgeSpan);
-            }
-
-            // Renderizar videos
-            renderColaboradorVideos(colaborador.videos);
-        }
-
-        // Renderizar videos del colaborador
-        function renderColaboradorVideos(videos) {
-            const grid = document.getElementById('colaboradorVideosGrid');
-            const html = videos.map(video => `
-                <div class="colaborador-video-card" onclick="openVideo('${video.id}')">
-                    <div class="video-thumbnail">
-                        <img src="${video.portada}" alt="${video.title}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="video-thumbnail-fallback" style="display: none;">
-                            <i class="fa-solid fa-video"></i>
-                        </div>
-                    </div>
-                    <div class="video-info">
-                        <h4 class="video-title">${video.title}</h4>
-                        <div class="video-meta">
-                            <span class="video-category">${video.category}</span>
-                            <span class="video-date">${video.date}</span>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-
-            grid.innerHTML = html;
-        }
-
-        // Volver a la lista de colaboradores
-        function showColaboradores() {
-            document.querySelector('.colaboradores-container').style.display = 'block';
-            document.getElementById('colaboradorVideos').style.display = 'none';
-            currentColaborador = null;
-        }
-
-        // Variables globales para el modal
-        let currentModalVideo = null;
-
-        // Abrir video en modal
-        function openVideo(videoId) {
-            console.log('🎬 Abriendo video con ID:', videoId);
-
-            // Buscar el video en la base de datos
-            if (typeof mediaDB === 'undefined') {
-                console.error('❌ mediaDB no está disponible');
-                return;
-            }
-
-            console.log('📊 Total de videos en mediaDB:', mediaDB.length);
-
-            const video = mediaDB.find(v => v.id === videoId && v.categoria !== 'OCULTO');
-
-            if (!video) {
-                console.error('❌ Video no encontrado con ID:', videoId);
-                console.log('🔍 Videos disponibles:', mediaDB.map(v => ({ id: v.id, titulo: v.titulo, categoria: v.categoria })));
-                return;
-            }
-
-            console.log('✅ Video encontrado:', video.titulo);
-            currentModalVideo = video;
-            openVideoModal(video);
-        }
-
-
-        // Abrir modal de video
-        function openVideoModal(video) {
-            console.log('🎭 Abriendo modal para video:', video.titulo);
-
-            const modal = document.getElementById('videoModal');
-            const title = document.getElementById('videoModalTitle');
-            const iframe = document.getElementById('videoModalIframe');
-            const meta = document.getElementById('videoModalMeta');
-
-            if (!modal) {
-                console.error('❌ Modal no encontrado en el DOM');
-                return;
-            }
-
-            // Configurar el contenido del modal
-            title.textContent = video.titulo;
-            iframe.src = video.video;
-            meta.innerHTML = `
-                <strong>Publicado el ${video.fecha} por:</strong> ${video.autor}<br>
-                <strong>Categoría:</strong> ${video.categoria}
-            `;
-
-            // Mostrar el modal
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-
-            console.log('✅ Modal mostrado correctamente');
-
-            // Enfocar el modal para accesibilidad
-            modal.focus();
-        }
-
-        // Cerrar modal de video
-        function closeVideoModal() {
-            const modal = document.getElementById('videoModal');
-            const iframe = document.getElementById('videoModalIframe');
-
-            // Limpiar el iframe para detener el video
-            iframe.src = '';
-
-            // Ocultar el modal
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-
-            currentModalVideo = null;
-        }
-
-        // Compartir video desde modal
-        function shareVideoFromModal() {
-            if (!currentModalVideo) return;
-
-            const url = `${window.location.origin}${window.location.pathname.split('/').slice(0, -1).join('/')}/video.html?id=${currentModalVideo.id}`;
-
-            if (navigator.share) {
-                navigator.share({
-                    title: currentModalVideo.titulo,
-                    url: url
-                }).catch(() => copyToClipboard(url));
-            } else {
-                copyToClipboard(url);
-                alert('Enlace copiado al portapapeles');
-            }
-        }
-
-        // Abrir video en nueva pestaña
-        function openVideoInNewTab() {
-            if (!currentModalVideo) return;
-
-            const url = `${window.location.origin}${window.location.pathname.split('/').slice(0, -1).join('/')}/video.html?id=${currentModalVideo.id}`;
-            window.open(url, '_blank');
-        }
-
-        // Función para copiar al portapapeles
-        function copyToClipboard(text) {
-            try {
-                navigator.clipboard.writeText(text);
-            } catch (e) {
-                const ta = document.createElement('textarea');
-                ta.value = text;
-                document.body.appendChild(ta);
-                ta.select();
-                document.execCommand('copy');
-                document.body.removeChild(ta);
-            }
-        }
-
-        // Cerrar modal con tecla Escape
-        document.addEventListener('keydown', function (event) {
-            if (event.key === 'Escape') {
-                closeVideoModal();
-            }
-        });
-
-        // Cerrar modal al hacer clic fuera del contenido
-        document.addEventListener('click', function (event) {
-            const modal = document.getElementById('videoModal');
-            if (event.target === modal) {
-                closeVideoModal();
-            }
-        });
-
-        // Inicializar cuando el DOM esté listo
-        document.addEventListener('DOMContentLoaded', function () {
-            checkColaboradoresPage();
-        });
-    </script>
 </body>
 
 </html>

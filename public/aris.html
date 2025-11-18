@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARIS - Verificador de Códigos TripGore</title>
+  <link rel="icon" type="image/png" href="../img/tripgorex.png">
+  <meta name="description" content="ARIS - Verificador de Códigos de TripGore. Desbloquea contenido exclusivo con códigos especiales.">
+  <meta name="keywords" content="TripGore, ARIS, códigos, videos exclusivos">
+  <link rel="canonical" href="https://tripgore.space/public/aris.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/footer.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Oswald', sans-serif;
+      background-color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page-header {
+      background-color: #1f1f1f;
+      padding: 1.5rem 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .page-header .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .page-header h1 {
+      font-family: 'Anton', Impact, sans-serif;
+      font-size: 2.5rem;
+      color: #d00000;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.5rem;
+      background-color: #d00000;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-link:hover {
+      background-color: #b30000;
+    }
+
+    .main-container {
+      max-width: 800px;
+      width: 100%;
+      margin: 3rem auto;
+      padding: 0 1rem;
+      flex: 1;
+    }
+
+    .code-verifier-box {
+      background-color: #f5f5f5;
+      border-radius: 8px;
+      border: 3px solid #d00000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .box-header {
+      background-color: #1f1f1f;
+      padding: 2rem;
+      text-align: center;
+      border-bottom: 3px solid #d00000;
+    }
+
+    .ai-avatar {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1rem;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #d00000;
+      box-shadow: 0 4px 12px rgba(208, 0, 0, 0.3);
+    }
+
+    .ai-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .box-header h2 {
+      font-family: 'Anton', sans-serif;
+      font-size: 2rem;
+      color: #d00000;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+
+    .box-header p {
+      color: #cccccc;
+      font-size: 1rem;
+    }
+
+    .box-content {
+      padding: 2.5rem;
+      background-color: #ffffff;
+    }
+
+    .welcome-message {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background-color: #f5f5f5;
+      border-radius: 6px;
+      border-left: 4px solid #d00000;
+    }
+
+    .welcome-message h3 {
+      color: #1f1f1f;
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .welcome-message p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .code-input-section {
+      margin-top: 2rem;
+    }
+
+    .input-label {
+      display: block;
+      color: #1f1f1f;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .code-input-wrapper {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .code-input {
+      flex: 1;
+      padding: 1rem 1.25rem;
+      font-size: 1.1rem;
+      font-family: 'Oswald', sans-serif;
+      background-color: #f5f5f5;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      color: #1f1f1f;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .code-input:focus {
+      outline: none;
+      border-color: #d00000;
+      box-shadow: 0 0 0 3px rgba(208, 0, 0, 0.1);
+      background-color: #ffffff;
+    }
+
+    .verify-btn {
+      padding: 1rem 2rem;
+      background-color: #d00000;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Oswald', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .verify-btn:hover {
+      background-color: #b30000;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(208, 0, 0, 0.3);
+    }
+
+    .verify-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .result-message {
+      padding: 1.25rem;
+      border-radius: 6px;
+      margin-top: 1.5rem;
+      font-weight: 500;
+      text-align: center;
+      display: none;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .result-message.success {
+      background-color: #d4edda;
+      border: 2px solid #28a745;
+      color: #155724;
+      display: block;
+    }
+
+    .result-message.error {
+      background-color: #f8d7da;
+      border: 2px solid #dc3545;
+      color: #721c24;
+      display: block;
+    }
+
+    .video-link {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #28a745;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .video-link:hover {
+      background-color: #218838;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+    }
+
+    .info-section {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background-color: #f5f5f5;
+      border-radius: 6px;
+      border-left: 4px solid #d00000;
+    }
+
+    .info-section h4 {
+      color: #1f1f1f;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .info-section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .info-section li {
+      color: #666;
+      margin-bottom: 0.5rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .info-section li:before {
+      content: "🔒";
+      position: absolute;
+      left: 0;
+    }
+
+    @media (max-width: 768px) {
+      .page-header h1 {
+        font-size: 1.8rem;
+      }
+
+      .code-input-wrapper {
+        flex-direction: column;
+      }
+
+      .verify-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header></header>
+
+  <div class="main-container">
+    <div class="code-verifier-box">
+      <div class="box-header">
+        <div class="ai-avatar">
+          <img src="../img/aris.png" alt="ARIS">
+        </div>
+        <h2>ARIS</h2>
+        <p>Verificador de Códigos de Acceso</p>
+      </div>
+
+      <div class="box-content">
+        <div class="welcome-message">
+          <h3>¡Bienvenido al Verificador de Códigos!</h3>
+          <p>Ingresa tu código de acceso especial para desbloquear contenido exclusivo y restringido de TripGore.</p>
+        </div>
+
+        <div class="code-input-section">
+          <label class="input-label">🔐 Ingresa tu código:</label>
+          <div class="code-input-wrapper">
+            <input
+              type="text"
+              id="code-input"
+              class="code-input"
+              placeholder="XXXX-XXXX-XXXX-XXXX"
+              autocomplete="off"
+              maxlength="64"
+            >
+            <button class="verify-btn" id="verify-btn">Verificar</button>
+          </div>
+        </div>
+
+        <div id="result-message" class="result-message"></div>
+
+        <div class="info-section">
+          <h4>📌 Información importante:</h4>
+          <ul>
+            <li>Los códigos son únicos y de un solo uso</li>
+            <li>Cada código desbloquea contenido específico</li>
+            <li>Los códigos son proporcionados por la administración</li>
+            <li>No compartas tus códigos con otros usuarios</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { codigosDB } from '../database/codigosDB.js';
+
+    const codeInput = document.getElementById('code-input');
+    const verifyBtn = document.getElementById('verify-btn');
+    const resultMessage = document.getElementById('result-message');
+
+    // Formatear código automáticamente
+    codeInput.addEventListener('input', (e) => {
+      // Solo eliminar espacios para no alterar el código ingresado
+      e.target.value = e.target.value.replace(/\s+/g, '');
+    });
+
+    // Verificar código
+    function verifyCode() {
+      const rawCode = codeInput.value.trim();
+
+      if (!rawCode) {
+        showResult('error', '❌ Por favor, ingresa un código.');
+        return;
+      }
+
+      const normalizedCode = rawCode.toLowerCase();
+
+      const foundCode = codigosDB.codigos.find(
+        (c) => c.codigo.toLowerCase() === normalizedCode
+      );
+
+      if (foundCode) {
+        showResult(
+          'success',
+          `✅ ¡Código válido! Accediendo a: "${foundCode.titulo}"`,
+          foundCode.enlace
+        );
+
+        setTimeout(() => {
+          window.location.href = foundCode.enlace;
+        }, 1500);
+      } else {
+        showResult('error', '❌ Código inválido o ya utilizado. Verifica e intenta nuevamente.');
+      }
+    }
+
+    // Mostrar resultado
+    function showResult(type, message, enlace = null) {
+      resultMessage.className = `result-message ${type}`;
+      resultMessage.innerHTML = message;
+
+      if (enlace) {
+        const link = document.createElement('a');
+        link.href = enlace;
+        link.className = 'video-link';
+        link.textContent = '🎬 Ver Video Ahora';
+        resultMessage.appendChild(document.createElement('br'));
+        resultMessage.appendChild(link);
+      }
+    }
+
+    verifyBtn.addEventListener('click', verifyCode);
+    codeInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        verifyCode();
+      }
+    });
+  </script>
+
+  <footer></footer>
+
+  <script src="../js/header.js"></script>
+  <script type="module" src="../js/ads.js"></script>
+</body>
+
+</html>

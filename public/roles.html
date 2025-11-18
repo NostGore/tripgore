@@ -1,0 +1,544 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Roles y Puntos - TripGore</title>
+  <link rel="icon" type="image/png" href="../img/tripgorex.png">
+  <meta name="description" content="Descubre el sistema de roles y puntos de TripGore">
+  <link rel="canonical" href="https://tripgore.space/public/roles.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/footer.css">
+  <script src="../js/header.js"></script>
+  <script src="../js/footer.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Oswald', sans-serif;
+      background-color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    main {
+      flex: 1;
+      padding: 2rem 0;
+    }
+
+    .page-title {
+      font-family: 'Anton', sans-serif;
+      font-size: 2.5rem;
+      color: #d00000;
+      text-align: center;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .page-subtitle {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 3rem;
+    }
+
+    .section {
+      background-color: #f5f5f5;
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      color: #1f1f1f;
+      margin-bottom: 1.5rem;
+      border-bottom: 3px solid #d00000;
+      padding-bottom: 0.5rem;
+    }
+
+    .info-box {
+      background-color: #fff;
+      border-left: 4px solid #d00000;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-radius: 4px;
+    }
+
+    .info-box h3 {
+      font-size: 1.3rem;
+      color: #d00000;
+      margin-bottom: 0.75rem;
+    }
+
+    .info-box p {
+      font-size: 1rem;
+      color: #333;
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+    }
+
+    .info-box ul {
+      margin-left: 1.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .info-box li {
+      font-size: 1rem;
+      color: #333;
+      line-height: 1.8;
+      margin-bottom: 0.5rem;
+    }
+
+    .roles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .role-card {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 2px solid #e0e0e0;
+    }
+
+    .role-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .role-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .role-badge {
+      width: 100px;
+      height: auto;
+    }
+
+    .role-info h3 {
+      font-size: 1.4rem;
+      color: #1f1f1f;
+      margin-bottom: 0.25rem;
+    }
+
+    .role-points {
+      font-size: 1.1rem;
+      color: #d00000;
+      font-weight: 600;
+    }
+
+    .role-description {
+      font-size: 0.95rem;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .special-roles {
+      background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
+      color: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+    }
+
+    .special-roles .section-title {
+      color: #FFD700;
+      border-bottom-color: #FFD700;
+    }
+
+    .special-role-card {
+      background-color: #2a2a2a;
+      border: 2px solid #FFD700;
+    }
+
+    .special-role-card .role-info h3 {
+      color: #FFD700;
+    }
+
+    .special-role-card .role-points {
+      color: #FFD700;
+    }
+
+    .special-role-card .role-description {
+      color: #ccc;
+    }
+
+    .points-methods {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .method-card {
+      background-color: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid #d00000;
+    }
+
+    .method-card h4 {
+      font-size: 1.2rem;
+      color: #1f1f1f;
+      margin-bottom: 0.5rem;
+    }
+
+    .method-card .points-value {
+      font-size: 1.4rem;
+      color: #d00000;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .method-card p {
+      font-size: 0.95rem;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, #d00000 0%, #9d0208 100%);
+      color: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .cta-box h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .cta-box p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      opacity: 0.95;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background-color: #FFD700;
+      color: #1f1f1f;
+      padding: 0.75rem 2rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      transition: background-color 0.3s ease;
+    }
+
+    .cta-btn:hover {
+      background-color: #FFC700;
+    }
+
+    @media (max-width: 768px) {
+      .page-title {
+        font-size: 2rem;
+      }
+
+      .section {
+        padding: 1.5rem;
+      }
+
+      .roles-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .points-methods {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo-container">
+        <a href="../index.html"><img src="https://files.catbox.moe/j5v5s8.png" alt="TripGore Logo" class="logo"></a>
+      </div>
+      <div class="mobile-buttons">
+        <button class="menu-toggle" id="menuToggle">EXPLORAR</button>
+        <button class="mobile-auth-btn" id="mobileAuthBtn">INICIAR SESIÓN</button>
+      </div>
+      <p class="tagline">Los casos más impactantes de todo internet</p>
+      <nav>
+        <ul>
+          <li><a href="../index.html" class="inicio-btn">INICIO</a></li>
+          <li><a href="#" id="colaboradores-link">Colaboradores</a></li>
+          <li><a href="../public/aris.html">Aris</a></li>
+          <li><a href="mailto:colabmc.net@gmail.com?subject=Soporte&body=Hola,%20necesito%20ayuda%20con:%20">Soporte</a></li>
+          <li><a href="#telegram">Telegram</a></li>
+          <li><a href="#telegram">MAS</a></li>
+          <li class="upload-btn-container"><a href="../public/subir.html" class="upload-btn">SUBIR VIDEO</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1 class="page-title">Sistema de Roles y Puntos</h1>
+      <p class="page-subtitle">Descubre cómo conseguir puntos y desbloquear roles exclusivos en TripGore</p>
+
+      <!-- Sección: Cómo conseguir puntos -->
+      <div class="section">
+        <h2 class="section-title">¿Cómo Conseguir Puntos?</h2>
+        
+        <div class="info-box">
+          <h3>📊 Sistema de Puntos</h3>
+          <p>En TripGore, los puntos son la moneda de prestigio. Cuantos más puntos acumules, más altos serán los roles que desbloquearás y mayor será tu reconocimiento en la comunidad.</p>
+        </div>
+
+        <div class="points-methods">
+          <div class="method-card">
+            <h4>Subir Videos</h4>
+            <div class="points-value">+5 puntos</div>
+            <p>Cada video que subas y sea aprobado por los moderadores te otorgará 5 puntos automáticamente.</p>
+          </div>
+
+          <div class="method-card">
+            <h4>Comentar en Videos</h4>
+            <div class="points-value">+3 puntos</div>
+            <p>Cada comentario que hagas en un video te dará 3 puntos. Participa en las discusiones de la comunidad.</p>
+          </div>
+
+          <div class="method-card">
+            <h4>Reaccionar a Videos</h4>
+            <div class="points-value">+1 punto</div>
+            <p>Da like o dislike a los videos para expresar tu opinión y ganar 1 punto por cada reacción.</p>
+          </div>
+
+          <div class="method-card">
+            <h4>Contribución Regular</h4>
+            <div class="points-value">Acumulativo</div>
+            <p>Sube contenido de calidad regularmente para acumular puntos más rápido y destacar en la comunidad.</p>
+          </div>
+
+          <div class="method-card">
+            <h4>Contenido de Calidad</h4>
+            <div class="points-value">Mejor valorado</div>
+            <p>Asegúrate de que tus videos cumplan con los estándares de la plataforma para que sean aprobados rápidamente.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Roles Especiales -->
+      <div class="special-roles">
+        <h2 class="section-title">Roles Especiales</h2>
+        
+        <div class="info-box">
+          <h3>👑 Roles de Staff</h3>
+          <p>Estos roles son otorgados por la administración y tienen permisos especiales:</p>
+        </div>
+
+        <div class="roles-grid">
+          <div class="role-card special-role-card">
+            <div class="role-header">
+              <img src="../img/colab.png" alt="Colaborador" class="role-badge">
+              <div class="role-info">
+                <h3>Colaborador</h3>
+                <p class="role-points">Rol Especial</p>
+              </div>
+            </div>
+            <p class="role-description">Miembros distinguidos que contribuyen activamente con contenido de alta calidad y ayudan a la comunidad.</p>
+          </div>
+
+          <div class="role-card special-role-card">
+            <div class="role-header">
+              <img src="../img/mod.png" alt="Moderador" class="role-badge">
+              <div class="role-info">
+                <h3>Moderador</h3>
+                <p class="role-points">Rol Especial</p>
+              </div>
+            </div>
+            <p class="role-description">Encargados de mantener el orden, revisar contenido y asegurar que la comunidad funcione correctamente.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Roles por Puntos -->
+      <div class="section">
+        <h2 class="section-title">Roles Desbloqueables por Puntos</h2>
+        
+        <div class="info-box">
+          <h3>🎯 Progresión de Roles</h3>
+          <p>A medida que acumules puntos, desbloquearás roles cada vez más prestigiosos. ¡Esfuérzate para llegar a la cima!</p>
+        </div>
+
+        <div class="roles-grid">
+          <div class="role-card">
+            <div class="role-header">
+              <img src="../img/perturbado.png" alt="Perturbado" class="role-badge">
+              <div class="role-info">
+                <h3>Perturbado</h3>
+                <p class="role-points">50 puntos</p>
+              </div>
+            </div>
+            <p class="role-description">El primer paso en tu camino. Demuestra que estás dispuesto a contribuir a la comunidad.</p>
+          </div>
+
+          <div class="role-card">
+            <div class="role-header">
+              <img src="../img/inestable.png" alt="Inestable" class="role-badge">
+              <div class="role-info">
+                <h3>Inestable</h3>
+                <p class="role-points">100 puntos</p>
+              </div>
+            </div>
+            <p class="role-description">Ya tienes experiencia. Continúa subiendo contenido de calidad para avanzar.</p>
+          </div>
+
+          <div class="role-card">
+            <div class="role-header">
+              <img src="../img/psicopta.png" alt="Psicópata" class="role-badge">
+              <div class="role-info">
+                <h3>Psicópata</h3>
+                <p class="role-points">200 puntos</p>
+              </div>
+            </div>
+            <p class="role-description">Un contribuidor serio. Tu dedicación empieza a notarse en la comunidad.</p>
+          </div>
+
+          <div class="role-card">
+            <div class="role-header">
+              <img src="../img/sadico.png" alt="Sádico" class="role-badge">
+              <div class="role-info">
+                <h3>Sádico</h3>
+                <p class="role-points">300 puntos</p>
+              </div>
+            </div>
+            <p class="role-description">Has demostrado constancia. Eres una parte importante de TripGore.</p>
+          </div>
+
+          <div class="role-card">
+            <div class="role-header">
+              <img src="../img/lunatico.png" alt="Lunático" class="role-badge">
+              <div class="role-info">
+                <h3>Lunático</h3>
+                <p class="role-points">400 puntos</p>
+              </div>
+            </div>
+            <p class="role-description">Tu compromiso es evidente. Continúa escalando hacia la cima.</p>
+          </div>
+
+          <div class="role-card">
+            <div class="role-header">
+              <img src="../img/macabro.png" alt="Macabro" class="role-badge">
+              <div class="role-info">
+                <h3>Macabro</h3>
+                <p class="role-points">500 puntos</p>
+              </div>
+            </div>
+            <p class="role-description">Un veterano respetado. Pocos llegan tan lejos como tú.</p>
+          </div>
+
+          <div class="role-card">
+            <div class="role-header">
+              <img src="../img/maniaco.png" alt="Maniaco" class="role-badge">
+              <div class="role-info">
+                <h3>Maniaco</h3>
+                <p class="role-points">600 puntos</p>
+              </div>
+            </div>
+            <p class="role-description">Elite pura. Tu nombre es reconocido por toda la comunidad.</p>
+          </div>
+
+          <div class="role-card">
+            <div class="role-header">
+              <img src="../img/desquiciado.png" alt="Desquiciado" class="role-badge">
+              <div class="role-info">
+                <h3>Desquiciado</h3>
+                <p class="role-points">700 puntos</p>
+              </div>
+            </div>
+            <p class="role-description">Alcanzar este nivel requiere dedicación extrema. ¡Impresionante!</p>
+          </div>
+
+          <div class="role-card">
+            <div class="role-header">
+              <img src="../img/caotico.png" alt="Caótico" class="role-badge">
+              <div class="role-info">
+                <h3>Caótico</h3>
+                <p class="role-points">800 puntos</p>
+              </div>
+            </div>
+            <p class="role-description">Cerca del máximo nivel. Tu contribución es legendaria.</p>
+          </div>
+
+          <div class="role-card">
+            <div class="role-header">
+              <img src="../img/abismal.png" alt="Abismal" class="role-badge">
+              <div class="role-info">
+                <h3>Abismal</h3>
+                <p class="role-points">900 puntos</p>
+              </div>
+            </div>
+            <p class="role-description">Casi en la cima. Solo los más dedicados llegan aquí.</p>
+          </div>
+
+          <div class="role-card">
+            <div class="role-header">
+              <img src="../img/demoniaco.png" alt="Demoniaco" class="role-badge">
+              <div class="role-info">
+                <h3>Demoniaco</h3>
+                <p class="role-points">1000 puntos</p>
+              </div>
+            </div>
+            <p class="role-description">¡El nivel máximo! Solo los contribuidores más dedicados alcanzan este prestigioso rol.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Consejos -->
+      <div class="section">
+        <h2 class="section-title">Consejos para Ganar Puntos Rápidamente</h2>
+        
+        <div class="info-box">
+          <h3>💡 Recomendaciones</h3>
+          <ul>
+            <li><strong>Calidad sobre cantidad:</strong> Asegúrate de que cada video que subas cumpla con los estándares de la plataforma.</li>
+            <li><strong>Sube contenido regularmente:</strong> La constancia es clave para acumular puntos rápidamente.</li>
+            <li><strong>Sigue las reglas:</strong> Los videos que no cumplan con las normas serán rechazados y no otorgarán puntos.</li>
+            <li><strong>Categoriza correctamente:</strong> Asigna la categoría adecuada a cada video para facilitar la aprobación.</li>
+            <li><strong>Sé paciente:</strong> La revisión puede tomar desde 1 minuto hasta 1 día.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Call to Action -->
+      <div class="cta-box">
+        <h3>¿Listo para Comenzar tu Ascenso?</h3>
+        <p>Empieza a subir videos ahora y desbloquea roles exclusivos</p>
+        <a href="../public/subir.html" class="cta-btn">Subir Mi Primer Video</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

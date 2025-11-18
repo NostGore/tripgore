@@ -1,0 +1,363 @@
+/* Encabezado */
+header {
+  background-color: #1f1f1f;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: static;
+  padding-bottom: 0.3rem;
+}
+
+header .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+header h1 {
+  font-family: 'Anton', Impact, sans-serif;
+  font-size: 2.8rem;
+  color: #d00000;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding-top: 1rem;
+}
+
+.tagline {
+  display: none;
+}
+
+/* Navegación */
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #d00000;
+}
+
+nav .inicio-btn {
+  background-color: #d00000;
+  color: #ffffff;
+  padding: 0.30rem 1.5rem;
+  border-radius: 0;
+  transition: background-color 0.3s ease;
+}
+
+nav .inicio-btn:hover {
+  background-color: #b30000;
+  color: #ffffff;
+}
+
+.upload-btn-container {
+  margin-left: auto;
+}
+
+nav .upload-btn {
+  background-color: #FFD700;
+  color: #1f1f1f;
+  padding: 0.30rem 1.5rem;
+  border-radius: 0;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+nav .upload-btn:hover {
+  background-color: #FFC700;
+  color: #1f1f1f;
+}
+
+.logo {
+  height: 100px;
+  width: 200px;
+  margin-top: 20px;
+}
+
+/* Contenedor de botones móviles */
+.mobile-buttons {
+  display: none;
+  gap: 0.5rem;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Botón hamburguesa - oculto por defecto */
+.menu-toggle {
+  display: none;
+  background-color: #d00000;
+  color: #ffffff;
+  padding: 0.4rem 1.5rem;
+  border: none;
+  border-radius: 1px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 0 auto;
+}
+
+.menu-toggle:hover {
+  background-color: #b30000;
+}
+
+/* Botón de autenticación móvil */
+.mobile-auth-btn {
+  display: none;
+  background-color: #1f1f1f;
+  color: #ffffff;
+  padding: 0.4rem 1.2rem;
+  border: none;
+  border-radius: 1px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.mobile-auth-btn:hover {
+  background-color: #333333;
+}
+
+.mobile-auth-btn.logged-in {
+  background-color: #FFD700;
+  color: #1f1f1f;
+}
+
+.mobile-auth-btn.logged-in:hover {
+  background-color: #FFC700;
+}
+
+/* Overlay del menú móvil */
+.mobile-menu-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9998;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-menu-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Panel deslizable del menú */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 80%;
+  max-width: 350px;
+  height: 100%;
+  background-color: #1f1f1f;
+  z-index: 9999;
+  transition: right 0.3s ease;
+  overflow-y: auto;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-menu.active {
+  right: 0;
+}
+
+.mobile-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #333;
+}
+
+.mobile-menu-user-section {
+  padding: 1.5rem;
+  border-bottom: 1px solid #333;
+  background-color: #2a2a2a;
+}
+
+.mobile-menu-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.mobile-user-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+.mobile-user-role {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile-user-points {
+  font-size: 1rem;
+  color: #FFD700;
+  margin: 0;
+  font-weight: 600;
+}
+
+.mobile-user-points span {
+  color: #ffffff;
+}
+
+.mobile-user-buttons {
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.mobile-logout-btn,
+.mobile-profile-btn {
+  flex: 1;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.mobile-logout-btn {
+  background-color: #d00000;
+  color: #ffffff;
+}
+
+.mobile-logout-btn:hover {
+  background-color: #b30000;
+}
+
+.mobile-profile-btn {
+  background-color: #1f1f1f;
+  color: #ffffff;
+  border: 1px solid #666;
+}
+
+.mobile-profile-btn:hover {
+  background-color: #333333;
+}
+
+.mobile-menu-title {
+  font-family: 'Anton', Impact, sans-serif;
+  font-size: 1.5rem;
+  color: #d00000;
+  text-transform: uppercase;
+}
+
+.mobile-menu-close {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.mobile-menu-close:hover {
+  color: #d00000;
+}
+
+.mobile-menu nav ul {
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-menu nav li {
+  width: 100%;
+  border-bottom: 1px solid #333;
+}
+
+.mobile-menu nav a {
+  display: block;
+  padding: 1.2rem 1.5rem;
+  font-size: 1.1rem;
+  width: 100%;
+}
+
+.mobile-menu nav .inicio-btn,
+.mobile-menu nav .upload-btn {
+  background-color: transparent;
+  padding: 1.2rem 1.5rem;
+}
+
+.mobile-menu nav .inicio-btn:hover,
+.mobile-menu nav .upload-btn:hover {
+  background-color: #2a2a2a;
+}
+
+.mobile-menu .upload-btn-container {
+  margin-left: 0;
+  width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  header .container {
+    align-items: center;
+  }
+
+  .logo-container {
+    text-align: center;
+    width: 100%;
+  }
+
+  .logo {
+    margin-top: 10px;
+    height: 80px;
+    width: 160px;
+  }
+
+  .mobile-buttons {
+    display: flex;
+    margin-bottom: 1rem;
+  }
+
+  .menu-toggle,
+  .mobile-auth-btn {
+    display: block;
+  }
+
+  header nav {
+    display: none;
+  }
+}

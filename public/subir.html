@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subir Video - TripGore</title>
+  <link rel="icon" type="image/png" href="../img/tripgorex.png">
+  <meta name="description" content="Sube tus videos a TripGore">
+  <link rel="canonical" href="https://tripgore.space/public/subir.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/footer.css">
+  <script src="../js/footer.js"></script>
+  <script src="../js/header.js"></script>
+  <script src="../js/roles.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Oswald', sans-serif;
+      background-color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .upload-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+      flex: 1;
+    }
+
+    .page-title {
+      font-family: 'Anton', sans-serif;
+      font-size: 2.5rem;
+      color: #d00000;
+      text-align: center;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+    }
+
+    .upload-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .upload-form-section {
+      background: #f5f5f5;
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .preview-section {
+      background: #f5f5f5;
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      min-height: 400px;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      color: #1f1f1f;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      border-bottom: 2px solid #d00000;
+      padding-bottom: 0.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1f1f1f;
+      margin-bottom: 0.5rem;
+    }
+
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid #ddd;
+      border-radius: 4px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      background-color: #ffffff;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    select:focus {
+      outline: none;
+      border-color: #d00000;
+    }
+
+    .file-input-wrapper {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .file-input-wrapper input[type="file"] {
+      position: absolute;
+      left: -9999px;
+    }
+
+    .file-input-label {
+      display: block;
+      padding: 2rem;
+      background-color: #ffffff;
+      border: 2px dashed #ddd;
+      border-radius: 4px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .file-input-label:hover {
+      border-color: #d00000;
+      background-color: #fafafa;
+    }
+
+    .file-name {
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      color: #666;
+      text-align: center;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background-color: #d00000;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      text-transform: uppercase;
+    }
+
+    .btn:hover {
+      background-color: #a00000;
+      transform: translateY(-2px);
+    }
+
+    .btn:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .message {
+      padding: 1rem;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .message.success {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .message.error {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    .loading {
+      display: none;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .loading.active {
+      display: block;
+    }
+
+    .spinner {
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #d00000;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .preview-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .preview-item {
+      background-color: #ffffff;
+      padding: 1rem;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+    }
+
+    .preview-label {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .preview-value {
+      font-size: 1rem;
+      color: #1f1f1f;
+      word-wrap: break-word;
+    }
+
+    .preview-video {
+      width: 100%;
+      max-height: 300px;
+      border-radius: 4px;
+      background-color: #000;
+    }
+
+    .preview-placeholder {
+      text-align: center;
+      color: #999;
+      padding: 3rem 1rem;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 968px) {
+      .upload-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .preview-section {
+        order: 2;
+      }
+    }
+
+    /* Modal de confirmación */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      animation: modalSlideIn 0.3s ease-out;
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .check-animation {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+      border-radius: 50%;
+      background-color: #4CAF50;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: checkBounce 0.5s ease-out;
+    }
+
+    @keyframes checkBounce {
+      0% {
+        transform: scale(0);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .check-animation svg {
+      width: 50px;
+      height: 50px;
+      stroke: white;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      stroke-dasharray: 50;
+      stroke-dashoffset: 50;
+      animation: checkDraw 0.5s ease-out 0.3s forwards;
+    }
+
+    @keyframes checkDraw {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    .modal-title {
+      font-size: 1.8rem;
+      color: #1f1f1f;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .modal-message {
+      font-size: 1rem;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .modal-btn {
+      padding: 0.75rem 2rem;
+      background-color: #d00000;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .modal-btn:hover {
+      background-color: #a00000;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo-container">
+        <a href="../index.html"><img src="https://files.catbox.moe/j5v5s8.png" alt="TripGore Logo" class="logo"></a>
+      </div>
+      <div class="mobile-buttons">
+        <button class="menu-toggle" id="menuToggle">EXPLORAR</button>
+        <button class="mobile-auth-btn" id="mobileAuthBtn">INICIAR SESIÓN</button>
+      </div>
+      <p class="tagline">Los casos más impactantes de todo internet</p>
+      <nav>
+        <ul>
+          <li><a href="../index.html" class="inicio-btn">INICIO</a></li>
+          <li><a href="#colaboradores">Colaboradores</a></li>
+          <li><a href="../public/aris.html">Aris</a></li>
+          <li><a href="#soporte">Soporte</a></li>
+          <li><a href="#telegram">Telegram</a></li>
+          <li><a href="#telegram">MAS</a></li>
+          <li class="upload-btn-container"><a href="../public/subir.html" class="upload-btn">SUBIR VIDEO</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="upload-container">
+      <h1 class="page-title">Subir Video</h1>
+
+      <div class="upload-layout">
+        <!-- Formulario de subida -->
+        <div class="upload-form-section">
+          <h2 class="section-title">Información del Video</h2>
+
+          <div id="message-container"></div>
+
+          <form id="upload-form">
+            <div class="form-group">
+              <label for="titulo">Título del Video *</label>
+              <input type="text" id="titulo" name="titulo" required placeholder="Ingresa el título del video">
+            </div>
+
+            <div class="form-group">
+              <label for="categoria">Categoría *</label>
+              <select id="categoria" name="categoria" required>
+                <option value="">Selecciona una categoría</option>
+                <option value="ASESINATOS">Asesinatos</option>
+                <option value="ACCIDENTES">Accidentes</option>
+                <option value="INCIDENTES">Incidentes</option>
+                <option value="SUICIDIOS">Suicidios</option>
+                <option value="AUTOLESIONES">Autolesiones</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="video-file">Archivo de Video *</label>
+              <div class="file-input-wrapper">
+                <input type="file" id="video-file" name="video-file" accept="video/*" required>
+                <label for="video-file" class="file-input-label">
+                  <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                  </svg>
+                  <p style="margin-top: 0.5rem; font-size: 1rem;">Click para seleccionar el video</p>
+                </label>
+              </div>
+              <div class="file-name" id="video-name"></div>
+            </div>
+
+            <div class="loading" id="loading">
+              <div class="spinner"></div>
+              <p style="margin-top: 1rem; color: #666;">Subiendo video...</p>
+            </div>
+
+            <button type="submit" class="btn" id="submit-btn">Subir Video</button>
+          </form>
+        </div>
+
+        <!-- Sección de preview -->
+        <div class="preview-section">
+          <h2 class="section-title">Vista Previa</h2>
+
+          <div class="preview-content" id="preview-content">
+            <div class="preview-placeholder">
+              Los datos del video se mostrarán aquí
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal de confirmación -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal-content">
+      <div class="check-animation">
+        <svg viewBox="0 0 52 52">
+          <polyline points="14,27 22,35 38,19"/>
+        </svg>
+      </div>
+      <h2 class="modal-title">¡Video Enviado!</h2>
+      <p class="modal-message">
+        El video se ha enviado a revisión. Normalmente tarda desde 1 minuto a 1 día. 
+        El estado de su video se enviará al correo que tiene registrado en la web.
+      </p>
+      <button class="modal-btn" id="closeModal">Entendido</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script type="module">
+    import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+    import { app } from '../js/firebase.js';
+
+    const db = getDatabase(app);
+    const auth = getAuth(app);
+
+    // Inicializar EmailJS
+    emailjs.init("fKLtKUKveDIu6l_so");
+    
+    // Función para enviar correo de notificación
+    function sendEmailNotification() {
+      const templateParams = {
+        to_email: "colabmc.net@gmail.com",
+        subject: "Nuevo video subido a la plataforma",
+        message: "Alguien ha subido un nuevo video a la plataforma"
+      };
+      
+      emailjs.send("powe_center", "template_5dp3lai", templateParams)
+        .then(function(response) {
+          console.log('Correo enviado exitosamente:', response);
+        }, function(error) {
+          console.error('Error al enviar correo:', error);
+        });
+    }
+
+    // Configuración de Supabase
+    const SUPABASE_URL = 'https://uzmkkxnshxvdujlkvlqc.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV6bWtreG5zaHh2ZHVqbGt2bHFjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI0NTU0NzQsImV4cCI6MjA3ODAzMTQ3NH0.L1D5zV7_i8VbnI0_LrCRaH5YVOfrrh6AUX25xxbajUY';
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    let currentUser = null;
+    let videoFile = null;
+
+    // Verificar autenticación
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        mostrarMensaje('Debes iniciar sesión para subir videos', 'error');
+        setTimeout(() => {
+          window.location.href = '../auth/login.html';
+        }, 2000);
+        return;
+      }
+
+      currentUser = user;
+      console.log('Usuario autenticado:', user.email);
+    });
+
+    // Actualizar preview cuando cambian los campos
+    document.getElementById('titulo').addEventListener('input', actualizarPreview);
+    document.getElementById('categoria').addEventListener('change', actualizarPreview);
+
+    // Manejar selección de archivo de video
+    document.getElementById('video-file').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        videoFile = file;
+        const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
+        document.getElementById('video-name').textContent = `Archivo: ${file.name} (${sizeMB} MB)`;
+
+        // Crear preview del video
+        const videoURL = URL.createObjectURL(file);
+        actualizarPreview(videoURL);
+      }
+    });
+
+    // Función para generar miniatura del video
+    function generarMiniatura(videoFile) {
+      return new Promise((resolve, reject) => {
+        const video = document.createElement('video');
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+
+        video.preload = 'metadata';
+        video.src = URL.createObjectURL(videoFile);
+
+        video.onloadedmetadata = () => {
+          // Ir al segundo 1 del video
+          video.currentTime = 1;
+        };
+
+        video.onseeked = () => {
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+          context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+          canvas.toBlob((blob) => {
+            URL.revokeObjectURL(video.src);
+            resolve(blob);
+          }, 'image/jpeg', 0.8);
+        };
+
+        video.onerror = () => {
+          URL.revokeObjectURL(video.src);
+          reject(new Error('Error al generar miniatura'));
+        };
+      });
+    }
+
+    function actualizarPreview(videoURL = null) {
+      const titulo = document.getElementById('titulo').value.trim();
+      const categoria = document.getElementById('categoria').value;
+      const previewContent = document.getElementById('preview-content');
+
+      if (!titulo && !categoria && !videoFile) {
+        previewContent.innerHTML = '<div class="preview-placeholder">Los datos del video se mostrarán aquí</div>';
+        return;
+      }
+
+      let html = '';
+
+      if (titulo) {
+        html += `
+          <div class="preview-item">
+            <div class="preview-label">Título</div>
+            <div class="preview-value">${titulo}</div>
+          </div>
+        `;
+      }
+
+      if (categoria) {
+        html += `
+          <div class="preview-item">
+            <div class="preview-label">Categoría</div>
+            <div class="preview-value">${categoria}</div>
+          </div>
+        `;
+      }
+
+      if (videoFile) {
+        const sizeMB = (videoFile.size / (1024 * 1024)).toFixed(2);
+        html += `
+          <div class="preview-item">
+            <div class="preview-label">Archivo</div>
+            <div class="preview-value">${videoFile.name} (${sizeMB} MB)</div>
+          </div>
+        `;
+
+        if (videoURL) {
+          html += `
+            <div class="preview-item">
+              <div class="preview-label">Video Preview</div>
+              <video class="preview-video" controls>
+                <source src="${videoURL}" type="${videoFile.type}">
+                Tu navegador no soporta el elemento de video.
+              </video>
+            </div>
+          `;
+        }
+      }
+
+      previewContent.innerHTML = html;
+    }
+
+    // Manejar envío del formulario
+    document.getElementById('upload-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (!currentUser) {
+        mostrarMensaje('Debes iniciar sesión para subir videos', 'error');
+        return;
+      }
+
+      const titulo = document.getElementById('titulo').value.trim();
+      const categoria = document.getElementById('categoria').value;
+
+      if (!titulo || !categoria || !videoFile) {
+        mostrarMensaje('Por favor completa todos los campos', 'error');
+        return;
+      }
+
+      try {
+        mostrarCargando(true);
+        document.getElementById('submit-btn').disabled = true;
+
+        // Generar ID único para el video
+        const videoId = generarId(titulo);
+        const timestamp = Date.now();
+        const uniqueId = `${videoId}-${timestamp.toString().slice(-5)}`;
+
+        // Obtener datos del usuario
+        const autor = currentUser.email.split('@')[0];
+
+        // 1. Generar miniatura del video
+        console.log('Generando miniatura...');
+        const thumbnailBlob = await generarMiniatura(videoFile);
+
+        // 2. Subir video a Supabase Storage
+        console.log('Subiendo video a Supabase...');
+        const videoFileName = `${uniqueId}.mp4`;
+        const { data: videoData, error: videoError } = await supabaseClient
+          .storage
+          .from('mediadb')
+          .upload(videoFileName, videoFile, {
+            contentType: videoFile.type,
+            upsert: false
+          });
+
+        if (videoError) {
+          throw new Error('Error al subir video: ' + videoError.message);
+        }
+
+        // Obtener URL pública del video
+        const { data: videoUrlData } = supabaseClient
+          .storage
+          .from('mediadb')
+          .getPublicUrl(videoFileName);
+
+        const videoUrl = videoUrlData.publicUrl;
+
+        // 3. Subir miniatura a Supabase Storage
+        console.log('Subiendo miniatura a Supabase...');
+        const thumbnailFileName = `${uniqueId}.jpg`;
+        const { data: thumbnailData, error: thumbnailError } = await supabaseClient
+          .storage
+          .from('mediadb')
+          .upload(thumbnailFileName, thumbnailBlob, {
+            contentType: 'image/jpeg',
+            upsert: false
+          });
+
+        if (thumbnailError) {
+          throw new Error('Error al subir miniatura: ' + thumbnailError.message);
+        }
+
+        // Obtener URL pública de la miniatura
+        const { data: thumbnailUrlData } = supabaseClient
+          .storage
+          .from('mediadb')
+          .getPublicUrl(thumbnailFileName);
+
+        const portadaUrl = thumbnailUrlData.publicUrl;
+
+        // 4. Guardar metadatos en Firebase Realtime Database en video_pending
+        console.log('Guardando metadatos en Firebase...');
+        const fecha = obtenerFechaActual();
+        const videoPendingRef = ref(db, 'video_pending');
+        const newVideoRef = push(videoPendingRef);
+
+        const videoMetadata = {
+          autor: autor,
+          categoria: categoria,
+          category: categoria,
+          fecha: fecha,
+          id: uniqueId,
+          idOriginal: newVideoRef.key,
+          link: videoUrl,
+          origen: 'colaboradores',
+          portada: portadaUrl,
+          status: 'pending',
+          submittedAt: new Date().toISOString(),
+          submittedBy: currentUser.email,
+          timestamp: timestamp,
+          title: titulo,
+          titulo: titulo,
+          video: videoUrl
+        };
+
+        await set(newVideoRef, videoMetadata);
+
+        // 5. Enviar correo de notificación al administrador
+        sendEmailNotification();
+
+        // 6. Mostrar modal de éxito
+        mostrarCargando(false);
+        mostrarModalExito();
+
+        // Limpiar formulario
+        document.getElementById('upload-form').reset();
+        document.getElementById('video-name').textContent = '';
+        videoFile = null;
+        actualizarPreview();
+
+      } catch (error) {
+        console.error('Error al subir video:', error);
+        mostrarMensaje('Error al subir el video: ' + error.message, 'error');
+        mostrarCargando(false);
+        document.getElementById('submit-btn').disabled = false;
+      }
+    });
+
+    // Función para mostrar el modal de éxito
+    function mostrarModalExito() {
+      const modal = document.getElementById('successModal');
+      modal.classList.add('active');
+      document.getElementById('submit-btn').disabled = false;
+    }
+
+    // Cerrar modal
+    document.getElementById('closeModal').addEventListener('click', () => {
+      const modal = document.getElementById('successModal');
+      modal.classList.remove('active');
+      window.location.href = '../index.html';
+    });
+
+    // Cerrar modal al hacer clic fuera
+    document.getElementById('successModal').addEventListener('click', (e) => {
+      if (e.target.id === 'successModal') {
+        const modal = document.getElementById('successModal');
+        modal.classList.remove('active');
+        window.location.href = '../index.html';
+      }
+    });
+
+    function generarId(titulo) {
+      return titulo
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9\s-]/g, '')
+        .trim()
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-');
+    }
+
+    function obtenerFechaActual() {
+      const fecha = new Date();
+      const dia = String(fecha.getDate()).padStart(2, '0');
+      const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+      const año = fecha.getFullYear();
+      return `${dia}/${mes}/${año}`;
+    }
+
+    function mostrarMensaje(mensaje, tipo) {
+      const container = document.getElementById('message-container');
+      container.innerHTML = `<div class="message ${tipo}">${mensaje}</div>`;
+
+      setTimeout(() => {
+        container.innerHTML = '';
+      }, 5000);
+    }
+
+    function mostrarCargando(mostrar) {
+      const loading = document.getElementById('loading');
+      if (mostrar) {
+        loading.classList.add('active');
+      } else {
+        loading.classList.remove('active');
+      }
+    }
+  </script>
+</body>
+</html>

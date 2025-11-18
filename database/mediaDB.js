@@ -1,6 +1,6 @@
 
 // Base de datos de videos
-const mediaDB = [
+export const mediaDB = [
   {
     id: "valeria-marquez",
     titulo: "Valeria Marquez", //C-ASESINATOS
