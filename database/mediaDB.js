@@ -8616,6 +8616,177 @@ export const mediaDB = [
     fecha: "15/11/2025"
   },
   {
+    id: "thief-being-executed-in-point-blank",
+    titulo: "LADRÓN EJECUTADO A QUEMARROPA",
+    portada: "https://theync.com/media/thumbs/6/9/1/9/b/5524336919b60bcab4d.mp4/5524336919b60bcab4d.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/9/b/6919b72326421.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "17/11/2025"
+  },
+  {
+    id: "you-spin-me",
+    titulo: "me haces girar",
+    portada: "https://theync.com/media/thumbs/6/9/1/9/a/208810469199971c61d0.mov/208810469199971c61d0.mov-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/9/a/6919a66e14b6d.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "17/11/2025"
+  },
+  {
+    id: "beauty-queen-dies-after-being-hit-by-a-pickup-truck-in-guatemala",
+    titulo: "Muere reina de belleza tras ser atropellada por una camioneta en Guatemala",
+    portada: "https://theync.com/media/thumbs/6/9/1/9/d/21776856919d0339468e.mp4/21776856919d0339468e.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/9/d/6919d0b00e854.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "17/11/2025"
+  },
+  {
+    id: "gang-members-celebrate-beheading-of-a-rival",
+    titulo: "Miembros de pandillas celebran la decapitación de un rival",
+    portada: "https://theync.com/media/thumbs/6/9/1/9/f/21776856919f4ed9b2d0.mp4/21776856919f4ed9b2d0.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/9/f/6919f5b720c2d.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "17/11/2025"
+  },
+  {
+    id: "bahadr-unlu-brutally-beat-his-employee-with-a-baseball-bat-in-istanbul",
+    titulo: "Bahadır Ünlü golpeó brutalmente a su empleado con un bate de béisbol en Estambul",
+    portada: "https://bleachmyeyes.com/contents/videos_screenshots/7000/7287/preview.jpg",
+    video: "",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "17/11/2025"
+  },
+  {
+    id: "soldiers-forming-up-for-a-photo-are-hit-by-an-explosion",
+    titulo: "SOLDADOS QUE SE FORMaban PARA UNA FOTO FUERON GOLPEADOS POR UNA EXPLOSIÓN",
+    portada: "https://theync.com/media/thumbs/6/9/1/a/1/552433691a158e1109f.mp4/552433691a158e1109f.mp4-1b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/a/1/691a160f6ce53.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "17/11/2025"
+  },
+  {
+    id: "wake-up-dead-man-gets-executed-by-gang-while-sleeping-in-hammock",
+    titulo: "Despierta muerto: hombre es ejecutado por una pandilla mientras dormía en una hamaca",
+    portada: "https://theync.com/media/thumbs/6/9/1/b/6/2177685691b65df8732b.mp4/2177685691b65df8732b.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/b/6/691b66db37331.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "17/11/2025"
+  },
+  {
+    id: "work-accident-in-turkey",
+    titulo: "ACCIDENTE DE TRABAJO EN TURQUÍA",
+    portada: "https://theync.com/media/thumbs/6/9/1/a/9/552433691a91d7e914f.mp4/552433691a91d7e914f.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/a/9/691a9283a261a.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "17/11/2025"
+  },
+  {
+    id: "snack-time",
+    titulo: "HORA DE MERIENDA",
+    portada: "https://theync.com/media/thumbs/6/9/1/a/2/552433691a1f4bf224a.mp4/552433691a1f4bf224a.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/a/2/691a2023c90f3.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "17/11/2025"
+  },
+  {
+    id: "she-knocks-down-firefighters-and-falls-during-rescue",
+    titulo: "DERRIBA A BOMBEROS Y CAE DURANTE EL RESCATE",
+    portada: "https://theync.com/media/thumbs/6/9/1/9/c/5524336919bfc2d0930.mp4/5524336919bfc2d0930.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/9/c/6919c137b29c2.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "17/11/2025"
+  },
+  {
+    id: "his-leg-is-ripped-apart-to-the-bone",
+    titulo: "SU PIERNA ESTÁ DESGARRADA HASTA EL HUESO",
+    portada: "https://theync.com/media/thumbs/6/9/1/9/0/5524336919097a1007b.mp4/5524336919097a1007b.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/9/0/69190aa378ab4.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "17/11/2025"
+  },
+  {
+    id: "cold-blooded-sicko-satbs-two-men-to-death",
+    titulo: "Sicko a sangre fría mató a dos hombres",
+    portada: "https://theync.com/media/thumbs/6/9/1/9/d/21776856919d185a6d49.mp4/21776856919d185a6d49.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/9/d/6919d28fc9b25.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "17/11/2025"
+  },
+  {
+    id: "man-murdered-with-machete-after-savage-beating-by-narcos",
+    titulo: "Hombre asesinado con machete tras salvaje golpiza por narcos",
+    portada: "https://theync.com/media/thumbs/6/9/1/a/6/1341505691a6ecc278e6.mp4/1341505691a6ecc278e6.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/a/6/691a6f20df324.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "17/11/2025"
+  },
+  {
+    id: "stabbed-man-takes-last-breath",
+    titulo: "Hombre apuñalado toma su último aliento",
+    portada: "https://theync.com/media/thumbs/6/9/1/a/2/1858868691a2ea6672f4.mp4/1858868691a2ea6672f4.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/a/2/691a2f5f9d695.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "17/11/2025"
+  },
+  {
+    id: "theres-no-time-to-interview-him",
+    titulo: "No hay tiempo para entrevistarlo.",
+    portada: "https://theync.com/media/thumbs/6/9/1/7/f/18838366917f0adad509.mp4/18838366917f0adad509.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/7/f/6917f0ebe029d.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "17/11/2025"
+  },
+  {
+    id: "he-fooled-first-responders-and-jumped-earlier",
+    titulo: "Engañó a los socorristas y saltó antes",
+    portada: "https://theync.com/media/thumbs/6/9/1/7/4/21776856917407be15b4.mp4/21776856917407be15b4.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/7/4/691741235485f.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "17/11/2025"
+  },
+  {
+    id: "man-relaxing-on-busy-road-gets-run-over",
+    titulo: "Hombre que se relaja en una carretera muy transitada es atropellado",
+    portada: "https://theync.com/media/thumbs/6/9/1/7/4/2177685691742b64baab.mp4/2177685691742b64baab.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/7/4/6917437b55a10.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "17/11/2025"
+  },
+  {
+    id: "man-hit-by-tricycle-dies-instantly",
+    titulo: "Hombre atropellado por triciclo muere instantáneamente",
+    portada: "https://theync.com/media/thumbs/6/9/1/8/5/185886869184f1c3388c.mp4/185886869184f1c3388c.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/8/5/6918517c0c0c5.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "17/11/2025"
+  },
+  {
+    id: "mixed-gore-compilation",
+    titulo: "Gore mixto (compilación)",
+    portada: "https://theync.com/media/thumbs/6/9/1/b/a/1686368691b745b4b258.mp4/1686368691b745b4b258.mp4-1b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/b/a/691bac49794ca.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "17/11/2025"
+  },
+  {
     id: "1444",
     titulo: "1444", //C-SUICIDIOS
     portada: "https://xxx.livegore.com//rb-include/videos/8122189044.jpg",
@@ -9588,7 +9759,7 @@ export const mediaDB = [
     fecha: "09/11/2025",
   },
   {
-    id: "3f559635-72d0-43c4-89e7-fe8ec5027691", //ocultos
+    id: "3f559635-72d0-43c4-89e7", //ocultos
     titulo: "El niño de la vici 2",
     portada: "https://files.catbox.moe/2ljma5.png",
     video: "https://xxx.livegore.com//rb-include/videos/4507673513.mp4",

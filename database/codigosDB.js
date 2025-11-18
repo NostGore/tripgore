@@ -48,7 +48,7 @@ export const codigosDB = {
       enlace: "https://tripgore.space/video.html?id=cf6294c3-896f-48f7-9d84"
     },
     {
-      codigo: "3f559635-72d0-43c4-89e7-fe8ec5027691",
+      codigo: "3f559635-72d0-43c4-89e7",
       titulo: "El niño de la vici 2",
       enlace: "https://tripgore.space/video.html?id=3f559635-72d0-43c4-89e7"
     }
