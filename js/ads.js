@@ -48,12 +48,14 @@ function setupDirectLinks() {
     const inAssistantWidget = target.closest('#assistant-widget');
     const inMobileMenu = target.closest('.mobile-menu') || target.closest('#mobileMenu');
     const inMobileMenuOverlay = target.closest('.mobile-menu-overlay') || target.closest('#mobileMenuOverlay');
+    const inAgeModalOverlay = target.closest('#age-modal-overlay');
+    const inAgeModal = target.closest('.age-modal');
 
     // No disparar anuncios cuando se hace clic en el header o en el cuadro de sesión
     // En el buscador, sólo bloquear si NO se ha hecho clic en un resultado
     // En el asistente (#assistant-widget) nunca disparar anuncios
     // En el menú móvil (panel u overlay) tampoco disparar anuncios
-    if (inHeader || inLoginBox || inAssistantWidget || inMobileMenu || inMobileMenuOverlay || (inSearchBox && !inSearchResultItem)) {
+    if (inHeader || inLoginBox || inAssistantWidget || inMobileMenu || inMobileMenuOverlay || inAgeModalOverlay || inAgeModal || (inSearchBox && !inSearchResultItem)) {
       return;
     }
 
