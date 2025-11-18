@@ -3566,6 +3566,24 @@ export const mediaDB = [
     fecha: "14/11/2025"
   },
   {
+    id: "lo-pillaron-contrabandeando-una-serie-de-salchichas",
+    titulo: "Lo pillaron contrabandeando una serie de salchichas",
+    portada: "https://xxx.livegore.com//rb-include/videos/9204344600.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9204344600.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/11/2025"
+  },
+  {
+    id: "dos-hombres-golpeados-y-quemados-vivos-por-violacin",
+    titulo: "Dos hombres golpeados y quemados vivos por violación",
+    portada: "https://xxx.livegore.com//rb-include/videos/1182304797.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/1182304797.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "18/11/2025"
+  },
+  {
     id: "se-cree-estaca",
     titulo: "Se cree estaca", //C-ACCIDENTES
     portada: "https://files.catbox.moe/5jjfjq.png",
@@ -5715,6 +5733,33 @@ export const mediaDB = [
     autor: "TripGore",
     categoria: "ACCIDENTES",
     fecha: "15/11/2025"
+  },
+  {
+    id: "ha-compartido-sus-pensamientos-con-la-calle",
+    titulo: "Ha compartido sus pensamientos con la calle",
+    portada: "https://xxx.livegore.com//rb-include/videos/9018923398.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/9018923398.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "18/11/2025"
+  },
+  {
+    id: "sali-mal-los-petardos-explotan-en-las-manos",
+    titulo: "¡salió mal! Los petardos explotan en las manos",
+    portada: "https://xxx.livegore.com//rb-include/videos/5838751122.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/5838751122.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "18/11/2025"
+  },
+  {
+    id: "un-hombre-perdi-una-pierna-en-un-accidente-de-motocicleta",
+    titulo: "Un hombre perdió una pierna en un accidente de motocicleta",
+    portada: "https://xxx.livegore.com//rb-include/videos/2932947557.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/2932947557.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "18/11/2025"
   },
   {
     id: "come-la-banqueta",
@@ -8785,6 +8830,24 @@ export const mediaDB = [
     autor: "TripGore",
     categoria: "INCIDENTES",
     fecha: "17/11/2025"
+  },
+  {
+    id: "rostro-de-mujer-destruido-tras-ser-atacado-por-un-oso",
+    titulo: "Rostro de mujer destruido tras ser atacado por un oso",
+    portada: "https://xxx.livegore.com//rb-include/videos/3640967207.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/3640967207.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/11/2025"
+  },
+  {
+    id: "castigado-por-miembros-de-su-propia-pandilla-por-no-obedecer",
+    titulo: "Castigado por miembros de su propia pandilla por no obedecer",
+    portada: "https://xxx.livegore.com//rb-include/videos/6173640396.jpg",
+    video: "https://xxx.livegore.com//rb-include/videos/6173640396.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "18/11/2025"
   },
   {
     id: "1444",
