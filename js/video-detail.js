@@ -132,6 +132,7 @@ async function cargarVideo() {
     const authorName = document.querySelector('.author-name');
     const iframe = document.querySelector('.video-player iframe');
     const authorAvatar = document.querySelector('.author-avatar');
+    const ogImageMeta = document.querySelector('meta[property="og:image"]');
 
     if (videoTitle) videoTitle.textContent = video.titulo;
     if (videoDate) videoDate.textContent = video.fecha;
@@ -151,9 +152,14 @@ async function cargarVideo() {
       console.log('Video cargado en iframe:', video.video); // Debug
     }
 
-    // Si hay una portada, actualizar la imagen del autor
-    if (authorAvatar && video.portada) {
-      authorAvatar.src = video.portada;
+    // Si hay una portada, actualizar la imagen del autor y la og:image
+    if (video.portada) {
+      if (authorAvatar) {
+        authorAvatar.src = video.portada;
+      }
+      if (ogImageMeta) {
+        ogImageMeta.setAttribute('content', video.portada);
+      }
     }
 
     // Cargar likes y dislikes
@@ -327,6 +333,119 @@ if (dislikeBtn) {
     } catch (error) {
       console.error('Error al dar dislike:', error);
       alert('Error al dar dislike');
+    }
+  });
+}
+
+// Manejar click en compartir
+const shareBtn = document.querySelector('.share-btn');
+if (shareBtn) {
+  const crearPanelCompartir = () => {
+    let overlay = document.getElementById('share-overlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'share-overlay';
+      overlay.style.position = 'fixed';
+      overlay.style.inset = '0';
+      overlay.style.background = 'rgba(0,0,0,0.7)';
+      overlay.style.display = 'flex';
+      overlay.style.alignItems = 'center';
+      overlay.style.justifyContent = 'center';
+      overlay.style.zIndex = '9999';
+
+      const modal = document.createElement('div');
+      modal.style.background = '#111';
+      modal.style.padding = '1.5rem';
+      modal.style.borderRadius = '8px';
+      modal.style.maxWidth = '320px';
+      modal.style.width = '90%';
+      modal.style.color = '#fff';
+      modal.style.fontFamily = "'Oswald', Arial, sans-serif";
+
+      modal.innerHTML = `
+        <h3 style="margin-top:0;margin-bottom:1rem;font-size:1.1rem;text-align:center;">Compartir video</h3>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;">
+          <button data-share="whatsapp" style="padding:0.6rem 1rem;border:none;border-radius:4px;background:#25D366;color:#fff;font-weight:600;cursor:pointer;">WhatsApp</button>
+          <button data-share="telegram" style="padding:0.6rem 1rem;border:none;border-radius:4px;background:#0088cc;color:#fff;font-weight:600;cursor:pointer;">Telegram</button>
+          <button data-share="twitter" style="padding:0.6rem 1rem;border:none;border-radius:4px;background:#1DA1F2;color:#fff;font-weight:600;cursor:pointer;">X / Twitter</button>
+          <button data-share="facebook" style="padding:0.6rem 1rem;border:none;border-radius:4px;background:#1877f2;color:#fff;font-weight:600;cursor:pointer;">Facebook</button>
+          <button data-share="copy" style="padding:0.6rem 1rem;border:none;border-radius:4px;background:#444;color:#fff;font-weight:600;cursor:pointer;">Copiar enlace</button>
+          <button data-share="close" style="margin-top:0.5rem;padding:0.6rem 1rem;border:1px solid #666;border-radius:4px;background:transparent;color:#ccc;font-weight:600;cursor:pointer;">Cerrar</button>
+        </div>
+      `;
+
+      overlay.appendChild(modal);
+      document.body.appendChild(overlay);
+
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay || e.target.dataset.share === 'close') {
+          overlay.remove();
+        }
+      });
+
+      modal.querySelectorAll('button[data-share]').forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+          const action = e.currentTarget.getAttribute('data-share');
+          if (action === 'close') {
+            overlay.remove();
+            return;
+          }
+
+          const url = window.location.href;
+          const text = 'Mira este video en TripGore';
+
+          try {
+            let shareUrl = '';
+            if (action === 'whatsapp') {
+              shareUrl = `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`;
+            } else if (action === 'telegram') {
+              shareUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+            } else if (action === 'twitter') {
+              shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+            } else if (action === 'facebook') {
+              shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+            } else if (action === 'copy') {
+              if (navigator.clipboard && navigator.clipboard.writeText) {
+                await navigator.clipboard.writeText(url);
+              } else {
+                const dummy = document.createElement('input');
+                dummy.value = url;
+                document.body.appendChild(dummy);
+                dummy.select();
+                document.execCommand('copy');
+                document.body.removeChild(dummy);
+              }
+              alert('Enlace copiado al portapapeles');
+              return;
+            }
+
+            if (shareUrl) {
+              window.open(shareUrl, '_blank', 'noopener');
+            }
+          } catch (err) {
+            console.error('Error al compartir:', err);
+          }
+        });
+      });
+    }
+  };
+
+  shareBtn.addEventListener('click', async () => {
+    const shareData = {
+      title: document.title,
+      text: 'Mira este video en TripGore',
+      url: window.location.href
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        crearPanelCompartir();
+      }
+    } catch (error) {
+      console.error('Error al compartir:', error);
+      crearPanelCompartir();
     }
   });
 }
