@@ -8850,6 +8850,168 @@ export const mediaDB = [
     fecha: "18/11/2025"
   },
   {
+    id: "rebel-gets-throat-slit-and-shot-in-the-head-by-soldiers",
+    titulo: "Rebelde es degollado y baleado en la cabeza por soldados",
+    portada: "https://theync.com/media/thumbs/6/9/1/c/c/2177685691ccb7f4a2c6.mp4/2177685691ccb7f4a2c6.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/c/c/691cccbf52831.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "19/11/2025"
+  },
+  {
+    id: "couple-being-beaten-for-having-sex",
+    titulo: "PAREJA GOLPEADA POR TENER SEXO",
+    portada: "https://theync.com/media/thumbs/6/9/1/c/c/552433691cc71f440c2.mp4/552433691cc71f440c2.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/c/c/691cc79826d22.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "19/11/2025"
+  },
+  {
+    id: "car-runs-over-group-of-girls",
+    titulo: "COCHE ATROPLACE A GRUPO DE NIÑAS",
+    portada: "https://theync.com/media/thumbs/6/9/1/c/c/552433691cc636d2f1e.mp4/552433691cc636d2f1e.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/c/c/691cc6e41a744.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "19/11/2025"
+  },
+  {
+    id: "women-knocked-out-in-streetfight",
+    titulo: "Mujeres noqueadas en pelea callejera",
+    portada: "https://theync.com/media/thumbs/6/9/1/c/f/63652691cf9c4a8452.mov/63652691cf9c4a8452.mov-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/c/f/691cfaafb3a17.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "19/11/2025"
+  },
+  {
+    id: "one-dead-and-two-injured-in-restaurant-explosion",
+    titulo: "UN MUERTO Y DOS HERIDOS EN EXPLOSIÓN EN RESTAURANTE",
+    portada: "https://theync.com/media/thumbs/6/9/1/d/a/552433691da39fedc1c.mp4/552433691da39fedc1c.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/d/a/691da4d73027b.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "19/11/2025"
+  },
+  {
+    id: "aftermath-of-protests-in-tanzania",
+    titulo: "Secuelas de las protestas en Tanzania",
+    portada: "https://theync.com/media/thumbs/6/9/1/d/7/2177685691d7a3497eb0.mp4/2177685691d7a3497eb0.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/d/7/691d7b97e063b.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "19/11/2025"
+  },
+  {
+    id: "drug-addict-killed-his-mom-with-machete-in-peru",
+    titulo: "Drogadicto mató a su mamá con machete en Perú",
+    portada: "https://theync.com/media/thumbs/6/9/1/c/b/2177685691cb5907404c.mp4/2177685691cb5907404c.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/c/b/691cb6b739ade.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "19/11/2025"
+  },
+  {
+    id: "worker-pressed-by-dump-truck",
+    titulo: "Trabajador presionado por camión volquete",
+    portada: "https://theync.com/media/thumbs/6/9/1/d/1/1170482691d1ce124cdf.mp4/1170482691d1ce124cdf.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/d/1/691d1d234f116.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "19/11/2025"
+  },
+  {
+    id: "hot-redhead-milf-killed-in-terrible-accident",
+    titulo: "MILF pelirroja caliente muere en un terrible accidente",
+    portada: "https://theync.com/media/thumbs/6/8/c/1/3/217768568c13a0408b31.mp4/217768568c13a0408b31.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/8/c/1/3/68c13acca2049.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "19/11/2025"
+  },
+  {
+    id: "worker-electrocuted-killed-by-live-wires-in-kenya",
+    titulo: "Trabajador electrocutado y asesinado por cables con corriente en Kenia",
+    portada: "https://theync.com/media/thumbs/6/8/c/1/3/217768568c1360359943.mp4/217768568c1360359943.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/8/c/1/3/68c13693edf0c.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "19/11/2025"
+  },
+  {
+    id: "man-run-over-by-crane",
+    titulo: "Hombre atropellado por grúa",
+    portada: "https://theync.com/media/thumbs/6/8/c/0/9/146235868c077ed68a32.mp4/146235868c077ed68a32.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/8/c/0/9/68c09eb41344e.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "19/11/2025"
+  },
+  {
+    id: "man-murdered-in-front-of-his-own-daughter",
+    titulo: "Hombre asesinado delante de su propia hija",
+    portada: "https://theync.com/media/thumbs/6/8/c/0/7/134150568c07d7204f98.mp4/134150568c07d7204f98.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/8/c/0/7/68c07da83cd77.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "19/11/2025"
+  },
+  {
+    id: "kidnapper-lynched-by-mob",
+    titulo: "Secuestrador linchado por la mafia",
+    portada: "https://theync.com/media/thumbs/6/8/b/f/d/217768568bfdd70e0baa.mp4/217768568bfdd70e0baa.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/8/b/f/d/68bfdec019d20.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "19/11/2025"
+  },
+  {
+    id: "5-months-pregnant-anime-cosplayer-jumps-from-28th-floor",
+    titulo: "Cosplayer de anime embarazada de 5 meses salta desde el piso 28",
+    portada: "https://theync.com/media/thumbs/6/8/b/e/f/132300968beebbb1cc74.mp4/132300968beebbb1cc74.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/8/b/e/f/68bef280654ba.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "19/11/2025"
+  },
+  {
+    id: "romance-turned-obituary",
+    titulo: "Romance convertido en obituario",
+    portada: "https://theync.com/media/thumbs/6/8/b/e/d/214435468bedb5b27da7.mp4/214435468bedb5b27da7.mp4-8b.jpg",
+    video: "https://theync.com/media/videos/6/8/b/e/d/68bedbc45b19a.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "19/11/2025"
+  },
+  {
+    id: "sundays-traffic-lottery",
+    titulo: "Lotería de tráfico del domingo",
+    portada: "https://theync.com/media/thumbs/6/8/b/e/d/214435468beda1ceb411.mp4/214435468beda1ceb411.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/8/b/e/d/68bedad4533fa.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "19/11/2025"
+  },
+  {
+    id: "brilliant-move",
+    titulo: "movimiento brillante",
+    portada: "https://theync.com/media/thumbs/6/8/b/e/d/214435468bed81601715.mp4/214435468bed81601715.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/8/b/e/d/68bed8f44c52c.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "19/11/2025"
+  },
+  {
+    id: "cafeteria-employee-assassinated-at-work",
+    titulo: "Empleado de cafetería asesinado en el trabajo",
+    portada: "https://theync.com/media/thumbs/6/8/b/e/b/217768568beb15af093b.mp4/217768568beb15af093b.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/8/b/e/b/68beb2c0df6bf.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "19/11/2025"
+  },
+  {
     id: "1444",
     titulo: "1444", //C-SUICIDIOS
     portada: "https://xxx.livegore.com//rb-include/videos/8122189044.jpg",
