@@ -27,5 +27,17 @@ export const featuredDB = [
   },
   {
     id: "piquero-se-parte-la-cara"
+  },
+  {
+    id: "el-patron"
+  },
+  {
+    id: "los-amo-padres"
+  },
+  {
+    id: "mangue937"
+  },
+  {
+    id: "mayengg03"
   }
 ];
