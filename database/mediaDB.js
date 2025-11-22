@@ -9992,4 +9992,256 @@ export const mediaDB = [
     categoria: "OCULTO",
     fecha: "09/11/2025",
   },
+  {
+    id: "man-dies-in-tractor-tug-of-war-different-angles", //SCRAP
+    titulo: "Hombre muere en tira y afloja de tractor (diferentes ángulos)",
+    portada: "https://theync.com/media/thumbs/6/9/2/0/b/636526920b5bbcbf2a.mov/636526920b5bbcbf2a.mov-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/2/0/b/6920b63b9015d.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "22/11/2025"
+  },
+  {
+    id: "aftermath-of-nigerian-church-slaughter",
+    titulo: "Secuelas de la masacre de la iglesia nigeriana",
+    portada: "https://theync.com/media/thumbs/6/9/2/0/a/21776856920a4ab4ba26.mp4/21776856920a4ab4ba26.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/2/0/a/6920a597e8d7f.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "22/11/2025"
+  },
+  {
+    id: "work-accident-in-packaging-machine",
+    titulo: "ACCIDENTE LABORAL EN MÁQUINA ENVASADORA",
+    portada: "https://theync.com/media/thumbs/6/9/2/1/1/55243369211d7a664fe.mp4/55243369211d7a664fe.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/2/1/1/69211eff57c5a.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "22/11/2025"
+  },
+  {
+    id: "man-knocked-out-over-sweet-and-sour-sauce-at-mcdonalds",
+    titulo: "Hombre quedó inconsciente por salsa agridulce en McDonalds",
+    portada: "https://theync.com/media/thumbs/6/9/2/1/7/6365269217e58720de.mov/6365269217e58720de.mov-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/2/1/7/69217edb93158.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "22/11/2025"
+  },
+  {
+    id: "cornered-and-wounded-bank-robber-shoots-himself-in-the-head",
+    titulo: "Ladrón de bancos acorralado y herido se pega un tiro en la cabeza",
+    portada: "https://theync.com/media/thumbs/6/9/1/e/5/2177685691e529d2536e.mp4/2177685691e529d2536e.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/e/5/691e5373dfb7a.mp4",
+    autor: "TripGore",
+    categoria: "SUICIDIOS",
+    fecha: "22/11/2025"
+  },
+  {
+    id: "carpenter-cut-his-hand-in-the-band-saw",
+    titulo: "CARPINTERO SE CORTÓ LA MANO CON LA SIERRA DE CINTA",
+    portada: "https://theync.com/media/thumbs/6/9/1/e/0/552433691e0d77468fa.mp4/552433691e0d77468fa.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/e/0/691e0e4f8253c.mp4",
+    autor: "TripGore",
+    categoria: "AUTOLESIONES",
+    fecha: "22/11/2025"
+  },
+  {
+    id: "he-died-crushed-against-the-wall",
+    titulo: "MURIÓ APLASTADO CONTRA LA PARED",
+    portada: "https://theync.com/media/thumbs/6/9/1/d/b/552433691db4bb4eef3.mp4/552433691db4bb4eef3.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/d/b/691db5f32a281.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "22/11/2025"
+  },
+  {
+    id: "rapist-has-his-balls-cut-off-in-vila-velha-brazil",
+    titulo: "A un violador le cortan las pelotas en Vila Velha, Brasil",
+    portada: "https://theync.com/media/thumbs/6/9/1/d/a/1341505691d9fd83ee27.mp4/1341505691d9fd83ee27.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/d/a/691da0275aee6.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "22/11/2025"
+  },
+  {
+    id: "crimea-is-under-drone-attack-again",
+    titulo: "Crimea está nuevamente bajo ataque con drones.",
+    portada: "https://theync.com/media/thumbs/6/9/2/1/4/156925469214763b1b70.mp4/156925469214763b1b70.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/2/1/4/6921487b70f62.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "22/11/2025"
+  },
+  {
+    id: "blonde-fight-back-for-her-phone-and-catches-robber",
+    titulo: "Rubia lucha por su teléfono y atrapa al ladrón",
+    portada: "https://theync.com/media/thumbs/6/9/2/1/9/18588686921922fcb224.mp4/18588686921922fcb224.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/2/1/9/6921933f4dda9.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "22/11/2025"
+  },
+  {
+    id: "chinese-women-knocks-her-self-out-trying-to-fight",
+    titulo: "Mujer china se deja inconsciente al intentar luchar",
+    portada: "https://theync.com/media/thumbs/6/9/2/1/7/6365269217ce41bbd6.mov/6365269217ce41bbd6.mov-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/2/1/7/69217d73ddbc2.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "22/11/2025"
+  },
+  {
+    id: "man-armed-with-a-gun-killed-by-police",
+    titulo: "Hombre armado con una pistola asesinado por la policía",
+    portada: "https://theync.com/media/thumbs/6/9/2/1/7/6365269217235d072d.mov/6365269217235d072d.mov-5b.jpg",
+    video: "https://theync.com/media/videos/6/9/2/1/7/692172e7a7a2d.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "22/11/2025"
+  },
+  {
+    id: "man-killed-in-drive-by-in-new-york",
+    titulo: "Hombre asesinado mientras conducía en Nueva York",
+    portada: "https://theync.com/media/thumbs/6/9/2/0/c/636526920c67ee7b65.mov/636526920c67ee7b65.mov-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/2/0/c/6920c7573bff2.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "22/11/2025"
+  },
+  {
+    id: "india-tejas-fighter-jet-goes-down",
+    titulo: "SE CAE UN AVIÓN DE COMBATE INDIA TEJAS",
+    portada: "https://theync.com/media/thumbs/6/9/2/0/7/55243369206f21040dc.mp4/55243369206f21040dc.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/2/0/7/69207063828a8.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "22/11/2025"
+  },
+  {
+    id: "looks-like-its-his-last-seconds-on-this-planet",
+    titulo: "Parece que son sus últimos segundos en este planeta",
+    portada: "https://theync.com/media/thumbs/6/9/2/0/9/217768569209e8f0033d.mp4/217768569209e8f0033d.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/2/0/9/69209f7faeff9.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "22/11/2025"
+  },
+  {
+    id: "tried-to-escape-from-penal-colony-and-got-fried",
+    titulo: "INTENTÓ ESCAPAR DE COLONIA PENAL Y LO FRIÓ",
+    portada: "https://theync.com/media/thumbs/6/9/2/1/1/552433692119cb29edc.mp4/552433692119cb29edc.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/2/1/1/69211b037ad6c.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "22/11/2025"
+  },
+  {
+    id: "fucked-up-his-hand-with-fireworks",
+    titulo: "Se jodió la mano con fuegos artificiales",
+    portada: "https://theync.com/media/thumbs/6/9/2/0/f/11704826920faa291131.mp4/11704826920faa291131.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/2/0/f/6920fb23945b3.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "22/11/2025"
+  },
+  {
+    id: "man-gets-runover-by-tractor-during-street-takeover",
+    titulo: "Un hombre es atropellado por un tractor durante una toma de posesión de la calle",
+    portada: "https://theync.com/media/thumbs/6/9/2/0/e/636526920e3b02e5ba.mov/636526920e3b02e5ba.mov-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/2/0/e/6920e683b9706.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "22/11/2025"
+  },
+  {
+    id: "just-a-man-trapped-under-truck-and-nobody-cares",
+    titulo: "SÓLO UN HOMBRE ATRAPADO BAJO UN CAMIÓN Y A NADIE LE IMPORTA",
+    portada: "https://theync.com/media/thumbs/6/9/2/0/6/552433692065f6c58ab.mp4/552433692065f6c58ab.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/2/0/6/6920668c04fcd.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "22/11/2025"
+  },
+  {
+    id: "shot-dead-while-shopping",
+    titulo: "MUERTO A DISPARO MIENTRAS COMPRABA",
+    portada: "https://theync.com/media/thumbs/6/9/2/0/d/5524336920db6725b4a.mp4/5524336920db6725b4a.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/2/0/d/6920dc3372792.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "22/11/2025"
+  },
+  {
+    id: "fight-over-a-debt-ends-with-a-seizure",
+    titulo: "La lucha por una deuda termina con una incautación",
+    portada: "https://theync.com/media/thumbs/6/9/2/0/e/21776856920e6f260ad2.mp4/21776856920e6f260ad2.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/2/0/e/6920e7afd3265.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "22/11/2025"
+  },
+  {
+    id: "couple-dies-in-terrible-motorcycle-accident",
+    titulo: "Pareja muere en terrible accidente de motocicleta",
+    portada: "https://theync.com/media/thumbs/6/9/2/0/3/21776856920351236de3.mp4/21776856920351236de3.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/2/0/3/6920358fe13ff.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "22/11/2025"
+  },
+  {
+    id: "shock-rival-gets-butchered-alive-by-cartel-in-sinaloa",
+    titulo: "CONMOCIÓN: Rival es masacrado vivo por cartel en Sinaloa",
+    portada: "https://theync.com/media/thumbs/6/9/2/0/1/21776856920183655cb4.mp4/21776856920183655cb4.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/2/0/1/692018bbe9ed1.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "22/11/2025"
+  },
+  {
+    id: "armed-forces-of-niger-republic-terminated-over-200-terrorists",
+    titulo: "Las fuerzas armadas de la República de Níger exterminaron a más de 200 terroristas",
+    portada: "https://theync.com/media/thumbs/6/9/1/f/9/2177685691f8f362a5b4.mp4/2177685691f8f362a5b4.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/f/9/691f90533f05e.mp4",
+    autor: "TripGore",
+    categoria: "ASENINATOS",
+    fecha: "22/11/2025"
+  },
+  {
+    id: "moped-rider-crushed-by-truck",
+    titulo: "Conductor de ciclomotor aplastado por camión",
+    portada: "https://theync.com/media/thumbs/6/9/2/0/2/2177685692020eb3146b.mp4/2177685692020eb3146b.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/2/0/2/692021a3aa0d0.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "22/11/2025"
+  },
+  {
+    id: "man-being-killed-with-several-shots",
+    titulo: "HOMBRE MUERTO DE VARIOS DISPAROS",
+    portada: "https://theync.com/media/thumbs/6/9/1/f/c/552433691fc8507f820.mp4/552433691fc8507f820.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/f/c/691fc94755c80.mp4",
+    autor: "TripGore",
+    categoria: "ASESINATOS",
+    fecha: "22/11/2025"
+  },
+  {
+    id: "beaten-thieves-forced-to-walk-naked",
+    titulo: "Ladrones golpeados y obligados a caminar desnudos",
+    portada: "https://theync.com/media/thumbs/6/9/1/e/1/2177685691e1ad4d94b6.mp4/2177685691e1ad4d94b6.mp4-9b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/e/1/691e1be804649.mp4",
+    autor: "TripGore",
+    categoria: "INCIDENTES",
+    fecha: "22/11/2025"
+  },
+  {
+    id: "man-being-burned-after-motorcycle-accident",
+    titulo: "HOMBRE QUEMADO TRAS ACCIDENTE DE MOTOCICLETA",
+    portada: "https://theync.com/media/thumbs/6/9/1/e/1/552433691e1409eab39.mp4/552433691e1409eab39.mp4-3b.jpg",
+    video: "https://theync.com/media/videos/6/9/1/e/1/691e14df5ea60.mp4",
+    autor: "TripGore",
+    categoria: "ACCIDENTES",
+    fecha: "22/11/2025"
+  }
 ];
